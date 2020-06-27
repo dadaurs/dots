@@ -1,0 +1,1 @@
+/home/dada/.cache/wal/colors.hs

@@ -40,7 +40,7 @@ All scripts can be found in ~/scripts, here's a rundown of the scripts I use reg
 [Vanity Gaps](./.suckless/dwm/dwm-vanitygaps-20190508-6.2.diff)
 
 ## Screenshot for dwm
-![](./scripts/dwm_screenshot.png)
+![](./dwm_screenshot.png)
 ## Screenshot for bspwm
-![](./scripts/bspwm_screenshot.png)
+![](./bspwm_screenshot.png)
 
