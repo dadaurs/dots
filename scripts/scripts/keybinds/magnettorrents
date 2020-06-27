@@ -1,0 +1,2 @@
+#!/bin/bash
+xsel --clipboard --output |dmenu -p "Download this magnet link?" | xargs -r0 transmission-remote-cli 

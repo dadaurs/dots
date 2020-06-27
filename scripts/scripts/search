@@ -1,0 +1,24 @@
+#!/bin/sh
+
+SEL=$(fzf) 
+
+
+
+#case $SEL in
+	#*.pdf) $( zathura $(pwd)/$SEL )     & disown  ;;
+	#*.png) $( sxiv $(pwd)/$SEL )        & disown  ;;
+	#*.jpg) $( sxiv $(pwd)/$SEL )        & disown  ;;
+	#*.svg) $( inkscape $(pwd)/$SEL  )   & disown  ;;
+	#*.mp4) $( mpv $(pwd)/$SEL )         & disown  ;;
+	#*.mkv) $( mpv $(pwd)/$SEL  )        & disown  ;;
+	#*)     $( st -e nvim $(pwd)/$SEL  ) & disown  ;;
+#esac
+case $SEL in
+	*.pdf)  detach zathura $(pwd)/$SEL      ;;
+	*.png)  detach sxiv $(pwd)/$SEL         ;;
+	*.jpg)  detach sxiv $(pwd)/$SEL         ;;
+	*.svg)  detach inkscape $(pwd)/$SEL     ;;
+	*.mp4)  detach mpv $(pwd)/$SEL          ;;
+	*.mkv)  detach mpv $(pwd)/$SEL          ;;
+	*)      detach st -e nvim $(pwd)/$SEL   ;;
+esac

@@ -1,0 +1,114 @@
+#!/bin/sh
+#vim:filetype=sh
+# find dimensions of monitor
+. $HOME/.cache/wal/colors.sh
+FONT="Iosevka Nerd Font:size=9"
+HEIGHT=15
+BatWidth=60
+TimeWidth=50
+MPDStatusWidth=50
+MPDTitleWidth=100
+WsPos=2
+ModDist=10
+WIDTH=$( xdpyinfo  | grep -i 'dimensions:' | sed 's:x:\ :' | awk '{print $2}' ) 
+
+FONT="Iosevka Nerd Font:size=9"
+
+
+
+# find dimensions of monitor
+WIDTH=$( xdpyinfo  | grep -i 'dimensions:' | sed 's:x:\ :' | awk '{print $2}' ) 
+#HEIGHT=$( xdpyinfo  | grep -i 'dimensions:' | sed 's:x:\ :' | awk '{print $3}' ) 
+
+#Calculate position of modules.
+TimePos=$(expr "$WIDTH" - $ModDist - $TimeWidth) 
+BatPos=$(expr "$TimePos" - $BatWidth - $ModDist) 
+MPDTitlePos=$(expr "$BatPos" - $MPDTitleWidth - $ModDist) 
+MPDStatusPos=$(expr "$MPDTitlePos" - $MPDStatusWidth  ) 
+#Calculate position of modules.
+#MPDPos=$(expr "$BatPos" - $MPDWidth - $ModDist) 
+
+Time() { 
+TIME=$( date "+%H:%M" )
+HOUR=$( date "+%H") 
+#echo -n "$DATETIME"
+case $HOUR in
+	1|13)  echo -n "$TIME";;
+	2|14)  echo -n "$TIME";;
+	3|15)  echo -n "$TIME";;
+	4|16)  echo -n "$TIME";;
+	5|17)  echo -n "$TIME";;
+	6|18)  echo -n "$TIME";;
+	7|19)  echo -n "$TIME";;
+	8|20)  echo -n "$TIME";;
+	9|21)  echo -n "$TIME";;
+	10|22) echo -n "$TIME";;
+	11|23) echo -n "$TIME";;
+	0)     echo -n "$TIME";;
+esac
+#echo "$TIME"
+}
+
+Battery() {
+	STATE=$( acpi | awk '{print $4}' | sed 's/,//')
+	#battery_status="$(acpi -b | awk -F '[[:space:]]+|,' '{ print $3 }')"
+	#case "$battery_status" in
+		#'Charging')
+			#echo " %{F#EA7866}$STATE  " ;;
+			##echo "%{B#000433} %{F#EA7866}$STATE  " ;;
+		#'Discharging')
+			#echo " %{F#CE6864}$STATE  " ;;
+			##echo "%{B#000433} %{F#CE6864}$STATE  " ;;
+		#'Full') 
+			#echo " %{F#B5BD68}$STATE  " 
+			##echo "%{B#000433} %{F#00FF00}$STATE  " 
+	#esac
+	echo " %{F#EA7866}$STATE"
+}
+setsong() {
+	status=$(mpc -f "%title%" | sed 1q)
+	if [[ $status == "" ]];then
+		status=$(mpc -f "%file%" | sed 1q | sed  -e 's:[a-zA-Z0-9]*\/::' | cut -f 1 -d '.')
+	fi
+	echo $status
+}
+
+setstate() { 
+state=$(mpc | grep 'playing\|paused' | awk '{print $1}' | sed 's/\[playing\]//' | sed 's/\[paused\]//') 
+echo  "%{A:mpc toggle:}$state%{A}"
+}
+
+n
+while true; do
+	if pgrep -x mpd > /dev/null; then
+		echo "%{F$foreground}%{A:mpc prev:} %{A}%{F$foreground}$(setstate) %{F$foreground}%{A:mpc next:}%{A}%{F$foreground}"
+		#echo "$(setstate)"
+		mpc idle >/dev/null
+	else
+		echo ""
+		sleep 1m
+	fi
+done | lemonbar -a 3  -f "$FONT" -g  $MPDStatusWidth\x$HEIGHT+$MPDStatusPos -B $background -F $foreground&
+
+while true; do
+	if pgrep -x mpd > /dev/null; then
+		setsong | skroll -d 0.25 -l -r
+		mpc idle >/dev/null
+	else
+		echo ""
+		sleep 1m
+	fi
+done | lemonbar   -f "$FONT" -g  $MPDTitleWidth\x$HEIGHT+$MPDTitlePos -B $background -F $foreground&
+
+while true; do
+	echo "%{c}%{F$foreground}$(Time) "
+	#echo " %{B#000433} $(Date) "
+	sleep 1m;
+done | lemonbar -f "Ubuntu Mono Nerd Font:size=11" -g "$TimeWidth"\x$HEIGHT+$TimePos -B "$background" -F $foreground&
+
+while true; do
+	echo "%{l}%{F#FECC6D}⚡$(Battery)"
+	#echo "%{l}%{F#FECC6D}⚡$(Battery)"
+	#echo "%{B#000433}%{l}%{F#FECC6D}⚡$(Battery)"
+	sleep 1m
+done | lemonbar -f "$FONT" -g $BatWidth\x$HEIGHT+$BatPos -B $background -F $foreground

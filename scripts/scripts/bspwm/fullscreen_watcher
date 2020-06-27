@@ -1,0 +1,10 @@
+#!/bin/sh
+#vim:filetype=sh
+while true;do
+if ( bspc subscribe -c 1 | grep T= ) && pgrep bar.sh ;then
+ $HOME/scripts/lemonbar/bar.sh toggle
+ bspc subscribe -c 2
+ $HOME/scripts/lemonbar/bar.sh toggle
+fi
+ bspc subscribe -c 2 >/dev/null 2>&1
+done

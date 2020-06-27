@@ -1,0 +1,25 @@
+#!/bin/sh
+num_dev=$(bluetoothctl devices | wc -l)
+airpods_mac=$(bluetoothctl devices | sed 1q | awk '{print $2}')
+phillips_mac=$(bluetoothctl devices | sed -n 2p| awk '{print $2}')
+get_headphones(){
+	[[ $@ == "airpods" ]] && head=$(bluetoothctl devices | sed 1q | cut -d' ' -f3-) || head=$(bluetoothctl devices | sed -n 2p | cut -d' ' -f3-)
+	echo $head
+}
+pair(){
+	if bluetoothctl info $airpods_mac | grep  "Connected: yes" || bluetoothctl info $phillips_mac| grep  "Connected: yes";then
+	mpc pause; bluetoothctl disconnect 
+	notify-send "Disconnected"
+else
+	bluetoothctl connect $airpods_mac && dev="airpods" || (bluetoothctl connect $phillips_mac && dev="Phillips")
+	#hp=$([[ $dev == "airpods" ]] && head=$(bluetoothctl devices | sed 1q | cut -d' ' -f3-) || head=$(bluetoothctl devices | sed -n 2p | cut -d' ' -f3-))
+	notify-send "Connected to $([[ $dev == "airpods" ]] && bluetoothctl devices | sed 1q | cut -d' ' -f3- || bluetoothctl devices | sed -n 2p | cut -d' ' -f3-)"
+	#notify-send "Connected to $dev"
+fi
+}
+
+pgrep -x pulseaudio || pulseaudio -D
+pair
+
+
+

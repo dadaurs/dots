@@ -1,0 +1,159 @@
+#!/bin/sh
+BG=#232323
+FG=#F0EEF0
+HEIGHT=18
+FONT="Cozette Vector:size=10"
+WIDTH=$( xdpyinfo  | grep -i 'dimensions:' | sed 's:x:\ :' | awk '{print $2}' ) 
+BGAOc=#D7B8FE #background of active tags
+FGAOc=#F0EEF0 #foreground of active and occupied tags
+BGAnOc=#D7B8FE #background of active not occupied tags
+FGAnOc=#F0EEF0 #foreground of active not occupied tags
+BGnAOc=#3B4252 #background of not active and occupied tags
+FGnAOc=#D7B8FE #foreground of not active and occupied tags
+BGnAnOc=#1D1B1F #background of not active and not occupied tags
+FGnAnOc=#F0EEF0 #foreground of not active not occupied tags
+BGlogo=#807BC0
+FGlogo=#1D1B1F
+BGmenu=#3B4252
+FGmenu=#807BC0
+BatWidth=55
+BatPosy=$WsPosy
+AppPosy=$WsPosy
+TimeWidth=80
+TimePosy=$WsPosy
+
+
+MPDWidth=150
+MPDPosy=$WsPosy
+MPDFSize="11"
+
+LogoPosx=0
+LogoPosy=$WsPosy
+
+BluePosy=$WsPosy
+FGblue=#F0EEF0
+BGblue=#1D1B1F
+BlueWidth=29
+BlueHeight=30
+
+MenuWidth=20
+ModDist=10
+MPDWidth=150
+MPDPosy=$WsPosy
+MPDFSize="11"
+WIDTH=$( xdpyinfo  | grep -i 'dimensions:' | sed 's:x:\ :' | awk '{print $2}' ) 
+#APPPOS=$(expr "$WIDTH" / 2 - $AppWidth / 2 )
+TimePos=$(expr "$WIDTH" - "$TimeWidth") 
+BatPos=$(expr "$TimePos" - $BatWidth - $ModDist) 
+#BatPos=$(expr "$WIDTH" -  $BatWidth)
+MPDPos=$(expr "$BatPos" - $MPDWidth - $ModDist) 
+BluePosx=$(expr "$MPDPos" - $BlueWidth) 
+#echo "" | dzen2 -p -bg $BG &
+ws_print(){
+	test -f /tmp/dwm_workspaces && \
+	echo /tmp/dwm_workspaces | entr  sed\
+	-e '1s/^/\ /'\
+	-e "s/:O/^bg($BGAOc)^fg($FGAOc) /g"\
+	-e "s/:o/^bg($BGnAOc)^fg($FGnAOc) /g"\
+		-e "s/:E/^bg($BGAnOc)^fg($FGAnOc) /g"\
+		-e "s/:e/^bg($BGnAnOc)^fg($FGnAnOc) /g"\
+		-e "s/:/^bg($BG)^fg($FG) /"\
+		/tmp/dwm_workspaces\
+	|| \
+	echo "" && sleep 1
+}
+setsong() {
+#current=$(mpc | grep -v "volume\|playing\|paused" | sed 's/\.opus//'| sed 's/\.m4a//' | sed -e 's/^chill\///' -e  's/^country\///' -e  's/^TheAlgorithm\///' -e  's/^Bootleg\///' -e 's/^Unknown\///' -e 's/^DiverseSystem\///' )
+current=$(mpc -f "%title%" | sed 1q | grep -v "volume:")
+#current=$(mpc | grep -v "volume\|playing\|paused" | sed 's/\.opus//'| sed 's/\.m4a//' | sed -e 's/^chill\///' -e  's/^country\///' -e  's/^TheAlgorithm\///' -e  's/^Bootleg\///' -e 's/^Unknown\///' -e 's/^DiverseSystem\///' )
+echo  "$current"
+}
+mpd_print(){
+	if pgrep -x mpd > /dev/null || pgrep -x mopidy
+	then
+		echo " ^fg(#ffffff)^ca(1,mpc prev) ^ca()^fg(#ffffff)$(setstate) ^fg(#ffffff)^ca(1,mpc next) ^ca()^fg(#ffffff)  $(setsong) "
+		mpc idle >/dev/null
+	else
+		sleep 30
+	fi
+}
+
+Battery() {
+	STATE=$( acpi | awk '{print $4}' | sed 's/,//')
+	battery_status="$(acpi -b | awk -F '[[:space:]]+|,' '{ print $3 }')"
+	case "$battery_status" in
+		'Charging')
+			echo " ^fg(#EBCB8B)⚡^fg(#EA7866)$STATE ^fg() " ;;
+			#echo "%{B#000433} ^fg(#EA7866}$STATE  " ;;
+		'Discharging')
+			echo "^fg(#EBCB8B) ⚡^fg(#CE6864)$STATE ^fg() " ;;
+			#echo "%{B#000433} ^fg(#CE6864}$STATE  " ;;
+		'Full') 
+			echo " ^fg(#A3BE8C) ⚡  ^fg(#B5BD68)$STATE ^fg() " 
+			#echo "%{B#000433} ^fg(#00FF00}$STATE  " 
+	esac
+}
+Time() { 
+TIME=$( date "+%H:%M" )
+HOUR=$( date "+%H") 
+#echo -n "$DATETIME"
+case $HOUR in
+	1|13)  echo -ne "$TIME ";;
+	2|14)  echo -ne "$TIME ";;
+	3|15)  echo -ne "$TIME ";;
+	4|16)  echo -ne "$TIME ";;
+	5|17)  echo -ne "$TIME ";;
+	6|18)  echo -ne "$TIME ";;
+	7|19)  echo -ne "$TIME ";;
+	8|20)  echo -ne "$TIME ";;
+	9|21)  echo -ne "$TIME ";;
+	10|22) echo -ne "$TIME ";;
+	11|23) echo -ne "$TIME ";;
+	0)     echo -ne "$TIME ";;
+	#1|13)  echo -ne "$TIME 🕐";;
+	#2|14)  echo -ne "$TIME 🕑";;
+	#3|15)  echo -ne "$TIME 🕒";;
+	#4|16)  echo -ne "$TIME 🕓";;
+	#5|17)  echo -ne "$TIME 🕕";;
+	#6|18)  echo -ne "$TIME 🕕";;
+	#7|19)  echo -ne "$TIME 🕖";;
+	#8|20)  echo -ne "$TIME 🕗";;
+	#9|21)  echo -ne "$TIME 🕘";;
+	#10|22) echo -ne "$TIME 🕙";;
+	#11|23) echo -ne "$TIME 🕚";;
+	#0)     echo -ne "$TIME 🕛";;
+esac
+#echo "$TIME"
+}
+setstate() { 
+state=$(mpc | grep 'playing\|paused' | awk '{print $1}' | sed 's/\[playing\]//' | sed 's/\[paused\]//') 
+echo  "^ca(1,mpc toggle)$state^ca()"
+}
+printbar(){
+#dzen2 &
+echo " " | lemonbar -d -p -B "$BG" -g x$HEIGHT &
+while true; do
+	ws_print 
+done | dzen2  -fn "$FONT"  -bg $BG -ta l -w 220 &
+while true;do
+	mpd_print
+done | dzen2 -fn "$FONT" -bg $BG -ta c -x $MPDPos -w $MPDWidth &
+while true;do
+	Battery
+	sleep 1m
+done | dzen2 -fn "$FONT" -bg $BG -ta c  -x $BatPos -w $BatWidth &
+while true;do
+	Time
+	sleep 1m
+done | dzen2 -fn "$FONT" -bg $BG  -x 1000  &
+}
+
+if pgrep -x dzen2 >/dev/null || pgrep -x lemonbar >/dev/null;then
+	killall entr >/dev/null 2>/dev/null
+	killall dzen2 >/dev/null 2>/dev/null
+	killall lemonbar  >/dev/null 2>/dev/null
+else
+	killall entr >/dev/null 2>/dev/null
+
+	printbar
+fi

@@ -1,0 +1,2 @@
+#!/bin/sh
+tabbed_id=$(tabbed -cdk) && xdotool windowreparent $(xdotool getwindowfocus -f) $tabbed_id

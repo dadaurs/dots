@@ -1,0 +1,10 @@
+#! /bin/bash
+
+export DISPLAY=:1.0
+optirun startlxde &
+sleep 5
+synergys -f -a 127.0.0.1 --display :0 -n gentoo &
+sleep 5
+synergyc -f -n hdmi --display :1 127.0.0.1 &
+sleep 5
+export DISPLAY=:0.0

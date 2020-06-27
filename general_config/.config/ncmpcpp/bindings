@@ -1,0 +1,25 @@
+def_key "h"
+  previous_column
+def_key "h"
+  jump_to_parent_directory
+def_key "j"
+  scroll_down
+def_key "k"
+  scroll_up
+def_key "l"
+  next_column
+def_key "l"
+  run_action
+def_key "l"
+  play_item 
+
+def_key "s"
+  show_search_engine
+
+def_key "n"
+  next
+def_key "b"
+  previous
+
+def_key " "
+  pause

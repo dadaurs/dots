@@ -1,0 +1,13 @@
+#!/bin/sh
+
+if pgrep -x mpd > /dev/null
+then
+    ncmpcpp
+elif  pgrep -x spotify || pgrep -x spotifyd > /dev/null
+ then
+    /home/dada/.cargo/bin/spt
+else
+    mpd & disown
+    ncmpcpp
+fi
+    

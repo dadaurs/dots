@@ -1,0 +1,22 @@
+Script started on 2020-05-26 18:40:23+02:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="118" LINES="53"]
+[1m[7m%[27m[1m[0m                                                                                                                      ]2;dada@gentoo: ~/scripts/dzen]1;~/scripts/dzen[0m[27m[24m[J [33m~/scripts/dzen [00m% [K[?1h=[?2004hscript[1C  if pgrep -x mpd > /dev/null || pgrep -x mopidy                                               [K                   │[?1l>[?2004l
+]2;script if pgrep -x mpd > /dev/null || pgrep -x mopidy │]1;scriptscript: invalid option -- 'x'
+Try 'script --help' for more information.
+pgrep: only one pattern can be provided
+Try `pgrep --help' for more information.
+[1m[7m%[27m[1m[0m                                                                                                                      ]2;dada@gentoo: ~/scripts/dzen]1;~/scripts/dzen[0m[27m[24m[J [33m~/scripts/dzen [00m% [K[?1h=[?2004h         then                                                                                         [K                   │[?1l>[?2004l
+zsh: parse error near `then'
+[1m[7m%[27m[1m[0m                                                                                                                      ]2;dada@gentoo: ~/scripts/dzen]1;~/scripts/dzen[0m[27m[24m[J [33m~/scripts/dzen [00m% [K[?1h=[?2004h                 echo " ^fg(#ffffff}^ca(1,mpc prev} ^ca()^fg(#ffffff)$(setstate) ^fg(#ffffff)^ca(1,m [Kppc next)         │[?1l>[?2004l
+[0m[27m[24m[Jdquote> [K[?1h=[?2004h^^ca()^fg(#ffffff}  $(setsong) "                                                                                [K         │[?1l>[?2004l
+zsh: substitution failed
+[1m[7m%[27m[1m[0m                                                                                                                      ]2;dada@gentoo: ~/scripts/dzen]1;~/scripts/dzen[0m[27m[24m[J [33m~/scripts/dzen [00m% [K[?1h=[?2004h                 mpc idle >/dev/null                                                                  [K                   │[?1l>[?2004l
+]2;mpc idle │ > /dev/null]1;mpcUnrecognized idle event: │
+[1m[7m%[27m[1m[0m                                                                                                                      ]2;dada@gentoo: ~/scripts/dzen]1;~/scripts/dzen[0m[27m[24m[J [33m~/scripts/dzen [00m% [K[?1h=[?2004h         else                                                                                         [K                   │[?1l>[?2004l
+zsh: parse error near `else'
+[1m[7m%[27m[1m[0m                                                                                                                      ]2;dada@gentoo: ~/scripts/dzen]1;~/scripts/dzen[0m[27m[24m[J [33m~/scripts/dzen [00m% [K[?1h=[?2004h                 sleep 30                                                                             [K                   │[?1l>[?2004l
+]2;sleep 30 │]1;sleepsleep: invalid time interval ‘│’
+Try 'sleep --help' for more information.
+[1m[7m%[27m[1m[0m                                                                                                                      ]2;dada@gentoo: ~/scripts/dzen]1;~/scripts/dzen[0m[27m[24m[J [33m~/scripts/dzen [00m% [K[?1h=[?2004h         fi[?2004l
+[1m[7m%[27m[1m[0m                                                                                                                      ]2;dada@gentoo: ~/scripts/dzen]1;~/scripts/dzen[0m[27m[24m[J [33m~/scripts/dzen [00m% [K[?1h=[?2004hp       if pgrep -x mpd > /dev/null || pgrep -x mopidy[?1l>[?2004l
+[0m[27m[24m[Jif> [K[?1h=[?2004h    then[?1l>[?2004l
+[0m[27m[24m[Jthen> [K[?1h=[?2004h          echo " ^fg(#ffffff}^ca(1,mpc prev} ^ca()^fg(#ffffff)$(setstate) ^fg(#ffffff)^ca(1,mpc next) ^ca()^fg [K((#ffffff}  $(setsong) "

@@ -1,0 +1,54 @@
+#!/bin/sh
+#vim:filetype=sh
+HEIGTH=$( xdpyinfo  | grep -i 'dimensions:' | sed 's:x:\ :' | awk '{print $3}' ) 
+FONTTitle="Ubuntu Mono Nerd Font:size=20"
+FONT="Iosevka Nerd Font:size=10"
+
+setstate() { 
+mpc | grep 'playing\|paused' | awk '{print $1}' | sed 's/\[playing\]//' | sed 's/\[paused\]//'
+}
+mpd_info(){
+	mpc status | sed 1q
+	echo "^fn($FONT)^ca(1,/usr/bin/mpc prev)^ca()   ^ca(1,/usr/bin/mpc toggle)$(setstate)^ca()   ^ca(1,/usr/bin/mpc next)^ca()^fn()"
+	pos=$(mpc | sed   -n 2p | grep "playing\|paused" | awk '{print $3}')
+	mpc | sed   -n 2p | grep "playing\|paused" | awk '{print $4}' | sed -e 's/(//g' -e 's/)//g' | gdbar -max 100 -min 0 -l "$pos  "
+}
+disk_usage(){
+	root_perc=$(df -h | grep /dev/root | awk '{print $5}')
+	media_perc=$(df -h | grep media | awk '{print $5}' )
+	echo "root    media"
+	#echo -n "^fn(Iosevka Nerd Font:size=100)"
+	echo $root_perc | gdbar -min 0 -max 100 -s v -h 40 -sw 9 -nonl -l "$root_perc "
+	echo -n "    "
+	echo $media_perc | gdbar -min 0 -max 100 -s v -h 40 -sw 9 -l "$media_perc  "
+}
+audio_info(){
+	perc=$(amixer sget Master | grep "Front Left:" | awk '{print $5}' | sed -e 's/\[//g' -e 's/\]//g' -e 's/%//g')
+	echo "^fn($FONT)^ca(1,amixer set Master 5%+)🔈^ca()$perc ^ca(1,amixer set Master 5%-)🔊^ca()"
+}
+
+main(){
+	printf  "^fn(%s)" $FONTTitle
+
+	date "+%H:%I:%S" 
+	date "+%A:%B"
+	mpd_info
+	#audio_info
+	disk_usage
+	#echo -e "^p()"
+	#echo -ne "^p()"
+	#sleep 1
+}
+
+
+
+
+#main 
+
+while true; do
+	main
+	sleep 1
+done | dzen2  -l '6' -tw 250 -w 250 -h 30   -e 'onstart=uncollapse' -u -sa 'c'
+#done | dzen2  -l '2'  -w 200 -h "$HEIGTH" -e 'onstart=uncollapse' -u
+#done | dzen2 -u -y 40  -w 200 -h 1000 -l '1' -e 'onstart=uncollapse' 
+#done

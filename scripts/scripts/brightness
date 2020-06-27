@@ -1,0 +1,40 @@
+#!/bin/bash
+
+brightnessLevel=$(xbacklight | sed 's/\.......//')
+maxBrightness=100
+
+echo $brightnessLevel
+#echo $maxBrightness
+color1="#F7E599'>"
+color2="#F7E081'>"
+color2="#F7DB68'>"
+color3="#F7DB68'>"
+color4="#F5CF38'>"
+color5="#F5CC27'>"
+color6="#F7CA16'>"
+color7="#FACB0F'>"
+color8="#F7C600'>"
+col="<span color='"
+end="</span>"
+
+case $brightnessLevel in
+        [0-6])       notify-send "Brightness:" "$col$color1•$end○○○○○○○○○○○○○○○"  ;;
+        [7-12])      notify-send "Brightness:" "$col$color1••$end○○○○○○○○○○○○○○"  ;;
+        [13-19])     notify-send "Brightness:" "$col$color2•••$end○○○○○○○○○○○○○"  ;;
+        [20-26])     notify-send "Brightness:" "$col$color2••••$end○○○○○○○○○○○○"  ;;
+        [27-33])     notify-send "Brightness:" "$col$color3•••••$end○○○○○○○○○○○"  ;;
+        [34-40])     notify-send "Brightness:" "$col$color3••••••$end○○○○○○○○○○"  ;;
+        [41-47])     notify-send "Brightness:" "$col$color4•••••••$end○○○○○○○○○"  ;;
+        [48-54])     notify-send "Brightness:" "$col$color4••••••••$end○○○○○○○○"  ;;
+        [55-61])     notify-send "Brightness:" "$col$color5•••••••••$end○○○○○○○"  ;;
+        [62-68])     notify-send "Brightness:" "$col$color5••••••••••$end○○○○○○"  ;;
+        [69-75])     notify-send "Brightness:" "$col$color6•••••••••••$end○○○○○"  ;;
+        [76-82])     notify-send "Brightness:" "$col$color6••••••••••••$end○○○○"  ;;
+        [83-89])     notify-send "Brightness:" "$col$color7•••••••••••••$end○○○"  ;;
+        [90-96])     notify-send "Brightness:" "$col$color7••••••••••••••$end○○"  ;;
+        [96-99])     notify-send "Brightness:" "$col$color8•••••••••••••••$end○"  ;;
+        100)         notify-send "Brightness:" "$col$color8••••••••••••••••$end"  ;;
+	*)           notify-send "wtf" ;;
+esac
+
+

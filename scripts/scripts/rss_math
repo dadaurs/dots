@@ -1,0 +1,8 @@
+#!/bin/sh
+w3m -dump $1 |\
+	sed -e '1s/^/\\[/'\
+	-e 's/\\displaystyle//g'\
+	-e 's/{//g'\
+	-e 's/}//g'\
+	-e 's/\\bf//g' |\
+	nvim -R -c 'set filetype=tex' -c 'Goyo' -c 'nnoremap q :qa!<cr>' -

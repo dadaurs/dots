@@ -1,0 +1,6 @@
+#!/bin/sh
+if pgrep -x mopidy; then
+	echo "Mopidy is already running"
+else
+	mopidy & disown
+fi

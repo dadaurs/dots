@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+. $HOME/.cache/wpgtk.color
+
+mpc_status() {
+  status=$(mpc | sed -n 2p | awk -F " " '{print $1}' | sed "s/\&/\&amp;/g")
+  if [ "$status" = "[paused]" ]; then
+    echo ""
+  else
+    echo ""
+  fi
+}
+
+_rofi() {
+  rofi -sep '|' -columns 8 -lines 1 -disable-history true -cycle true \
+    -theme ~/.config/rofi/theme/rofi-smallmenu.rasi -location 4 -width 550 -height 5 \
+    -dmenu -font "Hack Nerd Font 19" -mesg "<span background='$color3' foreground='$color0'> $(mpc_status) </span> $(mpc current | sed 's/\&/\&amp;/g')"
+}
+
+inform() {
+  sleep 0.5
+  show-lemonbar nowplaying
+}
+
+choice=$(echo -n "||||凌||綾|||" | _rofi)
+
+case "$choice" in
+  )
+    mpc cdprev && inform
+    ;;
+  )
+    mpc toggle && inform
+    ;;
+  )
+    mpc next && inform
+    ;;
+  )
+    vol=$(echo -n "100|75|50|25|+5|-5" | _rofi)
+    mpc volume ${vol}
+    ;;
+  )
+    mpc repeat && inform
+    ;;
+  凌)
+    mpc random && inform
+    ;;
+  綾)
+    mpc single && inform
+    ;;
+  )
+    cross=$(echo -n "0|1|5|7|10|15" | _rofi)
+    mpc crossfade ${cross}
+    ;;
+  )
+    mpc consume && inform
+    ;;
+esac
+

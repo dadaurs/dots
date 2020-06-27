@@ -1,0 +1,20 @@
+#!/bin/sh
+
+commoncom="qb\n
+emacs\n
+chromium\n
+firefox\n
+surf\n"
+choice=$(echo -e $commoncom | dmenu -i -l 5 -p "")
+
+echo $choice
+case $choice in
+	"qb") qutebrowser;;
+	"emacs") emacs;;
+	"chromium") chromium;;
+	"firefox") firefox;;
+	"surf") tabbed surf -e ;;
+	#*) $choice;;
+esac
+
+

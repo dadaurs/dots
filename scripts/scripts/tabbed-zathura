@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+i_flag=""
+n_flag=false
+uid=""
+
+usage() {
+  echo "tabbed-zathura <OPTS> -f <FILE>
+ -n   automatically set id for new tabbed-zathura instance
+ -i   sets id for a tabbed-zathura instance, or opens a new tab in that instance
+ -f   file to open"
+}
+
+while getopts 'hni:f:' flag; do
+  case "${flag}" in
+    h) usage ;;
+    n) n_flag=true ;;
+    i) 
+      if [ "$n_flag" = "false" ]; then
+        uid="${OPTARG}"
+      fi
+      ;;
+    f) file="${OPTARG}" ;;
+    *) ;;
+  esac
+done
+
+if [ "$n_flag" = "false" ]; then
+  if [ "$uid" = "" ]; then
+    xidfile="/tmp/tabbed-zathura.xid"
+  else
+    xidfile="/tmp/tabbed-zathura-$uid.xid"
+  fi
+else
+  xidfile="/tmp/tabbed-zathura-$$.xid"
+fi
+
+runtabbed() {
+	tabbed -dcn "tabbed-zathura-$uid" -p +1 -r 2 zathura -e '' "$file" > "$xidfile" \
+		2>/dev/null &
+}
+
+if [ ! -r "$xidfile" ];
+then
+	runtabbed
+else
+	xid=$(cat "$xidfile")
+	xprop -id "$xid" >/dev/null 2>&1
+	if [ $? -gt 0 ]; then
+		runtabbed
+	else
+		zathura -e "$xid" "$file" >/dev/null 2>&1 &
+	fi
+fi
+
+

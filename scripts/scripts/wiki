@@ -1,0 +1,11 @@
+#!/bin/sh
+cache_file="$HOME/.cache/wiki_cache"
+
+choice=$(tac $cache_file | dmenu -p wiki  )
+grep $choice $cache_file &&\
+surf "https://en.wikipedia.org/wiki/$choice" ||\
+( echo $choice >> $cache_file && surf "https://en.wikipedia.org/wiki/$choice" )
+
+
+
+

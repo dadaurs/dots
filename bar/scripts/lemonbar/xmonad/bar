@@ -1,0 +1,29 @@
+#!/bin/sh
+#vim:filetype=sh
+source $HOME/.cache/wal/colors.sh
+killall lemonbar
+killall mpc
+FONT="Iosevka Nerd Font:size=9"
+HEIGHT=15
+AppWidth=100
+BatWidth=60
+TimeWidth=70
+MPDWidth=220
+WsPos=2
+ModDist=10
+
+
+
+
+cat | while IFS= read -r line; do
+  printf '%s\n' "$line" | sed\
+	  -e  "s/%N NSP %n\ //"\
+	  -e "s/%C/%{F$foreground}%{B$background}/"\
+	  -e 's/%c/%{F}%{B}/'\
+	  -e "s/%H/%{F$background}%{B$color8}/g"\
+	  -e 's/%h/%{F}%{B}/g'\
+	  -e "s/%N/%{F$background}%{B$foreground}/g"\
+	  -e 's/%n/%{F}%{B}/g'
+done  | lemonbar  -B $background -g x$HEIGHT &
+
+/home/dada/scripts/lemonbar/xmonad/modules &

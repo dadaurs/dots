@@ -1,0 +1,35 @@
+#!/bin/sh
+
+# create .tex file
+create_tex(){
+	#preamble
+echo "\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[french]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage[a4paper,text={0.8\paperwidth, 0.8\paperheight},centering]{geometry}
+\usepackage{bbm} %RCQ
+\begin{document}
+">/tmp/clipboard_latex.tex
+#main
+	xsel --clipboard --output | sed 's/\\tag//g' >> /tmp/clipboard_latex.tex
+#end document
+echo "
+\end{document}">> /tmp/clipboard_latex.tex
+
+}
+compile_tex(){
+	pdflatex  -halt-on-error -output-directory /tmp /tmp/clipboard_latex.tex  
+	#pdflatex -output-directory /tmp /tmp/clipboard_latex.tex >/dev/null 2>&1 || notify-send "Compilation Error" ; exit 1
+}
+cleanup(){
+	rm /tmp/clipboard_latex.*
+}
+
+create_tex
+compile_tex
+zathura /tmp/clipboard_latex.pdf
+
+

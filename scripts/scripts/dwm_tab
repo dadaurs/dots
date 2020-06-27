@@ -1,0 +1,44 @@
+#!/bin/sh
+function get_class {
+	id=$1
+	xprop -id $id | sed -n '/WM_CLASS/s/.*, "\(.*\)"/\1/p'
+}
+function get_root_wid {
+	xwininfo -root | awk '/Window id:/{print $4}'
+}
+function get_clients {
+	id=$1
+	xwininfo -id $id -children | sed -n '/[0-9]\+ \(child\|children\):/,$s/ \+\(0x[0-9a-z]\+\).*/\1/p'
+}
+next_west() {
+	hex_wid=$(lsw | xargs wattr xi | sort -nr | sed "0,/$(pfw)/d" | sed "1s/^[0-9]* //p;d")
+	printf "%d" $hex_wid
+}
+
+next_east() {
+	hex_wid=$(lsw | xargs wattr xi | sort -n | sed "0,/$(pfw)/d" | sed "1s/^[0-9]* //p;d")
+	printf "%d" $hex_wid
+}
+
+next_north() {
+	hex_wid=$(lsw | xargs wattr yi | sort -nr | sed "0,/$(pfw)/d" | sed "1s/^[0-9]* //p;d")
+	printf "%d" $hex_wid
+}
+
+next_south() {
+	hex_wid=$(lsw | xargs wattr yi | sort -n | sed "0,/$(pfw)/d" | sed "1s/^[0-9]* //p;d")
+	printf "%d" $hex_wid
+}
+
+#Tabbed_PID=$(pfw)
+#[[$Tabbed_PID == "tabbed"]] && tabbed
+case $1 in
+	"west"  )next_west   && xdotool windowreparent  $(next_west)  $(xdotool getwindowfocus -f) ;;
+	"east"  )next_east   && xdotool windowreparent  $(next_east)  $(xdotool getwindowfocus -f) ;;
+	"north"  )next_north   && xdotool windowreparent  $(next_north)  $(xdotool getwindowfocus -f) ;;
+	"south" )next_south   && xdotool windowreparent  $(next_south) $(xdotool getwindowfocus -f) ;;
+	       *) tabbed ;;
+esac
+
+
+

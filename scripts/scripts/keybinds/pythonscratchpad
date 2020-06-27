@@ -1,0 +1,2 @@
+export PYTHONSTARTUP=/home/dada/.startup.py
+exec st -e python

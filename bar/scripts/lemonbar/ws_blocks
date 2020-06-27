@@ -1,0 +1,29 @@
+#!/bin/sh
+pkill -f 'lemonbar .* current_desktop_name'
+box_size="20"
+edge_offset=5
+offset="$edge_offset"
+bg_color="#072B3F"
+fg_color="#EAC6DD"
+color1=""
+color2=""
+for name in $(bspc query -D -d '.occupied' --names | tr '\n' ' ')
+do
+	if [ "$name" = "$(bspc query -D -d --names)" ]
+	then
+		color1="$fg_color"
+		color2="$bg_color"
+	else
+		color1="$bg_color"
+		color2="$fg_color"
+	fi
+
+	echo "%{c}$name" \
+		| lemonbar -dpg "$box_size"x"$box_size"+$offset+5 \
+		-B "$color1" \
+		-F "$color2" \
+		-f "DejaVu Sans Mono-9" \
+		-n "current_desktop_name" &
+	offset="$(( offset + edge_offset + box_size ))"
+done
+

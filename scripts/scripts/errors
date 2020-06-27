@@ -1,0 +1,6 @@
+doas emerge --info 
+echo '======================================='
+echo '======================================='
+doas emerge --info $1
+doas emerge -pqv   $1
+

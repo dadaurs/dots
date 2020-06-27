@@ -1,0 +1,37 @@
+#!/bin/sh
+
+playlistdir='/home/dada/.config/mpd/playlists'
+randomstate=$( mpc | tail -1 | awk '{print $6}')
+cursong=$(mpc -f "%title%" | sed 1q)
+
+#main actions
+actions="toggle\nprevious\nnext\ntoggle random ( $( mpc | tail -1 | awk '{print $6}') )\nadd to playlist\nplay playlist\nadd to queue"
+sel=$( echo -e "$actions" | dmenu -l 7 -i -p "$cursong") 
+playlist () { 
+playsel=$( mpc lsplaylists | dmenu -i -p 'Wich playlist?' )
+cursong=$(mpc -f %file% | sed 1q) 
+echo "$cursong" >> "$playlistdir"/"$playsel".m3u
+}
+playplaylist () { 
+playsel=$( mpc lsplaylists | dmenu -i -p 'Wich playlist?' )
+if ![ $playsel = '']; then
+	break
+else
+	mpc clear && mpc load $playsel && mpc play
+fi
+}
+addtoqueue () { 
+	playsel=$( mpc lsplaylists | dmenu -l 5 -i -p 'From wich playlist?')
+	mpc ls $playsel | dmenu -l 6 -p 'What song?' | mpc insert
+#| mpc insert
+}
+
+case $sel in
+	'toggle') mpc toggle;;
+	'previous') mpc prev;;
+	'next') mpc next;;
+	'add to playlist')playlist;;
+	'play playlist') playplaylist;;
+	'add to queue') addtoqueue;;
+	*)mpc random;;
+esac

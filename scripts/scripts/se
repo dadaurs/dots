@@ -1,0 +1,17 @@
+#!/bin/sh
+
+SEL=$(fzf --reverse) 
+pwd=$PWD
+
+
+
+case $SEL in
+	*.pdf) echo "$(pwd)/$SEL" | xargs -r zathura  & disown ;;
+	*.png) echo  "$(pwd)/$SEL" | xargs -r sxiv & disown ;;
+	*.jpg) echo $(pwd)/$SEL | xargs -r sxiv& disown ;;
+	*.svg) echo "$(pwd)/$SEL" | xargs -r inkscape& disown ;;
+	*.mp4) echo "$(pwd)/$SEL" | xargs -r mpv & disown ;;
+	*.mkv) echo "$(pwd)/$SEL" | xargs -r mpv & disown ;;
+	*/) echo "" ;;
+	*)     echo "$SEL" | xargs -r nvim ;;
+esac

@@ -1,0 +1,14 @@
+#!/bin/sh
+
+while true; do
+if pgrep -x mpd > /dev/null ; then 
+	echo "0"
+	sh -c  'set -m
+		trap "exit" CHLD
+		mpc idle & sleep 3s & wait'
+		killall mpc
+else
+	echo "0"
+	sleep 1s
+fi
+done

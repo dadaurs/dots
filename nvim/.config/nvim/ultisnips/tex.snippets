@@ -1,0 +1,235 @@
+global !p
+texMathZones = ['texMathZone'+x for x in ['A', 'AS', 'B', 'BS', 'C', 'CS', 'D', 'DS', 'E', 'ES', 'F', 'FS', 'G', 'GS', 'H', 'HS', 'I', 'IS', 'J', 'JS', 'K', 'KS', 'L', 'LS', 'DS', 'V', 'W', 'X', 'Y', 'Z']]
+
+texIgnoreMathZones = ['texMathText']
+
+texMathZoneIds = vim.eval('map('+str(texMathZones)+", 'hlID(v:val)')")
+texIgnoreMathZoneIds = vim.eval('map('+str(texIgnoreMathZones)+", 'hlID(v:val)')")
+
+ignore = texIgnoreMathZoneIds[0]
+
+def math():
+	synstackids = vim.eval("synstack(line('.'), col('.') - (col('.')>=2 ? 1 : 0))")
+	try:
+		first = next(i for i in reversed(synstackids) if i in texIgnoreMathZoneIds or i in texMathZoneIds)
+		return first != ignore
+	except StopIteration:
+		return False
+endglobal
+
+snippet al "align" bA
+\begin{align*}
+$1
+\end{align*}
+$0
+endsnippet
+
+snippet env "enviromnent" bA
+\begin{$1}
+$2
+\end{$1}
+$0
+endsnippet
+
+context "math()"
+snippet pi "pi" iA
+\pi
+endsnippet
+
+context "math()"
+snippet inti "inti" iA
+\int_{-\infty}^{+\infty}$0
+endsnippet
+
+context "math()"
+snippet int "int" 
+\int_{$1}^{$2}$0
+endsnippet
+
+context "math()"
+snippet sum "sum" 
+\sum_{$1}^{$2}$0
+endsnippet
+
+context "math()"
+snippet ify "infty" iA
+\infty 
+endsnippet
+
+context "math()"
+snippet e "exp" 
+e^{$1} $0
+endsnippet
+
+context "math()"
+snippet itt "intertext" bA
+\intertext{$1}
+endsnippet
+
+context "math()"
+snippet frac "fraction" 
+\frac{$1}{$2}$0
+endsnippet
+snippet dm "display math" bA
+\[ 
+$1
+\]
+$0
+endsnippet
+
+context "math()"
+snippet pm "pmatrix" bA
+\begin{pmatrix}
+$0
+\end{pmatrix}
+endsnippet
+
+context "math()"
+snippet pn "puissance" iA
+^{ $1 } $0
+endsnippet
+snippet img "image" bA
+\begin{center}
+\includegraphics[width=0.5\textwidth]{$1}
+\end{center}
+$0
+endsnippet
+snippet tikz "tikzpicture" bA
+\begin{tikzpicture}
+$1
+\end{tikzpicture}
+$0
+endsnippet
+snippet gui "guillemets"
+\`\`$1''`!p
+if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+    snip.rv = ' '
+else:
+    snip.rv = ''
+`$2
+
+endsnippet
+snippet [  "[" A
+[$1]$0
+endsnippet
+snippet pdv "dérivée partielle" A
+\pdv{$1}{$2} $0
+endsnippet
+snippet it "item in beamer" 
+\item<$1->$0
+endsnippet
+snippet $ "Math" wA
+$${1}$`!p
+if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+    snip.rv = ' '
+else:
+    snip.rv = ''
+`$2
+endsnippet
+snippet template "Basic template" b
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[french]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage[a4paper,text={0.8\paperwidth, 0.8\paperheight},centering]{geometry}
+\usepackage{bbm} %RCQ
+
+% figure support
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\pdfsuppresswarningpagegroup=1
+\author{}
+\date{}
+\title{$1}
+$0
+endsnippet
+snippet tufte "tufte template" b
+\documentclass[a4paper]{tufte-book}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[french]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{bbm} %RCQ
+
+% figure support
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\pdfsuppresswarningpagegroup=1
+\author{}
+\date{}
+\title{$1}
+$0
+endsnippet
+
+snippet table "Table environment" b
+\begin{table}[${1:htpb}]
+	\centering
+	\caption{${2:caption}}
+	\label{tab:${3:label}}
+	\begin{tabular}{${5:c}}
+	$0${5/((?<=.)c|l|r)|./(?1: & )/g}
+	\end{tabular}
+\end{table}
+endsnippet
+
+snippet exe "Exercice" 
+\begin{center}
+\textbf{Exercice ${1:Numero}\\\
+${2:Titre}}
+\end{center}
+\textit{${3:Enoncé}}
+$0
+endsnippet
+snippet st "such that" w
+such that $0
+endsnippet
+
+context "math()"
+snippet ^^ "powers" iA
+^{$1}$0
+endsnippet
+
+snippet sc "section" bA
+\section{$1}
+$0
+endsnippet
+snippet ssc "section" bA
+\subsection{$1}
+$0
+endsnippet
+snippet sssc "section" bA
+\subsubsection{$1}
+$0
+endsnippet
+snippet mkt "maketitle" bA
+\maketitle
+$0
+endsnippet
+
+context "math()"
+snippet then "arrow" A
+\Rightarrow $0
+endsnippet
+
+context "math()"
+snippet '(bb|cal|scr|frak)([a-zA-Z])' "mathfont" wr
+\math`!p snip.rv = match.group(1)`{`!p snip.rv = match.group(2).upper()`}$0
+endsnippet
+
+snippet thm "Theorem" b
+\begin{${1:thm}}[${2:Theorem name}]\label{$1:$3${2/\\\w+\{(.*?)\}|\\([^\\"])|(\w+)|([^\w]+)/(?4:_:\L$1$2$3\E)/ga}}
+	$0
+\end{$1}
+endsnippet
+snippet defn "Definition" b
+\begin{${1:defn}}[${2:Definition}]\label{$1:$3${2/\\\w+\{(.*?)\}|\\([^\\"])|(\w+)|([^\w]+)/(?4:_:\L$1$2$3\E)/ga}}
+	$0
+\end{$1}
+endsnippet

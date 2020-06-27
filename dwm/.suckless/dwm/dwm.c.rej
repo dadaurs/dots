@@ -1,0 +1,41 @@
+--- dwm.c
++++ dwm.c
+@@ -94,9 +96,11 @@ struct Client {
+ 	int basew, baseh, incw, inch, maxw, maxh, minw, minh;
+ 	int bw, oldbw;
+ 	unsigned int tags;
+-	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen;
++	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen, isterminal, noswallow;
++	pid_t pid;
+ 	Client *next;
+ 	Client *snext;
++	Client *swallowing;
+ 	Monitor *mon;
+ 	Window win;
+ };
+@@ -140,6 +144,8 @@ typedef struct {
+ 	const char *title;
+ 	unsigned int tags;
+ 	int isfloating;
++	int isterminal;
++	int noswallow;
+ 	int monitor;
+ } Rule;
+ 
+@@ -237,9 +243,16 @@ static int xerrordummy(Display *dpy, XErrorEvent *ee);
+ static int xerrorstart(Display *dpy, XErrorEvent *ee);
+ static void zoom(const Arg *arg);
+ 
++static pid_t getparentprocess(pid_t p);
++static int isdescprocess(pid_t p, pid_t c);
++static Client *swallowingclient(Window w);
++static Client *termforwin(const Client *c);
++static pid_t winpid(Window w);
++
+ /* variables */
+ static const char broken[] = "broken";
+ static char stext[256];
++static int scanner;
+ static int screen;
+ static int sw, sh;           /* X display screen geometry width, height */
+ static int bh, blw = 0;      /* bar geometry */

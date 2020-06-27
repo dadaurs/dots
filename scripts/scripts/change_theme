@@ -1,0 +1,40 @@
+#!/bin/sh
+#vim:filetype=sh
+	
+
+dark_or_light(){
+dark_light=$(echo -e "Dark\nLight" | dmenu -i -p "Theme?")
+	case $dark_light in
+		'Dark')theme=$( ls $HOME/.local/lib/python3.7/site-packages/pywal/colorschemes/dark/ | sed 's/\.json//' | dmenu -i ) && wal --theme $theme -o "$HOME/scripts/lemonbar/bar.sh" &&  feh --bg-scale $(find /home/dada/wallpapers/dark/* | sxiv -tio)
+ ;;
+		'Light')theme=$( ls $HOME/.local/lib/python3.7/site-packages/pywal/colorschemes/light/ | sed 's/\.json//' | dmenu -i ) && wal -l --theme $theme -o "$HOME/scripts/lemonbar/bar.sh" && feh --bg-scale   $(find /home/dada/wallpapers/light/* | sxiv -tio)
+;;
+	esac
+}
+wallpapset(){
+	dark_light=$(echo -e "Dark\nLight" | dmenu -i -p "Theme?")
+		case $dark_light in
+			'Light')wallp=$(find /home/dada/wallpapers/*/* | sxiv -tio) &&\
+				wal -l -i $wallp -o "$HOME/scripts/lemonbar/bar.sh";;
+			'Dark')wallp=$(find /home/dada/wallpapers/*/* | sxiv -tio) &&\
+				wal  -i $wallp -o "$HOME/scripts/lemonbar/bar.sh";;
+		esac
+}
+theme_wallpaper=$(echo -e "Premade Theme\nWallpaper" | dmenu -i)
+case $theme_wallpaper in
+	'Premade Theme')dark_or_light;;
+	'Wallpaper')wallpapset;;
+esac
+
+
+if test -f $HOME/.cache/wal/colors.sh; then
+	source $HOME/.cache/wal/colors.sh
+	bspc config normal_border_color "$background"
+	bspc config focused_border_color "$foreground"
+else
+	bspc config normal_border_color "#000000"
+	bspc config focused_border_color "#EEE8D5"
+fi
+
+
+
