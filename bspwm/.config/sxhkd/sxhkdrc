@@ -198,3 +198,5 @@ ctrl + shift + q
 	/home/dada/scripts/quicktex
 super + t
 	/home/dada/scripts/change_theme
+super + w
+	farge --notify

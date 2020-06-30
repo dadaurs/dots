@@ -1,0 +1,547 @@
+#+TITLE: Emacs configuration
+* Require packages
+** Require repositories
+  #+BEGIN_SRC emacs-lisp
+(require 'package)
+(setq package-enable-at-startup nil)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+(package-initialize)
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(eval-when-compile
+  (require 'use-package))
+;;(require 'diminish)
+  #+END_SRC
+* Evil
+#+BEGIN_SRC emacs-lisp
+
+
+(require 'evil-leader)
+(global-evil-leader-mode)
+      (use-package evil
+      :init
+      (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+      (setq evil-want-keybinding nil)
+      :config
+      (define-key evil-motion-state-map (kbd ":") 'evil-repeat-find-char)
+      (define-key evil-motion-state-map (kbd ";") 'evil-ex)
+      (key-chord-mode 1)
+      (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+      (key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
+      (global-hl-line-mode +1)
+      (global-set-key (kbd "C-x k") 'kill-this-buffer)
+)
+(global-set-key (kbd "M-;") 'evilnc-comment-or-uncomment-lines)
+(global-set-key (kbd "C-c l") 'evilnc-quick-comment-or-uncomment-to-the-line)
+(global-set-key (kbd "C-c c") 'evilnc-copy-and-comment-lines)
+(global-set-key (kbd "C-c p") 'evilnc-comment-or-uncomment-paragraphs)
+
+      (evil-mode 1)
+;; (evil-leader/set-leader "<SPC>")
+(evil-leader/set-leader "<SPC>")
+(evil-leader/set-key
+  "ci" 'evilnc-comment-or-uncomment-lines
+  "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
+  "ll" 'evilnc-quick-comment-or-uncomment-to-the-line
+  "cc" 'evilnc-copy-and-comment-lines
+  "cp" 'evilnc-comment-or-uncomment-paragraphs
+  "cr" 'comment-or-uncomment-region
+  "cv" 'evilnc-toggle-invert-comment-line-by-line
+  "."  'evilnc-copy-and-comment-operator
+  "\\" 'evilnc-comment-operator ; if you prefer backslash key
+)
+#+END_SRC
+
+* Use packages
+** Add evil and themes to load path
+#+BEGIN_SRC emacs-lisp
+      (package-initialize)
+      (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+      (add-to-list 'load-path "~/.emacs.d/evil")
+#+END_SRC
+** All the *require* packages.
+#+BEGIN_SRC emacs-lisp
+      (require 'bind-key)
+      (require 'ido)
+      (require 'doom-themes)
+      (require 'company)
+#+END_SRC
+      
+#+BEGIN_SRC emacs-lisp
+      (ido-mode 1)
+      (use-package key-chord)
+      (use-package evil-nerd-commenter)
+      (use-package treemacs)
+      (use-package org
+      :config
+  (evil-set-initial-state 'org-agenda-mode 'normal)
+  (defvar org-agenda-mode-map)
+  (evil-define-key 'normal org-agenda-mode-map
+    "j" 'org-agenda-next-line
+    "k" 'org-agenda-previous-line
+    "o" 'org-agenda-open-link
+    "f" 'org-agenda-later
+    "b" 'org-agenda-earlier
+    (kbd "RET") 'org-agenda-switch-to
+    [escape] 'org-agenda-quit
+    "q" 'org-agenda-quit
+    "s" 'org-agenda-save-all-org-buffers
+    "t" 'org-agenda-todo
+    (kbd "SPC") 'org-agenda-show-and-scroll-up
+    )
+  (evil-leader/set-key-for-mode 'org-agenda-mode
+    "i" 'org-agenda-clock-in
+    "k" 'org-agenda-kill
+    "/" 'org-agenda-filter-by-tag
+    )
+
+  ;; Evil key configuration (org)
+  (evil-leader/set-key-for-mode 'org-mode
+    "i" 'org-clock-in
+    "o" 'org-clock-out
+    )
+    )
+      (use-package org-evil)
+      (use-package evil-org)
+      (use-package lsp-java :ensure t :after lsp
+      :config (add-hook 'java-mode-hook 'lsp)
+      (add-hook 'java-mode-hook #'lsp-java-boot-lens-mode)
+)
+      (add-to-list 'load-path "/home/dada/source/emacs-libvterm")
+      (use-package pdf-tools)
+      (use-package org-bullets)
+      (use-package tex-site)
+      (use-package evil-magit)
+      (use-package eclim
+      :config
+(setq eclimd-autostart t)
+(defun my-java-mode-hook ()
+    (eclim-mode t))
+
+(add-hook 'java-mode-hook 'my-java-mode-hook)
+)
+      (use-package elpy
+      :config
+      (elpy-enable)
+)
+      (set-frame-font "Ubuntu Mono Nerd Font:pixelsize=15" t)
+      ;;(dashboard-setup-startup-hook)
+      (menu-bar-mode -1)
+      (toggle-scroll-bar -1)
+      (tool-bar-mode -1)
+      (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+      (setq evil-want-keybinding nil)
+      ;; (when (require 'evil-collection nil t))
+	;; (evil-collection-init)
+;; Or if you use use-package
+    (use-package rg
+:config )
+
+    (use-package ivy
+:config
+  (ivy-mode)
+)
+(use-package ivy
+  :diminish
+  :hook (after-init . ivy-mode)
+  :config
+  (setq ivy-display-style nil)
+  (define-key ivy-minibuffer-map (kbd "RET") #'ivy-alt-done)
+  (define-key ivy-minibuffer-map (kbd "<escape>") #'minibuffer-keyboard-quit)
+  ;;(setq ivy-re-builders-alist
+        ;;'((counsel-rg . ivy--regex-plus)
+          ;;(counsel-projectile-rg . ivy--regex-plus)
+          ;;(counsel-ag . ivy--regex-plus)
+          ;;(counsel-projectile-ag . ivy--regex-plus)
+          ;;(swiper . ivy--regex-plus)
+          ;;(t . ivy--regex-fuzzy)))
+(global-set-key "\C-s" 'swiper)
+  (setq ivy-use-virtual-buffers t
+        ivy-count-format "(%d/%d) "
+        ivy-initial-inputs-alist nil))
+(use-package all-the-icons)
+(use-package evil-nerd-commenter)
+(use-package evil-leader)
+(evil-leader/set-leader ",")
+(global-evil-leader-mode)
+(evil-leader/set-key
+  "ci" 'evilnc-comment-or-uncomment-lines
+  "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
+  "ll" 'evilnc-quick-comment-or-uncomment-to-the-line
+  "cc" 'evilnc-copy-and-comment-lines
+  "cp" 'evilnc-comment-or-uncomment-paragraphs
+  "cr" 'comment-or-uncomment-region
+  "cv" 'evilnc-toggle-invert-comment-line-by-line
+  "."  'evilnc-copy-and-comment-operator
+  "\\" 'evilnc-comment-operator ; if you prefer backslash key
+)
+
+#+END_SRC
+
+* Defaults
+Easily open file manager
+#+BEGIN_SRC emacs-lisp
+(bind-key* "C-c d" 'dired)
+#+END_SRC
+** Stuff I dont understand
+#+BEGIN_SRC emacs-lisp
+   (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+   (setq package-check-signature nil)
+#+END_SRC
+** Set Font
+#+BEGIN_SRC emacs-lisp
+(setq default-frame-alist '((font . "Ubuntu Mono Nerd Font-12")))
+#+END_SRC
+** Backup files and autosave
+#+BEGIN_SRC emacs-lisp
+   (setq make-backup-files nil)
+   (setq auto-save-default nil)
+   (setq create-lockfiles nil)
+#+END_SRC
+** Dont type yes entirely, just y or n
+#+BEGIN_SRC emacs-lisp
+   (fset 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
+** Take away shitty stuff
+#+BEGIN_SRC emacs-lisp
+   (dolist (mode
+	       '(tool-bar-mode                ; No toolbars, more room for text
+		 scroll-bar-mode              ; No scroll bars either
+		 blink-cursor-mode))          ; The blinking cursor gets old
+	(funcall mode 0))
+      (setq scroll-step 1)
+(setq scroll-margin 1) 
+(setq scroll-conservatively 9999)
+#+END_SRC
+** Got honestly no clue
+#+BEGIN_SRC emacs-lisp
+   ;; (setq geiser-repl-history-filename (expand-file-name "geiser_history" user-emacs-directory))
+   ;; (setq elfeed-db-directory (expand-file-name "elfeed" user-emacs-directory))
+#+END_SRC
+** Backup directories
+#+BEGIN_SRC emacs-lisp
+   (setq backup-directory-alist
+	 `(("." . ,(expand-file-name "backups" user-emacs-directory))))
+#+END_SRC
+ #+BEGIN_SRC emacs-lisp
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((python . t)))
+(global-visual-line-mode 1)
+(eyebrowse-mode t)
+(ido-mode 'buffers) ;; only use this line to turn off ido for file names!
+(setq ido-ignore-buffers '("^ " "*Completions*" "*Shell Command Output*"
+               "*Messages*" "Async Shell Command"))
+(require 'openwith)
+(openwith-mode t)
+(setq openwith-associations '(("\\.pdf\\'" "zathura" (file))))
+(setq large-file-warning-threshold nil)
+ #+END_SRC 
+     
+* Dired
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-x i") 'peep-dired)
+(evil-define-key 'normal peep-dired-mode-map (kbd "j") 'peep-dired-next-file
+                                             (kbd "k") 'peep-dired-prev-file)
+(add-hook 'peep-dired-hook 'evil-normalize-keymaps)
+(setq ranger-preview-file t)
+(setq ranger-show-literal t)
+#+END_SRC
+
+* Per Package configs
+** Mappings for evil mode
+   
+#+BEGIN_SRC emacs-lisp
+(define-key evil-motion-state-map (kbd ":") 'counsel-M-x)
+(define-key evil-motion-state-map (kbd ";") 'evil-ex)
+(key-chord-mode 1)
+(key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+(key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
+;;(global-hl-line-mode +1)
+(global-set-key (kbd "C-x k") 'kill-this-buffer)
+
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+#+END_SRC
+  
+#+BEGIN_SRC emacs-lisp
+(defun reload-dotemacs-file ()
+"reload your .emacs file without restarting Emacs"
+(interactive)
+(load-file "~/.emacs.d/init.el"))
+(defun q()
+"reload your .emacs file without restarting Emacs"
+(interactive)
+(kill-this-buffer)
+)
+(setq org-file-apps
+  '((auto-mode . emacs)
+  ("\\.pdf::\\([0-9]+\\)?\\'" . "zathura %s -P %1")
+  ("\\.pdf\\'" . "zathura %s")
+  (directory . emacs)))
+#+END_SRC
+
+* Shortcuts & aliases
+#+BEGIN_SRC emacs-lisp
+(defun cx ()
+  (interactive)
+  (find-file "~/.xmonad/xmonad.hs"))
+
+(defun xinit ()
+  (interactive)
+  (find-file "~/.xinitrc"))
+(defun Z ()
+  (interactive)
+  (find-file "~/.zshrc"))
+(defun xre ()
+  (interactive)
+  (find-file "~/.Xresources"))
+(defun ece ()
+  (interactive)
+  (find-file "~/.emacs.d/init.el"))
+#+END_SRC
+* Latex configurations
+** French specific
+#+BEGIN_SRC emacs-lisp
+ (defun insert-e-acc ()
+    (interactive)
+    (insert "é"))
+ (defun insert-e-back ()
+    (interactive)
+    (insert "è"))
+ (defun insert-o-chap ()
+    (interactive)
+    (insert "ô"))
+
+ (defun insert-u-back ()
+    (interactive)
+    (insert "ù"))
+ (defun insert-e-chap ()
+    (interactive)
+    (insert "ê"))
+ (defun insert-u-chap ()
+    (interactive)
+    (insert "û"))
+ (defun insert-a-chap ()
+    (interactive)
+    (insert "â"))
+ (defun insert-a-back ()
+    (interactive)
+    (insert "à"))
+ (defun insert-c-ced ()
+    (interactive)
+    (insert "ç"))
+ (defun insert-i-chap ()
+    (interactive)
+    (insert "î"))
+ (defun insert-gt ()
+    (interactive)
+    (insert ">"))
+ (defun insert-lt ()
+    (interactive)
+    (insert "<"))
+;;(define-key Latex-mode-map (kbd ";") 'insert-e-acc))
+;;(add-hook 'latex-mode-hook
+	;;;  (lambda ()
+(add-hook 'LaTeX-mode-hook
+;;(add-hook 'latex-mode-hook
+	  (lambda ()
+	   (local-set-key (kbd ";") #'insert-e-acc)
+	   (local-set-key (kbd ":") #'insert-e-back)
+	   (key-chord-define evil-insert-state-map (kbd "=o") 'insert-o-chap)
+	   (key-chord-define evil-insert-state-map (kbd "=u") 'insert-u-back)
+	   (key-chord-define evil-insert-state-map (kbd "=e") 'insert-e-chap)
+	   (key-chord-define evil-insert-state-map (kbd "`u") 'insert-u-chap)
+	   (key-chord-define evil-insert-state-map (kbd "=a") 'insert-a-chap)
+	   (key-chord-define evil-insert-state-map (kbd "'a") 'insert-a-back)
+	   (key-chord-define evil-insert-state-map (kbd "=i") 'insert-i-chap)
+	   (key-chord-define evil-insert-state-map (kbd "=c") 'insert-c-ced)
+	   (key-chord-define evil-insert-state-map (kbd ">>") 'insert-gt)
+	   (key-chord-define evil-insert-state-map (kbd "><") 'insert-lt)
+	   )
+	  )
+  
+#+END_SRC
+** Settings
+#+BEGIN_SRC emacs-lisp
+(defun flymake-get-tex-args (file-name)
+(list "pdflatex"
+(list "-file-line-error" "-draftmode" "-interaction=nonstopmode" file-name)))
+
+(add-hook 'LaTeX-mode-hook 'flymake-mode)
+(setq TeX-PDF-mode t)
+(autoload 'reftex-mode "reftex" "RefTeX Minor Mode" t)
+(autoload 'turn-on-reftex "reftex" "RefTeX Minor Mode" nil)
+(autoload 'reftex-citation "reftex-cite" "Make citation" nil)
+(autoload 'reftex-index-phrase-mode "reftex-index" "Phrase Mode" t)
+(add-hook 'latex-mode-hook 'turn-on-reftex) ; with Emacs latex mode
+;; (add-hook 'reftex-load-hook 'imenu-add-menubar-index)
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+
+(setq LaTeX-eqnarray-label "eq"
+LaTeX-equation-label "eq"
+LaTeX-figure-label "fig"
+LaTeX-table-label "tab"
+LaTeX-myChapter-label "chap"
+TeX-auto-save t
+TeX-newline-function 'reindent-then-newline-and-indent
+TeX-parse-self t
+TeX-style-path
+'("style/" "auto/"
+"/usr/share/emacs21/site-lisp/auctex/style/"
+"/var/lib/auctex/emacs21/"
+"/usr/local/share/emacs/site-lisp/auctex/style/")
+LaTeX-section-hook
+'(LaTeX-section-heading
+LaTeX-section-title
+LaTeX-section-toc
+LaTeX-section-section
+LaTeX-section-label))
+ (setq TeX-view-program-selection '((output-pdf "PDF Tools"))
+    TeX-view-program-list '(("PDF Tools" TeX-pdf-tools-sync-view))
+    TeX-source-correlate-start-server t) ;; not sure if last line is neccessary
+ ;; to have the buffer refresh after compilation
+ (add-hook 'TeX-after-compilation-finished-functions
+        #'TeX-revert-document-buffer)
+;;(global-display-line-numbers-mode)
+
+#+END_SRC
+
+* EXWM
+#+BEGIN_SRC emacs-lisp
+(require 'exwm)
+(require 'exwm-config)
+(exwm-config-default)
+(bind-key "M-SPC" 'menu_prompt)
+  
+
+(defun menu_prompt ()
+ (interactive (list
+(read-shell-command "$ ")) (start-process-shell-command command nil)))
+#+END_SRC
+* Mail
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/mu/mu4e.el")
+;;(require 'mu4e)
+;;(set-email-account! "dada"
+ ;; '((mu4e-sent-folder       . "/dada/Sent Mail")
+  ;;  (mu4e-drafts-folder     . "/dada/Drafts")
+  ;;  (mu4e-trash-folder      . "/dada/Trash")
+  ;;  (mu4e-refile-folder     . "/dada/All Mail")
+  ;;  (smtpmail-smtp-user     . "david.wiedemann@outlook.com")
+   ;; (user-mail-address      . "david.wiedemann@outlook.com")    ;; only needed for mu < 1.4
+   ;; (mu4e-compose-signature . "---\nDavid Wiedemann"))
+  ;;t)
+  
+;; tell message-mode how to send mail
+(setq message-send-mail-function 'smtpmail-send-it)
+;; (user-mail-address . "david.wiedemann@outlook.com")
+;; if our mail server lives at smtp.example.org; if you have a local
+;; mail-server, simply use 'localhost' here.
+(require 'smtpmail)
+(setq smtpmail-smtp-server "SMTP.office365.com")
+;; (smtpmail-default-smtp-server . "SMTP.office365.com")
+;; (smtpmail-smtp-user . "david.wiedemann@outlook.com")
+;; (smtpmail-starttls-credentials . (("SMTP.office365.com" 587 nil nil)))
+(setq mu4e-change-filenames-when-moving t)
+(setq mu4e-attachment-dir  "~/Downloads")
+(require 'org-mu4e)
+
+;; convert org mode to HTML automatically
+(setq org-mu4e-convert-to-html t)
+(global-set-key (kbd "C-x m") 'mu4e)
+#+END_SRC
+* Org mode configurations
+** External packages
+#+BEGIN_SRC emacs-lisp
+(add-hook 'org-mode-hook
+   (lambda ()
+    (org-bullets-mode t)))
+(setq org-hide-leading-starts t)
+(setq org-ellipsis "↴")
+(setq org-src-fontify-natively t)
+(defun frenchmode ()
+    (interactive)
+	   (local-set-key (kbd ";") #'insert-e-acc)
+	   (local-set-key (kbd ":") #'insert-e-back)
+	   (key-chord-define evil-insert-state-map (kbd "=o") 'insert-o-chap)
+	   (key-chord-define evil-insert-state-map (kbd "=u") 'insert-u-back)
+	   (key-chord-define evil-insert-state-map (kbd "=e") 'insert-e-chap)
+	   (key-chord-define evil-insert-state-map (kbd "`u") 'insert-u-chap)
+	   (key-chord-define evil-insert-state-map (kbd "=a") 'insert-a-chap)
+	   (key-chord-define evil-insert-state-map (kbd "'a") 'insert-a-back)
+	   (key-chord-define evil-insert-state-map (kbd "=i") 'insert-i-chap)
+	   (key-chord-define evil-insert-state-map (kbd "=c") 'insert-c-ced)
+	   (key-chord-define evil-insert-state-map (kbd ">>") 'insert-gt)
+	   (key-chord-define evil-insert-state-map (kbd "><") 'insert-lt))
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c C-l") 'org-insert-link)
+#+END_SRC
+
+** Other
+Set keybinding to open org-agenda
+#+BEGIN_SRC emacs-lisp
+(bind-key* "C-c a" 'org-agenda-list)
+#+END_SRC
+#+BEGIN_SRC emacs-lisp
+
+(add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+(setq org-startup-indented t
+      org-bullets-bullet-list '(" ") ;; no bullets, needs org-bullets package
+     ; org-ellipsis "  " ;; folding symbol
+      org-pretty-entities t
+      org-hide-emphasis-markers t
+      ;; show actually italicized text instead of /italicized text/
+      org-agenda-block-separator ""
+      org-fontify-whole-heading-line t
+      org-fontify-done-headline t
+      org-fontify-quote-and-verse-blocks t)
+(lambda () (progn
+  (setq left-margin-width 2)
+  (setq right-margin-width 2)
+  (set-window-buffer nil (current-buffer))))
+  (setq org-agenda-files (quote  ("~/Ecole/TODO.org")))
+  (setq inhibit-splash-screen t)
+;;(org-agenda-list)
+(delete-other-windows)
+(add-hook 'org-mode-hook 'evil-org-mode)
+#+END_SRC
+
+* =Theme=
+#+BEGIN_SRC emacs-lisp
+;;(load-theme 'xresources t)
+(bind-key* "C-x C-r" 'reload-dotemacs-file)
+(setq ewal-json-file "~/.cache/wal/colors.json")
+;; (use-package ewal
+;;   :init (setq ewal-use-built-in-always-p nil
+;;               ewal-use-built-in-on-failure-p t
+;;               ewal-built-in-palette "sexy-material"))
+
+;; (use-package ewal-evil-cursors
+;;   :after (ewal-spacemacs-themes)
+;;   :config (ewal-evil-cursors-get-colors
+;;            :apply t :spaceline t))
+           
+;;  (use-package ewal-spacemacs-themes
+;;   :init (progn
+;;           (setq spacemacs-theme-underline-parens t)
+;;    ;;             my:rice:font (font-spec
+;;  ;;                             :family "Iosevka Nerd Font"
+;; ;;                              :weight 'semi-bold
+;;  ;;                             :size 11.0))
+;;           (show-paren-mode +1)
+;;           (global-hl-line-mode)
+;; ;;          (set-frame-font my:rice:font nil t)
+;;           (add-to-list  'default-frame-alist
+;;                         `(font . "Ubuntu Mono Nerd Font-12" ))
+;;   :config (progn
+;;             (load-theme 'ewal-spacemacs-modern t)
+;;             (enable-theme 'ewal-spacemacs-modern))))
+;;(use-package spaceline
+ ;; :after (ewal-evil-cursors winum)
+  ;;:init (setq powerline-default-separator nil)
+  ;;:config (spaceline-spacemacs-theme))
+ (load-theme 'doom-one t)
+#+END_SRC

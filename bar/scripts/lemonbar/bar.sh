@@ -127,8 +127,8 @@ echo "$1" | sed --posix -e 's/:/\ /g'\
 	-e "s/\ O/\ %{B$BGAOc}%{F$FGAOc}\ /"\
 	-e "s/\ o/\ %{F$FGAnOc}%{B$BGnAOc}\ /g"\
 	-e "s/\ f/\ %{F$FGnAnOc}%{B$BGnAnOc}\ /g"\
-	-e "s/\ u/\ %{F#DC322F}/g"
-	#-e "s/\ F/\ %{U#A54242}%{F#D9CBBE}%{!u}/"\
+	-e "s/\ u/\ %{F#DC322F}/g"\
+	-e "s/\ F/\ %{B$BGAOc}%{F$FGAOc}\ /"
 
 
 

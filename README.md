@@ -26,6 +26,7 @@ All scripts can be found in ~/scripts, here's a rundown of the scripts I use reg
 ## Patches for dwm
 ### My patch
 [This](.suckless/dwm/dwm-script_tags-6.2.diff) patch removes the standard dwm bar and instead writes current tag information to a file.
+
 ###Others
 [Pertag without the bar](./.suckless/dwm/dwm-6.1-pertag_without_bar.diff)
 

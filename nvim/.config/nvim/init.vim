@@ -304,15 +304,15 @@ else
     "colorscheme horizon
     "colorscheme equinusocio_material
     "colorscheme base16-eighties
-    colorscheme wal
+    "colorscheme oceanic_material
     "colorscheme quantum
 endif
 "let g:quantum_italics=1
-hi! Normal guibg=NONE ctermbg=NONE
-hi! EndOfBuffer cterm=NONE gui=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=#2e303e
-hi! clear Conceal
-hi CursorLine   cterm=NONE ctermbg=0  ctermfg=NONE guibg=#DDDDDD guifg=NONE gui=NONE
-hi MatchParen   cterm=NONE ctermbg=12 ctermfg=NONE guibg=#DDDDDD guifg=NONE gui=NONE
+"hi! Normal guibg=NONE ctermbg=NONE
+"hi! EndOfBuffer cterm=NONE gui=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=#2e303e
+"hi! clear Conceal
+"hi CursorLine   cterm=NONE ctermbg=0  ctermfg=NONE guibg=#DDDDDD guifg=NONE gui=NONE
+"hi MatchParen   cterm=NONE ctermbg=12 ctermfg=NONE guibg=#DDDDDD guifg=NONE gui=NONE
 "hi CursorLine   cterm=NONE ctermbg=0 ctermfg=NONE guibg=#2E333F guifg=NONE gui=NONE
 "set laststatus=0
 "---}}}
