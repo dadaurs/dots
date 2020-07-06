@@ -241,6 +241,15 @@ Easily open file manager
 (setq large-file-warning-threshold nil)
  #+END_SRC 
      
+** Make helm fuzzy
+#+BEGIN_SRC emacs-lisp
+(setq helm-buffers-fuzzy-matching t
+  helm-fuzzy-sort-fn 'helm-fuzzy-match-sort-fn-preserve-ties-order)
+  (setq helm-mode-fuzzy-match t)
+(setq helm-M-x-always-save-history t)
+(setq helm-completion-in-region-fuzzy-match t)
+
+#+END_SRC
 * Dired
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-x i") 'peep-dired)
@@ -410,17 +419,18 @@ LaTeX-section-label))
 #+END_SRC
 
 * EXWM
-#+BEGIN_SRC emacs-lisp
+--#+BEGIN_SRC emacs-lisp
 (require 'exwm)
 (require 'exwm-config)
 (exwm-config-default)
 (bind-key "M-SPC" 'menu_prompt)
+(bind-key "C-x v" 'split-window-horizontally)
   
 
 (defun menu_prompt ()
  (interactive (list
 (read-shell-command "$ ")) (start-process-shell-command command nil)))
-#+END_SRC
+-- #+END_SRC
 * Mail
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu/mu4e.el")
@@ -543,5 +553,5 @@ Set keybinding to open org-agenda
  ;; :after (ewal-evil-cursors winum)
   ;;:init (setq powerline-default-separator nil)
   ;;:config (spaceline-spacemacs-theme))
- (load-theme 'doom-one t)
+ (load-theme 'ewal-doom-one t)
 #+END_SRC
