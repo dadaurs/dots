@@ -1,0 +1,8 @@
+#!/bin/sh
+set -e
+set -u
+set -o pipefail
+Volume() { 
+vol=$(cat /sys/class/backlight/intel_backlight/brightness)
+echo "|V:$vol|"
+}

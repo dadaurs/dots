@@ -6,7 +6,8 @@
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
 //static char *font = "Ubuntu Mono Nerd Font:pixelsize=15:antialias=true:autohint=true";
-static char *font = "Ubuntu Mono Nerd Font:pixelsize=15:antialias=true:autohint=true";
+static char *font = "Iosevka Nerd Font:pixelsize=15:antialias=true:autohint=true";
+//static char *font = "Ubuntu Mono Nerd Font:pixelsize=15:antialias=true:autohint=true";
 /*	"Hack Nerd Font Mono:pixelsize=11:antialias=true:autohint=true", */
 static int borderpx = 2;
 
@@ -114,7 +115,7 @@ unsigned int tabspaces = 8;
 //};
 
 static char *font2[] = {
-	"Inconsolata for Powerline:pixelsize=15:antialias=true:autohint=true", 
+	"Font Awesome 5 Free Solid:pixelsize=15", 
 	"Sazanami Mincho:pixelsize=15:antialias=true:autohint=true", 
 };
 
@@ -208,7 +209,7 @@ static Shortcut shortcuts[] = {
 };
 
 ResourcePref resources[] = {
-		{ "font",         STRING,  &font },
+		//{"font",         STRING,  &font },
 		{ "color0",       STRING,  &colorname[0] },
 		{ "color1",       STRING,  &colorname[1] },
 		{ "color2",       STRING,  &colorname[2] },

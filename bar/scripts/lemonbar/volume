@@ -1,13 +1,23 @@
 #!/bin/sh
-
-
-#!/bin/sh
+set -e
+set -u
+set -o pipefail
 Volume() { 
-vol=$( pactl list sinks | grep '^[[:space:]]Volume' | awk '{print $5}' | sed 's/%//g')
-echo $vol
+vol=$( pactl list sinks | grep '^[[:space:]]Volume' | awk '{print $5}' | sed 's/%//g' | tac | head -1)
+back_raw=$(cat /sys/class/backlight/intel_backlight/brightness)
+back_max=600
+
+back=$(expr "$back_raw" / $back_max)
+echo "|V:$vol|B:$back|"
 }
 
-while true; do
-	echo $(Volume)
-	sleep 1m
+echo $$  > /tmp/volaback.pid
+trap 'Volume && main' USR1
+
+main(){
+while true;do
+	tail -f /dev/null & wait $!
 done
+}
+Volume
+main

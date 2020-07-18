@@ -88,7 +88,7 @@ while true; do
 		echo ""
 		sleep 1m
 	fi
-done | lemonbar -a 3  -f "$FONT" -g  $MPDStatusWidth\x$HEIGHT+$MPDStatusPos -B $background -F $foreground&
+done | lemonbar -a 3  -f "$FONT"  -g  $MPDStatusWidth\x$HEIGHT+$MPDStatusPos -B $background -F $foreground&
 
 while true; do
 	if pgrep -x mpd > /dev/null; then

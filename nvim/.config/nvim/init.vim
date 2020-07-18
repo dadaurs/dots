@@ -150,6 +150,7 @@ Plug 'vimwiki/vimwiki'
 "Plug 'mattn/calendar-vim'
 Plug 'vim-scripts/SearchComplete'
 Plug 'junegunn/goyo.vim'
+Plug 'chrisbra/unicode.vim'
 nnoremap <silent> <leader>G :Goyo<cr>
 "Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 "nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
@@ -174,7 +175,7 @@ autocmd FileType vimwiki map <silent> c :call ToggleCalendar()
 "---}}}
 "FZF:
 "---{{{2
-source /home/dada/.config/nvim/confzf.vim
+source $HOME/.config/nvim/confzf.vim
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
     let g:fzf_layout = { 'down': '~40%' }
@@ -244,8 +245,9 @@ Plug 'tpope/vim-fugitive'
 "---}}}
 "Other:
 "---{{{2
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 nnoremap <c-x><c-f> <plug>(fzf-complete-path)
+
 "Plug 'christoomey/vim-tmux-navigator'
 Plug 'dylanaraps/wal.vim'
 "Plug 'dense-analysis/ale'
@@ -304,8 +306,8 @@ else
     "colorscheme horizon
     "colorscheme equinusocio_material
     "colorscheme base16-eighties
-    colorscheme oceanic_material
-    "colorscheme wal
+    "colorscheme oceanic_material
+    colorscheme wal
 endif
 "let g:quantum_italics=1
 hi! Normal guibg=NONE ctermbg=NONE

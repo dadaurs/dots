@@ -74,7 +74,7 @@ indicator() {
   done
 }
 #indicator() { 
-	#echo $(/home/dada/scripts/lemonbar/workspaces.py)
+	#echo $($HOME/scripts/lemonbar/workspaces.py)
 #}
 
 getApp() {

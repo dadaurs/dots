@@ -4,11 +4,11 @@ if pgrep  xmonad; then
 #pgrep -x bar && pkill bar 
 xmonad --recompile && xmonad --restart
 elif pgrep -x bspwm;then
-       /home/dada/scripts/lemonbar/bar.sh
+       $HOME/scripts/lemonbar/bar.sh
 	bspc config normal_border_color "$background"
 	bspc config focused_border_color "$foreground"
 elif pgrep -x dwm;then
-       /home/dada/scripts/lemonbar/dwm/bar.sh
+       $HOME/scripts/lemonbar/dwm/bar.sh
 fi
 
 if pgrep emacs;then

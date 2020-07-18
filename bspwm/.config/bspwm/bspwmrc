@@ -1,29 +1,28 @@
 #!/bin/sh
 
-kill -9  /home/dada/.config/bspwm/bspwmrc
-pkill -9 -f /home/dada/.config/bspwm/bar.sh
+kill -9  $HOME/.config/bspwm/bspwmrc
+pkill -9 -f $HOME/.config/bspwm/bar.sh
 killall sxhkd 
 #killall compton
 killall xcape 
 killall xtitle
 sxhkd &
+if test -f /tmp/bspwm_gapsize; then
+	bspc config window_gap $(cat /tmp/bspwm_gapsize)
+fi
+
 
 #bspc monitor -d  "%{A:bspc desktop -f '^1':}I%{A}" "%{A:bspc desktop -f '^2':}II%{A}"  "%{A:bspc desktop -f '^3':}III%{A}"  "%{A:bspc desktop -f '^4':}IV%{A}"  "%{A:bspc desktop -f '^5':}V%{A}"  "%{A:bspc desktop -f '^6':}VI%{A}"  "%{A:bspc desktop -f '^7':}VII%{A}" "%{A:bspc desktop -f '^8':}VIII%{A} " "%{A:bspc desktop -f '^9':}IX %{A}%{-u}"
 #bspc monitor -d I II III IV V VI VII VIII IX X
-bspc monitor -d 1 2 3 4 5 6 7 8 9 10\ %{B}
-#bspc monitor -d I
-#bspc monitor -d II
-#bspc monitor -d III
-#bspc monitor -d IV
-#bspc monitor -d V
-#bspc monitor -d VI
-#bspc monitor -d VII
-#bspc monitor -d VIII
-#bspc monitor -d IX
-#bspc monitor -d X
+if [ $( bspc query -M --names | wc -l ) -eq 1 ];then
+	bspc monitor -d 1 2 3 4 5 6 7 8 9 10\ %{B}
+elif [ $( bspc query -M --names | wc -l ) -eq 2 ];then
+	bspc monitor HDMI-2 -d 1 2 3 4 5
+	bspc monitor eDP-1 -d 6 7 8 9 10\ %{B}
+fi
 
 bspc config border_width         1
-bspc config window_gap           0
+#bspc config window_gap           0
 
 bspc config split_ratio          0.50
 bspc config borderless_monocle   true
@@ -31,20 +30,18 @@ bspc config gapless_monocle      true
 exec ~/.fehbg &
 #exec xsetroot -solid "#434343" &
 #exec xsetroot -solid "#bdbdbd" &
-exec xrdb ~/.Xresources &
+exec xrdb ~/.config/X11/Xresources &
 pkill lemonbar
 pkill dzen
 exec xset r rate 300 100 &
-exec xmodmap /home/dada/.config/xmodmap/capstoctrl &
+exec xmodmap $HOME/.config/xmodmap/capstoctrl &
 exec xcape &
 exec wal -R &
+exec dunst &
 bspc config normal_border_color "#000000"
 bspc config focused_border_color "#EEE8D5"
-#bspc config focused_border_color "#D7B8FE"
 
 
-bspc rule -a scratchpad sticky=on state=floating hidden=on
-st -c scratchpad -e ~/bin/scratch &
 bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Chromium desktop='^2'
 bspc rule -a Emacs state=tiled manage=on
@@ -55,11 +52,8 @@ bspc rule -a feh focus=on state=floating
 bspc rule -a Zathura state=tiled manage=on
 bspc rule -a zathura state=tiled manage=on
 bspc rule -a Firefox state=tiled 
+bspc rule -a Toplevel state=tiled 
 bspc rule -a qutebrowser state=tiled desktop='^2' follow=on
-bspc rule -a inkscape desktop='^3' follow=on
-bspc rule -a Inkscape desktop='^3' follow=on
-bspc rule -a scratchpad sticky=on state=floating hidden=on
-st -c scratchpad -e ~/.config/bspwm/scratch &
-pkill -f /home/dada/scripts/lemonbar/bar.sh
-/home/dada/scripts/lemonbar/bar.sh &
-bash /home/dada/.config/bspwm/bspwm_colors.sh &
+pkill -f $HOME/scripts/lemonbar/bar.sh
+$HOME/scripts/lemonbar/bar.sh &
+bash $HOME/.config/bspwm/bspwm_colors.sh &

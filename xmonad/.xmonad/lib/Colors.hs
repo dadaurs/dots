@@ -1,1 +1,1 @@
-/home/dada/.cache/wal/colors.hs
+/home/david/.cache/wal/colors.hs

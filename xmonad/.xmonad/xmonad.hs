@@ -44,7 +44,10 @@ import XMonad.Prompt.Shell (shellPrompt)
 import XMonad.Prompt.Ssh
 import XMonad.Prompt.XMonad
 import Control.Arrow (first)
+import XMonad.Util.EZConfig
+import XMonad.Actions.Submap
 
+  
 
 import Colors
 import Lemonbar
@@ -60,6 +63,7 @@ import qualified Data.Map        as M
 --
 myTerminal      = "st"
 
+--foreground = 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
@@ -95,128 +99,69 @@ myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
-myNormalBorderColor  = color0
-myFocusedBorderColor = color4
+myNormalBorderColor  = "#000000"
+myFocusedBorderColor = "#FF0000"
+--myNormalBorderColor  = color0
+--myFocusedBorderColor = color4
 super = mod4Mask
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
 --
-myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
+
+myKeys :: [(String, X ())]
+myKeys =
+  [
+   ("M-<Space>", spawn "/home/david/scripts/dmenu_run_history")
+  ,("M-d", spawn "clipmenu")
+  ,("M-q", kill)
+  ,("M-S-<Tab>", sendMessage NextLayout)
+  ,("M-S-f", spawn "st -e ranger")
+  ,("M-S-r", spawn "xmonad --recompile && xmonad --restart")
+  ,("M-S-m", spawn "st -e neomutt")
+  ,("M-n", spawn "$HOME/scripts/mpd/mpdmenu")
+  ,("M-j", windows W.focusDown)
+  ,("M-k", windows W.focusUp)
+  ,("M-m", windows W.focusMaster)
+  ,("M-S-j", windows W.swapDown)
+  ,("M-S-k", windows W.swapUp)
+  ,("M-S-<equal>", sendMessage $ ToggleGaps)
+  ,("M-h", sendMessage Shrink)
+  ,("M-l", sendMessage Expand)
+  ,("M-f", sendMessage $ XMonad.Layout.MultiToggle.Toggle FULL)
+  ,("M-t",  withFocused $ windows . W.sink)
+  ,( "<XF86AudioLowerVolume>"   , spawn "$HOME/scripts/keybinds/volume.sh down")
+  ,( "<XF86AudioRaiseVolume>", spawn "$HOME/scripts/keybinds/volume.sh up")
+  ,( "<XF86AudioMute>", spawn "$HOME/scripts/keybinds/volume.sh toggle")
+  , ("M-<grave>", namedScratchpadAction myScratchPads "terminal")
+  , ( "M-S-n", namedScratchpadAction myScratchPads "music")
+  , ("M-S-t", namedScratchpadAction myScratchPads "htop")
+  , ("M-,", sendMessage (IncMasterN 1))
+  ,("M-b", sendMessage ToggleStruts)
+  ,("M-r e", spawn "emacsclient -nc")
+  ,("M-r f", spawn "st -e ranger")
+  ,("M-r s", spawn "st -e stig")
+  ,("M-r m", spawn "st -e neomutt")
+  ,("M-r p", spawn "pavucontrol")
+  ,("M-r q", spawn "qutebrowser")
+  ,("M-r n", spawn "st -e newsboat")
+  ,("M-r h", spawn "st -e htop")
+  ,("M-r b", spawn "st -e bluetoothctl")
+  ,("M-r M-p", spawn "st -e python")
+  ]
+someKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- launch a terminal
-    [ ((modm,  xK_Return), spawn $ XMonad.terminal conf)
+    [
+      ((modm ,  xK_Return), spawn $ XMonad.terminal conf)
 
-    -- launch dmenu
-    , ((modm,               xK_space     ), spawn "/home/dada/scripts/dmenu_run_history")
-    , ((modm,               xK_d     ), spawn "clipmenu")
-
-    -- launch gmrun
-
-    -- close focused window
-    , ((modm , xK_q     ), kill)
-
-     -- Rotate through the available layout algorithms
-    , ((modm .|. shiftMask,               xK_Tab ), sendMessage NextLayout)
-
-    --  Reset the layouts on the current workspace to default
     , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
-
-   -- ,  ((modm .|. shiftMask,               xK_n     ), spawn "urxvt -e ncmpcpp")
-    ,  ((modm .|. shiftMask,               xK_f     ), spawn "urxvt -e ranger")
-    ,  ((modm .|. shiftMask,               xK_m     ), spawn "st -e neomutt")
-    -- Resize viewed windows to the correct size
-    --, ((modm,               xK_n     ), refresh)
-    , ((modm,               xK_n     ), spawn "/home/dada/scripts/mpd/mpdmenu")
-
-    -- Move focus to the next window
-    , ((modm,               xK_Tab   ), windows W.focusDown)
-    , ((super,               xK_t   ), spawn "/home/dada/scripts/chth")
-
-    -- Move focus to the next window
-    , ((modm,               xK_j     ), windows W.focusDown)
-
-    -- Move focus to the previous window
-    , ((modm,               xK_k     ), windows W.focusUp  )
-
-    -- Move focus to the master window
-    , ((modm,               xK_m     ), windows W.focusMaster  )
-
-    -- Swap the focused window and the master window
-    --, ((modm,               xK_Return), windows W.swapMaster)
-
-    -- Swap the focused window with the next window
-    , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
-
-    -- Swap the focused window with the previous window
-    , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )
-    , ((modm .|. shiftMask, xK_equal), sendMessage $ ToggleGaps)  -- toggle all gaps
-
-    -- Shrink the master area
-    , ((modm,               xK_h     ), sendMessage Shrink)
-
-    -- Expand the master area
-    , ((modm,               xK_l     ), sendMessage Expand)
-    , ((modm,               xK_f     ), sendMessage $ XMonad.Layout.MultiToggle.Toggle FULL)
-    --, ((modm, xK_f), treeselectWorkspace myTreeConf myWorkspaces W.greedyView)
-
-    -- Push window back into tiling
-    , ((modm,               xK_t     ), withFocused $ windows . W.sink)
-    , ((0, xF86XK_AudioLowerVolume   ), spawn "/home/dada/scripts/keybinds/volume.sh down")
-    , ((0, xF86XK_AudioRaiseVolume   ), spawn "/home/dada/scripts/keybinds/volume.sh up")
-    , ((0, xF86XK_AudioMute          ), spawn "/home/dada/scripts/keybinds/volume.sh toggle")
-
-    -- Increment the number of windows in the master area
-    , ((modm                , xK_grave ), namedScratchpadAction myScratchPads "terminal")
-    , ((modm .|. shiftMask  ,xK_n      ), namedScratchpadAction myScratchPads "music")
-    , ((modm .|. shiftMask  ,xK_t      ), namedScratchpadAction myScratchPads "htop")
-    , ((modm                ,xK_comma ), sendMessage (IncMasterN 1))
-    ,((modm, xK_b     ), sendMessage ToggleStruts)
-
-    -- Deincrement the number of windows in the master area
-    , ((modm              , xK_period), sendMessage (IncMasterN (-1)))
-    , ((control .|. shiftMask              , xK_c), spawn "/home/dada/scripts/curcourses" )
-
-    -- Toggle the status bar gap
-    -- Use this binding with avoidStruts from Hooks.ManageDocks.
-    -- See also the statusBar function from Hooks.DynamicLog.
-    --
-    -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
-
-    -- Quit xmonad
-    , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
-    , ((modm .|. shiftMask, xK_r     ), spawn "xmonad --recompile; xmonad --restart")
-    , ((modm .|. controlMask, xK_h), sendMessage $ pullGroup L)
-    , ((modm .|. controlMask, xK_l), sendMessage $ pullGroup R)
-    , ((modm .|. controlMask, xK_k), sendMessage $ pullGroup U)
-    , ((modm .|. controlMask, xK_j), sendMessage $ pullGroup D)
-    , ((modm .|. controlMask, xK_u), withFocused (sendMessage . UnMerge))
-    ,((modm,                  xK_b), sendMessage ToggleStruts)
-    , ((modm .|. controlMask, xK_x), shellPrompt dtXPConfig)
-
-    -- Restart xmonad
-    --, ((modm .|.             , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
-
-    -- Run xmessage with a summary of the default keybindings (useful for beginners)
     ]
-    ++
-
-    --
-    -- mod-[1..9], Switch to workspace N
-    -- mod-shift-[1..9], Move client to workspace N
-    --
+   ++
     [((m .|. modm, k), windows $ f i)
         | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
-    -- ++
 
-    --
-    -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
-    -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
-    --
-    --[((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        -- | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
-        --, (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 dtXPConfig :: XPConfig
 dtXPConfig = def
       { font                = "xft:Mononoki Nerd Font:size=9"
@@ -273,7 +218,7 @@ suffixed n          = renamed [(XMonad.Layout.Renamed.AppendWords n)]
 trimSuffixed w n    = renamed [(XMonad.Layout.Renamed.CutWordsRight w),
                                    (XMonad.Layout.Renamed.AppendWords n)]
 
-myLayout = avoidStruts $ (  tiledGapless |||  tiledGaps ||| tabbed shrinkText myTabConfig ||| noBorders Full)
+myLayout = avoidStruts $ (  tiled ||| tabbed shrinkText myTabConfig ||| noBorders Full)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -288,26 +233,26 @@ myLayout = avoidStruts $ (  tiledGapless |||  tiledGaps ||| tabbed shrinkText my
      delta   = 3/100
      --fullScreenToggle    = mkToggle (single Full)
        -- $ addTabs shrinkText myTabConfig
-     fullScreenToggle = mkToggle (single FULL)
+     -- fullScreenToggle = mkToggle (single FULL)
 
-     tiledGapless = smartBorders
-       $ fullScreenToggle
-       $ windowNavigation
-       $ addTabs shrinkText myTabConfig
-       $ mynongaps
-       $ mynonspace
-       $ subLayout [] (Simplest ||| Accordion)
-       $ tiled
-
-
-  
-     tiledGaps = fullScreenToggle
-       $ windowNavigation
-       $ addTabs shrinkText myTabConfig
-       $ myGaps
-       $ addSpace
-       $ subLayout [] (Simplest ||| Accordion)
-       $ tiled
+       -- $ windowNavigation
+       -- $ addTabs shrinkText myTabConfig
+       -- $ mynongaps
+       -- $ mynonspace
+       -- $ subLayout [] (Simplest ||| Accordion)
+     --tiledGapless = smartBorders
+       -- $ fullScreenToggle
+       -- $ tiled
+ 
+ 
+   
+     --ti ledGaps = fullScreenToggle
+       -- $ windowNavigation
+       -- $ addTabs shrinkText myTabConfig
+       -- $ myGaps
+       -- $ addSpace
+       -- $ subLayout [] (Simplest ||| Accordion)
+       -- $ tiled
 
 myTabConfig = def { fontName              = myFont
      , activeColor           = foreground
@@ -367,6 +312,11 @@ myEventHook = fullscreenEventHook
 --
 myStartupHook = do
    setLayout (Layout (layoutHook myConf))
+   spawn "exec xmodmap ~/.config/xmodmap/capstoctrl &"
+   spawn "xcape"
+   spawn "exec ~/.fehbg"
+   spawn "wal -R &"
+   spawn "dunst &"
 --myStartupHook = do
    --sendMessage $ JumpToLayout $ Tall
 
@@ -394,7 +344,7 @@ myConf = defaultConfig {
         focusedBorderColor = myFocusedBorderColor,
 
       -- key bindings
-        keys               = myKeys,
+        keys               = someKeys,
         mouseBindings      = myMouseBindings,
 
       -- hooks, layouts
@@ -405,7 +355,7 @@ myConf = defaultConfig {
         handleEventHook    = myEventHook,
         logHook            = myLogHook ,
         startupHook        = myStartupHook
-    }
+    } `additionalKeysP` myKeys
 main = do
    xmonad =<< statusBar myXmonadlemonbar myLemonHook toggleStrutsKey myConf
 
@@ -422,7 +372,7 @@ myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
                  w = 0.7
                  t = 0.85 -h
                  l = 0.85 -w
-    spawnMusic  = myTerminal ++  "  -n music /home/dada/scripts/music"
+    spawnMusic  = myTerminal ++  "  -n music $HOME/scripts/music"
     findMusic   = resource =? "music"
     manageMusic = customFloating $ W.RationalRect l t w h
                  where

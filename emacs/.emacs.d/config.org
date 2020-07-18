@@ -21,6 +21,20 @@
 
 (require 'evil-leader)
 (global-evil-leader-mode)
+;; (evil-leader/set-leader "<SPC>")
+;; (evil-leader/set-key
+;;   "ci" 'evilnc-comment-or-uncomment-lines
+;;   "cu" 'evilnc-comment-or-uncomment-lines
+;;   "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
+;;   "ll" 'evilnc-quick-comment-or-uncomment-to-the-line
+;;   "cc" 'evilnc-copy-and-comment-lines
+;;   "cp" 'evilnc-comment-or-uncomment-paragraphs
+;;   "cr" 'comment-or-uncomment-region
+;;   "cv" 'evilnc-toggle-invert-comment-line-by-line
+;;   "."  'evilnc-copy-and-comment-operator
+;;   "\\" 'evilnc-comment-operator ; if you prefer backslash key
+;; )
+      (evil-mode 1)
       (use-package evil
       :init
       (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
@@ -33,26 +47,14 @@
       (key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
       (global-hl-line-mode +1)
       (global-set-key (kbd "C-x k") 'kill-this-buffer)
-)
+      )
+      
 (global-set-key (kbd "M-;") 'evilnc-comment-or-uncomment-lines)
 (global-set-key (kbd "C-c l") 'evilnc-quick-comment-or-uncomment-to-the-line)
 (global-set-key (kbd "C-c c") 'evilnc-copy-and-comment-lines)
 (global-set-key (kbd "C-c p") 'evilnc-comment-or-uncomment-paragraphs)
 
-      (evil-mode 1)
 ;; (evil-leader/set-leader "<SPC>")
-(evil-leader/set-leader "<SPC>")
-(evil-leader/set-key
-  "ci" 'evilnc-comment-or-uncomment-lines
-  "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
-  "ll" 'evilnc-quick-comment-or-uncomment-to-the-line
-  "cc" 'evilnc-copy-and-comment-lines
-  "cp" 'evilnc-comment-or-uncomment-paragraphs
-  "cr" 'comment-or-uncomment-region
-  "cv" 'evilnc-toggle-invert-comment-line-by-line
-  "."  'evilnc-copy-and-comment-operator
-  "\\" 'evilnc-comment-operator ; if you prefer backslash key
-)
 #+END_SRC
 
 * Use packages
@@ -115,6 +117,9 @@
       (use-package org-bullets)
       (use-package tex-site)
       (use-package evil-magit)
+      (use-package vterm
+      :ensure t
+      )
       (use-package eclim
       :config
 (setq eclimd-autostart t)
@@ -249,6 +254,20 @@ Easily open file manager
 (setq helm-M-x-always-save-history t)
 (setq helm-completion-in-region-fuzzy-match t)
 
+#+END_SRC
+** C mode
+#+BEGIN_SRC emacs-lisp
+  (setq c-default-style '((java-mode . "java")
+                                  (awk-mode . "awk")
+                                  (other . "linux")))
+;; Run C programs directly from within emacs
+(defun execute-c-program ()
+  (interactive)
+  (defvar foo)
+  (setq foo (concat "gcc " (buffer-name) " -lm && ./a.out" ))
+  (shell-command foo))
+
+  ;; (define-key c-mode-map (kbd "C-c c") 'execute-c-program)
 #+END_SRC
 * Dired
 #+BEGIN_SRC emacs-lisp
@@ -441,7 +460,7 @@ LaTeX-section-label))
   ;;  (mu4e-trash-folder      . "/dada/Trash")
   ;;  (mu4e-refile-folder     . "/dada/All Mail")
   ;;  (smtpmail-smtp-user     . "david.wiedemann@outlook.com")
-   ;; (user-mail-address      . "david.wiedemann@outlook.com")    ;; only needed for mu < 1.4
+  ;; (user-mail-address      . "david.wiedemann@outlook.com")    ;; only needed for mu < 1.4
    ;; (mu4e-compose-signature . "---\nDavid Wiedemann"))
   ;;t)
   
@@ -457,7 +476,7 @@ LaTeX-section-label))
 ;; (smtpmail-starttls-credentials . (("SMTP.office365.com" 587 nil nil)))
 (setq mu4e-change-filenames-when-moving t)
 (setq mu4e-attachment-dir  "~/Downloads")
-(require 'org-mu4e)
+;; (require 'org-mu4e)
 
 ;; convert org mode to HTML automatically
 (setq org-mu4e-convert-to-html t)
@@ -512,9 +531,9 @@ Set keybinding to open org-agenda
   (setq left-margin-width 2)
   (setq right-margin-width 2)
   (set-window-buffer nil (current-buffer))))
-  (setq org-agenda-files (quote  ("~/Ecole/TODO.org")))
+  (setq org-agenda-files (quote  ("~/any/agenda.org")))
   (setq inhibit-splash-screen t)
-;;(org-agenda-list)
+(org-agenda-list)
 (delete-other-windows)
 (add-hook 'org-mode-hook 'evil-org-mode)
 #+END_SRC
@@ -553,5 +572,5 @@ Set keybinding to open org-agenda
  ;; :after (ewal-evil-cursors winum)
   ;;:init (setq powerline-default-separator nil)
   ;;:config (spaceline-spacemacs-theme))
- (load-theme 'ewal-doom-one t)
+ (load-theme 'base16-ocean t)
 #+END_SRC

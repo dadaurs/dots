@@ -1,6 +1,6 @@
 #!/bin/sh
 
-playlistdir='/home/dada/.config/mpd/playlists'
+playlistdir='$HOME/.config/mpd/playlists'
 randomstate=$( mpc | tail -1 | awk '{print $6}')
 cursong=$(mpc -f "%title%" | sed 1q)
 

@@ -5,22 +5,22 @@
 dark_or_light(){
 dark_light=$(echo -e "Dark\nLight" | dmenu -i -p "Theme?")
 	case $dark_light in
-		'Dark')theme=$( ls $HOME/.local/lib/python3.7/site-packages/pywal/colorschemes/dark/ | sed 's/\.json//' | dmenu -i ) && wal --theme $theme && /home/dada/scripts/reload_theme  &&  feh --bg-scale $(find /home/dada/wallpapers/dark/* | sxiv -tio)
+		'Dark')theme=$( ls $HOME/.local/lib/python3.7/site-packages/pywal/colorschemes/dark/ | sed 's/\.json//' | dmenu -i ) && wal --theme $theme && $HOME/scripts/reload_theme  &&  feh --bg-scale $(find $HOME/wallpapers/dark/* | sxiv -tio)
  ;;
-		'Light')theme=$( ls $HOME/.local/lib/python3.7/site-packages/pywal/colorschemes/light/ | sed 's/\.json//' | dmenu -i ) && wal -l --theme $theme && /home/dada/scripts/reload_theme && feh --bg-scale   $(find /home/dada/wallpapers/light/* | sxiv -tio)
+		'Light')theme=$( ls $HOME/.local/lib/python3.7/site-packages/pywal/colorschemes/light/ | sed 's/\.json//' | dmenu -i ) && wal -l --theme $theme && $HOME/scripts/reload_theme && feh --bg-scale   $(find $HOME/wallpapers/light/* | sxiv -tio)
 ;;
 	esac
 }
 wallpapset(){
 	dark_light=$(echo -e "Dark\nLight" | dmenu -i -p "Theme?")
 		case $dark_light in
-			'Light')wallp=$(find /home/dada/wallpapers/*/* | sxiv -tio) &&\
+			'Light')wallp=$(find $HOME/wallpapers/*/* | sxiv -tio) &&\
 				       wal -l -i $wallp
-			/home/dada/scripts/reload_theme
+			$HOME/scripts/reload_theme
 				 ;;
-			'Dark')wallp=$(find /home/dada/wallpapers/*/* | sxiv -tio) &&\
+			'Dark')wallp=$(find $HOME/wallpapers/*/* | sxiv -tio) &&\
 				      wal  -i $wallp
-			/home/dada/scripts/reload_theme
+			$HOME/scripts/reload_theme
 		esac
 }
 theme_wallpaper=$(echo -e "Premade Theme\nWallpaper" | dmenu -i)

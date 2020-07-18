@@ -26,4 +26,4 @@ cat | while IFS= read -r line; do
 	  -e 's/%n/%{F}%{B}/g'
 done  | lemonbar  -B $background -g x$HEIGHT &
 
-/home/dada/scripts/lemonbar/xmonad/modules &
+$HOME/scripts/lemonbar/xmonad/modules &

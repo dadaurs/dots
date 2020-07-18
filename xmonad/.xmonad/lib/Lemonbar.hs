@@ -3,7 +3,7 @@ module Lemonbar where
 import System.IO (hPutStrLn)
 import XMonad.Hooks.DynamicLog hiding (xmobar, xmobarPP, xmobarColor, sjanssenPP, byorgeyPP)
 import XMonad.Util.Loggers
-import Colors
+--import Colors
 
 
 myLemonHook = defaultPP {
@@ -39,5 +39,5 @@ myLemonHook = defaultPP {
 }
 
 --myXmonadlemonbar = "lemonbar -p -f \"Source Code Pro For Powerline:size=12\"  -f \"Ubuntu Mono Nerd Font:size=12\"  > /tmp/lemlog"
-myXmonadlemonbar = "/home/dada/scripts/lemonbar/xmonad/bar"
+myXmonadlemonbar = "/home/david/scripts/lemonbar/xmonad/bar"
 

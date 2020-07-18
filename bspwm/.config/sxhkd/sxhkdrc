@@ -1,14 +1,14 @@
 #
 # wm independent hotkeys
 #
-
+#---{{{1
 # terminal emulator
 alt + Return
 	st
 
 # program launcher
 alt + space
-	/home/dada/scripts/dmenu_run_history
+	$HOME/scripts/dmenu_run_history
 
 
 # make sxhkd reload its configuration files:
@@ -23,7 +23,7 @@ alt + Escape
 alt + shift + r
 	bspc wm -r
 alt + shift + q
-	/home/dada/scripts/lemonbar/quitall.sh
+	$HOME/scripts/lemonbar/quitall.sh
 
 # close and kill
 alt + q
@@ -41,10 +41,11 @@ alt + y
 alt + g
 	bspc node -s biggest
 
+#---}}}1
 #
 # state/flags
 #
-
+#---{{{1
 # set the window state
 alt + {t,ctrl + t,s,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
@@ -87,10 +88,14 @@ alt + {o,i}
 alt + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
+alt + shift + {d,a}
+    bspc node @/ -C {forward,backward}
+
+#---}}}1
 #
 # preselect
 #
-
+#---{{{1
 # preselect the direction
 alt + ctrl + shift + {h,j,k,l}
 	bspc node -p {west,south,north,east}
@@ -107,10 +112,11 @@ alt + ctrl + space
 alt + ctrl + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
+#---}}}1
 #
 # move/resize
 #
-
+#---{{{1
 # expand a window by moving one of its side outward
 #alt + ctrl + {h,j,k,l}
 #	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
@@ -125,6 +131,16 @@ alt + ctrl + {h,j,k,l}
 # move a floating window
 alt + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+alt + a ; p
+	bspc-pip
+
+#---}}}1
+
+#
+# keybinds
+#
+#---{{{1
 alt + shift + m
 	st -e neomutt
 alt + ctrl + s
@@ -143,60 +159,81 @@ alt+shift+f
 	urxvt -e ranger
 # super+F2
 XF86AudioRaiseVolume
-	/home/dada/scripts/keybinds/volume.sh up
+	$HOME/scripts/keybinds/volume.sh up
 # super+F1
 XF86AudioLowerVolume
-	/home/dada/scripts/keybinds/volume.sh down
+	$HOME/scripts/keybinds/volume.sh down
 XF86AudioMute
-	/home/dada/scripts/keybinds/volume.sh toggle
+	$HOME/scripts/keybinds/volume.sh toggle
+XF86MonBrightnessUp
+	$HOME/scripts/keybinds/backlight.sh up
+XF86MonBrightnessDown
+	$HOME/scripts/keybinds/backlight.sh down
+
 
 alt+shift+d
-	/home/dada/scripts/download.sh
+	$HOME/scripts/download.sh
 alt + {equal,minus,shift +plus }
-	/home/dada/scripts/bspwm/changegaps.sh {up,down, toggle}
-#alt+ minus
-	#/home/dada/scripts/bspwm/changegaps.sh down
-#alt+shift+ plus
-	#/home/dada/scripts/bspwm/changegaps.sh toggle
+	$HOME/scripts/bspwm/chgp {up,down, toggle}
 
+alt + grave
+    bspwm-toggle-visibility ST st
 alt+b
-	/home/dada/scripts/lemonbar/bar.sh toggle
+	$HOME/scripts/lemonbar/bar.sh toggle
 alt+shift+grave
-	/home/dada/scripts/keybinds/dloffice.sh
+	$HOME/scripts/keybinds/dloffice.sh
 alt+n
-	/home/dada/scripts/mpd/mpdmenu
+	$HOME/scripts/mpd/mpdmenu
 super + n
-	/home/dada/scripts/rofi-mpc
+	$HOME/scripts/rofi-mpc
 super + ctrl + space
 	{pkill compton ,\
 	compton -b }
 alt +shift +n
     tdrop -ma -x 190 -w 80% -y 30  st
 
-#alt + d
-#	 9menu -bg "#9BC6D7" -popup -teleport -label Remotes  'close:killall 9menu' 'term:st' 'nvim:st -e nvim' 'emacs:emacsclient -nc' 'qb:qutebrowser' '--------------' 'exit:/home/dada/scripts/lemonbar/quitall.sh' 'reboot:doas reboot' 'shutdown:doas shutdown'
 alt + d
 	clipmenu
 	
 	
 ctrl + shift + c
-	/home/dada/scripts/curcourses
+	$HOME/scripts/curcourses
 alt + shift + c 
-	/home/dada/.local/bin/charsel
-# Add focused window to a tabbed instance in given direction
+	$HOME/.local/bin/charsel
 super + alt + {h,j,k,l}
-# alt + t; {h,j,k,l}
     tabc $(bspc query -N -n {west,south,north,east}) add $(bspc query -N -n focused)
 
-# Remove one tab from tabbed
 super + alt + d
 	bsptab tab $(xdotool getwindowfocus -f)
 super + alt + r
     bsptab remove-all
 
 ctrl + shift + q
-	/home/dada/scripts/quicktex
+	$HOME/scripts/quicktex
 super + t
-	/home/dada/scripts/change_theme
+	$HOME/scripts/change_theme
 super + w
 	farge --notify
+alt + r ; e 
+	emacsclient -nc
+alt + r ; f
+	st -e ranger
+alt + r ; s 
+	st -e stig
+alt + r ; m 
+	st -e neomutt
+
+alt + r ; p 
+	pavucontrol
+alt + r ; q
+	qutebrowser
+alt + r ; n
+	st -e newsboat
+alt + r ; h
+	st -e htop
+alt + r ; b
+	st -e bluetoothctl
+alt + r ; alt+p
+	st -e python
+
+#---}}}1

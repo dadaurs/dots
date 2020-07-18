@@ -23,7 +23,7 @@ awk -v histfile=$historyfile '
 			x[$0]=1
 		}
 	} !x[$0]++ ' "$cache" \
-	| dmenu -p "" "$@" \
+	| dmenu -p "" "$@" -g 6 -l 6 \
 	| awk -v histfile=$historyfile '
 		BEGIN {
 			FS=OFS="\t"

@@ -5,7 +5,7 @@ then
     ncmpcpp
 elif  pgrep -x spotify || pgrep -x spotifyd > /dev/null
  then
-    /home/dada/.cargo/bin/spt
+    $HOME/.cargo/bin/spt
 else
     mpd & disown
     ncmpcpp

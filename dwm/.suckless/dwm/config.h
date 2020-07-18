@@ -88,7 +88,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = {"/home/dada/scripts/dmenu_run_history",NULL};
+static const char *dmenucmd[] = {"~/scripts/dmenu_run_history",NULL};
 static const char *termcmd[]  = { "st", NULL };
 static const char *scratchpadcmd[] = {"s", "st", "-t", "scratchpad", NULL}; 
 //static const char *scratchpadcmd[] = { "st", "-t", "scratchpad", "-g", "120x34", NULL };

@@ -7,7 +7,7 @@ FG="$color7"
 BGAOc="$color13" #background of active tags
 FGAOc="$color7" #foreground of active and occupied tags
 BGAnOc="$color13" #background of active not occupied tags
-FGAnOc="" #foreground of active not occupied tags
+FGAnOc="$color7" #foreground of active not occupied tags
 BGnAOc="$color8" #background of not active and occupied tags
 BGnAnOc="$BG" #background of not active and not occupied tags
 FGnAnOc="$color7" #foreground of not active not occupied tags
@@ -22,6 +22,9 @@ BGnAnOc=#1D1B1F #background of not active and not occupied tags
 FGnAnOc=#F0EEF0 #foreground of not active not occupied tags
 fi
 
+MPDStatusWidth=42
+MPDTitleWidth=70
+
 FONT="Iosevka Nerd Font:size=9"
 HEIGHT=17
 AppWidth=100
@@ -29,10 +32,12 @@ WSWidth=300
 WSHeight=20
 BatWidth=60
 TimeWidth=70
-MPDWidth=220
+MPDWidth=200
 WsPos=2
 ModDist=10
+VolaBackW=80
 
+BatTimeW=100
 PANEL_WM_NAME="lemonbar"
 
 
@@ -44,9 +49,11 @@ WIDTH=$( xdpyinfo  | grep -i 'dimensions:' | sed 's:x:\ :' | awk '{print $2}' )
 
 #Calculate position of modules.
 APPPOS=$(expr "$WIDTH" / 2 - $AppWidth / 2 )
-TimePos=$(expr "$WIDTH" - $ModDist - $TimeWidth) 
-BatPos=$(expr "$TimePos" - $BatWidth - $ModDist) 
-MPDPos=$(expr "$BatPos" - $MPDWidth - $ModDist) 
+BatTimePos=$(expr "$WIDTH"  - $BatTimeW) 
+VolaBackPos=$(expr "$BatTimePos" - $VolaBackW)
+#BatPos=$(expr "$TimePos" - $BatWidth - $ModDist) 
+MPDTitlePos=$(expr "$VolaBackPos" - $MPDTitleWidth - $ModDist) 
+MPDStatusPos=$(expr "$MPDTitlePos" - $MPDTitleWidth ) 
 
 
 #Battery module, show percentage and change color if charging.
@@ -84,34 +91,21 @@ getApp(){
 #Show currently playing song in mpd as well as its state.
 
 setsong() {
-#current=$(mpc | grep -v "volume\|playing\|paused" | sed 's/\.opus//'| sed 's/\.m4a//' | sed -e 's/^chill\///' -e  's/^country\///' -e  's/^TheAlgorithm\///' -e  's/^Bootleg\///' -e 's/^Unknown\///' -e 's/^DiverseSystem\///' )
-current=$(mpc -f "%title%" | sed 1q)
-#current=$(mpc | grep -v "volume\|playing\|paused" | sed 's/\.opus//'| sed 's/\.m4a//' | sed -e 's/^chill\///' -e  's/^country\///' -e  's/^TheAlgorithm\///' -e  's/^Bootleg\///' -e 's/^Unknown\///' -e 's/^DiverseSystem\///' )
-echo  "$current"
+	status=$(mpc -f "%title%" | sed 1q)
+	if [[ $status == "" ]];then
+		status=$(mpc -f "%file%" | sed 1q | sed  -e 's:[a-zA-Z0-9]*\/::' | cut -f 1 -d '.')
+	fi
+	echo $status
 }
 setstate() { 
+#state=$(mpc | grep 'playing\|paused' | awk '{print $1}' | sed "s/\[playing\]/\u23F8/" | sed 's/\[paused\]//') 
 state=$(mpc | grep 'playing\|paused' | awk '{print $1}' | sed 's/\[playing\]//' | sed 's/\[paused\]//') 
+#echo  "$state"
 echo  "%{A:mpc toggle:}$state%{A}"
 }
 #Show time
 Time() { 
 TIME=$( date "+%H:%M" )
-#HOUR=$( date "+%H") 
-#echo -n "$DATETIME"
-#case $HOUR in
-	#1|13)  echo -n "%{F#ffffff}🕐 $TIME";;
-	#2|14)  echo -n "%{F#ffffff}🕑 $TIME";;
-	#3|15)  echo -n "%{F#ffffff}🕒 $TIME";;
-	#4|16)  echo -n "%{F#ffffff}🕓 $TIME";;
-	#5|17)  echo -n "%{F#ffffff}🕕 $TIME";;
-	#6|18)  echo -n "%{F#ffffff}🕕 $TIME";;
-	#7|19)  echo -n "%{F#ffffff}🕖 $TIME";;
-	#8|20)  echo -n "%{F#ffffff}🕗 $TIME";;
-	#9|21)  echo -n "%{F#ffffff}🕘 $TIME";;
-	#10|22) echo -n "%{F#ffffff}🕙 $TIME";;
-	#11|23) echo -n "%{F#ffffff}🕚 $TIME";;
-	#0)     echo -n "%{F#ffffff}🕛 $TIME";;
-#esac
 echo "$TIME"
 }
 
@@ -120,15 +114,25 @@ echo "$TIME"
 showws() { 
 echo "$1" | sed --posix -e 's/:/\ /g'\
 	-e 's/WMeDP1//g'\
+	-e 's/WMeDP-1//g'\
+	-e 's/meDP-[0-9]//g'\
+	-e 's/\ meDP-[0-9]\ //g'\
+	-e 's/MeDP-[0-9]//g'\
+	-e 's/WMHDMI-[0-9]//g'\
+	-e 's/WmHDMI-[0-9]//g'\
+	-e 's/Desktop//g'\
 	-e 's/LT//g'\
 	-e 's/TF//g'\
 	-e 's/TT//g'\
 	-e 's/G//g'\
-	-e "s/\ O/\ %{B$BGAOc}%{F$FGAOc}\ /"\
+	-e 's/S/[stickied]/g'\
+	-e "s/\ O/\ %{B$BGAOc}%{F$FGAOc}\ /g"\
 	-e "s/\ o/\ %{F$FGAnOc}%{B$BGnAOc}\ /g"\
 	-e "s/\ f/\ %{F$FGnAnOc}%{B$BGnAnOc}\ /g"\
 	-e "s/\ u/\ %{F#DC322F}/g"\
-	-e "s/\ F/\ %{B$BGAOc}%{F$FGAOc}\ /"
+	-e "s/\ F/\ %{B$BGAOc}%{F$FGAOc}\ /g"\
+	-e "s/\ \ //g"\
+
 
 
 
@@ -154,37 +158,51 @@ done | lemonbar -n "$PANEL_WM_NAME" -a 9 -f "$FONT" -g $WSWidth\x$HEIGHT+$WsPos+
 
 #Battery level detection
 while true; do
-	echo "%{l}%{F#FECC6D}⚡$(Battery)"
+	echo -n "%{F#FECC6D}⚡$(Battery)%{F$FG}|$(Time) "
+	#echo " "
 	#echo "%{l}%{F#FECC6D}⚡$(Battery)"
 	#echo "%{B#000433}%{l}%{F#FECC6D}⚡$(Battery)"
 	sleep 1m
-done | lemonbar -n "$PANEL_WM_NAME" -f "$FONT" -g $BatWidth\x$HEIGHT+$BatPos+2 -B $BG&
+done | lemonbar -n "$PANEL_WM_NAME" -f "$FONT" -g $BatTimeW\x$HEIGHT+$BatTimePos+2 -B $BG&
 
+#while true; do
+	#echo "%{c}%{F$FG}$(Time) "
+	##echo " %{B#000433} $(Date) "
+	#sleep 1m
+#done | lemonbar -n "$PANEL_WM_NAME" -f "$FONT" -g "$TimeWidth"\x$HEIGHT+$TimePos+2 -B "$BG"&
 #current app detection
 while true; do
 echo " %{c}%{F#D9CBBE}$(getApp) "
 bspc subscribe -c 2 report > /dev/null
 done | lemonbar -n "$PANEL_WM_NAME" -f "$FONT" -g $AppWidth\x$HEIGHT+$APPPOS+2 -B $BG&
+while true; do
+        if pgrep -x mpd > /dev/null || pgrep -x mopidy; then
+                #echo "     $(setstate)     "
+		echo "%{l}%{F$FG}%{A:mpc prev:}  %{A}%{F$FG}%{c}$(setstate)%{r}%{A:mpc next:} %{A}%{F$FG}"
+                #echo "%{F$FG} %{A:mpc prev:} %{A}%{F$FG} $(setstate) %{F$FG}%{A:mpc next:} %{A}%{F$FG}"
+                #echo "$(setstate)"
+                mpc idle >/dev/null
+        else
+                echo ""
+                sleep 1m
+        fi
+done | lemonbar  -n "$PANEL_WM_NAME"  -f 'Font Awesome 5 Free Solid:size=9' -g  $MPDStatusWidth\x$HEIGHT+$MPDStatusPos+2 -B $BG -F $FG&
+#done | lemonbar -a 3 -n "$PANEL_WM_NAME" -f "Iosevka Nerd Font:size=11" -g  $MPDStatusWidth\x$HEIGHT+$MPDStatusPos -B $BG -F $FG&
 
 #MPD detection
 while true; do
-	if pgrep -x mpd > /dev/null
-	then
-		echo "%{F$FG}%{A:mpc prev:} %{A}%{F$FG}$(setstate) %{F$FG}%{A:mpc next:}%{A}%{F$FG}  $(setsong)"
-		mpc idle >/dev/null
-	else
-		echo ""
-		sleep 1m
-	fi
-#echo "%{F#ffffff}%{A:mpc prev:}⏪%{A}%{F#ffffff}$(setstate) %{F#ffffff}%{A:mpc next:}⏩%{A}%{F#ffffff}$(setsong)"
-done | lemonbar -n "$PANEL_WM_NAME" -f "$FONT" -g $MPDWidth\x$HEIGHT+$MPDPos+2 -B $BG| sh &
+        if pgrep -x mpd > /dev/null || pgrep -x mopidy; then
+                setsong | skroll -d 0.25 -l -r &
+                mpc idle >/dev/null
+		pkill skroll
+        else
+                echo ""
+                sleep 1m
+        fi
+done | lemonbar  -n "$PANEL_WM_NAME" -f "$FONT" -g  $MPDTitleWidth\x$HEIGHT+$MPDTitlePos+2 -B $BG -F $FG&
 
+$HOME/scripts/lemonbar/volume | lemonbar -n "$PANEL_WM_NAME" -f "$FONT" -g $VolaBackW\x$HEIGHT+$VolaBackPos+2 -B $BG -F $FG &
 #Time detection
-while true; do
-	echo "%{c}%{F$FG}$(Time) "
-	#echo " %{B#000433} $(Date) "
-	sleep 1m;
-done | lemonbar -n "$PANEL_WM_NAME" -f "$FONT" -g "$TimeWidth"\x$HEIGHT+$TimePos+2 -B "$BG"&
 }
 
 #!/bin/sh
@@ -193,14 +211,14 @@ showit() {
 #while read -r line;do
 	#xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n 1)" "$line"
 #done <<< "$wid"
-bspc config top_padding 20
+bspc config top_padding $HEIGHT
 showbar
 }
 toggle(){
 if pgrep -x lemonbar  > /dev/null; then
 	pkill lemonbar
 	bspc config top_padding 0
-	pkill -f /home/dada/scripts/lemonbar/bar.sh >/dev/null 2>&1
+	pkill -f $HOME/scripts/lemonbar/bar.sh >/dev/null 2>&1
 else
 	bspc config top_padding $HEIGHT
 	showbar

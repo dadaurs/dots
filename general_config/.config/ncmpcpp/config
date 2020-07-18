@@ -1,5 +1,5 @@
-ncmpcpp_directory = "/home/dada/.config/ncmpcpp"
-mpd_music_dir = "/home/dada/media/music"
+ncmpcpp_directory = "/home/david/.config/ncmpcpp"
+#mpd_music_dir = "/home/dada/media/music"
 # mpd
 #ncmpcpp
 locked_screen_width_part = "50"
@@ -61,3 +61,4 @@ active_window_border = "cyan"
 # Sort
 #media_library_sort_by_mtime = "yes"
 visualizer_type = "wave" (spectrum/wave)
+lyrics_directory= "~/.config/mpd/lyrics"

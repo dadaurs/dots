@@ -1,1 +1,45 @@
 #!/bin/sh
+
+
+if [ $# = 0 ]; then
+    cat <<EOF
+Usage: $(basename "${0}") 
+    up       Increase Gap Size
+    down     Decrease Gap Size
+    toggle   Toggle gaps 
+EOF
+    exit 0
+fi
+INT=1
+file="/tmp/bspwm_gapsize"
+test -f /tmp/bspwm_gapsize || bspc config window_gap > $file
+
+GapSize=$(cat /tmp/bspwm_gapsize) 
+
+GapsUp() { 
+newgap=$(expr $GapSize + $INT) 
+echo $newgap > $file
+bspc config window_gap $newgap
+}
+GapsDown() { 
+newgap=$(expr $GapSize - $INT) 
+if [ $newgap -gt 0 ]; then
+	bspc config window_gap $newgap
+fi
+bspc config window_gap > $file
+}
+GapsToggle(){
+	cur_gap=$(bspc config window_gap)
+if [ $cur_gap -eq 0 ]; then
+	bspc config window_gap $GapSize
+else
+	bspc config window_gap 0
+fi
+
+}
+case $1 in
+	'up')GapsUp;;
+	'down')GapsDown;;
+	'toggle')GapsToggle;;
+esac
+

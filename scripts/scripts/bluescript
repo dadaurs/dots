@@ -1,6 +1,6 @@
 #!/bin/sh
 num_dev=$(bluetoothctl devices | wc -l)
-airpods_mac=$(bluetoothctl devices | sed 1q | awk '{print $2}')
+airpods_mac=$(bluetoothctl devices | grep -i airpods | awk '{print $2}')
 phillips_mac=$(bluetoothctl devices | sed -n 2p| awk '{print $2}')
 get_headphones(){
 	[[ $@ == "airpods" ]] && head=$(bluetoothctl devices | sed 1q | cut -d' ' -f3-) || head=$(bluetoothctl devices | sed -n 2p | cut -d' ' -f3-)

@@ -4,7 +4,7 @@
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #---{{{1
 # Path to your oh-my-zsh installation.
-export ZSH="/home/dada/.config/zsh/oh-my-zsh"
+export ZSH="$HOME/.config/zsh/oh-my-zsh"
 export PDFVIEWER="zathura"
 export TERMINAL="xst"
 ZSH_THEME="agnoster"
@@ -13,7 +13,7 @@ source $ZSH/oh-my-zsh.sh
 
 export EDITOR='nvim'
 export BROWSER='qutebrowser'
-export PATH="/home/dada/.local/cargo/bin:/home/dada/.local/bin:$PATH"
+export PATH="$HOME/.local/cargo/bin:$HOME/.local/bin:$PATH"
 #export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export FZF_ALT_C_COMMAND='fd -H -i '
@@ -21,7 +21,7 @@ export LESSHISTFILE="/dev/null"
 export FFF_OPENER="rifle"
 #export CCACHE_DIR="$HOME/.cache/ccache"
 export CARGO_HOME="$HOME/.local/cargo"
-export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 #export GNUPGHOME="$HOME/.config/gnupg"
@@ -84,7 +84,7 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 
 
 #. /usr/share/zsh/site-contrib/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#/home/dada/source/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#$HOME/source/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.config/secrets
 source ~/.config/alias
 
@@ -94,19 +94,19 @@ source ~/.config/alias
 #---{{{
 # Setup fzf
 # ---------
-if [[ ! "$PATH" == */home/dada/.config/fzf/bin* ]]; then
-  export PATH="${PATH:+${PATH}:}/home/dada/.config/fzf/bin"
+if [[ ! "$PATH" == *$HOME/.fzf/bin* ]]; then
+  export PATH="${PATH:+${PATH}:}$HOME/.fzf/bin"
 fi
 
 # Auto-completion
 # ---------------
-[[ $- == *i* ]] && source "/home/dada/.config/fzf/shell/completion.zsh" 2> /dev/null
+[[ $- == *i* ]] && source "$HOME/.shell/completion.zsh" 2> /dev/null
 
 # Key bindings
 # ------------
-source "/home/dada/.config/fzf/shell/key-bindings.zsh"
+source "$HOME/.fzf/shell/key-bindings.zsh"
 
-[ -f ~/.config/fzf.zsh ] && source ~/.config/fzf.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 zle -N fzf-cd
 #bindkey '^[c'  fzf-cd
@@ -116,4 +116,4 @@ bindkey '^[c' fzf-cd-widget
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 alias bdwm='cd ~/.suckless/dwm && doas make install && cd ~'
 
-source /home/dada/.config/broot/launcher/bash/br
+source $HOME/.config/broot/launcher/bash/br

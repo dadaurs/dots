@@ -7,7 +7,7 @@ static int fuzzy = 1;                      /* -F  option; if 0, dmenu doesn't us
 static const char *fonts[] = {
 	"iosevka:size=20"
 };
-static const char *prompt="\ ";      /* -p  option; prompt to the left of input field */
+static const char *prompt=" ";      /* -p  option; prompt to the left of input field */
 static const char *dynamic     = NULL;      /* -dy option; dynamic command to run on input change */
 //static const char *colors[SchemeLast][2] = {
 	//[>     fg         bg       <]
