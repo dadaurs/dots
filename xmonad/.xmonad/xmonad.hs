@@ -46,6 +46,7 @@ import XMonad.Prompt.XMonad
 import Control.Arrow (first)
 import XMonad.Util.EZConfig
 import XMonad.Actions.Submap
+import XMonad.Util.Font
 
   
 
@@ -72,7 +73,7 @@ myFocusFollowsMouse = True
 myClickJustFocuses :: Bool
 myClickJustFocuses = False
 gap = 10
-myFont = "Ubuntu Mono Nerd Font:size=15"
+myFont = "Ubuntu Mono Nerd Font"
 
 -- Width of the window border in pixels.
 --
@@ -133,10 +134,10 @@ myKeys =
   ,( "<XF86AudioLowerVolume>"   , spawn "$HOME/scripts/keybinds/volume.sh down")
   ,( "<XF86AudioRaiseVolume>", spawn "$HOME/scripts/keybinds/volume.sh up")
   ,( "<XF86AudioMute>", spawn "$HOME/scripts/keybinds/volume.sh toggle")
-  , ("M-<grave>", namedScratchpadAction myScratchPads "terminal")
-  , ( "M-S-n", namedScratchpadAction myScratchPads "music")
-  , ("M-S-t", namedScratchpadAction myScratchPads "htop")
-  , ("M-,", sendMessage (IncMasterN 1))
+  ,("M-`", namedScratchpadAction myScratchPads "terminal")
+  ,( "M-S-n", namedScratchpadAction myScratchPads "music")
+  ,("M-S-t", namedScratchpadAction myScratchPads "htop")
+  ,("M-,", sendMessage (IncMasterN 1))
   ,("M-b", sendMessage ToggleStruts)
   ,("M-r e", spawn "emacsclient -nc")
   ,("M-r f", spawn "st -e ranger")
@@ -148,13 +149,14 @@ myKeys =
   ,("M-r h", spawn "st -e htop")
   ,("M-r b", spawn "st -e bluetoothctl")
   ,("M-r M-p", spawn "st -e python")
+  ,("M-C-l", sendMessage $ pullGroup R)
+  ,("M-C-h", sendMessage $ pullGroup L)
+  ,("M-C-k", sendMessage $ pullGroup U)
+  ,("M-C-j", sendMessage $ pullGroup D)
   ]
 someKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
-
-    -- launch a terminal
     [
       ((modm ,  xK_Return), spawn $ XMonad.terminal conf)
-
     , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
     ]
    ++
@@ -218,7 +220,7 @@ suffixed n          = renamed [(XMonad.Layout.Renamed.AppendWords n)]
 trimSuffixed w n    = renamed [(XMonad.Layout.Renamed.CutWordsRight w),
                                    (XMonad.Layout.Renamed.AppendWords n)]
 
-myLayout = avoidStruts $ (  tiled ||| tabbed shrinkText myTabConfig ||| noBorders Full)
+myLayout = avoidStruts $ (  tiledGapless ||| tiledGaps |||  tabbed shrinkText myTabConfig ||| noBorders Full)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -233,29 +235,31 @@ myLayout = avoidStruts $ (  tiled ||| tabbed shrinkText myTabConfig ||| noBorder
      delta   = 3/100
      --fullScreenToggle    = mkToggle (single Full)
        -- $ addTabs shrinkText myTabConfig
-     -- fullScreenToggle = mkToggle (single FULL)
+     fullScreenToggle = mkToggle (single FULL)
 
-       -- $ windowNavigation
-       -- $ addTabs shrinkText myTabConfig
-       -- $ mynongaps
-       -- $ mynonspace
-       -- $ subLayout [] (Simplest ||| Accordion)
-     --tiledGapless = smartBorders
-       -- $ fullScreenToggle
-       -- $ tiled
+     tiledGapless = smartBorders
+       $ windowNavigation
+       $ addTabs shrinkText myTabConfig
+       $ mynongaps
+       $ mynonspace
+       $ subLayout [] (Simplest ||| Accordion)
+       $ fullScreenToggle
+       $ tiled
  
  
    
-     --ti ledGaps = fullScreenToggle
-       -- $ windowNavigation
-       -- $ addTabs shrinkText myTabConfig
-       -- $ myGaps
-       -- $ addSpace
-       -- $ subLayout [] (Simplest ||| Accordion)
-       -- $ tiled
+     tiledGaps = windowNavigation
+       $ addTabs shrinkText myTabConfig
+       $ myGaps
+       $ addSpace
+       $ subLayout [] (Simplest ||| Accordion)
+       $ fullScreenToggle
+       $ tiled
 
-myTabConfig = def { fontName              = myFont
-     , activeColor           = foreground
+myTabConfig = def {
+      fontName              = "xft:Iosevka Nerd Font:size=9"
+      -- font              = "xft:Monospace:pixelsize=14,-*-*-*-r-*-*-16-*-*-*-*-*-*-*",
+      , activeColor           = foreground
      , activeTextColor       = background
      , inactiveColor         = background
      , activeBorderColor     = foreground
