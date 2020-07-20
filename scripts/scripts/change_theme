@@ -7,11 +7,10 @@ dark_or_light(){
 dark_light=$(echo -e "Dark\nLight" | dmenu -i -p "Theme?")
         case $dark_light in
                 'Dark')theme=$( ls /lib/python3.8/site-packages/pywal/colorschemes/dark/ | sed 's/\.json//' | dmenu -i
-) && wal --theme $theme -o "$HOME/scripts/lemonbar/bar.sh" &&  feh --bg-scale $(find $HOME/wallpapers/dark/* |
+) && wal --theme $theme  &&  feh --bg-scale $(find $HOME/wallpapers/dark/* |
 sxiv -tio)
  ;;
-                'Light')theme=$( ls /lib/python3.8/site-packages/pywal/colorschemes/light/ | sed 's/\.json//' | dmenu -i ) && wal -l --theme $theme -o "$HOME/scripts/lemonbar/bar.sh" && feh --bg-scale   $(find $HOME/wallpapers/
-light/* | sxiv -tio)
+                'Light')theme=$( ls /lib/python3.8/site-packages/pywal/colorschemes/light/ | sed 's/\.json//' | dmenu -i ) && wal -l --theme $theme  && feh --bg-scale   $(find $HOME/wallpapers/light/* | sxiv -tio)
 ;;
         esac
 }
@@ -19,9 +18,9 @@ wallpapset(){
         dark_light=$(echo -e "Dark\nLight" | dmenu -i -p "Theme?")
                 case $dark_light in
                         'Light')wallp=$(find $HOME/wallpapers/*/* | sxiv -tio) &&\
-                                wal -l -i $wallp -o "$HOME/scripts/lemonbar/bar.sh";;
+                                wal -l -i $wallp ;;
                         'Dark')wallp=$(find $HOME/wallpapers/*/* | sxiv -tio) &&\
-                                wal  -i $wallp -o "$HOME/scripts/lemonbar/bar.sh";;
+                                wal  -i $wallp ;;
                 esac
 }
 theme_wallpaper=$(echo -e "Premade Theme\nWallpaper" | dmenu -i)
@@ -32,13 +31,18 @@ esac
 
 
 
-if test -f $HOME/.cache/wal/colors.sh; then
+if pgrep -x bspwm; then
+    if test -f $HOME/.cache/wal/colors.sh; then
         source $HOME/.cache/wal/colors.sh
         bspc config normal_border_color "$background"
         bspc config focused_border_color "$foreground"
-else
+    else
         bspc config normal_border_color "#000000"
         bspc config focused_border_color "#EEE8D5"
+    fi
+fi
+if pgrep -x xmonad-x86_64-l; then
+    xmonad --recompile && xmonad --restart
 fi
 
 if pgrep -x qutebrowser; then

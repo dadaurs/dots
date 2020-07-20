@@ -5,12 +5,16 @@ killall lemonbar
 killall mpc
 FONT="Iosevka Nerd Font:size=9"
 HEIGHT=15
-AppWidth=100
-BatWidth=60
-TimeWidth=70
-MPDWidth=220
-WsPos=2
-ModDist=10
+
+BG=$background
+FG=$foreground
+HEIGHT=15
+WIDTH=$( xdpyinfo  | grep -i 'dimensions:' | sed 's:x:\ :' | awk '{print $2}' ) 
+
+BarWidth=600
+BarPosX=$( expr "$WIDTH" - $BarWidth )
+#FONT="Font Awesome 5 Free Solid:size=9"
+FONT="Iosevka Nerd Font:size=10"
 
 
 
@@ -26,4 +30,11 @@ cat | while IFS= read -r line; do
 	  -e 's/%n/%{F}%{B}/g'
 done  | lemonbar  -B $background -g x$HEIGHT &
 
-$HOME/scripts/lemonbar/xmonad/modules &
+$HOME/scripts/lemonbar/xmonad/modules 2>/dev/null |\
+		lemonbar  \
+		-g $BarWidth\x$HEIGHT+$BarPosX+0 \
+		-f "$FONT" \
+		-B $BG \
+		-F $FG\
+		& wait $!
+

@@ -1,0 +1,26 @@
+
+#!/bin/sh
+#vim:filetype=sh
+
+. $HOME/.cache/wal/colors.sh
+BG=$background
+FG=$foreground
+HEIGHT=15
+ModDist=10
+BGtwo=$color8
+WIDTH=$( xdpyinfo  | grep -i 'dimensions:' | sed 's:x:\ :' | awk '{print $2}' ) 
+
+BarWidth=500
+BarPosX=$( expr "$WIDTH" - $BarWidth )
+#FONT="Font Awesome 5 Free Solid:size=9"
+FONT="Iosevka Nerd Font:size=10"
+
+sepchar=""
+sepcharone="%{F$BG}$sepchar%{F}%{B$BG} "
+sepchartwo="%{F$BGtwo}$sepchar%{F}%{B$BGtwo} "
+$HOME/scripts/lemonbar/xmonad/modules 2>/dev/null |\
+		lemonbar  \
+		-g $BarWidth\x$HEIGHT+$BarPosX+0 \
+		-f "$FONT" \
+		-B $BG \
+		-F $FG >/dev/null 2>&1

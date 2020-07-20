@@ -47,7 +47,8 @@ import Control.Arrow (first)
 import XMonad.Util.EZConfig
 import XMonad.Actions.Submap
 import XMonad.Util.Font
-
+import XMonad.Actions.CopyWindow
+import qualified XMonad.StackSet as W
   
 
 import Colors
@@ -136,28 +137,35 @@ myKeys =
   ,( "<XF86AudioMute>", spawn "$HOME/scripts/keybinds/volume.sh toggle")
   ,("M-`", namedScratchpadAction myScratchPads "terminal")
   ,( "M-S-n", namedScratchpadAction myScratchPads "music")
-  ,("M-S-t", namedScratchpadAction myScratchPads "htop")
+  ,("M-r h", namedScratchpadAction myScratchPads "htop")
   ,("M-,", sendMessage (IncMasterN 1))
   ,("M-b", sendMessage ToggleStruts)
-  ,("M-r e", spawn "emacsclient -nc")
+  ,("M-r e", spawn "st -e emacsclient -nw")
+  ,("M-r M-e", spawn "emacsclient -nc")
   ,("M-r f", spawn "st -e ranger")
   ,("M-r s", spawn "st -e stig")
   ,("M-r m", spawn "st -e neomutt")
   ,("M-r p", spawn "pavucontrol")
   ,("M-r q", spawn "qutebrowser")
   ,("M-r n", spawn "st -e newsboat")
-  ,("M-r h", spawn "st -e htop")
   ,("M-r b", spawn "st -e bluetoothctl")
   ,("M-r M-p", spawn "st -e python")
+  ,("C-S-c", spawn "$HOME/scripts/curcourses")
   ,("M-C-l", sendMessage $ pullGroup R)
   ,("M-C-h", sendMessage $ pullGroup L)
   ,("M-C-k", sendMessage $ pullGroup U)
   ,("M-C-j", sendMessage $ pullGroup D)
+  ,("M-a p", toggleCopyToAll)
   ]
+     where
+			toggleCopyToAll = wsContainingCopies >>= \ws -> case ws of
+							[] -> windows copyToAll
+							_ -> killAllOtherCopies
 someKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [
       ((modm ,  xK_Return), spawn $ XMonad.terminal conf)
     , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
+    , ((super , xK_t ), spawn "$HOME/scripts/change_theme" )
     ]
    ++
     [((m .|. modm, k), windows $ f i)
@@ -233,8 +241,6 @@ myLayout = avoidStruts $ (  tiledGapless ||| tiledGaps |||  tabbed shrinkText my
 
      -- Percent of screen to increment by when resizing panes
      delta   = 3/100
-     --fullScreenToggle    = mkToggle (single Full)
-       -- $ addTabs shrinkText myTabConfig
      fullScreenToggle = mkToggle (single FULL)
 
      tiledGapless = smartBorders
@@ -316,6 +322,7 @@ myEventHook = fullscreenEventHook
 --
 myStartupHook = do
    setLayout (Layout (layoutHook myConf))
+   spawn "killall xcape"
    spawn "exec xmodmap ~/.config/xmodmap/capstoctrl &"
    spawn "xcape"
    spawn "exec ~/.fehbg"

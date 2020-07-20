@@ -2,17 +2,37 @@
 #vim:filetype=sh
 # find dimensions of monitor
 . $HOME/.cache/wal/colors.sh
-FONT="Iosevka Nerd Font:size=9"
+BG=$background
+FG=$foreground
 HEIGHT=15
-BatWidth=60
-TimeWidth=50
-MPDStatusWidth=50
-MPDTitleWidth=100
-WsPos=2
 ModDist=10
+BGtwo=$color8
 WIDTH=$( xdpyinfo  | grep -i 'dimensions:' | sed 's:x:\ :' | awk '{print $2}' ) 
 
-FONT="Iosevka Nerd Font:size=9"
+BarWidth=500
+BarPosX=$( expr "$WIDTH" - $BarWidth )
+#FONT="Font Awesome 5 Free Solid:size=9"
+FONT="Iosevka Nerd Font:size=10"
+
+sepchar=""
+sepcharone="%{F$BG}$sepchar%{F}%{B$BG} "
+sepchartwo="%{F$BGtwo}$sepchar%{F}%{B$BGtwo} "
+mkdir -p /tmp/xmonad
+songfile="/tmp/xmonad/song_xmonad"
+timefile="/tmp/xmonad/time_xmonad"
+datefile="/tmp/xmonad/date_xmonad"
+batfile="/tmp/xmonad/bat_xmonad"
+mainfile="/tmp/xmonad/main_xmonad"
+
+_term() { 
+
+  kill -TERM "$child" 2>/dev/null
+  kill $(jobs -p)
+}
+
+trap _term SIGTERM EXIT
+
+
 
 
 
@@ -20,15 +40,18 @@ FONT="Iosevka Nerd Font:size=9"
 WIDTH=$( xdpyinfo  | grep -i 'dimensions:' | sed 's:x:\ :' | awk '{print $2}' ) 
 #HEIGHT=$( xdpyinfo  | grep -i 'dimensions:' | sed 's:x:\ :' | awk '{print $3}' ) 
 
-#Calculate position of modules.
-TimePos=$(expr "$WIDTH" - $ModDist - $TimeWidth) 
-BatPos=$(expr "$TimePos" - $BatWidth - $ModDist) 
-MPDTitlePos=$(expr "$BatPos" - $MPDTitleWidth - $ModDist) 
-MPDStatusPos=$(expr "$MPDTitlePos" - $MPDStatusWidth  ) 
-#Calculate position of modules.
-#MPDPos=$(expr "$BatPos" - $MPDWidth - $ModDist) 
 
-Time() { 
+getDate(){
+    date  "+%a %d %b"
+}
+Date(){
+	cat $datefile 
+}
+memusage(){
+    free -h | sed -n 2p | awk '{print $3}'
+}
+
+getTime() { 
 TIME=$( date "+%H:%M" )
 HOUR=$( date "+%H") 
 #echo -n "$DATETIME"
@@ -48,8 +71,11 @@ case $HOUR in
 esac
 #echo "$TIME"
 }
+Time(){
+	cat $timefile 
+}
 
-Battery() {
+getBattery() {
 	STATE=$( acpi | awk '{print $4}' | sed 's/,//')
 	#battery_status="$(acpi -b | awk -F '[[:space:]]+|,' '{ print $3 }')"
 	#case "$battery_status" in
@@ -65,50 +91,50 @@ Battery() {
 	#esac
 	echo " %{F#EA7866}$STATE"
 }
-setsong() {
-	status=$(mpc -f "%title%" | sed 1q)
-	if [[ $status == "" ]];then
-		status=$(mpc -f "%file%" | sed 1q | sed  -e 's:[a-zA-Z0-9]*\/::' | cut -f 1 -d '.')
-	fi
-	echo $status
+Battery() {
+	cat $batfile 
+}
+getsetsong() {
+	title=$(mpc -f "%title%" | grep -v "playing\|paused\|volume" )
+		if [[ $title == "" ]];then
+			title=$(mpc -f "%file%" | sed 1q | sed  -e 's:[a-zA-Z0-9]*\/::' | cut -f 1 -d '.')
+		fi
+	artist=$(mpc -f "%artist%"  | grep -v "playing\|paused\|volume")
+	echo -e "$title | $artist"
+}
+setsong(){
+	cat $songfile 
 }
 
-setstate() { 
-state=$(mpc | grep 'playing\|paused' | awk '{print $1}' | sed 's/\[playing\]//' | sed 's/\[paused\]//') 
-echo  "%{A:mpc toggle:}$state%{A}"
+getvol(){
+	$HOME/scripts/lemonbar/volume
 }
+#setstate() { 
+#state=$(mpc | grep 'playing\|paused' | awk '{print $1}' | sed 's/\[playing\]//' | sed 's/\[paused\]//') 
+#echo -e  "%{A:mpc toggle:}$state%{A}"
+#}
+main(){
+	#echo "$(setsong) $sepcharone %{F#FECC6D}⚡%{F}$(Battery) $sepchartwo $(Date) $sepcharone$(Time) " > $mainfile
+	echo "%{r}$sepchartwo$(setsong) $sepcharone %{F#FECC6D}⚡%{F}$(Battery) $sepchartwo $(Date) $sepcharone$(Time) " 
 
-n
-while true; do
-	if pgrep -x mpd > /dev/null; then
-		echo "%{F$foreground}%{A:mpc prev:} %{A}%{F$foreground}$(setstate) %{F$foreground}%{A:mpc next:}%{A}%{F$foreground}"
-		#echo "$(setstate)"
-		mpc idle >/dev/null
+}
+while true;do
+	if pgrep -x mpd >/dev/null || pgrep -x mopidy >/dev/null; then
+		getsetsong  > $songfile
+		main
+		mpc idle >/dev/null 2>&1
 	else
-		echo ""
-		sleep 1m
+		echo "" > $songfile
+		sleep 1m  
 	fi
-done | lemonbar -a 3  -f "$FONT"  -g  $MPDStatusWidth\x$HEIGHT+$MPDStatusPos -B $background -F $foreground&
+done & 
 
-while true; do
-	if pgrep -x mpd > /dev/null; then
-		setsong | skroll -d 0.25 -l -r
-		mpc idle >/dev/null
-	else
-		echo ""
-		sleep 1m
-	fi
-done | lemonbar   -f "$FONT" -g  $MPDTitleWidth\x$HEIGHT+$MPDTitlePos -B $background -F $foreground&
 
-while true; do
-	echo "%{c}%{F$foreground}$(Time) "
-	#echo " %{B#000433} $(Date) "
-	sleep 1m;
-done | lemonbar -f "Ubuntu Mono Nerd Font:size=11" -g "$TimeWidth"\x$HEIGHT+$TimePos -B "$background" -F $foreground&
-
-while true; do
-	echo "%{l}%{F#FECC6D}⚡$(Battery)"
-	#echo "%{l}%{F#FECC6D}⚡$(Battery)"
-	#echo "%{B#000433}%{l}%{F#FECC6D}⚡$(Battery)"
-	sleep 1m
-done | lemonbar -f "$FONT" -g $BatWidth\x$HEIGHT+$BatPos -B $background -F $foreground
+while true;do
+	getBattery | tr -d '\n'> $batfile
+	getDate | tr -d '\n' > $datefile
+	getTime | tr -d '\n'> $timefile
+	main
+	sleep 1m 
+done 
+#tail -f /tmp/xmonad/main_xmonad 2>/dev/null |\

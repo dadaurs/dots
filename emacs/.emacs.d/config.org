@@ -54,7 +54,18 @@
 (global-set-key (kbd "C-c c") 'evilnc-copy-and-comment-lines)
 (global-set-key (kbd "C-c p") 'evilnc-comment-or-uncomment-paragraphs)
 
+(key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+(key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
 ;; (evil-leader/set-leader "<SPC>")
+(unless (display-graphic-p)
+          (require 'evil-terminal-cursor-changer)
+	            (evil-terminal-cursor-changer-activate) ; or (etcc-on)
+		              )
+     (setq evil-motion-state-cursor 'box)  ; █
+     (setq evil-visual-state-cursor 'box)  ; █
+     (setq evil-normal-state-cursor 'box)  ; █
+     (setq evil-insert-state-cursor 'bar)  ; ⎸
+     (setq evil-emacs-state-cursor  'hbar) ; _
 #+END_SRC
 
 * Use packages
@@ -485,12 +496,12 @@ LaTeX-section-label))
 * Org mode configurations
 ** External packages
 #+BEGIN_SRC emacs-lisp
-(add-hook 'org-mode-hook
-   (lambda ()
-    (org-bullets-mode t)))
-(setq org-hide-leading-starts t)
-(setq org-ellipsis "↴")
-(setq org-src-fontify-natively t)
+;; (add-hook 'org-mode-hook
+;;    (lambda ()
+;;     (org-bullets-mode t)))
+;; (setq org-hide-leading-starts t)
+;; (setq org-ellipsis "↴")
+;; (setq org-src-fontify-natively t)
 (defun frenchmode ()
     (interactive)
 	   (local-set-key (kbd ";") #'insert-e-acc)
@@ -509,7 +520,15 @@ LaTeX-section-label))
 (global-set-key (kbd "C-c C-l") 'org-insert-link)
 #+END_SRC
 
-** Other
+** Browser
+Set external browser for opening links
+#+BEGIN_SRC emacs-lisp
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "qutebrowser")
+  (key-chord-define evil-normal-state-map (kbd "<RET><RET>") 'org-open-at-point)
+#+END_SRC
+** Agenda stuff
+*** Keybindings
 Set keybinding to open org-agenda
 #+BEGIN_SRC emacs-lisp
 (bind-key* "C-c a" 'org-agenda-list)
@@ -536,6 +555,15 @@ Set keybinding to open org-agenda
 (org-agenda-list)
 (delete-other-windows)
 (add-hook 'org-mode-hook 'evil-org-mode)
+#+END_SRC
+
+*** Archiving
+#+BEGIN_SRC emacs-lisp
+(defun org-archive-done-tasks ()
+  (interactive)
+  (org-map-entries 'org-archive-subtree "/DONE" 'file))   
+(bind-key* "C-x a a" 'org-archive-done-tasks)
+
 #+END_SRC
 
 * =Theme=
