@@ -12,7 +12,7 @@ WIDTH=$( xdpyinfo  | grep -i 'dimensions:' | sed 's:x:\ :' | awk '{print $2}' )
 BarWidth=500
 BarPosX=$( expr "$WIDTH" - $BarWidth )
 #FONT="Font Awesome 5 Free Solid:size=9"
-FONT="Iosevka Nerd Font:size=10"
+FONT="xft:Iosevka Nerd Font:size=11"
 
 sepchar=""
 sepcharone="%{F$BG}$sepchar%{F}%{B$BG} "
@@ -55,21 +55,21 @@ getTime() {
 TIME=$( date "+%H:%M" )
 HOUR=$( date "+%H") 
 #echo -n "$DATETIME"
-case $HOUR in
-	1|13)  echo -n "$TIME";;
-	2|14)  echo -n "$TIME";;
-	3|15)  echo -n "$TIME";;
-	4|16)  echo -n "$TIME";;
-	5|17)  echo -n "$TIME";;
-	6|18)  echo -n "$TIME";;
-	7|19)  echo -n "$TIME";;
-	8|20)  echo -n "$TIME";;
-	9|21)  echo -n "$TIME";;
-	10|22) echo -n "$TIME";;
-	11|23) echo -n "$TIME";;
-	0)     echo -n "$TIME";;
-esac
-#echo "$TIME"
+#case $HOUR in
+	#1|13)  echo -n "$TIME";;
+	#2|14)  echo -n "$TIME";;
+	#3|15)  echo -n "$TIME";;
+	#4|16)  echo -n "$TIME";;
+	#5|17)  echo -n "$TIME";;
+	#6|18)  echo -n "$TIME";;
+	#7|19)  echo -n "$TIME";;
+	#8|20)  echo -n "$TIME";;
+	#9|21)  echo -n "$TIME";;
+	#10|22) echo -n "$TIME";;
+	#11|23) echo -n "$TIME";;
+	#0)     echo -n "$TIME";;
+#esac
+echo "$TIME"
 }
 Time(){
 	cat $timefile 
@@ -100,7 +100,7 @@ getsetsong() {
 			title=$(mpc -f "%file%" | sed 1q | sed  -e 's:[a-zA-Z0-9]*\/::' | cut -f 1 -d '.')
 		fi
 	artist=$(mpc -f "%artist%"  | grep -v "playing\|paused\|volume")
-	echo -e "$title | $artist"
+	echo -e "$title〈 $artist"
 }
 setsong(){
 	cat $songfile 

@@ -101,10 +101,10 @@ myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
-myNormalBorderColor  = "#000000"
-myFocusedBorderColor = "#FF0000"
---myNormalBorderColor  = color0
---myFocusedBorderColor = color4
+--myNormalBorderColor  = "#000000"
+--myFocusedBorderColor = "#FF0000"
+myNormalBorderColor  = color0
+myFocusedBorderColor = color3
 super = mod4Mask
 
 ------------------------------------------------------------------------
@@ -138,6 +138,7 @@ myKeys =
   ,("M-`", namedScratchpadAction myScratchPads "terminal")
   ,( "M-S-n", namedScratchpadAction myScratchPads "music")
   ,("M-r h", namedScratchpadAction myScratchPads "htop")
+  ,("M-r M-f", namedScratchpadAction myScratchPads "ranger")
   ,("M-,", sendMessage (IncMasterN 1))
   ,("M-b", sendMessage ToggleStruts)
   ,("M-r e", spawn "st -e emacsclient -nw")
@@ -373,6 +374,7 @@ main = do
 myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
                 , NS "music" spawnMusic findMusic manageMusic  
                 , NS "htop" spawnHtop findHtop manageHtop  
+                , NS "ranger" spawnRanger findRanger manageRanger  
                 ]
   where
     spawnTerm  = myTerminal ++  " -n scratchpad"
@@ -394,6 +396,14 @@ myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
     spawnHtop  = myTerminal ++  " -n htop 'htop'"
     findHtop   = resource =? "htop"
     manageHtop = customFloating $ W.RationalRect l t w h
+                 where
+                 h = 0.7
+                 w = 0.7
+                 t = 0.85 -h
+                 l = 0.85 -w
+    spawnRanger  = myTerminal ++  " -n ranger 'ranger'"
+    findRanger   = resource =? "ranger"
+    manageRanger = customFloating $ W.RationalRect l t w h
                  where
                  h = 0.7
                  w = 0.7

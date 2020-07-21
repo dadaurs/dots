@@ -13,27 +13,27 @@
   (package-install 'use-package))
 (eval-when-compile
   (require 'use-package))
-;;(require 'diminish)
   #+END_SRC
 * Evil
 #+BEGIN_SRC emacs-lisp
 
-
-(require 'evil-leader)
+(use-package evil-leader
+:config
+(evil-leader/set-leader ",")
 (global-evil-leader-mode)
-;; (evil-leader/set-leader "<SPC>")
-;; (evil-leader/set-key
-;;   "ci" 'evilnc-comment-or-uncomment-lines
-;;   "cu" 'evilnc-comment-or-uncomment-lines
-;;   "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
-;;   "ll" 'evilnc-quick-comment-or-uncomment-to-the-line
-;;   "cc" 'evilnc-copy-and-comment-lines
-;;   "cp" 'evilnc-comment-or-uncomment-paragraphs
-;;   "cr" 'comment-or-uncomment-region
-;;   "cv" 'evilnc-toggle-invert-comment-line-by-line
-;;   "."  'evilnc-copy-and-comment-operator
-;;   "\\" 'evilnc-comment-operator ; if you prefer backslash key
-;; )
+(evil-leader/set-key
+  "ci" 'evilnc-comment-or-uncomment-lines
+  "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
+  "ll" 'evilnc-quick-comment-or-uncomment-to-the-line
+  "cc" 'evilnc-copy-and-comment-lines
+  "cp" 'evilnc-comment-or-uncomment-paragraphs
+  "cr" 'comment-or-uncomment-region
+  "cv" 'evilnc-toggle-invert-comment-line-by-line
+  "."  'evilnc-copy-and-comment-operator
+  "\\" 'evilnc-comment-operator ; if you prefer backslash key
+)
+(global-evil-leader-mode)
+)
       (evil-mode 1)
       (use-package evil
       :init
@@ -77,14 +77,16 @@
 #+END_SRC
 ** All the *require* packages.
 #+BEGIN_SRC emacs-lisp
-      (require 'bind-key)
-      (require 'ido)
-      (require 'doom-themes)
-      (require 'company)
+      (use-package bind-key)
+      (use-package ido
+      :config
+      (ido-mode 1)
+      )
+      (use-package doom-themes)
+      (use-package company)
 #+END_SRC
       
 #+BEGIN_SRC emacs-lisp
-      (ido-mode 1)
       (use-package key-chord)
       (use-package evil-nerd-commenter)
       (use-package treemacs)
@@ -180,19 +182,9 @@
         ivy-initial-inputs-alist nil))
 (use-package all-the-icons)
 (use-package evil-nerd-commenter)
-(use-package evil-leader)
-(evil-leader/set-leader ",")
-(global-evil-leader-mode)
-(evil-leader/set-key
-  "ci" 'evilnc-comment-or-uncomment-lines
-  "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
-  "ll" 'evilnc-quick-comment-or-uncomment-to-the-line
-  "cc" 'evilnc-copy-and-comment-lines
-  "cp" 'evilnc-comment-or-uncomment-paragraphs
-  "cr" 'comment-or-uncomment-region
-  "cv" 'evilnc-toggle-invert-comment-line-by-line
-  "."  'evilnc-copy-and-comment-operator
-  "\\" 'evilnc-comment-operator ; if you prefer backslash key
+(use-package wich-key
+:config
+(which-key-mode)
 )
 
 #+END_SRC
@@ -251,7 +243,7 @@ Easily open file manager
 (ido-mode 'buffers) ;; only use this line to turn off ido for file names!
 (setq ido-ignore-buffers '("^ " "*Completions*" "*Shell Command Output*"
                "*Messages*" "Async Shell Command"))
-(require 'openwith)
+(use-package openwith)
 (openwith-mode t)
 (setq openwith-associations '(("\\.pdf\\'" "zathura" (file))))
 (setq large-file-warning-threshold nil)
@@ -600,5 +592,5 @@ Set keybinding to open org-agenda
  ;; :after (ewal-evil-cursors winum)
   ;;:init (setq powerline-default-separator nil)
   ;;:config (spaceline-spacemacs-theme))
- (load-theme 'base16-ocean t)
+ (load-theme 'base16-default t)
 #+END_SRC

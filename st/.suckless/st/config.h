@@ -7,6 +7,7 @@
  */
 //static char *font = "Ubuntu Mono Nerd Font:pixelsize=15:antialias=true:autohint=true";
 static char *font = "Iosevka Nerd Font:pixelsize=15:antialias=true:autohint=true";
+//static char *font = "Iosevka Nerd Font:pixelsize=15:antialias=true:autohint=true";
 //static char *font = "Ubuntu Mono Nerd Font:pixelsize=15:antialias=true:autohint=true";
 /*	"Hack Nerd Font Mono:pixelsize=11:antialias=true:autohint=true", */
 static int borderpx = 2;

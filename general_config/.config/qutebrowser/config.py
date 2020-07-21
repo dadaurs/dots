@@ -57,5 +57,5 @@ c.url.searchengines = {"DEFAULT":"https://duckduckgo.com/?q={}",
 # c.fonts.prompts = "10pt CozetteVector" 
 # c.fonts.statusbar = "10pt CozetteVector" 
 # c.fonts.tabs = "12pt CozetteVector" 
-c.url.start_pages = "/home/dada/.config/qutebrowser/min-startpage/min.html"
+c.url.start_pages = "~/.config/qutebrowser/startpage/index.html"
 config.source('qutewal.py')

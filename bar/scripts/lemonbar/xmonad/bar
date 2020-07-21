@@ -3,8 +3,9 @@
 source $HOME/.cache/wal/colors.sh
 killall lemonbar
 killall mpc
-FONT="Iosevka Nerd Font:size=9"
+FONT="CozetteVector:size=10"
 HEIGHT=15
+#FONT="Font Awesome 5 Free Solid:size=9"
 
 BG=$background
 FG=$foreground
@@ -14,7 +15,6 @@ WIDTH=$( xdpyinfo  | grep -i 'dimensions:' | sed 's:x:\ :' | awk '{print $2}' )
 BarWidth=600
 BarPosX=$( expr "$WIDTH" - $BarWidth )
 #FONT="Font Awesome 5 Free Solid:size=9"
-FONT="Iosevka Nerd Font:size=10"
 
 
 
@@ -28,7 +28,7 @@ cat | while IFS= read -r line; do
 	  -e 's/%h/%{F}%{B}/g'\
 	  -e "s/%N/%{F$background}%{B$foreground}/g"\
 	  -e 's/%n/%{F}%{B}/g'
-done  | lemonbar  -B $background -g x$HEIGHT &
+done  | lemonbar  -B $background -g x$HEIGHT -f $FONT &
 
 $HOME/scripts/lemonbar/xmonad/modules 2>/dev/null |\
 		lemonbar  \

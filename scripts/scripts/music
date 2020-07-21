@@ -1,13 +1,13 @@
 #!/bin/sh
 
-if pgrep -x mpd > /dev/null
+if pgrep -x mpd >/dev/null || pgrep -x mopidy > /dev/null
 then
     ncmpcpp
 elif  pgrep -x spotify || pgrep -x spotifyd > /dev/null
  then
     $HOME/.cargo/bin/spt
 else
-    mpd & disown
+    mopidy & disown >/dev/null 2>&1
     ncmpcpp
 fi
     
