@@ -16,13 +16,23 @@ FONT="xft:Iosevka Nerd Font:size=11"
 
 sepchar=""
 sepcharone="%{F$BG}$sepchar%{F}%{B$BG} "
-sepchartwo="%{F$BGtwo}$sepchar%{F}%{B$BGtwo} "
+sepchartwo="%{B}%{F$BGtwo}$sepchar%{F}%{B$BGtwo} "
 mkdir -p /tmp/xmonad
 songfile="/tmp/xmonad/song_xmonad"
 timefile="/tmp/xmonad/time_xmonad"
 datefile="/tmp/xmonad/date_xmonad"
 batfile="/tmp/xmonad/bat_xmonad"
 mainfile="/tmp/xmonad/main_xmonad"
+extmpdfile="/tmp/xmonad/extmpd_xmonad"
+mailfile="/tmp/new_mail"
+volfile="/tmp/xmonad/vol_xmonad"
+pidfile="/tmp/xmonad/pid_xmonad"
+extbatfile="/tmp/xmonad/extbat_xmonad"
+cmdfifo="/tmp/xmonad/cmd_xmonad"
+mkfifo $cmdfifo
+echo 0 > $extmpdfile
+echo 1 > $extbatfile
+echo $$ > $pidfile
 
 _term() { 
 
@@ -32,17 +42,49 @@ _term() {
 
 trap _term SIGTERM EXIT
 
+trap 'getVol > $volfile && main' USR1
 
+update(){
+	case $1 in
+		'bat')getBattery > $batfile && main;;
+		'vol')getVol > $batfile && main;;
+		'mail')getsetmail > $mailfile && main;;
+		'update')main;;
+	esac
+}
 
 
 
 # find dimensions of monitor
 WIDTH=$( xdpyinfo  | grep -i 'dimensions:' | sed 's:x:\ :' | awk '{print $2}' ) 
 #HEIGHT=$( xdpyinfo  | grep -i 'dimensions:' | sed 's:x:\ :' | awk '{print $3}' ) 
+getVol(){
+         pamixer --list-sinks | grep "AirPods" >/dev/null 2>&1 && \
+       	 sink=$( pamixer --list-sinks | grep AirPods | awk '{print $1}' ) || \
+       	 sink=$( pamixer --list-sinks | sed -n 2p | awk '{print $1}' )
 
+	if [ $(pamixer --sink $sink --get-mute) == "true" ]; then
+		echo -e "  "
+	else
+	vol=$(pamixer --sink $sink --get-volume)
+	icon=
+		if [ "$vol" -gt 50 ]; then
+			icon= 
+		elif [ "$vol" -gt 0 ]; then
+			icon=
+		elif [ "$vol" -eq 0 ]; then
+			icon=
+		fi
+	echo "$icon $vol"
+	fi
+}
+Vol(){
+	cat $volfile
+}
 
 getDate(){
-    date  "+%a %d %b"
+	date=$(date  "+%a %d %b")
+	echo "  $date"
 }
 Date(){
 	cat $datefile 
@@ -54,87 +96,139 @@ memusage(){
 getTime() { 
 TIME=$( date "+%H:%M" )
 HOUR=$( date "+%H") 
-#echo -n "$DATETIME"
-#case $HOUR in
-	#1|13)  echo -n "$TIME";;
-	#2|14)  echo -n "$TIME";;
-	#3|15)  echo -n "$TIME";;
-	#4|16)  echo -n "$TIME";;
-	#5|17)  echo -n "$TIME";;
-	#6|18)  echo -n "$TIME";;
-	#7|19)  echo -n "$TIME";;
-	#8|20)  echo -n "$TIME";;
-	#9|21)  echo -n "$TIME";;
-	#10|22) echo -n "$TIME";;
-	#11|23) echo -n "$TIME";;
-	#0)     echo -n "$TIME";;
-#esac
-echo "$TIME"
+echo " $TIME"
 }
 Time(){
 	cat $timefile 
 }
 
+updatebat(){
+	extbatstatus=$(cat $extbatfile)
+	if [ $extbatstatus == 0 ]; then
+	echo 1 > $extbatfile
+	else
+	echo 0 > $extbatfile
+	fi
+	getBattery > $batfile
+	main
+}
 getBattery() {
-	STATE=$( acpi | awk '{print $4}' | sed 's/,//')
-	#battery_status="$(acpi -b | awk -F '[[:space:]]+|,' '{ print $3 }')"
-	#case "$battery_status" in
-		#'Charging')
-			#echo " %{F#EA7866}$STATE  " ;;
-			##echo "%{B#000433} %{F#EA7866}$STATE  " ;;
-		#'Discharging')
-			#echo " %{F#CE6864}$STATE  " ;;
-			##echo "%{B#000433} %{F#CE6864}$STATE  " ;;
-		#'Full') 
-			#echo " %{F#B5BD68}$STATE  " 
-			##echo "%{B#000433} %{F#00FF00}$STATE  " 
-	#esac
-	echo " %{F#EA7866}$STATE"
+	STATE=$( acpi | awk '{print $4}' | sed -e 's/,//' -e 's/%//')
+	battery_status="$(acpi -b | awk -F '[[:space:]]+|,' '{ print $3 }')"
+	colorstatus="$foreground"
+	case "$battery_status" in
+		'Charging')
+			colorstatus="#FFCB6B";;
+			#echo "%{B#000433} %{F#EA7866}$STATE  " ;;
+		'Unknown')
+			colorstatus="#FFCB6B";;
+			#echo "%{B#000433} %{F#EA7866}$STATE  " ;;
+		'Discharging')
+			colorstatus="#CE6864";;
+			#echo "%{B#000433} %{F#CE6864}$STATE  " ;;
+		'Full') 
+			colorstatus="#C3E88D";;
+			#echo "%{B#000433} %{F#00FF00}$STATE  " 
+	esac
+	bat_icon=	
+	if [ "$STATE" -gt 95 ]; then
+		bat_icon=
+	elif [ "$STATE" -gt 75 ]; then
+		bat_icon=
+	elif [ "$STATE" -gt 50 ]; then
+		bat_icon=
+	elif [ "$STATE" -gt 25 ]; then
+		bat_icon=
+	elif [ "$STATE" -gt 0 ]; then
+		bat_icon=
+	fi
+	extbatstatus=$(cat $extbatfile)
+	if [ "$extbatstatus" -eq "0" ]; then
+	echo "%{A:echo 1 > $extbatfile && echo bat > $cmdfifo:}%{F$colorstatus}$bat_icon%{A}"
+	else
+	echo "%{A:echo 0 > $extbatfile && echo bat > $cmdfifo:}%{F$colorstatus}$bat_icon%{F} $STATE% %{A}"
+	fi
+
 }
 Battery() {
 	cat $batfile 
 }
+mpc_idle_exit(){
+	killall mpc
+}
 getsetsong() {
+	extendedmpdstat=$(cat $extmpdfile)
+	state=$(mpc | grep 'playing\|paused' | awk '{print $1}' | sed 's/\[playing\]//' | sed 's/\[paused\]//') 
 	title=$(mpc -f "%title%" | grep -v "playing\|paused\|volume" )
 		if [[ $title == "" ]];then
 			title=$(mpc -f "%file%" | sed 1q | sed  -e 's:[a-zA-Z0-9]*\/::' | cut -f 1 -d '.')
 		fi
 	artist=$(mpc -f "%artist%"  | grep -v "playing\|paused\|volume")
-	echo -e "$title〈 $artist"
+	title="$title〈 $artist"
+	title=$(cut -b -30 <<< $title)
+	if [ "$extendedmpdstat" == "0" ]; then
+		# There should be a better way to update the status bar than killing mpc, but for now, this will have to do...
+	echo -e " %{A:echo 1 > $extmpdfile && pkill mpc:}%{A3:st -n music -e ncmpcpp & disown:}$title %{A3}%{A}"
+	else
+	echo -e " %{A:mpc previous:} %{A}%{A:mpc toggle:}$state %{A}%{A:mpc next:} %{A}%{A:echo 0 > $extmpdfile && pkill mpc:}%{A3:st -n music -e ncmpcpp & disown:}$title %{A3}%{A}"
+	fi
 }
 setsong(){
 	cat $songfile 
 }
 
-getvol(){
-	$HOME/scripts/lemonbar/volume
+getsetmail(){
+	newmail=$(notmuch count tag:unread)
+	echo -n "%{A:echo mail > $cmdfifo && st -e neomutt && echo mail > $cmdfifo:}     $newmail%{A}"
+	#echo -n "%{A:st -e neomutt & disown:}    : $newmail%{A}"
+}
+setmail(){
+	cat $mailfile
 }
 #setstate() { 
 #state=$(mpc | grep 'playing\|paused' | awk '{print $1}' | sed 's/\[playing\]//' | sed 's/\[paused\]//') 
 #echo -e  "%{A:mpc toggle:}$state%{A}"
 #}
 main(){
-	#echo "$(setsong) $sepcharone %{F#FECC6D}⚡%{F}$(Battery) $sepchartwo $(Date) $sepcharone$(Time) " > $mainfile
-	echo "%{r}$sepchartwo$(setsong) $sepcharone %{F#FECC6D}⚡%{F}$(Battery) $sepchartwo $(Date) $sepcharone$(Time) " 
+	#echo "%{B}%{r}%{B}$sepchartwo $(setmail) $sepcharone$(setsong) $sepchartwo $(Battery) $sepcharone $(Date) $sepchartwo$(Time) " 
+	echo "%{r}$sepchartwo $(getVol) $sepcharone $(setmail) $sepchartwo$(setsong) $sepcharone $(Battery) $sepchartwo $(Date) $sepcharone$(Time) " 
 
 }
+
+echo $$ > $pidfile
+case $1 in
+	'update')main;;
+esac
 while true;do
 	if pgrep -x mpd >/dev/null || pgrep -x mopidy >/dev/null; then
 		getsetsong  > $songfile
 		main
 		mpc idle >/dev/null 2>&1
 	else
-		echo "" > $songfile
+		echo "" > $songfile
 		sleep 1m  
 	fi
 done & 
-
-
+while true;do
+getsetmail | tr -d '\n' > $mailfile
+sleep 10m
+#echo "" > $mailfile
+mailsync outlook-david >/dev/null 2>&1 
+getsetmail | tr -d '\n' > $mailfile
+main
+done &
 while true;do
 	getBattery | tr -d '\n'> $batfile
 	getDate | tr -d '\n' > $datefile
 	getTime | tr -d '\n'> $timefile
 	main
-	sleep 1m 
-done 
-#tail -f /tmp/xmonad/main_xmonad 2>/dev/null |\
+	sleep 1m & wait $!
+done &
+tail -f $cmdfifo | while IFS= read -r line; do
+	update $line
+done
+#while true;do
+	#tail -f /dev/null & wait $!
+#done
+
+#tail -f $volfifo | while IFS= read -r line; do
