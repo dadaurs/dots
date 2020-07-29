@@ -1,0 +1,45 @@
+#!/bin/sh
+#vim:filetype=sh
+source $HOME/.cache/wal/colors.sh
+#killall lemonbar
+#killall mpc
+#kill -s SIGKILL $(cat /tmp/xmonad/pid_xmonad)
+#kill -s SIGINT
+#FONT1="CozetteVector:size=10"
+HEIGHT=15
+#FONT2="Font Awesome 5 Free Solid:size=9"
+FONT="Hack Nerd Font:size=9"
+#FONT2="Iosevka Nerd Font:size=10"
+
+
+
+
+#background="#292c2e"
+#foreground="#d8d8d8"
+#elcol="#FF0000"
+
+BG=#292c2e
+FG=#d8d8d8
+HEIGHT=15
+WIDTH=$( xdpyinfo  | grep -i 'dimensions:' | sed 's:x:\ :' | awk '{print $2}' ) 
+
+BarWidth=600
+BarPosX=$( expr "$WIDTH" - $BarWidth )
+#FONT="Font Awesome 5 Free Solid:size=9"
+
+
+
+
+tail -f /tmp/dwm_tags 2>/dev/null | while IFS= read -r line; do
+         sed\
+	  -e "s/%C/%{F$foreground}%{B$background}/g"\
+	  -e "s/%O/%{F$foreground}%{B$color4}/g"\
+	  -e "s/%N/%{F$background}%{B$foreground}/g"\
+	  -e 's/%f/%{F}%{B}/g' <<< $line
+done  | lemonbar -d  -B "#292c2e" -F $foreground -g x$HEIGHT -f "$FONT" 
+#done  
+
+#sleep 0.1
+
+#$HOME/scripts/lemonbar/xmonad/modules 2>/dev/null | lemonbar -p -g $BarWidth\x$HEIGHT+$BarPosX+0  -f "Font Awesome" -f "Iosevka Nerd Font:size=10"  -B $BG  -F $FG | sh
+
