@@ -8,25 +8,38 @@ FONT="Iosevka"
 FG=
 TIMEOUT=1
 VOLPERC=$( pactl list sinks | grep '^[[:space:]]Volume' | awk '{print $5}')
+ pamixer --list-sinks | grep "AirPods" && \
+	sink=$( pamixer --list-sinks | grep AirPods | awk '{print $1}' ) ||\
+	sink=$( pamixer --list-sinks | sed -n 2p | awk '{print $1}' )
+STEP=1
 
-#!/bin/sh
-sink=$(pactl list short | grep RUNNING | sed -e 's,^\([0-9][0-9]*\)[^0-9].*,\1,')
-
+updatexmonad(){
+if pgrep -x xmonad-x86_64-l ; then
+	#kill -s USR1  $(cat /tmp/xmonad/pid_xmonad)
+	echo vol > /tmp/xmonad/cmd_xmonad
+fi
+}
 voldowncmd(){
 #if pgrep -x pulseaudio >/dev/null;then
 	#pulseaudio_volume dec 5
 #else
 
-	pactl set-sink-volume $sink -5%
+	#pactl set-sink-volume $sink -5%
+	pamixer --sink $sink -d $STEP
 #fi
 }
 volupcmd(){
 #if pgrep -x pulseaudio >/dev/null;then
 	#pulseaudio_volume inc 5
 #else
-	vol=$( pactl list sinks | grep '^[[:space:]]Volume' | awk '{print $5}' | sed 's/%//g' | tac | head -1 )
+	vol=$(pamixer --sink $sink --get-volume)
+	vol=$(expr "$vol" + $STEP)
 	if [ $vol -lt 100 ]; then
-	pactl set-sink-volume $sink +5%
+		pamixer --sink $sink -i $STEP
+	elif [ $vol -eq 100 ]; then
+		pamixer --sink $sink --set-volume 100
+	elif [ $vol -gt 100 ];then
+		echo ""
 	fi
 #fi
 }
@@ -34,7 +47,7 @@ voltoggle(){
 #if pgrep -x pulseaudio >/dev/null;then
 	#pulseaudio_volume toggle
 #else
-	pactl set-sink-mute $sink toggle
+	pamixer --sink $sink -t
 #fi
 }
 Vol() {
@@ -43,7 +56,8 @@ Vol() {
 	#if pgrep -x pulseaudio >/dev/null;then
 	#pactl list sinks | grep '^[[:space:]]Volume' | awk '{print $5}'
 #else
-	pactl list sinks | grep '^[[:space:]]Volume' | awk '{print $5}' | sed 's/%//g' | tac | head -1
+	#pactl list sinks | grep '^[[:space:]]Volume' | awk '{print $5}' | sed 's/%//g' | tac | head -1
+	pamixer --sink $sink --get-volume
 	 #amixer sget Master | grep "Front Left:" | awk '{print $5}' | sed -e 's/\[//g' -e 's/\]//g' -e 's/%//g'
 #fi
 	) | gdbar -max 100 -min 0 -s '-'
@@ -51,18 +65,22 @@ Vol() {
 case $1 in
 	up) 
 	volupcmd
-	kill -s USR1 --- $(cat /tmp/volaback.pid)
+	#kill -s USR1 --- $(cat /tmp/volaback.pid)
+	updatexmonad
 	Vol | dzen2 -p -h 40 -tw $WIDTH -w $WIDTH -x $POSX -y $POSY   -p $TIMEOUT  -l '1' -fn $FONT -e 'onstart=uncollapse' -sa 'c' ;;
 	down)
 	voldowncmd
-	kill -s USR1 --- $(cat /tmp/volaback.pid)
+	#kill -s USR1 --- $(cat /tmp/volaback.pid)
+	updatexmonad
 	Vol | dzen2 -p -h 40 -tw $WIDTH -w $WIDTH -x $POSX -y $POSY   -p $TIMEOUT  -l '1' -fn $FONT -e 'onstart=uncollapse' -sa 'c';;
 	toggle)
 	voltoggle
-	kill -s USR1 --- $(cat /tmp/volaback.pid)
+	#kill -s USR1 --- $(cat /tmp/volaback.pid)
+	updatexmonad
 	if [ -n $( amixer get Master | tail -1 | grep off) ]; then
 		Vol | dzen2 -p -h 40 -tw $WIDTH -w $WIDTH -x $POSX -y $POSY   -p $TIMEOUT  -l '1' -fn $FONT -e 'onstart=uncollapse' -sa 'c'
 	else
 		echo -e "Volume\nMute" | dzen2 -p -h 40 -tw $WIDTH -w $WIDTH -x $POSX -y $POSY   -p $TIMEOUT  -l '1' -fn $FONT -e 'onstart=uncollapse' -sa 'c'
 	fi;;
 esac
+

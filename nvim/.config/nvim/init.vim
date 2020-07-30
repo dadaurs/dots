@@ -28,6 +28,7 @@ set incsearch
 set ignorecase
 set smartcase
 set ruler
+set complete+=i
 "Other:
 "---{{{2
 let g:utl_cfg_hdl_mt_generic = 'silent !zathura "%p" & disown'
@@ -114,6 +115,7 @@ endfunction
 "Autocmds:
 "---{{{2
 autocmd Filetype python nnoremap <buffer> <C-c> :!python %<cr>
+autocmd Filetype urls nnoremap  yr :r!python /home/david/any/src/newsboat-url-generator/newsboat-urls-generator.py -u $(xsel --clipboard --output)
 "---}}}
 "---}}}
 "===========================================================================================================
@@ -148,9 +150,10 @@ Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'vimwiki/vimwiki'
 "Plug 'mattn/calendar-vim'
-Plug 'vim-scripts/SearchComplete'
+"Plug 'vim-scripts/SearchComplete'
 Plug 'junegunn/goyo.vim'
 Plug 'chrisbra/unicode.vim'
+Plug 'liuchengxu/vista.vim'
 nnoremap <silent> <leader>G :Goyo<cr>
 "Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 "nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
@@ -246,6 +249,7 @@ Plug 'tpope/vim-fugitive'
 "Other:
 "---{{{2
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'codota/tabnine-vim'
 nnoremap <c-x><c-f> <plug>(fzf-complete-path)
 
 "Plug 'christoomey/vim-tmux-navigator'
@@ -318,3 +322,4 @@ hi MatchParen   cterm=NONE ctermbg=12 ctermfg=NONE guibg=#DDDDDD guifg=NONE gui=
 "hi CursorLine   cterm=NONE ctermbg=0 ctermfg=NONE guibg=#2E333F guifg=NONE gui=NONE
 "set laststatus=0
 "---}}}
+

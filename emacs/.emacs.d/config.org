@@ -592,5 +592,5 @@ Set keybinding to open org-agenda
  ;; :after (ewal-evil-cursors winum)
   ;;:init (setq powerline-default-separator nil)
   ;;:config (spaceline-spacemacs-theme))
- (load-theme 'base16-default t)
+ (load-theme 'base16-default-dark t)
 #+END_SRC

@@ -32,7 +32,6 @@ alias brc='v $HOME/.bashrc'
 alias chk='v $HOME/.config/sxhkd/sxhkdrc'
 alias mail='neomutt'
 alias syncmail='mbsync -a'
-alias ufetch='$HOME/source/ufetch/ufetch-gentoo'
 alias doase='doas nvim'
 alias Z='nvim ~/.config/zsh/.zshrc'
 alias cx='nvim ~/.xmonad/xmonad.hs'
@@ -43,7 +42,7 @@ alias sx='startx'
 alias SX='startx'
 alias doas='doas '
 alias luse='less /var/db/repos/gentoo/profiles/use.desc'
-alias y='xsel --clipboard --output | xargs youtube-dl --add-metadata -x -f bestaudio/best'
+#alias y='xsel --clipboard --output | xargs youtube-dl --add-metadata -x -f bestaudio/best'
 alias etc='doas etc-update'
 alias w='xsel --clipboard --output | xargs wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 alias gc='git clone $(xsel --clipboard --output)'
@@ -52,6 +51,12 @@ alias l='exa -l'
 alias ere='killall emacs && emacs --daemon & disown'
 #alias mpd='/usr/bin/mpd'
 alias ta='tmux -f "$XDG_CONFIG_HOME"/tmux/tmux.conf attach-session'
+y(){
+	if pgrep -x qutebrowser;then
+		qutebrowser :yank
+	fi
+	xsel --clipboard --output | xargs youtube-dl --add-metadata -x -f bestaudio/best
+}
 sumup(){
 perl -nle '$sum += $_ } END { print $sum' $1
 }
@@ -68,3 +73,5 @@ alias s='doas systemctl'
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 alias mbsync='mbsync -c "$XDG_CONFIG_HOME"/isync/mbsyncrc'
 alias gm='cd /media/'
+alias yrss='python /home/david/any/src/newsboat-url-generator/newsboat-urls-generator.py -u $(xsel --clipboard --output)'
+alias ph='patch -p1 < '

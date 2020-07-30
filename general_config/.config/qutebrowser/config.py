@@ -31,6 +31,7 @@ config.unbind('<Ctrl-v>')
 config.unbind('b')
 config.bind('<Ctrl-m>', 'spawn --detach mpv --force-window yes {url}')
 config.bind('X', 'hint links spawn mpv {hint-url} & disown')
+config.bind('yf', 'hint links yank')
 config.bind(';',':') 
 c.url.start_pages = ["/home/dada/.config/qutebrowser/min-startpage/min.html"]
 c.url.searchengines = {"DEFAULT":"https://duckduckgo.com/?q={}",

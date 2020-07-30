@@ -1,2 +1,4 @@
 #!/bin/sh
-notify-send "Torrent  $TR_TORRENT_NAME finished downloading"
+export DISPLAY=:0
+notify-send "Transmission" "$TR_TORRENT_NAME completed." -i transmission &
+echo "$TR_TORRENT_NAME" >> /home/tatou/.to_watch
