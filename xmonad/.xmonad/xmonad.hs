@@ -117,6 +117,7 @@ myKeys =
    ("M-<Space>", spawn "/home/david/scripts/dmenu_run_history")
   ,("M-d", spawn "clipmenu")
   ,("M-q", kill)
+  ,("M-S-q", io (exitWith ExitSuccess))
   ,("M-S-<Tab>", sendMessage NextLayout)
   ,("M-S-f", spawn "st -e ranger")
   ,("M-S-r", spawn "xmonad --recompile && xmonad --restart")
@@ -229,7 +230,7 @@ suffixed n          = renamed [(XMonad.Layout.Renamed.AppendWords n)]
 trimSuffixed w n    = renamed [(XMonad.Layout.Renamed.CutWordsRight w),
                                    (XMonad.Layout.Renamed.AppendWords n)]
 
-myLayout = avoidStruts $ (  tiledGapless ||| tiledGaps |||  tabbed shrinkText myTabConfig ||| noBorders Full)
+myLayout = smartBorders $ fullScreenToggle $ avoidStruts $ (  tiledGapless ||| tiledGaps |||   tabbed shrinkText myTabConfig ||| noBorders Full)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -244,13 +245,11 @@ myLayout = avoidStruts $ (  tiledGapless ||| tiledGaps |||  tabbed shrinkText my
      delta   = 3/100
      fullScreenToggle = mkToggle (single FULL)
 
-     tiledGapless = smartBorders
-       $ windowNavigation
+     tiledGapless = windowNavigation
        $ addTabs shrinkText myTabConfig
        $ mynongaps
        $ mynonspace
        $ subLayout [] (Simplest ||| Accordion)
-       $ fullScreenToggle
        $ tiled
  
  
@@ -260,7 +259,6 @@ myLayout = avoidStruts $ (  tiledGapless ||| tiledGaps |||  tabbed shrinkText my
        $ myGaps
        $ addSpace
        $ subLayout [] (Simplest ||| Accordion)
-       $ fullScreenToggle
        $ tiled
 
 myTabConfig = def {
@@ -323,12 +321,14 @@ myEventHook = fullscreenEventHook
 --
 myStartupHook = do
    setLayout (Layout (layoutHook myConf))
-   spawn "killall xcape"
+   spawn "if pgrep -x xcape; then;pkill xcape;fi"
    spawn "exec xmodmap ~/.config/xmodmap/capstoctrl &"
+   spawn "xrdb -merge ~/.config/X11/Xresources"
    spawn "xcape"
    spawn "exec ~/.fehbg"
    spawn "wal -R &"
    spawn "dunst &"
+   spawn "picom &"
 --myStartupHook = do
    --sendMessage $ JumpToLayout $ Tall
 
