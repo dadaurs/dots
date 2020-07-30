@@ -1,0 +1,49 @@
+#!/bin/sh
+#vim:filetype=sh
+source $HOME/.cache/wal/colors.sh
+killall lemonbar
+killall mpc
+FONT="CozetteVector:size=10"
+HEIGHT=15
+#FONT="Font Awesome 5 Free Solid:size=9"
+
+timefile="/tmp/xmonad_fifo/time_xmonad"
+songfile="/tmp/xmonad_fifo/song_xmonad"
+datefile="/tmp/xmonad_fifo/date_xmonad"
+batfile="/tmp/xmonad_fifo/bat_xmonad"
+mainfile="/tmp/xmonad_fifo/main_xmonad"
+extmpdfile="/tmp/xmonad_fifo/extmpd_xmonad"
+
+BG=$background
+FG=$foreground
+HEIGHT=15
+WIDTH=$( xdpyinfo  | grep -i 'dimensions:' | sed 's:x:\ :' | awk '{print $2}' ) 
+
+BarWidth=600
+BarPosX=$( expr "$WIDTH" - $BarWidth )
+#FONT="Font Awesome 5 Free Solid:size=9"
+
+
+
+
+cat | while IFS= read -r line; do
+  printf '%s\n' "$line" | sed\
+	  -e  "s/%N NSP %n\ //"\
+	  -e "s/%C/%{F$foreground}%{B$background}/"\
+	  -e 's/%c/%{F}%{B}/'\
+	  -e "s/%H/%{F$background}%{B$color8}/g"\
+	  -e 's/%h/%{F}%{B}/g'\
+	  -e "s/%N/%{F$background}%{B$foreground}/g"\
+	  -e 's/%n/%{F}%{B}/g'
+done &
+
+main(){
+	#echo "$(setsong) $sepcharone %{F#FECC6D}⚡%{F}$(Battery) $sepchartwo $(Date) $sepcharone$(Time) " > $mainfile
+	echo "%{r}$sepchartwo$(setsong) $sepcharone %{F#FECC6D}⚡%{F}$(Battery) $sepchartwo $(Date) $sepcharone$(Time) " 
+}
+tail -f $songfile | while read line;do
+main
+done 
+
+#$HOME/scripts/lemonbar/xmonad/modules 2>/dev/null | lemonbar -p -g $BarWidth\x$HEIGHT+$BarPosX+0  -f "$FONT"  -B $BG  -F $FG | sh
+
