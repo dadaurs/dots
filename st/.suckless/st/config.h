@@ -6,12 +6,15 @@
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
 //static char *font = "Ubuntu Mono Nerd Font:pixelsize=15:antialias=true:autohint=true";
+//static char *font = "Monospace:pixelsize=15:antialias=true:autohint=true";
 static char *font = "Iosevka Nerd Font:pixelsize=15:antialias=true:autohint=true";
 //static char *font = "Iosevka Nerd Font:pixelsize=15:antialias=true:autohint=true";
 //static char *font = "Ubuntu Mono Nerd Font:pixelsize=15:antialias=true:autohint=true";
 /*	"Hack Nerd Font Mono:pixelsize=11:antialias=true:autohint=true", */
 static int borderpx = 2;
 
+
+float alpha = 0.8;
 /*
  * What program is execed by st depends of these precedence rules:
  * 1: program passed with -e
@@ -116,7 +119,9 @@ unsigned int tabspaces = 8;
 //};
 
 static char *font2[] = {
+        "Monospace:pixelsize=15:antialias=true:autohint=true"
 	"Font Awesome 5 Free Solid:pixelsize=15", 
+	"FontAwesome:pixelsize=15", 
 	"Sazanami Mincho:pixelsize=15:antialias=true:autohint=true", 
 };
 

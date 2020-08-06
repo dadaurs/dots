@@ -30,7 +30,8 @@ BarPosX=$( expr "$WIDTH" - $BarWidth )
 
 
 
-tail -f /tmp/dwm_tags 2>/dev/null | while IFS= read -r line; do
+sleep 1
+tail -f /tmp/dwm_tags  2>/dev/null | while IFS= read -r line; do
 	 sed\
 	  -e "s/%C/%{F$foreground}%{B$background}/g"\
 	  -e "s/%O/%{F$foreground}%{B$color4}/g"\

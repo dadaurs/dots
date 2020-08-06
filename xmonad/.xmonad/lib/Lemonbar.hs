@@ -40,4 +40,3 @@ myLemonHook = defaultPP {
 
 --myXmonadlemonbar = "lemonbar -p -f \"Source Code Pro For Powerline:size=12\"  -f \"Ubuntu Mono Nerd Font:size=12\"  > /tmp/lemlog"
 myXmonadlemonbar = "/home/david/scripts/lemonbar/xmonad/bar"
-

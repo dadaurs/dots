@@ -328,7 +328,7 @@ myStartupHook = do
    spawn "exec ~/.fehbg"
    spawn "wal -R &"
    spawn "dunst &"
-   spawn "picom &"
+   --spawn "picom &"
 --myStartupHook = do
    --sendMessage $ JumpToLayout $ Tall
 

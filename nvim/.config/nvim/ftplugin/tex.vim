@@ -37,3 +37,11 @@ hi! EndOfBuffer cterm=NONE gui=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=#
 "set spelllang=fr
 "inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 "nnoremap L <c-g>u<Esc>[s1z=`]a<c-g>u
+
+let g:tex_flavor='latex'
+let g:tex_conceal='abdmg'
+let g:vimtex_view_general_viewer='zathura'
+	nmap <silent> <C-t> :VimtexTocToggle<CR>
+let g:livepreview_previewer = 'zathura'
+let g:livepreview_engine = 'pdflatex'
+

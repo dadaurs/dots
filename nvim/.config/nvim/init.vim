@@ -125,21 +125,21 @@ autocmd Filetype urls nnoremap  yr :r!python /home/david/any/src/newsboat-url-ge
 call plug#begin('~/.vim/plugged')
 "Latex:
 "---{{{2
-Plug 'PietroPate/vim-tex-conceal'
-Plug 'lervag/vimtex'
-Plug 'KeitaNakamura/tex-conceal.vim'
-let g:tex_flavor='latex'
-let g:vimtex_quickfix_mode=0
-let g:tex_conceal='abdmg'
-let g:vimtex_view_general_viewer='zathura'
-	nmap <silent> <C-t> :VimtexTocToggle<CR>
-let g:livepreview_previewer = 'zathura'
-let g:livepreview_engine = 'pdflatex'
+Plug 'PietroPate/vim-tex-conceal', { 'for': ['latex', 'tex'] }
+Plug 'lervag/vimtex', { 'for': ['latex', 'tex'] }
+Plug 'KeitaNakamura/tex-conceal.vim', { 'for': ['latex', 'tex'] }
+"let g:vimtex_quickfix_mode=0
+"let g:tex_flavor='latex'
+"let g:tex_conceal='abdmg'
+"let g:vimtex_view_general_viewer='zathura'
+	"nmap <silent> <C-t> :VimtexTocToggle<CR>
+"let g:livepreview_previewer = 'zathura'
+"let g:livepreview_engine = 'pdflatex'
 "---}}}
 "Utilities:
 "---{{{2
 
-Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter' 
 "Plug 'vim-scripts/utl.vim'
 "Plug 'scrooloose/nerdtree'
 	"nnoremap <silent> <leader>n :NERDTreeToggle<cr>
@@ -148,12 +148,12 @@ Plug 'tpope/vim-surround'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
-Plug 'vimwiki/vimwiki'
 "Plug 'mattn/calendar-vim'
 "Plug 'vim-scripts/SearchComplete'
-Plug 'junegunn/goyo.vim'
-Plug 'chrisbra/unicode.vim'
-Plug 'liuchengxu/vista.vim'
+Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+
+"Plug 'chrisbra/unicode.vim'
+Plug 'liuchengxu/vista.vim', { 'for': ['tex', 'latex', 'c', 'cpp'] }
 nnoremap <silent> <leader>G :Goyo<cr>
 "Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 "nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
@@ -225,7 +225,7 @@ nnoremap <silent> <leader>r :Rg<CR>
 "---}}}
 "Snippets:
 "---{{{2
-Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips' , { 'for': ['latex' ,'tex']}
 let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
@@ -234,12 +234,11 @@ let g:UltiSnipsEditSplit="vertical"
 "---}}}
 "Syntax:
 "---{{{2
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
+"Plug 'godlygeek/tabular'
+"Plug 'plasticboy/vim-markdown'
 let g:vim_markdown_math = 1
 set conceallevel=2
-Plug 'baskerville/vim-sxhkdrc'
-Plug 'jceb/vim-orgmode'
+Plug 'baskerville/vim-sxhkdrc', { 'for': ['sxhkdrc']}
 "---}}}
 "Git:
 "---{{{2
@@ -249,7 +248,8 @@ Plug 'tpope/vim-fugitive'
 "Other:
 "---{{{2
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'codota/tabnine-vim'
+Plug 'codota/tabnine-vim',{ 'for': ['c', 'cpp','python']}
+
 nnoremap <c-x><c-f> <plug>(fzf-complete-path)
 
 "Plug 'christoomey/vim-tmux-navigator'
@@ -265,7 +265,7 @@ Plug 'metakirby5/codi.vim'
                    \ }
 nnoremap <leader>L :ALEToggle<CR>
 "Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-Plug 'mhinz/vim-startify'
+"Plug 'mhinz/vim-startify'
 "---}}}
 "===========================================================================================================
 "Colors:

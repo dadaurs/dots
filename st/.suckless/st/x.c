@@ -2243,6 +2243,11 @@ run:
 	if(!(xw.dpy = XOpenDisplay(NULL)))
 		die("Can't open display\n");
 
+
+
+
+	XMatchVisualInfo(xw.dpy, xw.scr, xw.depth, TrueColor, &vis);
+	xw.vis = vis.visual;
 	config_init();
 	cols = MAX(cols, 1);
 	rows = MAX(rows, 1);
