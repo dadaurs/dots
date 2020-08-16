@@ -11,13 +11,10 @@ VOLPERC=$( pactl list sinks | grep '^[[:space:]]Volume' | awk '{print $5}')
  pamixer --list-sinks | grep "AirPods" && \
 	sink=$( pamixer --list-sinks | grep AirPods | awk '{print $1}' ) ||\
 	sink=$( pamixer --list-sinks | sed -n 2p | awk '{print $1}' )
-STEP=1
+STEP=5
 
-updatexmonad(){
-if pgrep -x xmonad-x86_64-l ; then
-	#kill -s USR1  $(cat /tmp/xmonad/pid_xmonad)
+updatebars(){
 	echo vol > /tmp/xmonad/cmd_xmonad
-fi
 }
 voldowncmd(){
 #if pgrep -x pulseaudio >/dev/null;then
@@ -65,18 +62,18 @@ Vol() {
 case $1 in
 	up) 
 	volupcmd
+	updatebars
 	#kill -s USR1 --- $(cat /tmp/volaback.pid)
-	updatexmonad
 	Vol | dzen2 -p -h 40 -tw $WIDTH -w $WIDTH -x $POSX -y $POSY   -p $TIMEOUT  -l '1' -fn $FONT -e 'onstart=uncollapse' -sa 'c' ;;
 	down)
 	voldowncmd
+	updatebars
 	#kill -s USR1 --- $(cat /tmp/volaback.pid)
-	updatexmonad
 	Vol | dzen2 -p -h 40 -tw $WIDTH -w $WIDTH -x $POSX -y $POSY   -p $TIMEOUT  -l '1' -fn $FONT -e 'onstart=uncollapse' -sa 'c';;
 	toggle)
 	voltoggle
+	updatebars
 	#kill -s USR1 --- $(cat /tmp/volaback.pid)
-	updatexmonad
 	if [ -n $( amixer get Master | tail -1 | grep off) ]; then
 		Vol | dzen2 -p -h 40 -tw $WIDTH -w $WIDTH -x $POSX -y $POSY   -p $TIMEOUT  -l '1' -fn $FONT -e 'onstart=uncollapse' -sa 'c'
 	else

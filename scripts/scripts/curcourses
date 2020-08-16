@@ -1,12 +1,21 @@
-#/bin/sh
+#!/bin/sh
+#vim:filetype=sh
+WIDTH=$( xdpyinfo  | grep -i 'dimensions:' | sed 's:x:\ :' | awk '{print $2}' ) 
+HEIGHT=$( xdpyinfo  | grep -i 'dimensions:' | awk '{print $2}' | cut -d"x" -f 2)
+if test -f /tmp/bspwm_gapsize; then
+	MARGIN=$(cat /tmp/bspwm_gapsize)
+else
+	MARGIN=5
+fi
+dmenu_options="-w $(expr $WIDTH - $MARGIN -  $MARGIN -  $MARGIN - $MARGIN ) -x $MARGIN -y $(expr $HEIGHT / 2) -bw $MARGIN   -i"
 addcourse(){
-wmctrl -l | grep pdf | awk '{print $NF}' | dmenu  -i -p "Add to current courses?" >> $HOME/.cache/current_courses
+wmctrl -l | grep pdf | awk '{print $NF}' | dmenu  $dmenu_options -l 2 -i -p "Add to current courses?" >> $HOME/.cache/current_courses
 }
 open(){
-tabbed -c zathura $(tac $HOME/.cache/current_courses | dmenu -i -p "Open course") -e
+tabbed -c zathura $(tac $HOME/.cache/current_courses | dmenu $dmenu_options -l 3 -p "Open course") -e
 }
 
-CHOICE=$(echo -e "Open\nAdd"  | dmenu -i -p "Add or open course?")
+CHOICE=$(echo -e "Open\nAdd"  | dmenu $dmenu_options -l 2 -p "Add or open course?")
 
 case "$CHOICE" in
 	"Add") addcourse ;;

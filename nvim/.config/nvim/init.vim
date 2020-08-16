@@ -128,13 +128,13 @@ call plug#begin('~/.vim/plugged')
 Plug 'PietroPate/vim-tex-conceal', { 'for': ['latex', 'tex'] }
 Plug 'lervag/vimtex', { 'for': ['latex', 'tex'] }
 Plug 'KeitaNakamura/tex-conceal.vim', { 'for': ['latex', 'tex'] }
-"let g:vimtex_quickfix_mode=0
-"let g:tex_flavor='latex'
-"let g:tex_conceal='abdmg'
-"let g:vimtex_view_general_viewer='zathura'
-	"nmap <silent> <C-t> :VimtexTocToggle<CR>
-"let g:livepreview_previewer = 'zathura'
-"let g:livepreview_engine = 'pdflatex'
+let g:vimtex_quickfix_mode=0
+let g:tex_flavor='latex'
+let g:tex_conceal='abdmg'
+let g:vimtex_view_general_viewer='zathura'
+	nmap <silent> <C-t> :VimtexTocToggle<CR>
+let g:livepreview_previewer = 'zathura'
+let g:livepreview_engine = 'pdflatex'
 "---}}}
 "Utilities:
 "---{{{2
@@ -225,7 +225,8 @@ nnoremap <silent> <leader>r :Rg<CR>
 "---}}}
 "Snippets:
 "---{{{2
-Plug 'SirVer/ultisnips' , { 'for': ['latex' ,'tex']}
+Plug 'SirVer/ultisnips' 
+"Plug 'SirVer/ultisnips' , { 'for': ['latex' ,'tex']}
 let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
@@ -247,8 +248,8 @@ Plug 'tpope/vim-fugitive'
 "---}}}
 "Other:
 "---{{{2
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'codota/tabnine-vim',{ 'for': ['c', 'cpp','python']}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'codota/tabnine-vim'
 
 nnoremap <c-x><c-f> <plug>(fzf-complete-path)
 
@@ -283,7 +284,7 @@ call plug#end()
 set laststatus=0
 
 "set statusline=
-"set statusline+=%#CocListBgMagenta#
+set statusline+=%#CocListBgMagenta#
 "set statusline+=\ \ 
 "set statusline+=\ %#PmenuSel#
 "set statusline+=\ %F

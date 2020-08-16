@@ -1,5 +1,13 @@
 #!/bin/sh
 
+WIDTH=$( xdpyinfo  | grep -i 'dimensions:' | sed 's:x:\ :' | awk '{print $2}' ) 
+HEIGHT=$( xdpyinfo  | grep -i 'dimensions:' | awk '{print $2}' | cut -d"x" -f 2)
+if test -f /tmp/bspwm_gapsize; then
+	MARGIN=$(cat /tmp/bspwm_gapsize)
+else
+	MARGIN=5
+fi
+dmenu_opts="-w $(expr $WIDTH - $MARGIN -  $MARGIN -  $MARGIN - $MARGIN ) -x $MARGIN -y 25 -bw $MARGIN   -i"
 cachedir=${XDG_CACHE_HOME:-"$HOME/.cache"}
 if [ -d "$cachedir" ]; then
 	cache=$cachedir/dmenu_run
@@ -23,7 +31,7 @@ awk -v histfile=$historyfile '
 			x[$0]=1
 		}
 	} !x[$0]++ ' "$cache" \
-	| dmenu -p "" "$@" -g 6 -l 6 \
+	| dmenu -p "" "$@" $dmenu_opts -l 6 -g 3 -h 35 \
 	| awk -v histfile=$historyfile '
 		BEGIN {
 			FS=OFS="\t"

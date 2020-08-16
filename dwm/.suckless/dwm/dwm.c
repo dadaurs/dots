@@ -214,6 +214,7 @@ static void sendmon(Client *c, Monitor *m);
 static void setclientstate(Client *c, long state);
 static void setfocus(Client *c);
 static void setfullscreen(Client *c, int fullscreen);
+static void togglefullscreen(const Arg *arg);
 static void setlayout(const Arg *arg);
 static void setmfact(const Arg *arg);
 static void setup(void);
@@ -250,6 +251,8 @@ static int xerror(Display *dpy, XErrorEvent *ee);
 static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void zoom(const Arg *arg);
+void reparent(const Arg *arg);
+void spawntabwin(const Arg *arg);
 
 /* variables */
 static const char broken[] = "broken";
@@ -895,7 +898,7 @@ focusstack(const Arg *arg)
 {
 	Client *c = NULL, *i;
 
-	if (!selmon->sel)
+	if (!selmon->sel || selmon->sel->isfullscreen)
 		return;
 	if (arg->i > 0) {
 		for (c = selmon->sel->next; c && !ISVISIBLE(c); c = c->next);
@@ -2324,4 +2327,82 @@ main(int argc, char *argv[])
 	cleanup();
 	XCloseDisplay(dpy);
 	return EXIT_SUCCESS;
+}
+void
+togglefullscreen(const Arg *arg) {
+	Client *c = selmon->sel;
+    if (!selmon->sel)
+        return;
+            if (!c->isfullscreen) {
+                XChangeProperty(dpy, c->win, netatom[NetWMState], XA_ATOM, 32,
+                        PropModeReplace, (unsigned char*)&netatom[NetWMFullscreen], 1);
+                c->isfullscreen = 1;
+                c->oldstate = c->isfloating;
+                c->oldbw = c->bw;
+                c->bw = 0;
+                c->isfloating = 1;
+                resizeclient(c, c->mon->mx, c->mon->my, c->mon->mw, c->mon->mh, 0);
+                XRaiseWindow(dpy, c->win);
+        } else if (c->isfullscreen){
+                XChangeProperty(dpy, c->win, netatom[NetWMState], XA_ATOM, 32,
+                        PropModeReplace, (unsigned char*)0, 0);
+                c->isfullscreen = 0;
+                c->isfloating = c->oldstate;
+                c->bw = c->oldbw;
+                c->x = c->oldx;
+                c->y = c->oldy;
+                c->w = c->oldw;
+                c->h = c->oldh;
+                resizeclient(c, c->x, c->y, c->w, c->h, c->bw);
+                arrange(c->mon);
+        }
+
+}
+int istabbed(Client *c){
+	XClassHint ch = { NULL, NULL };
+	XGetClassHint(dpy,c->win,&ch);
+	/*char tabbed_name[] = "tabbed";*/
+	return strcmp(ch.res_class,"tabbed");
+}
+void 
+reparent(const Arg *arg){
+		Client *win = selmon->sel;
+		Client *i = NULL;
+		Client *c= selmon->sel->next;
+	/*if(selmon->clients == 0 || selmon->clients ==1){*/
+		/*return;*/
+	/*}*/
+	if (!selmon->sel  || !selmon->sel->next || !ISVISIBLE(selmon->sel->next))
+		return;
+	if (arg->i > 0) {
+		for (c = selmon->sel->next; c && !ISVISIBLE(c); c = c->next);
+		if (!c)
+			for (c = selmon->clients; c && !ISVISIBLE(c); c = c->next);
+	} else {
+		for (i = selmon->clients; i !=selmon->sel; i = i->next){
+				c = i;
+			}
+		if (!c)
+			for (; i; i = i->next)
+				if (ISVISIBLE(i))
+					c = i;
+	}
+	if ( istabbed(c) == 0){
+	XReparentWindow(dpy, win->win, c->win,100,100);
+	} else if (istabbed(win)==0){
+	XReparentWindow(dpy,  c->win,win->win,100,100);
+	} else {
+	}
+}
+void spawntabwin(const Arg *arg){
+	Arg a;
+	/*const Client *embedwin = selmon->sel;*/
+	a.v = (const char*[]) { "tabbed","-ckd", NULL};
+	spawn(&a);
+	if(!selmon->sel || !selmon->sel->next || !ISVISIBLE(selmon->sel->next))
+		return;
+	XReparentWindow(dpy, selmon->sel->next->win, selmon->sel->win,100,100);
+		/*return;*/
+	/*if(istabbed(selmon->sel) == 0){*/
+	/*}else{return;}*/
 }

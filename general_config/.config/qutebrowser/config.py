@@ -45,6 +45,7 @@ c.url.searchengines = {"DEFAULT":"https://duckduckgo.com/?q={}",
         "u":"https://unicode-table.com/en/search/?q={}",
         "tpb":"https://pirate-bay.net/search?q={}",
         "git":"https://github.com/search?q={}"}
+
 # c.fonts.completion.category = "bold 10pt CozetteVector" 
 # c.fonts.completion.entry = "10pt CozetteVector" 
 # c.fonts.debug_console = "10pt CozetteVector" 

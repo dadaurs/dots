@@ -16,7 +16,7 @@ FG=$foreground
 HEIGHT=15
 WIDTH=$( xdpyinfo  | grep -i 'dimensions:' | sed 's:x:\ :' | awk '{print $2}' ) 
 
-BarWidth=600
+BarWidth=650
 BarPosX=$( expr "$WIDTH" - $BarWidth )
 #FONT="Font Awesome 5 Free Solid:size=9"
 
@@ -42,7 +42,7 @@ cat | while IFS= read -r line; do
 	  -e 's/%h/%{F}%{B}/g'\
 	  -e "s/%N/%{F$background}%{B$foreground}/g"\
 	  -e 's/%n/%{F}%{B}/g' <<< $line
-done  | lemonbar  -B $background -g x$HEIGHT -f "$FONT" &
+done  | lemonbar  -B $background -F $foreground -g x$HEIGHT -f "$FONT" &
 
 sleep 0.1
 

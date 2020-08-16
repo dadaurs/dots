@@ -158,6 +158,7 @@ myKeys =
   ,("M-C-k", sendMessage $ pullGroup U)
   ,("M-C-j", sendMessage $ pullGroup D)
   ,("M-a p", toggleCopyToAll)
+  ,("M-r S-f", spawn "/home/david/scripts/firefox_menu")
   ]
      where
 			toggleCopyToAll = wsContainingCopies >>= \ws -> case ws of

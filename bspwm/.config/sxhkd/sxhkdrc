@@ -179,7 +179,7 @@ alt + {equal,minus,shift +plus }
 alt + grave
     bspwm-toggle-visibility ST st
 alt+b
-	$HOME/scripts/lemonbar/bar.sh toggle
+	$HOME/scripts/lemonbar/bspwm/bar.sh toggle
 alt+shift+grave
 	$HOME/scripts/keybinds/dloffice.sh
 alt+n
@@ -235,5 +235,9 @@ alt + r ; b
 	st -e bluetoothctl
 alt + r ; alt+p
 	st -e python
+alt + r; F
+	$HOME/scripts/firefox_menu
+alt + e 
+	$HOME/scripts/course_menu
 
 #---}}}1

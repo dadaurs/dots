@@ -105,6 +105,7 @@ static const char *clipmenucmd[] = {"clipmenu", NULL};
 //static const char *barcmd[] = {"$HOME/scripts/lemonbar/dwm/minbar.sh","toggle", NULL};
 //static const char *chth[] = {"$HOME/scripts/chth" ,NULL};
 #include <X11/XF86keysym.h>
+#include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_space,      spawn,          {.v = dmenucmd } },
@@ -114,13 +115,16 @@ static Key keys[] = {
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,         {.f = -0.01} },
 	{ MODKEY,                       XK_l,      setmfact,         {.f = +0.01} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
+	//{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_f,      togglefullscreen, {0} },
 	//{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -150,6 +154,8 @@ static Key keys[] = {
 	{ CTRL|ShiftMask,               XK_c, spawn,                 {.v = coursecmd } },
 	{ CTRL|ShiftMask,               XK_q, spawn,                 {.v = quicktexcmd } },
 	{ SUPKEY,                       XK_d,      spawn,            {.v = clipmenucmd } },
+	{ MODALT,                       XK_j,      reparent,         {.i =+1} },
+	{ MODALT,                       XK_k,      reparent,         {.i =-1} },
 };
 
 /* button definitions */
