@@ -160,14 +160,22 @@ alt+shift+f
 # super+F2
 XF86AudioRaiseVolume
 	$HOME/scripts/keybinds/volume.sh up
+F6
+	$HOME/scripts/keybinds/volume.sh up
 # super+F1
 XF86AudioLowerVolume
+	$HOME/scripts/keybinds/volume.sh down
+F5
 	$HOME/scripts/keybinds/volume.sh down
 XF86AudioMute
 	$HOME/scripts/keybinds/volume.sh toggle
 XF86MonBrightnessUp
 	$HOME/scripts/keybinds/backlight.sh up
+F9
+	$HOME/scripts/keybinds/backlight.sh up
 XF86MonBrightnessDown
+	$HOME/scripts/keybinds/backlight.sh down
+F8
 	$HOME/scripts/keybinds/backlight.sh down
 
 
@@ -237,7 +245,14 @@ alt + r ; alt+p
 	st -e python
 alt + r; F
 	$HOME/scripts/firefox_menu
-alt + e 
-	$HOME/scripts/course_menu
+alt + e ; m
+	$HOME/scripts/lectures/course-menu
+alt + e ; c
+	$HOME/scripts/lectures/chcourse
+alt + e ; n
+	$HOME/scripts/lectures/new-lecture
+alt + e ; shift+n
+	$HOME/scripts/lectures/new-course
+
 
 #---}}}1

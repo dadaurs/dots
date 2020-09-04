@@ -23,7 +23,7 @@ bspc config window_gap $newgap
 }
 GapsDown() { 
 newgap=$(expr $GapSize - $INT) 
-if [ $newgap -gt 0 ]; then
+if [ "$newgap" -gt -1 ]; then
 	bspc config window_gap $newgap
 fi
 bspc config window_gap > $file

@@ -14,7 +14,7 @@ VOLPERC=$( pactl list sinks | grep '^[[:space:]]Volume' | awk '{print $5}')
 STEP=5
 
 updatebars(){
-	echo vol > /tmp/xmonad/cmd_xmonad
+	echo vol > /tmp/xmonad/cmd_xmonad &
 }
 voldowncmd(){
 #if pgrep -x pulseaudio >/dev/null;then

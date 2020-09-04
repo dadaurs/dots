@@ -107,6 +107,7 @@ cabbrev xd !xrdb %
 cabbrev cmx !chmod +x %
 cabbrev ue call UE()
 cabbrev xre !xmonad --recompile >/dev/null 2>&1 && xmonad --restart
+cabbrev me !make build
 function! UE()
 	write
 	execute "UltiSnipsEdit()"
@@ -132,12 +133,16 @@ let g:vimtex_quickfix_mode=0
 let g:tex_flavor='latex'
 let g:tex_conceal='abdmg'
 let g:vimtex_view_general_viewer='zathura'
-	nmap <silent> <C-t> :VimtexTocToggle<CR>
-let g:livepreview_previewer = 'zathura'
-let g:livepreview_engine = 'pdflatex'
+"let g:vimtex_quickfix_enabled=0
+nmap <silent> <C-t> :VimtexTocToggle<CR>
+"let g:livepreview_previewer = 'zathura'
+"let g:vimtex_compiler_method = "pdflatex"
+
 "---}}}
 "Utilities:
 "---{{{2
+
+"Plug 'nvim-treesitter/nvim-treesitter'
 
 Plug 'scrooloose/nerdcommenter' 
 "Plug 'vim-scripts/utl.vim'
@@ -195,33 +200,33 @@ nnoremap <silent> <leader>r :Rg<CR>
 "
 "Lightline:
 "---{{{2
-"Plug 'itchyny/lightline.vim'
+Plug 'itchyny/lightline.vim'
 "Plug 'sainnhe/lightline_foobar.vim'
 ""Plug 'vim-airline/vim-airline'
 ""Plug 'vim-airline/vim-airline-themes'
 ""let g:airline_powerline_fonts = 1
 ""let g:airline_theme='deus'
-"let g:lightline = {
-      "\ 'colorscheme': 'mine',
-  "\   'active': {
-  "\     'left':[ [ 'mode', 'paste' ],
-  "\              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
-  "\     ]
-  "\   },
-	"\   'component': {
-	"\     'lineinfo': ' %3l:%-2v',
-	"\   },
-  "\   'component_function': {
-  "\     'gitbranch': 'fugitive#head',
-  "\   }
-  "\ }
-"let g:lightline.separator = {
+let g:lightline = {
+      \ 'colorscheme': 'wal',
+  \   'active': {
+  \     'left':[ [ 'mode', 'paste' ],
+  \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
+  \     ]
+  \   },
+	\   'component': {
+	\     'lineinfo': ' %3l:%-2v',
+	\   },
+  \   'component_function': {
+  \     'gitbranch': 'fugitive#head',
+  \   }
+  \ }
+let g:lightline.separator = {
+	\   'left': '', 'right': ''
 	"\   'left': '', 'right': ''
-	""\   'left': '', 'right': ''
-  "\}
-"let g:lightline.subseparator = {
-	"\   'left': '', 'right': '' 
-  "\}
+  \}
+let g:lightline.subseparator = {
+	\   'left': '', 'right': '' 
+  \}
 "---}}}
 "Snippets:
 "---{{{2
@@ -272,7 +277,11 @@ nnoremap <leader>L :ALEToggle<CR>
 "Colors:
 "===========================================================================================================
 "---{{{
+Plug 'sainnhe/sonokai'
+
 Plug 'mhartington/oceanic-next'
+Plug 'franbach/miramare'
+Plug 'sainnhe/edge'
 "---}}}
 "---
 call plug#end()
@@ -281,7 +290,12 @@ call plug#end()
 "Satusline:
 "===========================================================================================================
 
-set laststatus=0
+
+autocmd BufReadPost *
+\ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+\ |   exe "normal! g`\""
+\ | endif
+"set laststatus=0
 
 "set statusline=
 set statusline+=%#CocListBgMagenta#

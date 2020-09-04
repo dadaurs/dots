@@ -80,7 +80,7 @@ else:
     snip.rv = ''
 `$0
 endsnippet
-snippet { "Curly brace" bA
+snippet { "Curly brace" A
 {$1}`!p
 if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
     snip.rv = ' '
@@ -94,7 +94,8 @@ endsnippet
 snippet it "item in beamer" 
 \item<$1->$0
 endsnippet
-snippet mk "Math" wA
+context "nonmath()"
+snippet km "Math" wA
 $${1}$`!p
 if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
     snip.rv = ' '
@@ -102,21 +103,7 @@ else:
     snip.rv = ''
 `$2
 endsnippet
-snippet tufte "tufte template" b
-\documentclass[a4paper]{tufte-book}
-
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{textcomp}
-\usepackage[french]{babel}
-\usepackage{amsmath, amssymb}
-\usepackage{bbm} %RCQ
-
-% figure support
-\usepackage{pdfpages}
-\usepackage{transparent}
-
-\pdfsuppresswarningpagegroup=1
+snippet setup "setup" b
 \author{${1:David Wiedemann}}
 \date{${2:`date +%F`}}
 \title{$3}
@@ -150,15 +137,15 @@ such that $0
 endsnippet
 
 
-snippet sc "section" bA
+snippet sc "section" b
 \section{$1}
 $0
 endsnippet
-snippet ssc "section" bA
+snippet ssc "section" b
 \subsection{$1}
 $0
 endsnippet
-snippet sssc "section" bA
+snippet sssc "section" b
 \subsubsection{$1}
 $0
 endsnippet
@@ -183,10 +170,6 @@ snippet defn "Definition" b
 \end{$1}
 endsnippet
 
-context "math()"
-snippet pi "pi" iA
-\pi
-endsnippet
 
 context "math()"
 snippet inti "inti" iA
@@ -194,7 +177,7 @@ snippet inti "inti" iA
 endsnippet
 
 context "math()"
-snippet int "int" 
+snippet int "int" i
 \int_{$1}^{$2}$0
 endsnippet
 
@@ -205,7 +188,7 @@ endsnippet
 
 context "math()"
 snippet ify "infty" iA
-\infty 
+\infty $0
 endsnippet
 
 context "math()"
@@ -225,10 +208,40 @@ $1
 $0
 endsnippet
 context "math()"
-snippet pm "pmatrix" bA
+snippet pmmm "pmatrix" A
 \begin{pmatrix}
 $0
 \end{pmatrix}
+endsnippet
+priority 1000
+context "math()"
+snippet pmm2 "vector" iA
+\begin{pmatrix}
+$1 \\\
+$2
+\end{pmatrix}
+$0
+endsnippet
+priority 1000
+context "math()"
+snippet pmm3 "vector" iA
+\begin{pmatrix}
+$1 \\\
+$2 \\\
+$3
+\end{pmatrix}
+$0
+endsnippet
+priority 1000
+context "math()"
+snippet pmm4 "vector" iA
+\begin{pmatrix}
+$1 \\\
+$2 \\\
+$3 \\\
+$4
+\end{pmatrix}
+$0
 endsnippet
 
 context "math()"
@@ -242,7 +255,7 @@ snippet img "image" bA
 $0
 endsnippet
 context "math()"
-snippet ^^ "powers" iA
+snippet td "powers" iA
 ^{$1}$0
 endsnippet
 context "math()"
@@ -260,6 +273,10 @@ snippet '(bb|cal|scr|frak)([a-zA-Z])' "mathfont" wr
 \math`!p snip.rv = match.group(1)`{`!p snip.rv = match.group(2).upper()`}$0
 endsnippet
 
+context "math()"
+snippet __ "subscript with letters" iA
+_{$1} $0
+endsnippet
 
 context "math()"
 snippet '([A-Za-z])(\d)' "auto subscript" wrA
@@ -301,6 +318,12 @@ snippet ev "Surround in environment" i
 ${VISUAL}
 \end{$1}
 endsnippet
+snippet lal "\begin{align*} / \end{align*}" A
+\begin{align*}
+${VISUAL}
+\end{align*}
+endsnippet
+
 
 priority 10000
 snippet 'sympy(.*)sympy' "evaluate sympy" wr
@@ -326,11 +349,13 @@ snippet "([a-zA-Z])bbb" "bar" riA
 \overline{`!p snip.rv=match.group(1)`}
 endsnippet
 priority 10
+context "math()"
 snippet "hat" "hat" riA
 \hat{$1}$0
 endsnippet
 
 priority 100
+context "math()"
 snippet "([a-zA-Z])hat" "hat" riA
 \hat{`!p snip.rv=match.group(1)`}
 endsnippet
@@ -338,7 +363,7 @@ snippet "(\\?\w+)(,\.|\.,)" "Vector postfix" riA
 \vec{`!p snip.rv=match.group(1)`}
 endsnippet
 context "math()"
-snippet sq "square" iA
+snippet sr "square" iA
 ^{2}
 endsnippet
 
@@ -346,4 +371,22 @@ endsnippet
 context "math()"
 snippet tt "cdot" iA
 \cdot
+endsnippet
+
+context "math()"
+snippet lim "limit" w
+\lim_{${1:x} \to ${2: + \infty}} $0
+endsnippet
+context "math()"
+snippet abs "absolute value" w
+\abs{$1} $0
+endsnippet
+priority 100
+context "math()"
+snippet sqq "squareroot" wA
+\sqrt{$1} $0
+endsnippet
+priority 10
+snippet sqq "squareroot" wA
+\sqrt{${VISUAL}} $0
 endsnippet
