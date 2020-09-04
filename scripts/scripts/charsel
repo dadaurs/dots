@@ -1,0 +1,17 @@
+#!/bin/sh
+chars="
+       é | e accent aigu\n
+       è | e accent grave\n
+       ê | e accent circonflexe\n
+       à | a accent grave\n
+       â | a accent circonflexe\n
+       ù | u accent grave\n
+       û | u accent circonflexe\n
+       ô | o accent circonflexe\n
+       î | i accent circonflexe\n
+       ç | c cedille\n"
+
+sel=$(echo -e $chars | dmenu -p "Char?" -i | awk '{print $1}' )
+echo -n $sel | xclip -selection clipboard
+xdotool key "ctrl+v"
+
