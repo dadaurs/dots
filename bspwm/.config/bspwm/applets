@@ -1,0 +1,5 @@
+#!/bin/sh
+#vim:filetype=sh
+blueman-applet &
+nm-applet &
+

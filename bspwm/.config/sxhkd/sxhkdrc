@@ -253,6 +253,9 @@ alt + e ; n
 	$HOME/scripts/lectures/new-lecture
 alt + e ; shift+n
 	$HOME/scripts/lectures/new-course
+alt + e ; e
+	$HOME/scripts/lectures/edit-lecture
+	
 
 
 #---}}}1

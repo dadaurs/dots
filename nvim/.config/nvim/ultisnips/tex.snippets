@@ -34,6 +34,9 @@ def nonmath():
 		return True
 endglobal
 
+snippet "" "Guillemets" 
+\`\`$1'' $0
+endsnippet
 
 snippet al "align" bA
 \begin{align*}
@@ -48,24 +51,8 @@ $2
 \end{$1}
 $0
 endsnippet
-
-snippet tikz "tikzpicture" bA
-\begin{tikzpicture}
-$1
-\end{tikzpicture}
-$0
-endsnippet
-snippet '' "guillemets"
-\`\`$1''`!p
-if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
-    snip.rv = ' '
-else:
-    snip.rv = ''
-`$2
-
-endsnippet
 snippet (  "Braces" A
-($1)` !p
+( $1)`!p
 if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
     snip.rv = ' '
 else:
@@ -73,7 +60,7 @@ else:
 `$0
 endsnippet
 snippet [  "Square Braces" A
-[$1]`!p
+[ $1]`!p
 if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
     snip.rv = ' '
 else:
@@ -81,20 +68,14 @@ else:
 `$0
 endsnippet
 snippet { "Curly brace" A
-{$1}`!p
+{ $1}`!p
 if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
     snip.rv = ' '
 else:
     snip.rv = ''
 `$0
 endsnippet
-snippet pdv "dérivée partielle" A
-\pdv{$1}{$2} $0
-endsnippet
-snippet it "item in beamer" 
-\item<$1->$0
-endsnippet
-context "nonmath()"
+#context "nonmath()"
 snippet km "Math" wA
 $${1}$`!p
 if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
@@ -103,64 +84,31 @@ else:
     snip.rv = ''
 `$2
 endsnippet
-snippet setup "setup" b
-\author{${1:David Wiedemann}}
-\date{${2:`date +%F`}}
-\title{$3}
-\begin{document}
-\maketitle
-$0
-\end{document}
-endsnippet
 
-snippet table "Table environment" b
-\begin{table}[${1:htpb}]
-	\centering
-	\caption{${2:caption}}
-	\label{tab:${3:label}}
-	\begin{tabular}{${5:c}}
-	$0${5/((?<=.)c|l|r)|./(?1: & )/g}
-	\end{tabular}
-\end{table}
-endsnippet
 
-snippet exe "Exercice" 
-\begin{center}
-\textbf{Exercice ${1:Numero}\\\
-${2:Titre}}
-\end{center}
-\textit{${3:Enoncé}}
-$0
-endsnippet
-snippet st "such that" w
-such that $0
-endsnippet
 
 
 snippet sc "section" b
 \section{$1}
 $0
 endsnippet
-snippet ssc "section" b
+snippet ssc "subsection" b
 \subsection{$1}
 $0
 endsnippet
-snippet sssc "section" b
+snippet sssc "subsubsection" b
 \subsubsection{$1}
 $0
 endsnippet
-snippet mkt "maketitle" bA
-\maketitle
-$0
-endsnippet
 
+context "math()"
 snippet sympy "sympy block " w
 sympy $1 sympy$0
 endsnippet
 
 
 snippet thm "Theorem" b
-\begin{${1:thm}}[${2:Theorem name}]\label{$1:$3${2/\\\w+\{(.*?)\}|\\([^\\"])|(\w+)|([^\w]+)/(?4:_:\L$1$2$3\E)/ga}}
+\begin{${1:thm}}[${2:Theorem name}]\index{$2}\label{$1:$3${2/\\\w+\{(.*?)\}|\\([^\\"])|(\w+)|([^\w]+)/(?4:_:\L$1$2$3\E)/ga}}
 	$0
 \end{$1}
 endsnippet
@@ -207,12 +155,6 @@ $1
 \]
 $0
 endsnippet
-context "math()"
-snippet pmmm "pmatrix" A
-\begin{pmatrix}
-$0
-\end{pmatrix}
-endsnippet
 priority 1000
 context "math()"
 snippet pmm2 "vector" iA
@@ -248,12 +190,6 @@ context "math()"
 snippet pn "puissance" iA
 ^{ $1 } $0
 endsnippet
-snippet img "image" bA
-\begin{center}
-\includegraphics[width=0.5\textwidth]{$1}
-\end{center}
-$0
-endsnippet
 context "math()"
 snippet td "powers" iA
 ^{$1}$0
@@ -263,7 +199,7 @@ snippet rra "arrow" A
 \Rightarrow $0
 endsnippet
 
-context "nonmath()"
+#context "nonmath()"
 snippet rra "arrow" A
 $\Rightarrow$ $0
 endsnippet
@@ -368,18 +304,10 @@ snippet sr "square" iA
 endsnippet
 
 
-context "math()"
-snippet tt "cdot" iA
-\cdot
-endsnippet
 
 context "math()"
 snippet lim "limit" w
 \lim_{${1:x} \to ${2: + \infty}} $0
-endsnippet
-context "math()"
-snippet abs "absolute value" w
-\abs{$1} $0
 endsnippet
 priority 100
 context "math()"

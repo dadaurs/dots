@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =7
+let g:netrw_dirhistcnt =9
+let g:netrw_dirhist_9='/home/david/scripts/lectures'
+let g:netrw_dirhist_8='/home/david/dots/math/Maths/Cours/sthelse/notes/lectures'
 let g:netrw_dirhist_7='/home/david/dots/math/Maths/Cours'
 let g:netrw_dirhist_6='/home/david/dots/math/Maths/Cours/Savoir Faire/notes'
 let g:netrw_dirhist_5='/home/david/dots/nvim/.config/nvim/ftplugin'
@@ -8,5 +10,3 @@ let g:netrw_dirhist_3='/home/david/dots/dwm/.suckless/dwm'
 let g:netrw_dirhist_2='/home/david/dots/scripts/scripts/keybinds'
 let g:netrw_dirhist_1='/home/david/dots/scripts/scripts'
 let g:netrw_dirhist_0='/home/david/dots/scripts'
-let g:netrw_dirhist_9='/home/david/dots'
-let g:netrw_dirhist_8='/home/david/dots/bar'

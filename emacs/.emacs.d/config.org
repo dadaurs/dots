@@ -542,7 +542,7 @@ Set keybinding to open org-agenda
   (setq left-margin-width 2)
   (setq right-margin-width 2)
   (set-window-buffer nil (current-buffer))))
-  (setq org-agenda-files (quote  ("~/any/agenda.org")))
+  (setq org-agenda-files (quote  ("~/Cours/agenda.org")))
   (setq inhibit-splash-screen t)
 (org-agenda-list)
 (delete-other-windows)
@@ -558,6 +558,11 @@ Set keybinding to open org-agenda
 
 #+END_SRC
 
+*** Images
+#+BEGIN_SRC emacs-lisp
+(setq org-startup-with-inline-images t)
+(setq org-image-actual-width nil)
+#+END_SRC
 * =Theme=
 #+BEGIN_SRC emacs-lisp
 ;;(load-theme 'xresources t)

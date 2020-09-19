@@ -104,6 +104,9 @@ handle_image() {
 
         # Image
         image/*)
+	filename=$(basename "${FILE_PATH}")
+	ext="${filename##*.}"
+	[ "$ext" = "djvu" ] && exit 7
             local orientation
             orientation="$( identify -format '%[EXIF:Orientation]\n' -- "${FILE_PATH}" )"
             # If orientation data is present and the image actually

@@ -9,9 +9,15 @@ syntax on
 syntax enable
 set nonumber
 set nocompatible
+set mouse=a
+set splitbelow
 "set termguicolors
+set autoindent
 let $NVIM_ENABLE_TRUE_COLOR=1
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
+"let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
+set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+  \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+  \,sm:block-blinkwait175-blinkoff150-blinkon175
 let $NVIM_ENABLE_CURSOR_SHAPE=1
 set t_co=256
 set encoding=utf-8
@@ -28,7 +34,13 @@ set incsearch
 set ignorecase
 set smartcase
 set ruler
+set hidden
 set complete+=i
+autocmd BufReadPost *
+\ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+\ |   exe "normal! g`\""
+\ | endif
+set viminfo+='1000,n$XDG_DATA_HOME/vim/viminfo
 "Other:
 "---{{{2
 let g:utl_cfg_hdl_mt_generic = 'silent !zathura "%p" & disown'
@@ -133,6 +145,7 @@ let g:vimtex_quickfix_mode=0
 let g:tex_flavor='latex'
 let g:tex_conceal='abdmg'
 let g:vimtex_view_general_viewer='zathura'
+let g:vimtex_compiler_progname = 'nvr'
 "let g:vimtex_quickfix_enabled=0
 nmap <silent> <C-t> :VimtexTocToggle<CR>
 "let g:livepreview_previewer = 'zathura'
@@ -151,15 +164,15 @@ Plug 'scrooloose/nerdcommenter'
 	"let NERDTreeQuitOnOpen=1
 Plug 'tpope/vim-surround'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
+"Plug 'MarcWeber/vim-addon-mw-utils'
+"Plug 'tomtom/tlib_vim'
 "Plug 'mattn/calendar-vim'
 "Plug 'vim-scripts/SearchComplete'
-Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+"Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 
 "Plug 'chrisbra/unicode.vim'
 Plug 'liuchengxu/vista.vim', { 'for': ['tex', 'latex', 'c', 'cpp'] }
-nnoremap <silent> <leader>G :Goyo<cr>
+"nnoremap <silent> <leader>G :Goyo<cr>
 "Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 "nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 "let g:which_key_use_floating_win = 0
@@ -262,14 +275,14 @@ nnoremap <c-x><c-f> <plug>(fzf-complete-path)
 Plug 'dylanaraps/wal.vim'
 "Plug 'dense-analysis/ale'
 Plug 'lilydjwg/colorizer'
-Plug 'metakirby5/codi.vim'
-  let g:codi#interpreters = {
-                   \ 'python': {
-                       \ 'bin': 'python',
-                       \ 'prompt': '^\(>>>\|\.\.\.\) ',
-                       \ },
-                   \ }
-nnoremap <leader>L :ALEToggle<CR>
+"Plug 'metakirby5/codi.vim'
+  "let g:codi#interpreters = {
+                   "\ 'python': {
+                       "\ 'bin': 'python',
+                       "\ 'prompt': '^\(>>>\|\.\.\.\) ',
+                       "\ },
+                   "\ }
+"nnoremap <leader>L :ALEToggle<CR>
 "Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 "Plug 'mhinz/vim-startify'
 "---}}}
@@ -291,10 +304,6 @@ call plug#end()
 "===========================================================================================================
 
 
-autocmd BufReadPost *
-\ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
-\ |   exe "normal! g`\""
-\ | endif
 "set laststatus=0
 
 "set statusline=
@@ -332,9 +341,9 @@ endif
 hi! Normal guibg=NONE ctermbg=NONE
 hi! EndOfBuffer cterm=NONE gui=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=#2e303e
 "hi! clear Conceal
-hi CursorLine   cterm=NONE ctermbg=0  ctermfg=NONE guibg=#DDDDDD guifg=NONE gui=NONE
+"hi CursorLine   cterm=NONE ctermbg=0  ctermfg=NONE guibg=#DDDDDD guifg=NONE gui=NONE
 hi MatchParen   cterm=NONE ctermbg=12 ctermfg=NONE guibg=#DDDDDD guifg=NONE gui=NONE
-"hi CursorLine   cterm=NONE ctermbg=0 ctermfg=NONE guibg=#2E333F guifg=NONE gui=NONE
+hi CursorLine   cterm=NONE ctermbg=0 ctermfg=NONE guibg=#2E333F guifg=NONE gui=NONE
 "set laststatus=0
 "---}}}
 
