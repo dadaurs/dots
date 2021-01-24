@@ -7,7 +7,7 @@
  */
 //static char *font = "Ubuntu Mono Nerd Font:pixelsize=15:antialias=true:autohint=true";
 //static char *font = "Monospace:pixelsize=15:antialias=true:autohint=true";
-static char *font = "Iosevka Nerd Font:pixelsize=15:antialias=true:autohint=true";
+static char *font = "Ubuntu Mono Nerd Font:pixelsize=18";
 //static char *font = "Iosevka Nerd Font:pixelsize=15:antialias=true:autohint=true";
 //static char *font = "Ubuntu Mono Nerd Font:pixelsize=15:antialias=true:autohint=true";
 /*	"Hack Nerd Font Mono:pixelsize=11:antialias=true:autohint=true", */
@@ -158,6 +158,38 @@ static unsigned int mouseshape = XC_xterm;
 static unsigned int mousefg = 7;
 static unsigned int mousebg = 0;
 
+ResourcePref resources[] = {
+		//{"font",         STRING,  &font },
+		{ "color0",       STRING,  &colorname[0] },
+		{ "color1",       STRING,  &colorname[1] },
+		{ "color2",       STRING,  &colorname[2] },
+		{ "color3",       STRING,  &colorname[3] },
+		{ "color4",       STRING,  &colorname[4] },
+		{ "color5",       STRING,  &colorname[5] },
+		{ "color6",       STRING,  &colorname[6] },
+		{ "color7",       STRING,  &colorname[7] },
+		{ "color8",       STRING,  &colorname[8] },
+		{ "color9",       STRING,  &colorname[9] },
+		{ "color10",      STRING,  &colorname[10] },
+		{ "color11",      STRING,  &colorname[11] },
+		{ "color12",      STRING,  &colorname[12] },
+		{ "color13",      STRING,  &colorname[13] },
+		{ "color14",      STRING,  &colorname[14] },
+		{ "color15",      STRING,  &colorname[15] },
+		{ "background",   STRING,  &colorname[256] },
+		{ "foreground",   STRING,  &colorname[257] },
+		//{ "cursorColor",  STRING,  &colorname[258] },
+		{ "termname",     STRING,  &termname },
+		{ "shell",        STRING,  &shell },
+		{ "xfps",         INTEGER, &xfps },
+		{ "actionfps",    INTEGER, &actionfps },
+		{ "blinktimeout", INTEGER, &blinktimeout },
+		{ "bellvolume",   INTEGER, &bellvolume },
+		//{ "tabspaces",    INTEGER, &tabspaces },
+		{ "borderpx",     INTEGER, &borderpx },
+		//{ "cwscale",      FLOAT,   &cwscale },
+		//{ "chscale",      FLOAT,   &chscale },
+};
 /*
  * Color used to display font attributes when fontconfig selected a font which
  * doesn't match the ones requested.
@@ -212,39 +244,6 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
 	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
 	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
-};
-
-ResourcePref resources[] = {
-		//{"font",         STRING,  &font },
-		{ "color0",       STRING,  &colorname[0] },
-		{ "color1",       STRING,  &colorname[1] },
-		{ "color2",       STRING,  &colorname[2] },
-		{ "color3",       STRING,  &colorname[3] },
-		{ "color4",       STRING,  &colorname[4] },
-		{ "color5",       STRING,  &colorname[5] },
-		{ "color6",       STRING,  &colorname[6] },
-		{ "color7",       STRING,  &colorname[7] },
-		{ "color8",       STRING,  &colorname[8] },
-		{ "color9",       STRING,  &colorname[9] },
-		{ "color10",      STRING,  &colorname[10] },
-		{ "color11",      STRING,  &colorname[11] },
-		{ "color12",      STRING,  &colorname[12] },
-		{ "color13",      STRING,  &colorname[13] },
-		{ "color14",      STRING,  &colorname[14] },
-		{ "color15",      STRING,  &colorname[15] },
-		{ "background",   STRING,  &colorname[256] },
-		{ "foreground",   STRING,  &colorname[257] },
-		//{ "cursorColor",  STRING,  &colorname[258] },
-		{ "termname",     STRING,  &termname },
-		{ "shell",        STRING,  &shell },
-		{ "xfps",         INTEGER, &xfps },
-		{ "actionfps",    INTEGER, &actionfps },
-		{ "blinktimeout", INTEGER, &blinktimeout },
-		{ "bellvolume",   INTEGER, &bellvolume },
-		{ "tabspaces",    INTEGER, &tabspaces },
-		{ "borderpx",     INTEGER, &borderpx },
-		{ "cwscale",      FLOAT,   &cwscale },
-		{ "chscale",      FLOAT,   &chscale },
 };
 static double minlatency = 8;
 static double maxlatency = 33;

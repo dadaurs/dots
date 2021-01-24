@@ -13,13 +13,13 @@ set mouse=a
 set splitbelow
 "set termguicolors
 set autoindent
-let $NVIM_ENABLE_TRUE_COLOR=1
+"let $NVIM_ENABLE_TRUE_COLOR=1
 "let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
   \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
   \,sm:block-blinkwait175-blinkoff150-blinkon175
 let $NVIM_ENABLE_CURSOR_SHAPE=1
-set t_co=256
+"set t_co=256
 set encoding=utf-8
 set cursorline
 set nobackup
@@ -129,6 +129,12 @@ endfunction
 "---{{{2
 autocmd Filetype python nnoremap <buffer> <C-c> :!python %<cr>
 autocmd Filetype urls nnoremap  yr :r!python /home/david/any/src/newsboat-url-generator/newsboat-urls-generator.py -u $(xsel --clipboard --output)
+augroup remember_folds
+  autocmd!
+  autocmd BufWinLeave * mkview
+  autocmd BufWinEnter * silent! loadview
+augroup END
+autocmd Filetype * set fdm=marker
 "---}}}
 "---}}}
 "===========================================================================================================
@@ -140,6 +146,7 @@ call plug#begin('~/.vim/plugged')
 "---{{{2
 Plug 'PietroPate/vim-tex-conceal', { 'for': ['latex', 'tex'] }
 Plug 'lervag/vimtex', { 'for': ['latex', 'tex'] }
+let g:vimtex_syntax_autoload_packages = ['amsmath', 'tikz']
 Plug 'KeitaNakamura/tex-conceal.vim', { 'for': ['latex', 'tex'] }
 let g:vimtex_quickfix_mode=0
 let g:tex_flavor='latex'
@@ -158,6 +165,7 @@ nmap <silent> <C-t> :VimtexTocToggle<CR>
 "Plug 'nvim-treesitter/nvim-treesitter'
 
 Plug 'scrooloose/nerdcommenter' 
+Plug 'ludovicchabant/vim-gutentags'
 "Plug 'vim-scripts/utl.vim'
 "Plug 'scrooloose/nerdtree'
 	"nnoremap <silent> <leader>n :NERDTreeToggle<cr>
@@ -204,11 +212,14 @@ nnoremap <leader>H :History ~<CR>
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column  --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 nnoremap <silent> <leader>F :FZF ~<CR>
 nnoremap <silent> <leader>R :Find<CR>
-nnoremap <silent> <leader>f :FZF<CR>
+nnoremap <silent> <leader>f :Clap files<CR>
 nnoremap <silent> <C-s> :Lines<CR>
 nnoremap <silent> <leader>; :History:<CR>
-nnoremap <silent> <leader>b :w<CR>:Buffers<CR>
+nnoremap <silent> <leader>b :Clap buffers<CR>
 nnoremap <silent> <leader>r :Rg<CR>
+Plug 'liuchengxu/vim-clap'
+let g:clap_theme = 'material_design_dark'
+
 "---}}}
 "
 "Lightline:
@@ -240,10 +251,14 @@ let g:lightline.separator = {
 let g:lightline.subseparator = {
 	\   'left': '', 'right': '' 
   \}
+" nvim v0.4.3
+Plug 'kdheepak/lazygit.nvim', { 'branch': 'nvim-v0.4.3' }
+nnoremap <silent> <leader>lg :LazyGit<CR>
 "---}}}
 "Snippets:
 "---{{{2
 Plug 'SirVer/ultisnips' 
+packadd vimball
 "Plug 'SirVer/ultisnips' , { 'for': ['latex' ,'tex']}
 let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
@@ -275,7 +290,7 @@ nnoremap <c-x><c-f> <plug>(fzf-complete-path)
 Plug 'dylanaraps/wal.vim'
 "Plug 'dense-analysis/ale'
 Plug 'lilydjwg/colorizer'
-"Plug 'metakirby5/codi.vim'
+Plug 'metakirby5/codi.vim'
   "let g:codi#interpreters = {
                    "\ 'python': {
                        "\ 'bin': 'python',
@@ -284,17 +299,22 @@ Plug 'lilydjwg/colorizer'
                    "\ }
 "nnoremap <leader>L :ALEToggle<CR>
 "Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-"Plug 'mhinz/vim-startify'
+Plug 'mhinz/vim-startify'
 "---}}}
 "===========================================================================================================
 "Colors:
 "===========================================================================================================
 "---{{{
 Plug 'sainnhe/sonokai'
-
+Plug 'altercation/vim-colors-solarized'
+Plug 'cocopon/iceberg.vim'
+Plug 'nanotech/jellybeans.vim'
+Plug 'arcticicestudio/nord-vim'
 Plug 'mhartington/oceanic-next'
 Plug 'franbach/miramare'
 Plug 'sainnhe/edge'
+Plug 'morhetz/gruvbox'
+"Plug 'romgrk/doom-one.vim'
 "---}}}
 "---
 call plug#end()
@@ -323,7 +343,7 @@ set statusline+=%#CocListBgMagenta#
 "Colorscheme:
 "===========================================================================================================
 "---{{{1
-set t_Co=25
+"set t_Co=25
 let g:quantum_black=1
 if  $COLOR_SCHEME == "light"
     set background=light
@@ -335,13 +355,14 @@ else
     "colorscheme equinusocio_material
     "colorscheme base16-eighties
     "colorscheme oceanic_material
-    colorscheme wal
+   "let g:solarized_termcolors=256
+    colorscheme nord
 endif
 "let g:quantum_italics=1
 hi! Normal guibg=NONE ctermbg=NONE
 hi! EndOfBuffer cterm=NONE gui=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=#2e303e
-"hi! clear Conceal
-"hi CursorLine   cterm=NONE ctermbg=0  ctermfg=NONE guibg=#DDDDDD guifg=NONE gui=NONE
+hi! clear Conceal
+hi CursorLine   cterm=NONE ctermbg=0  ctermfg=NONE guibg=#DDDDDD guifg=NONE gui=NONE
 hi MatchParen   cterm=NONE ctermbg=12 ctermfg=NONE guibg=#DDDDDD guifg=NONE gui=NONE
 hi CursorLine   cterm=NONE ctermbg=0 ctermfg=NONE guibg=#2E333F guifg=NONE gui=NONE
 "set laststatus=0

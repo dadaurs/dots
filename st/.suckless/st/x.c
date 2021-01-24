@@ -1729,7 +1729,7 @@ int
 xstartdraw(void)
 {
 	if (IS_SET(MODE_VISIBLE))
-		XCopyArea(xw.dpy, xw.win , xw.buf, dc.gc, 0, 0, win.w , win.h, 0, 0);
+		XCopyArea(xw.dpy, xw.win, xw.buf, dc.gc, 0, 0, win.w, win.h, 0, 0);
 	return IS_SET(MODE_VISIBLE);
 }
 
@@ -2243,11 +2243,6 @@ run:
 	if(!(xw.dpy = XOpenDisplay(NULL)))
 		die("Can't open display\n");
 
-
-
-
-	XMatchVisualInfo(xw.dpy, xw.scr, xw.depth, TrueColor, &vis);
-	xw.vis = vis.visual;
 	config_init();
 	cols = MAX(cols, 1);
 	rows = MAX(rows, 1);

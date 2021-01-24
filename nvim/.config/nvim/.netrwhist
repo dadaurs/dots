@@ -1,12 +1,12 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =9
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/home/david/Cours/.git'
+let g:netrw_dirhist_2='/home/david/Cours/Introduction a la programmation/Exos/MOOC/S9/Ex3'
+let g:netrw_dirhist_1='/home/david/.xmonad'
+let g:netrw_dirhist_0='/home/david/.suckless/st'
 let g:netrw_dirhist_9='/home/david/scripts/lectures'
 let g:netrw_dirhist_8='/home/david/dots/math/Maths/Cours/sthelse/notes/lectures'
 let g:netrw_dirhist_7='/home/david/dots/math/Maths/Cours'
 let g:netrw_dirhist_6='/home/david/dots/math/Maths/Cours/Savoir Faire/notes'
 let g:netrw_dirhist_5='/home/david/dots/nvim/.config/nvim/ftplugin'
 let g:netrw_dirhist_4='/home/david/any/rd/test'
-let g:netrw_dirhist_3='/home/david/dots/dwm/.suckless/dwm'
-let g:netrw_dirhist_2='/home/david/dots/scripts/scripts/keybinds'
-let g:netrw_dirhist_1='/home/david/dots/scripts/scripts'
-let g:netrw_dirhist_0='/home/david/dots/scripts'

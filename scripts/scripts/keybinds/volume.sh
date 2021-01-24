@@ -10,6 +10,7 @@ TIMEOUT=1
 VOLPERC=$( pactl list sinks | grep '^[[:space:]]Volume' | awk '{print $5}')
  pamixer --list-sinks | grep "AirPods" && \
 	sink=$( pamixer --list-sinks | grep AirPods | awk '{print $1}' ) ||\
+	sink=$( pamixer --list-sinks | grep "WH-1000XM4" | awk '{print $1}' ) ||\
 	sink=$( pamixer --list-sinks | sed -n 2p | awk '{print $1}' )
 STEP=5
 

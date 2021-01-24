@@ -5,19 +5,27 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Iosevka Nerd Font:pixelsize=15:antialias=true:autohint=true";
+static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
+/* Spare fonts */
+static char *font2[] = {
+/*	"Inconsolata for Powerline:pixelsize=12:antialias=true:autohint=true", */
+/*	"Hack Nerd Font Mono:pixelsize=11:antialias=true:autohint=true", */
+};
+
 static int borderpx = 2;
 
 /*
  * What program is execed by st depends of these precedence rules:
  * 1: program passed with -e
- * 2: utmp option
+ * 2: scroll and/or utmp
  * 3: SHELL environment variable
  * 4: value of shell in /etc/passwd
  * 5: value of shell in config.h
  */
 static char *shell = "/bin/sh";
 char *utmp = NULL;
+/* scroll program: to enable use a string like "scroll" */
+char *scroll = NULL;
 char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";
 
 /* identification sequence returned in DA and DECID */
@@ -33,9 +41,7 @@ static float chscale = 1.0;
  * More advanced example: L" `'\"()[]{}"
  */
 wchar_t *worddelimiters = L" ";
-/*selection timeouts (in milliseconds)*/
-static double minlatency = 8;
-static double maxlatency = 33;
+
 /* selection timeouts (in milliseconds) */
 static unsigned int doubleclicktimeout = 300;
 static unsigned int tripleclicktimeout = 600;
@@ -43,9 +49,19 @@ static unsigned int tripleclicktimeout = 600;
 /* alt screens */
 int allowaltscreen = 1;
 
-/*allow certain non-interactive (insecure) window operations such as:
- * setting the clipboard text */
+/* allow certain non-interactive (insecure) window operations such as:
+   setting the clipboard text */
 int allowwindowops = 0;
+
+/*
+ * draw latency range in ms - from new content/keypress/etc until drawing.
+ * within this range, st draws when content stops arriving (idle). mostly it's
+ * near minlatency, but it waits longer for slow updates to avoid partial draw.
+ * low minlatency will tear/flicker more, as it can "detect" idle too early.
+ */
+static double minlatency = 8;
+static double maxlatency = 33;
+
 /* frames per second st should at maximum draw to the screen */
 static unsigned int xfps = 120;
 static unsigned int actionfps = 30;
@@ -136,20 +152,6 @@ static unsigned int defaultrcs = 257;
 static unsigned int cursorshape = 2;
 
 /*
- * Default columns and rows numbers
- */
-
-static unsigned int cols = 80;
-static unsigned int rows = 24;
-
-/*
- * Default colour and shape of the mouse cursor
- */
-static unsigned int mouseshape = XC_xterm;
-static unsigned int mousefg = 7;
-static unsigned int mousebg = 0;
-
-/*
  * Xresources preferences to load at startup
  */
 ResourcePref resources[] = {
@@ -184,6 +186,20 @@ ResourcePref resources[] = {
 		{ "cwscale",      FLOAT,   &cwscale },
 		{ "chscale",      FLOAT,   &chscale },
 };
+
+/*
+ * Default columns and rows numbers
+ */
+
+static unsigned int cols = 80;
+static unsigned int rows = 24;
+
+/*
+ * Default colour and shape of the mouse cursor
+ */
+static unsigned int mouseshape = XC_xterm;
+static unsigned int mousefg = 7;
+static unsigned int mousebg = 0;
 
 /*
  * Color used to display font attributes when fontconfig selected a font which
@@ -241,7 +257,6 @@ static Shortcut shortcuts[] = {
 	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
 };
 
-char *scroll = NULL;
 /*
  * Special keys (change & recompile st.info accordingly)
  *

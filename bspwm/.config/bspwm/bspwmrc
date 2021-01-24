@@ -14,13 +14,13 @@ fi
 
 #bspc monitor -d  "%{A:bspc desktop -f '^1':}I%{A}" "%{A:bspc desktop -f '^2':}II%{A}"  "%{A:bspc desktop -f '^3':}III%{A}"  "%{A:bspc desktop -f '^4':}IV%{A}"  "%{A:bspc desktop -f '^5':}V%{A}"  "%{A:bspc desktop -f '^6':}VI%{A}"  "%{A:bspc desktop -f '^7':}VII%{A}" "%{A:bspc desktop -f '^8':}VIII%{A} " "%{A:bspc desktop -f '^9':}IX %{A}%{-u}"
 #bspc monitor -d I II III IV V VI VII VIII IX X
-if [ $( bspc query -M --names | wc -l ) -eq 1 ];then
-	bspc monitor -d 1 2 3 4 5 6 7 8 9 10\ %{B}
-elif [ $( bspc query -M --names | wc -l ) -eq 2 ];then
-	$HOME/.config/bspwm/docklayout.sh
-	bspc monitor  "DP-1" -d 1 2 3 4 5\ %{B}
-	bspc monitor  "eDP-1" -d 6 7 8 9 10\ %{B}
-fi
+#if [ $( bspc query -M --names | wc -l ) -eq 1 ];then
+bspc monitor -d 1 2 3 4 5 6 7 8 9 10\ %{B}
+#elif [ $( bspc query -M --names | wc -l ) -eq 2 ];then
+	#$HOME/.config/bspwm/docklayout.sh
+	#bspc monitor  "DP-1" -d 1 2 3 4 5\ %{B}
+	#bspc monitor  "eDP-1" -d 6 7 8 9 10\ %{B}
+#fi
 
 bspc config border_width         1
 #bspc config window_gap           0
@@ -28,7 +28,7 @@ bspc config border_width         1
 bspc config split_ratio          0.50
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
-#exec ~/.fehbg &
+exec ~/.fehbg &
 #exec xsetroot -solid "#434343" &
 #exec xsetroot -solid "#bdbdbd" &
 exec xrdb ~/.config/X11/Xresources &
@@ -44,7 +44,7 @@ bspc config focused_border_color "#EEE8D5"
 
 
 bspc rule -a Gimp desktop='^8' state=floating follow=on
-bspc rule -a Inkscape desktop='^8' focus=on follow=on
+bspc rule -a Inkscape desktop='^5' focus=on follow=on
 #bspc rule -a Inkscape  desktop='^7' focus=on
 bspc rule -a Chromium desktop='^2'
 bspc rule -a Emacs state=tiled manage=on
@@ -65,5 +65,5 @@ bspc rule -a URxvt state=floating rectangle=+0+50
 $HOME/.config/bspwm/applets &
 pkill -f $HOME/scripts/lemonbar/bspwm/bar.sh
 $HOME/scripts/lemonbar/bspwm/bar.sh &
-cd /home/david/wallpapers/rd && feh --bg-scale $( fd | shuf -n1)
+#cd /home/david/wallpapers/rd && feh --bg-scale $( fd | shuf -n1)
 #bash $HOME/.config/bspwm/bspwm_colors.sh &

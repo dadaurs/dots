@@ -1,0 +1,926 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/a3c87ab5/
+$(OBJ)	/home/david/.suckless/st/Makefile	/^$(OBJ): config.h config.mk$/;"	t
+-0,0 +1,175	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -0,0 +1,175 @@$/;"	h	modifiedFile:st-default/dynamicArray.h
+-0,0 +1,30	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -0,0 +1,30 @@$/;"	h	modifiedFile:st-default/glyph.h
+-0,0 +1,36	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -0,0 +1,36 @@$/;"	h	modifiedFile:st-default/normalMode.h
+-0,0 +1,47	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -0,0 +1,47 @@$/;"	h	modifiedFile:st-default/error.h
+-0,0 +1,7	/home/david/.suckless/st/st-desktopentry-0.8.2.diff	/^@@ -0,0 +1,7 @@$/;"	h	newFile:b/st.desktop
+-0,0 +1,73	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -0,0 +1,73 @@$/;"	h	modifiedFile:st-default/st.c.rej
+-0,0 +1,74	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -0,0 +1,74 @@$/;"	h	modifiedFile:st-default/term.h
+-0,0 +1,752	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -0,0 +1,752 @@$/;"	h	modifiedFile:st-default/normalMode.c
+-1,5 +1,8	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -1,5 +1,8 @@$/;"	h	modifiedFile:st-default/st.h
+-1,8 +1,10	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -1,8 +1,10 @@$/;"	h	modifiedFile:st-default/st.c
+-100,8 +96,10	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -100,8 +96,10 @@$/;"	h	modifiedFile:st-default/st.h
+-1004,11 +1013,23	/home/david/.suckless/st/st-alpha-0.8.2.diff	/^@@ -1004,11 +1013,23 @@ xinit(int cols, int rows)$/;"	h	modifiedFile:a/x.c
+-1005,8 +1019,6	/home/david/.suckless/st/st-xresources-20190105-3be4cf1.diff	/^@@ -1005,8 +1019,6 @@ xinit(int cols, int rows)$/;"	h	modifiedFile:a/x.c
+-1018,7 +1039,7	/home/david/.suckless/st/st-alpha-0.8.2.diff	/^@@ -1018,7 +1039,7 @@ xinit(int cols, int rows)$/;"	h	modifiedFile:a/x.c
+-1038,19 +1059,15	/home/david/.suckless/st/st-alpha-0.8.2.diff	/^@@ -1038,19 +1059,15 @@ xinit(int cols, int rows)$/;"	h	modifiedFile:a/x.c
+-104,33 +109,33	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -104,33 +109,33 @@$/;"	h	modifiedFile:st-default/st.c
+-1057,6 +1155,9	/home/david/.suckless/st/st-font2-20190416-ba72400.diff	/^@@ -1057,6 +1155,9 @@ xinit(int cols, int rows)$/;"	h	modifiedFile:a/x.c
+-1061,13 +1092,53	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -1061,13 +1092,53 @@$/;"	h	modifiedFile:st-default/st.c
+-1081,13 +1152,23	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -1081,13 +1152,23 @@$/;"	h	modifiedFile:st-default/st.c
+-109,6 +112,7	/home/david/.suckless/st/st-alpha-0.8.2.diff	/^@@ -109,6 +112,7 @@ static const char *colorname[] = {$/;"	h	modifiedFile:a/config.def.h
+-1109,6 +1190,7	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -1109,6 +1190,7 @@$/;"	h	modifiedFile:st-default/st.c
+-1126,13 +1208,19	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -1126,13 +1208,19 @@$/;"	h	modifiedFile:st-default/st.c
+-117,7 +121,7	/home/david/.suckless/st/st-alpha-0.8.2.diff	/^@@ -117,7 +121,7 @@ static const char *colorname[] = {$/;"	h	modifiedFile:a/config.def.h
+-1185,6 +1273,8	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -1185,6 +1273,8 @@$/;"	h	modifiedFile:st-default/st.c
+-120,3 +120,4	/home/david/.suckless/st/st-alpha-0.8.2.diff	/^@@ -120,3 +120,4 @@ extern char *termname;$/;"	h	modifiedFile:a/st.h
+-1291,14 +1381,14	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -1291,14 +1381,14 @@$/;"	h	modifiedFile:st-default/st.c
+-1358,6 +1364,14	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -1358,6 +1364,14 @@$/;"	h	modifiedFile:st-default/x.c
+-14,6 +14,7	/home/david/.suckless/st/st-xresources-20190105-3be4cf1.diff	/^@@ -14,6 +14,7 @@$/;"	h	modifiedFile:a/x.c
+-143,7 +143,6	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -143,7 +143,6 @@$/;"	h	modifiedFile:st-default/x.c
+-1447,7 +1461,7	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -1447,7 +1461,7 @@$/;"	h	modifiedFile:st-default/x.c
+-149,6 +149,8	/home/david/.suckless/st/st-font2-20190416-ba72400.diff	/^@@ -149,6 +149,8 @@ static void xhints(void);$/;"	h	modifiedFile:a/x.c
+-1490,8 +1504,9	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -1490,8 +1504,9 @@$/;"	h	modifiedFile:st-default/x.c
+-150,6 +150,42	/home/david/.suckless/st/st-xresources-20190105-3be4cf1.diff	/^@@ -150,6 +150,42 @@ static unsigned int mousebg = 0;$/;"	h	modifiedFile:a/config.def.h
+-1523,6 +1538,11	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -1523,6 +1538,11 @@$/;"	h	modifiedFile:st-default/x.c
+-154,6 +159,8	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -154,6 +159,8 @@$/;"	h	modifiedFile:st-default/st.c
+-1594,6 +1594,8	/home/david/.suckless/st/st-w3m-0.8.3.diff	/^@@ -1594,6 +1594,8 @@ xsettitle(char *p)$/;"	h	modifiedFile:a/x.c
+-16,7 +16,7	/home/david/.suckless/st/st-alpha-0.8.2.diff	/^@@ -16,7 +16,7 @@ PKG_CONFIG = pkg-config$/;"	h	modifiedFile:a/config.mk
+-160,6 +164,14	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -160,6 +164,14 @@$/;"	h	modifiedFile:st-default/config.def.h
+-1607,12 +1627,18	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -1607,12 +1627,18 @@$/;"	h	modifiedFile:st-default/x.c
+-17,6 +19,8	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -17,6 +19,8 @@$/;"	h	modifiedFile:st-default/st.c
+-1735,11 +1825,11	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -1735,11 +1825,11 @@$/;"	h	modifiedFile:st-default/st.c
+-175,18 +187,18	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -175,18 +187,18 @@$/;"	h	modifiedFile:st-default/config.def.h
+-1800,6 +1826,14	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -1800,6 +1826,14 @@$/;"	h	modifiedFile:st-default/x.c
+-186,16 +193,14	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -186,16 +193,14 @@$/;"	h	modifiedFile:st-default/st.c
+-1870,6 +1882,59	/home/david/.suckless/st/st-xresources-20190105-3be4cf1.diff	/^@@ -1870,6 +1882,59 @@ run(void)$/;"	h	modifiedFile:a/x.c
+-1894,6 +1911,9	/home/david/.suckless/st/st-alpha-0.8.2.diff	/^@@ -1894,6 +1911,9 @@ main(int argc, char *argv[])$/;"	h	modifiedFile:a/x.c
+-19,6 +19,7	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -19,6 +19,7 @@$/;"	h	modifiedFile:st-default/win.h
+-1943,6 +2008,11	/home/david/.suckless/st/st-xresources-20190105-3be4cf1.diff	/^@@ -1943,6 +2008,11 @@ run:$/;"	h	modifiedFile:a/x.c
+-199,6 +211,8	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -199,6 +211,8 @@$/;"	h	modifiedFile:st-default/config.def.h
+-209,8 +214,6	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -209,8 +214,6 @@$/;"	h	modifiedFile:st-default/st.c
+-21,8 +21,8	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -21,8 +21,8 @@$/;"	h	modifiedFile:st-default/Makefile
+-220,8 +223,8	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -220,8 +223,8 @@$/;"	h	modifiedFile:st-default/st.c
+-2246,7 +2336,7	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -2246,7 +2336,7 @@$/;"	h	modifiedFile:st-default/st.c
+-2259,7 +2349,7	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -2259,7 +2349,7 @@$/;"	h	modifiedFile:st-default/st.c
+-229,6 +230,7	/home/david/.suckless/st/st-alpha-0.8.2.diff	/^@@ -229,6 +230,7 @@ static char *usedfont = NULL;$/;"	h	modifiedFile:a/x.c
+-2301,7 +2391,7	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -2301,7 +2391,7 @@$/;"	h	modifiedFile:st-default/st.c
+-2481,7 +2571,7	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -2481,7 +2571,7 @@$/;"	h	modifiedFile:st-default/st.c
+-2518,6 +2608,14	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -2518,6 +2608,14 @@$/;"	h	modifiedFile:st-default/st.c
+-2576,7 +2674,7	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -2576,7 +2674,7 @@$/;"	h	modifiedFile:st-default/st.c
+-2597,8 +2695,8	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -2597,8 +2695,8 @@$/;"	h	modifiedFile:st-default/st.c
+-27,6 +28,7	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -27,6 +28,7 @@$/;"	h	modifiedFile:st-default/win.h
+-296,6 +298,7	/home/david/.suckless/st/st-font2-20190416-ba72400.diff	/^@@ -296,6 +298,7 @@ zoomabs(const Arg *arg)$/;"	h	modifiedFile:a/x.c
+-33,6 +36,8	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -33,6 +36,8 @@$/;"	h	modifiedFile:st-default/st.h
+-35,7 +35,8	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -35,7 +35,8 @@$/;"	h	modifiedFile:st-default/Makefile
+-356,7 +355,7	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -356,7 +355,7 @@$/;"	h	modifiedFile:st-default/x.c
+-4,7 +4,7	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -4,7 +4,7 @@$/;"	h	modifiedFile:st-default/Makefile
+-416,17 +419,22	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -416,17 +419,22 @@$/;"	h	modifiedFile:st-default/st.c
+-42,11 +47,6	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -42,11 +47,6 @@$/;"	h	modifiedFile:st-default/st.h
+-42,6 +46,7	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -42,6 +46,7 @@$/;"	h	modifiedFile:st-default/st.c
+-43,6 +44,19	/home/david/.suckless/st/st-xresources-20190105-3be4cf1.diff	/^@@ -43,6 +44,19 @@ typedef struct {$/;"	h	modifiedFile:a/x.c
+-435,6 +443,7	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -435,6 +443,7 @@$/;"	h	modifiedFile:st-default/st.c
+-443,10 +452,13	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -443,10 +452,13 @@$/;"	h	modifiedFile:st-default/st.c
+-454,18 +466,22	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -454,18 +466,22 @@$/;"	h	modifiedFile:st-default/st.c
+-470,3 +484,45	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -470,3 +484,45 @@$/;"	h	modifiedFile:st-default/config.def.h
+-474,17 +490,21	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -474,17 +490,21 @@$/;"	h	modifiedFile:st-default/st.c
+-486,7 +485,7	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -486,7 +485,7 @@$/;"	h	modifiedFile:st-default/x.c
+-492,7 +512,7	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -492,7 +512,7 @@$/;"	h	modifiedFile:st-default/st.c
+-50,9 +50,12	/home/david/.suckless/st/st-desktopentry-0.8.2.diff	/^@@ -50,9 +50,12 @@ install: st$/;"	h	modifiedFile:a/Makefile
+-528,7 +548,7	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -528,7 +548,7 @@$/;"	h	modifiedFile:st-default/st.c
+-543,14 +563,14	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -543,14 +563,14 @@$/;"	h	modifiedFile:st-default/st.c
+-56,6 +56,10	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -56,6 +56,10 @@$/;"	h	modifiedFile:st-default/config.def.h
+-57,18 +57,6	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -57,18 +57,6 @@$/;"	h	modifiedFile:st-default/st.h
+-571,14 +591,14	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -571,14 +591,14 @@$/;"	h	modifiedFile:st-default/st.c
+-598,24 +618,32	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -598,24 +618,32 @@$/;"	h	modifiedFile:st-default/st.c
+-6,6 +6,12	/home/david/.suckless/st/st-font2-20190416-ba72400.diff	/^@@ -6,6 +6,12 @@$/;"	h	modifiedFile:a/config.def.h
+-688,7 +690,7	/home/david/.suckless/st/st-alpha-0.8.2.diff	/^@@ -688,7 +690,7 @@ xresize(int col, int row)$/;"	h	modifiedFile:a/x.c
+-748,6 +750,13	/home/david/.suckless/st/st-alpha-0.8.2.diff	/^@@ -748,6 +750,13 @@ xloadcols(void)$/;"	h	modifiedFile:a/x.c
+-773,6 +772,13	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -773,6 +772,13 @@$/;"	h	modifiedFile:st-default/x.c
+-783,8 +797,8	/home/david/.suckless/st/st-xresources-20190105-3be4cf1.diff	/^@@ -783,8 +797,8 @@ xclear(int x1, int y1, int x2, int y2)$/;"	h	modifiedFile:a/x.c
+-81,6 +69,11	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -81,6 +69,11 @@$/;"	h	modifiedFile:st-default/st.h
+-82,6 +82,9	/home/david/.suckless/st/st-alpha-0.8.2.diff	/^@@ -82,6 +82,9 @@ char *termname = "st-256color";$/;"	h	modifiedFile:a/config.def.h
+-850,6 +878,9	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -850,6 +878,9 @@$/;"	h	modifiedFile:st-default/st.c
+-86,17 +91,17	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -86,17 +91,17 @@$/;"	h	modifiedFile:st-default/st.c
+-90,6 +83,9	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^@@ -90,6 +83,9 @@$/;"	h	modifiedFile:st-default/st.h
+-977,6 +980,101	/home/david/.suckless/st/st-font2-20190416-ba72400.diff	/^@@ -977,6 +980,101 @@ xloadfonts(char *fontstr, double fontsize)$/;"	h	modifiedFile:a/x.c
+-98,6 +98,7	/home/david/.suckless/st/st-alpha-0.8.2.diff	/^@@ -98,6 +98,7 @@ typedef struct {$/;"	h	modifiedFile:a/x.c
+.c.o	/home/david/.suckless/st/Makefile	/^.c.o:$/;"	t
+ARGBEGIN	/home/david/.suckless/st/arg.h	/^#define ARGBEGIN	/;"	d
+ARGC	/home/david/.suckless/st/arg.h	/^#define ARGC(/;"	d
+ARGEND	/home/david/.suckless/st/arg.h	/^#define ARGEND	/;"	d
+ARGF	/home/david/.suckless/st/arg.h	/^#define ARGF(/;"	d
+ARG_H__	/home/david/.suckless/st/arg.h	/^#define ARG_H__$/;"	d
+ATTRCMP	/home/david/.suckless/st/st.h	/^#define ATTRCMP(/;"	d
+ATTR_BLINK	/home/david/.suckless/st/st.h	/^	ATTR_BLINK      = 1 << 4,$/;"	e	enum:glyph_attribute
+ATTR_BOLD	/home/david/.suckless/st/st.h	/^	ATTR_BOLD       = 1 << 0,$/;"	e	enum:glyph_attribute
+ATTR_BOLD_FAINT	/home/david/.suckless/st/st.h	/^	ATTR_BOLD_FAINT = ATTR_BOLD | ATTR_FAINT,$/;"	e	enum:glyph_attribute
+ATTR_CURRENT	/home/david/.suckless/st/st.h	/^	ATTR_CURRENT    = 1 << 13,$/;"	e	enum:glyph_attribute
+ATTR_FAINT	/home/david/.suckless/st/st.h	/^	ATTR_FAINT      = 1 << 1,$/;"	e	enum:glyph_attribute
+ATTR_HIGHLIGHT	/home/david/.suckless/st/st.h	/^	ATTR_HIGHLIGHT  = 1 << 12,$/;"	e	enum:glyph_attribute
+ATTR_INVISIBLE	/home/david/.suckless/st/st.h	/^	ATTR_INVISIBLE  = 1 << 6,$/;"	e	enum:glyph_attribute
+ATTR_ITALIC	/home/david/.suckless/st/st.h	/^	ATTR_ITALIC     = 1 << 2,$/;"	e	enum:glyph_attribute
+ATTR_NULL	/home/david/.suckless/st/st.h	/^	ATTR_NULL       = 0,$/;"	e	enum:glyph_attribute
+ATTR_REVERSE	/home/david/.suckless/st/st.h	/^	ATTR_REVERSE    = 1 << 5,$/;"	e	enum:glyph_attribute
+ATTR_STRUCK	/home/david/.suckless/st/st.h	/^	ATTR_STRUCK     = 1 << 7,$/;"	e	enum:glyph_attribute
+ATTR_UNDERLINE	/home/david/.suckless/st/st.h	/^	ATTR_UNDERLINE  = 1 << 3,$/;"	e	enum:glyph_attribute
+ATTR_WDUMMY	/home/david/.suckless/st/st.h	/^	ATTR_WDUMMY     = 1 << 10,$/;"	e	enum:glyph_attribute
+ATTR_WIDE	/home/david/.suckless/st/st.h	/^	ATTR_WIDE       = 1 << 9,$/;"	e	enum:glyph_attribute
+ATTR_WRAP	/home/david/.suckless/st/st.h	/^	ATTR_WRAP       = 1 << 8,$/;"	e	enum:glyph_attribute
+AUTHORS	/home/david/.suckless/st/st.1	/^.SH AUTHORS$/;"	s	title:ST
+AltMask	/home/david/.suckless/st/config.def.h	/^#define AltMask /;"	d
+AltMask	/home/david/.suckless/st/config.h	/^#define AltMask /;"	d
+Arg	/home/david/.suckless/st/st.h	/^} Arg;$/;"	t	typeref:union:__anone93119c0010a
+BETWEEN	/home/david/.suckless/st/normalMode.c	/^#define BETWEEN(/;"	d	file:
+BETWEEN	/home/david/.suckless/st/st.h	/^#define BETWEEN(/;"	d
+BUGS	/home/david/.suckless/st/st.1	/^.SH BUGS$/;"	s	title:ST
+Brackets	/home/david/.suckless/st/normalMode.c	/^struct { char const first; char const second; } const Brackets [] =$/;"	v	typeref:struct:__anon926ceb420308 const[]
+CHAR_ARRAY	/home/david/.suckless/st/dynamicArray.h	/^#define CHAR_ARRAY /;"	d
+CSIEscape	/home/david/.suckless/st/st.c	/^} CSIEscape;$/;"	t	typeref:struct:__anone93119bb0108	file:
+CS_FIN	/home/david/.suckless/st/st.c	/^	CS_FIN$/;"	e	enum:charset	file:
+CS_GER	/home/david/.suckless/st/st.c	/^	CS_GER,$/;"	e	enum:charset	file:
+CS_GRAPHIC0	/home/david/.suckless/st/st.c	/^	CS_GRAPHIC0,$/;"	e	enum:charset	file:
+CS_GRAPHIC1	/home/david/.suckless/st/st.c	/^	CS_GRAPHIC1,$/;"	e	enum:charset	file:
+CS_MULTI	/home/david/.suckless/st/st.c	/^	CS_MULTI,$/;"	e	enum:charset	file:
+CS_UK	/home/david/.suckless/st/st.c	/^	CS_UK,$/;"	e	enum:charset	file:
+CS_USA	/home/david/.suckless/st/st.c	/^	CS_USA,$/;"	e	enum:charset	file:
+CURSOR_DEFAULT	/home/david/.suckless/st/st.c	/^	CURSOR_DEFAULT  = 0,$/;"	e	enum:cursor_state	file:
+CURSOR_LOAD	/home/david/.suckless/st/st.c	/^	CURSOR_LOAD$/;"	e	enum:cursor_movement	file:
+CURSOR_ORIGIN	/home/david/.suckless/st/st.c	/^	CURSOR_ORIGIN   = 2$/;"	e	enum:cursor_state	file:
+CURSOR_SAVE	/home/david/.suckless/st/st.c	/^	CURSOR_SAVE,$/;"	e	enum:cursor_movement	file:
+CURSOR_WRAPNEXT	/home/david/.suckless/st/st.c	/^	CURSOR_WRAPNEXT = 1,$/;"	e	enum:cursor_state	file:
+CUSTOMIZATION	/home/david/.suckless/st/st.1	/^.SH CUSTOMIZATION$/;"	s	title:ST
+Color	/home/david/.suckless/st/x.c	/^typedef XftColor Color;$/;"	t	typeref:typename:XftColor	file:
+DC	/home/david/.suckless/st/x.c	/^} DC;$/;"	t	typeref:struct:__anone0475acc0a08	file:
+DEFAULT	/home/david/.suckless/st/st.h	/^#define DEFAULT(/;"	d
+DESCRIPTION	/home/david/.suckless/st/st.1	/^.SH DESCRIPTION$/;"	s	title:ST
+DIVCEIL	/home/david/.suckless/st/st.h	/^#define DIVCEIL(/;"	d
+DWORD_ARRAY	/home/david/.suckless/st/dynamicArray.h	/^#define DWORD_ARRAY /;"	d
+DYNAMIC_ARRAY_H	/home/david/.suckless/st/dynamicArray.h	/^#define DYNAMIC_ARRAY_H$/;"	d
+Draw	/home/david/.suckless/st/x.c	/^typedef XftDraw *Draw;$/;"	t	typeref:typename:XftDraw *	file:
+DynamicArray	/home/david/.suckless/st/dynamicArray.h	/^typedef struct DynamicArray {$/;"	s
+DynamicArray	/home/david/.suckless/st/dynamicArray.h	/^} DynamicArray;$/;"	t	typeref:struct:DynamicArray
+EARGF	/home/david/.suckless/st/arg.h	/^#define EARGF(/;"	d
+ENSURE	/home/david/.suckless/st/error.h	/^#define ENSURE(/;"	d
+ERROR_H	/home/david/.suckless/st/error.h	/^#define ERROR_H$/;"	d
+ESC_ALTCHARSET	/home/david/.suckless/st/st.c	/^	ESC_ALTCHARSET = 8,$/;"	e	enum:escape_state	file:
+ESC_ARG_SIZ	/home/david/.suckless/st/st.c	/^#define ESC_ARG_SIZ /;"	d	file:
+ESC_BUF_SIZ	/home/david/.suckless/st/st.c	/^#define ESC_BUF_SIZ /;"	d	file:
+ESC_CSI	/home/david/.suckless/st/st.c	/^	ESC_CSI        = 2,$/;"	e	enum:escape_state	file:
+ESC_START	/home/david/.suckless/st/st.c	/^	ESC_START      = 1,$/;"	e	enum:escape_state	file:
+ESC_STR	/home/david/.suckless/st/st.c	/^	ESC_STR        = 4,  \/* DCS, OSC, PM, APC *\/$/;"	e	enum:escape_state	file:
+ESC_STR_END	/home/david/.suckless/st/st.c	/^	ESC_STR_END    = 16, \/* a final string was encountered *\/$/;"	e	enum:escape_state	file:
+ESC_TEST	/home/david/.suckless/st/st.c	/^	ESC_TEST       = 32, \/* Enter in test mode *\/$/;"	e	enum:escape_state	file:
+ESC_UTF8	/home/david/.suckless/st/st.c	/^	ESC_UTF8       = 64,$/;"	e	enum:escape_state	file:
+EXPAND	/home/david/.suckless/st/normalMode.c	/^#define EXPAND(/;"	d	file:
+EXPAND_STEP	/home/david/.suckless/st/dynamicArray.h	/^#define EXPAND_STEP /;"	d
+ExitState	/home/david/.suckless/st/normalMode.h	/^typedef enum ExitState {$/;"	g
+ExitState	/home/david/.suckless/st/normalMode.h	/^} ExitState;$/;"	t	typeref:enum:ExitState
+FALLTHROUGH	/home/david/.suckless/st/normalMode.c	/^#define FALLTHROUGH$/;"	d	file:
+FLOAT	/home/david/.suckless/st/x.c	/^	FLOAT = 2$/;"	e	enum:resource_type	file:
+FRC_BOLD	/home/david/.suckless/st/x.c	/^	FRC_BOLD,$/;"	e	enum:__anone0475acc0b03	file:
+FRC_ITALIC	/home/david/.suckless/st/x.c	/^	FRC_ITALIC,$/;"	e	enum:__anone0475acc0b03	file:
+FRC_ITALICBOLD	/home/david/.suckless/st/x.c	/^	FRC_ITALICBOLD$/;"	e	enum:__anone0475acc0b03	file:
+FRC_NORMAL	/home/david/.suckless/st/x.c	/^	FRC_NORMAL,$/;"	e	enum:__anone0475acc0b03	file:
+Font	/home/david/.suckless/st/x.c	/^#define Font /;"	d	file:
+Font	/home/david/.suckless/st/x.c	/^} Font;$/;"	t	typeref:struct:__anone0475acc0908	file:
+Fontcache	/home/david/.suckless/st/x.c	/^} Fontcache;$/;"	t	typeref:struct:__anone0475acc0c08	file:
+Glyph	/home/david/.suckless/st/glyph.h	/^#define Glyph /;"	d
+Glyph	/home/david/.suckless/st/glyph.h	/^} Glyph;$/;"	t	typeref:struct:__anon8c9ef53d0108
+GlyphFontSpec	/home/david/.suckless/st/x.c	/^typedef XftGlyphFontSpec GlyphFontSpec;$/;"	t	typeref:typename:XftGlyphFontSpec	file:
+HISTSIZE	/home/david/.suckless/st/term.h	/^#define HISTSIZE /;"	d
+INCS	/home/david/.suckless/st/config.mk	/^INCS = -I$(X11INC) \\$/;"	m
+INTEGER	/home/david/.suckless/st/x.c	/^	INTEGER = 1,$/;"	e	enum:resource_type	file:
+INTERVAL	/home/david/.suckless/st/st.c	/^#define INTERVAL(/;"	d	file:
+ISCONTROL	/home/david/.suckless/st/st.c	/^#define ISCONTROL(/;"	d	file:
+ISCONTROLC0	/home/david/.suckless/st/st.c	/^#define ISCONTROLC0(/;"	d	file:
+ISCONTROLC1	/home/david/.suckless/st/st.c	/^#define ISCONTROLC1(/;"	d	file:
+ISDELIM	/home/david/.suckless/st/st.c	/^#define ISDELIM(/;"	d	file:
+IS_SET	/home/david/.suckless/st/st.c	/^#define IS_SET(/;"	d	file:
+IS_SET	/home/david/.suckless/st/x.c	/^#define IS_SET(/;"	d	file:
+IS_TRUECOL	/home/david/.suckless/st/st.h	/^#define IS_TRUECOL(/;"	d
+Infix	/home/david/.suckless/st/normalMode.c	/^		enum Infix { infix_none = 0, infix_i = 1, infix_a = 2, } infix;$/;"	g	struct:__anon926ceb420208::OperationState	file:
+Key	/home/david/.suckless/st/x.c	/^} Key;$/;"	t	typeref:struct:__anone0475acc0308	file:
+LEN	/home/david/.suckless/st/normalMode.c	/^#define LEN(/;"	d	file:
+LEN	/home/david/.suckless/st/st.h	/^#define LEN(/;"	d
+LIBS	/home/david/.suckless/st/config.mk	/^LIBS = -L$(X11LIB) -lm -lrt -lX11 -lutil -lXft \\$/;"	m
+LICENSE	/home/david/.suckless/st/st.1	/^.SH LICENSE$/;"	s	title:ST
+LIMIT	/home/david/.suckless/st/st.h	/^#define LIMIT(/;"	d
+LINE_H	/home/david/.suckless/st/glyph.h	/^#define LINE_H$/;"	d
+Line	/home/david/.suckless/st/glyph.h	/^typedef Glyph *Line;$/;"	t	typeref:typename:Glyph *
+MANPREFIX	/home/david/.suckless/st/config.mk	/^MANPREFIX = $(PREFIX)\/share\/man$/;"	m
+MAX	/home/david/.suckless/st/st.h	/^#define MAX(/;"	d
+MIN	/home/david/.suckless/st/st.h	/^#define MIN(/;"	d
+MODBIT	/home/david/.suckless/st/st.h	/^#define MODBIT(/;"	d
+MODE_8BIT	/home/david/.suckless/st/win.h	/^	MODE_8BIT        = 1 << 10,$/;"	e	enum:win_mode
+MODE_ALTSCREEN	/home/david/.suckless/st/st.c	/^	MODE_ALTSCREEN   = 1 << 2,$/;"	e	enum:term_mode	file:
+MODE_APPCURSOR	/home/david/.suckless/st/win.h	/^	MODE_APPCURSOR   = 1 << 8,$/;"	e	enum:win_mode
+MODE_APPKEYPAD	/home/david/.suckless/st/win.h	/^	MODE_APPKEYPAD   = 1 << 2,$/;"	e	enum:win_mode
+MODE_BLINK	/home/david/.suckless/st/win.h	/^	MODE_BLINK       = 1 << 11,$/;"	e	enum:win_mode
+MODE_BRCKTPASTE	/home/david/.suckless/st/win.h	/^	MODE_BRCKTPASTE  = 1 << 16,$/;"	e	enum:win_mode
+MODE_CRLF	/home/david/.suckless/st/st.c	/^	MODE_CRLF        = 1 << 3,$/;"	e	enum:term_mode	file:
+MODE_ECHO	/home/david/.suckless/st/st.c	/^	MODE_ECHO        = 1 << 4,$/;"	e	enum:term_mode	file:
+MODE_FBLINK	/home/david/.suckless/st/win.h	/^	MODE_FBLINK      = 1 << 12,$/;"	e	enum:win_mode
+MODE_FOCUS	/home/david/.suckless/st/win.h	/^	MODE_FOCUS       = 1 << 13,$/;"	e	enum:win_mode
+MODE_FOCUSED	/home/david/.suckless/st/win.h	/^	MODE_FOCUSED     = 1 << 1,$/;"	e	enum:win_mode
+MODE_HIDE	/home/david/.suckless/st/win.h	/^	MODE_HIDE        = 1 << 7,$/;"	e	enum:win_mode
+MODE_INSERT	/home/david/.suckless/st/st.c	/^	MODE_INSERT      = 1 << 1,$/;"	e	enum:term_mode	file:
+MODE_KBDLOCK	/home/david/.suckless/st/win.h	/^	MODE_KBDLOCK     = 1 << 6,$/;"	e	enum:win_mode
+MODE_MOUSE	/home/david/.suckless/st/win.h	/^	MODE_MOUSE       = MODE_MOUSEBTN|MODE_MOUSEMOTION|MODE_MOUSEX10\\$/;"	e	enum:win_mode
+MODE_MOUSEBTN	/home/david/.suckless/st/win.h	/^	MODE_MOUSEBTN    = 1 << 3,$/;"	e	enum:win_mode
+MODE_MOUSEMANY	/home/david/.suckless/st/win.h	/^	MODE_MOUSEMANY   = 1 << 15,$/;"	e	enum:win_mode
+MODE_MOUSEMOTION	/home/david/.suckless/st/win.h	/^	MODE_MOUSEMOTION = 1 << 4,$/;"	e	enum:win_mode
+MODE_MOUSESGR	/home/david/.suckless/st/win.h	/^	MODE_MOUSESGR    = 1 << 9,$/;"	e	enum:win_mode
+MODE_MOUSEX10	/home/david/.suckless/st/win.h	/^	MODE_MOUSEX10    = 1 << 14,$/;"	e	enum:win_mode
+MODE_NORMAL	/home/david/.suckless/st/win.h	/^	MODE_NORMAL      = 1 << 18,$/;"	e	enum:win_mode
+MODE_NUMLOCK	/home/david/.suckless/st/win.h	/^	MODE_NUMLOCK     = 1 << 17,$/;"	e	enum:win_mode
+MODE_PRINT	/home/david/.suckless/st/st.c	/^	MODE_PRINT       = 1 << 5,$/;"	e	enum:term_mode	file:
+MODE_REVERSE	/home/david/.suckless/st/win.h	/^	MODE_REVERSE     = 1 << 5,$/;"	e	enum:win_mode
+MODE_UTF8	/home/david/.suckless/st/st.c	/^	MODE_UTF8        = 1 << 6,$/;"	e	enum:term_mode	file:
+MODE_VISIBLE	/home/david/.suckless/st/win.h	/^	MODE_VISIBLE     = 1 << 0,$/;"	e	enum:win_mode
+MODE_WRAP	/home/david/.suckless/st/st.c	/^	MODE_WRAP        = 1 << 0,$/;"	e	enum:term_mode	file:
+MODKEY	/home/david/.suckless/st/config.def.h	/^#define MODKEY /;"	d
+MODKEY	/home/david/.suckless/st/config.h	/^#define MODKEY /;"	d
+MotionState	/home/david/.suckless/st/normalMode.c	/^	struct MotionState {$/;"	s	struct:__anon926ceb420208	file:
+MouseShortcut	/home/david/.suckless/st/x.c	/^} MouseShortcut;$/;"	t	typeref:struct:__anone0475acc0208	file:
+NAME	/home/david/.suckless/st/st.1	/^.SH NAME$/;"	s	title:ST
+NORMAL_MODE_H	/home/david/.suckless/st/normalMode.h	/^#define NORMAL_MODE_H$/;"	d
+NormalModeShortcuts	/home/david/.suckless/st/normalMode.h	/^typedef struct NormalModeShortcuts {$/;"	s
+NormalModeShortcuts	/home/david/.suckless/st/normalMode.h	/^} NormalModeShortcuts;$/;"	t	typeref:struct:NormalModeShortcuts
+NormalModeState	/home/david/.suckless/st/normalMode.c	/^} NormalModeState;$/;"	t	typeref:struct:__anon926ceb420208	file:
+OBJ	/home/david/.suckless/st/Makefile	/^OBJ = $(SRC:.c=.o)$/;"	m
+OPTIONS	/home/david/.suckless/st/st.1	/^.SH OPTIONS$/;"	s	title:ST
+Operation	/home/david/.suckless/st/normalMode.c	/^		enum Operation {$/;"	g	struct:__anon926ceb420208::OperationState	file:
+OperationState	/home/david/.suckless/st/normalMode.c	/^	struct OperationState {$/;"	s	struct:__anon926ceb420208	file:
+PKG_CONFIG	/home/david/.suckless/st/config.mk	/^PKG_CONFIG = pkg-config$/;"	m
+PREFIX	/home/david/.suckless/st/config.mk	/^PREFIX = \/usr\/local$/;"	m
+Position	/home/david/.suckless/st/normalMode.c	/^typedef struct { uint32_t x; uint32_t y; uint32_t yScr; } Position;$/;"	t	typeref:struct:__anon926ceb420108	file:
+QWORD_ARRAY	/home/david/.suckless/st/dynamicArray.h	/^#define QWORD_ARRAY /;"	d
+ResourcePref	/home/david/.suckless/st/x.c	/^} ResourcePref;$/;"	t	typeref:struct:__anone0475acc0408	file:
+Rune	/home/david/.suckless/st/glyph.h	/^typedef uint_least32_t Rune;$/;"	t	typeref:typename:uint_least32_t
+SEC	/home/david/.suckless/st/normalMode.c	/^#define SEC(/;"	d	file:
+SEE	/home/david/.suckless/st/st.1	/^.SH SEE ALSO$/;"	s	title:ST
+SEL_EMPTY	/home/david/.suckless/st/st.h	/^	SEL_EMPTY = 1,$/;"	e	enum:selection_mode
+SEL_IDLE	/home/david/.suckless/st/st.h	/^	SEL_IDLE = 0,$/;"	e	enum:selection_mode
+SEL_READY	/home/david/.suckless/st/st.h	/^	SEL_READY = 2$/;"	e	enum:selection_mode
+SEL_RECTANGULAR	/home/david/.suckless/st/glyph.h	/^	SEL_RECTANGULAR = 2$/;"	e	enum:selection_type
+SEL_REGULAR	/home/david/.suckless/st/glyph.h	/^	SEL_REGULAR = 1,$/;"	e	enum:selection_type
+SHORTCUTS	/home/david/.suckless/st/st.1	/^.SH SHORTCUTS$/;"	s	title:ST
+SNAP_LINE	/home/david/.suckless/st/st.h	/^	SNAP_LINE = 2$/;"	e	enum:selection_snap
+SNAP_WORD	/home/david/.suckless/st/st.h	/^	SNAP_WORD = 1,$/;"	e	enum:selection_snap
+SRC	/home/david/.suckless/st/Makefile	/^SRC = st.c x.c normalMode.c$/;"	m
+ST	/home/david/.suckless/st/st.1	/^.TH ST 1 st\\-VERSION$/;"	t
+STCFLAGS	/home/david/.suckless/st/config.mk	/^STCFLAGS = $(INCS) $(STCPPFLAGS) $(CPPFLAGS) $(CFLAGS)$/;"	m
+STCPPFLAGS	/home/david/.suckless/st/config.mk	/^STCPPFLAGS = -DVERSION=\\"$(VERSION)\\" -D_XOPEN_SOURCE=600$/;"	m
+STLDFLAGS	/home/david/.suckless/st/config.mk	/^STLDFLAGS = $(LIBS) $(LDFLAGS)$/;"	m
+STREscape	/home/david/.suckless/st/st.c	/^} STREscape;$/;"	t	typeref:struct:__anone93119bb0208	file:
+STRING	/home/david/.suckless/st/x.c	/^	STRING = 0,$/;"	e	enum:resource_type	file:
+STR_ARG_SIZ	/home/david/.suckless/st/st.c	/^#define STR_ARG_SIZ /;"	d	file:
+STR_BUF_SIZ	/home/david/.suckless/st/st.c	/^#define STR_BUF_SIZ /;"	d	file:
+SYNOPSIS	/home/david/.suckless/st/st.1	/^.SH SYNOPSIS$/;"	s	title:ST
+Search	/home/david/.suckless/st/normalMode.c	/^		enum Search {none, forward, backward} search;$/;"	g	struct:__anon926ceb420208::MotionState	file:
+Selection	/home/david/.suckless/st/term.h	/^} Selection;$/;"	t	typeref:struct:__anonfb49a8310208
+Shortcut	/home/david/.suckless/st/x.c	/^} Shortcut;$/;"	t	typeref:struct:__anone0475acc0108	file:
+TCursor	/home/david/.suckless/st/term.h	/^} TCursor;$/;"	t	typeref:struct:__anonfb49a8310108
+TERMMOD	/home/david/.suckless/st/config.def.h	/^#define TERMMOD /;"	d
+TERMMOD	/home/david/.suckless/st/config.h	/^#define TERMMOD /;"	d
+TERM_H	/home/david/.suckless/st/term.h	/^#define TERM_H$/;"	d
+TIMEDIFF	/home/david/.suckless/st/st.h	/^#define TIMEDIFF(/;"	d
+TLINE	/home/david/.suckless/st/term.h	/^#define TLINE(/;"	d
+TRUEBLUE	/home/david/.suckless/st/x.c	/^#define TRUEBLUE(/;"	d	file:
+TRUECOLOR	/home/david/.suckless/st/st.h	/^#define TRUECOLOR(/;"	d
+TRUEGREEN	/home/david/.suckless/st/x.c	/^#define TRUEGREEN(/;"	d	file:
+TRUERED	/home/david/.suckless/st/x.c	/^#define TRUERED(/;"	d	file:
+Term	/home/david/.suckless/st/term.h	/^} Term;$/;"	t	typeref:struct:__anonfb49a8310508
+TermWindow	/home/david/.suckless/st/x.c	/^} TermWindow;$/;"	t	typeref:struct:__anone0475acc0508	file:
+UTF8_ARRAY	/home/david/.suckless/st/dynamicArray.h	/^#define UTF8_ARRAY /;"	d
+UTF_INVALID	/home/david/.suckless/st/st.c	/^#define UTF_INVALID /;"	d	file:
+UTF_SIZ	/home/david/.suckless/st/st.c	/^#define UTF_SIZ /;"	d	file:
+VERSION	/home/david/.suckless/st/config.mk	/^VERSION = 0.8.4$/;"	m
+WORD_ARRAY	/home/david/.suckless/st/dynamicArray.h	/^#define WORD_ARRAY /;"	d
+X11INC	/home/david/.suckless/st/config.mk	/^X11INC = \/usr\/X11R6\/include$/;"	m
+X11LIB	/home/david/.suckless/st/config.mk	/^X11LIB = \/usr\/X11R6\/lib$/;"	m
+XEMBED_FOCUS_IN	/home/david/.suckless/st/x.c	/^#define XEMBED_FOCUS_IN /;"	d	file:
+XEMBED_FOCUS_OUT	/home/david/.suckless/st/x.c	/^#define XEMBED_FOCUS_OUT /;"	d	file:
+XK_ANY_MOD	/home/david/.suckless/st/x.c	/^#define XK_ANY_MOD /;"	d	file:
+XK_NO_MOD	/home/david/.suckless/st/x.c	/^#define XK_NO_MOD /;"	d	file:
+XK_SWITCH_MOD	/home/david/.suckless/st/x.c	/^#define XK_SWITCH_MOD /;"	d	file:
+XSelection	/home/david/.suckless/st/x.c	/^} XSelection;$/;"	t	typeref:struct:__anone0475acc0808	file:
+XWindow	/home/david/.suckless/st/x.c	/^} XWindow;$/;"	t	typeref:struct:__anone0475acc0608	file:
+__anon8c9ef53d0108	/home/david/.suckless/st/glyph.h	/^typedef struct {$/;"	s
+__anon926ceb420108	/home/david/.suckless/st/normalMode.c	/^typedef struct { uint32_t x; uint32_t y; uint32_t yScr; } Position;$/;"	s	file:
+__anon926ceb420208	/home/david/.suckless/st/normalMode.c	/^typedef struct {$/;"	s	file:
+__anon926ceb420308	/home/david/.suckless/st/normalMode.c	/^struct { char const first; char const second; } const Brackets [] =$/;"	s	file:
+__anone0475acc0108	/home/david/.suckless/st/x.c	/^typedef struct {$/;"	s	file:
+__anone0475acc0208	/home/david/.suckless/st/x.c	/^typedef struct {$/;"	s	file:
+__anone0475acc0308	/home/david/.suckless/st/x.c	/^typedef struct {$/;"	s	file:
+__anone0475acc0408	/home/david/.suckless/st/x.c	/^typedef struct {$/;"	s	file:
+__anone0475acc0508	/home/david/.suckless/st/x.c	/^typedef struct {$/;"	s	file:
+__anone0475acc0608	/home/david/.suckless/st/x.c	/^typedef struct {$/;"	s	file:
+__anone0475acc0708	/home/david/.suckless/st/x.c	/^	struct {$/;"	s	struct:__anone0475acc0608	file:
+__anone0475acc0808	/home/david/.suckless/st/x.c	/^typedef struct {$/;"	s	file:
+__anone0475acc0908	/home/david/.suckless/st/x.c	/^typedef struct {$/;"	s	file:
+__anone0475acc0a08	/home/david/.suckless/st/x.c	/^typedef struct {$/;"	s	file:
+__anone0475acc0b03	/home/david/.suckless/st/x.c	/^enum {$/;"	g	file:
+__anone0475acc0c08	/home/david/.suckless/st/x.c	/^typedef struct {$/;"	s	file:
+__anone93119bb0108	/home/david/.suckless/st/st.c	/^typedef struct {$/;"	s	file:
+__anone93119bb0208	/home/david/.suckless/st/st.c	/^typedef struct {$/;"	s	file:
+__anone93119c0010a	/home/david/.suckless/st/st.h	/^typedef union {$/;"	u
+__anonfb49a8310108	/home/david/.suckless/st/term.h	/^typedef struct {$/;"	s
+__anonfb49a8310208	/home/david/.suckless/st/term.h	/^typedef struct {$/;"	s
+__anonfb49a8310308	/home/david/.suckless/st/term.h	/^	struct {$/;"	s	struct:__anonfb49a8310208
+__anonfb49a8310408	/home/david/.suckless/st/term.h	/^	struct {$/;"	s	struct:__anonfb49a8310208
+__anonfb49a8310508	/home/david/.suckless/st/term.h	/^typedef struct {$/;"	s
+a/Makefile	/home/david/.suckless/st/st-desktopentry-0.8.2.diff	/^--- a\/Makefile$/;"	m
+a/config.def.h	/home/david/.suckless/st/st-alpha-0.8.2.diff	/^--- a\/config.def.h$/;"	m
+a/config.def.h	/home/david/.suckless/st/st-font2-20190416-ba72400.diff	/^--- a\/config.def.h$/;"	m
+a/config.def.h	/home/david/.suckless/st/st-xresources-20190105-3be4cf1.diff	/^--- a\/config.def.h$/;"	m
+a/config.mk	/home/david/.suckless/st/st-alpha-0.8.2.diff	/^--- a\/config.mk$/;"	m
+a/st.h	/home/david/.suckless/st/st-alpha-0.8.2.diff	/^--- a\/st.h$/;"	m
+a/x.c	/home/david/.suckless/st/st-alpha-0.8.2.diff	/^--- a\/x.c$/;"	m
+a/x.c	/home/david/.suckless/st/st-font2-20190416-ba72400.diff	/^--- a\/x.c$/;"	m
+a/x.c	/home/david/.suckless/st/st-w3m-0.8.3.diff	/^--- a\/x.c$/;"	m
+a/x.c	/home/david/.suckless/st/st-xresources-20190105-3be4cf1.diff	/^--- a\/x.c$/;"	m
+abortCommand	/home/david/.suckless/st/normalMode.c	/^static inline void abortCommand(void) { terminateCommand(true); }$/;"	f	typeref:typename:void	file:
+actionfps	/home/david/.suckless/st/config.def.h	/^static unsigned int actionfps = 30;$/;"	v	typeref:typename:unsigned int
+actionfps	/home/david/.suckless/st/config.h	/^static unsigned int actionfps = 30;$/;"	v	typeref:typename:unsigned int
+all	/home/david/.suckless/st/Makefile	/^all: options st$/;"	t
+allocated	/home/david/.suckless/st/dynamicArray.h	/^	uint32_t allocated;$/;"	m	struct:DynamicArray	typeref:typename:uint32_t
+allowaltscreen	/home/david/.suckless/st/config.def.h	/^int allowaltscreen = 1;$/;"	v	typeref:typename:int
+allowaltscreen	/home/david/.suckless/st/config.h	/^int allowaltscreen = 1;$/;"	v	typeref:typename:int
+allowwindowops	/home/david/.suckless/st/config.def.h	/^int allowwindowops = 0;$/;"	v	typeref:typename:int
+allowwindowops	/home/david/.suckless/st/config.h	/^int allowwindowops = 0;$/;"	v	typeref:typename:int
+alpha	/home/david/.suckless/st/config.h	/^float alpha = 0.8;$/;"	v	typeref:typename:float
+alt	/home/david/.suckless/st/term.h	/^	Line *alt;    \/* alternate screen *\/$/;"	m	struct:__anonfb49a8310508	typeref:typename:Line *
+alt	/home/david/.suckless/st/term.h	/^	int alt;$/;"	m	struct:__anonfb49a8310208	typeref:typename:int
+amount	/home/david/.suckless/st/normalMode.c	/^		uint32_t amount;$/;"	m	struct:__anon926ceb420208::MotionState	typeref:typename:uint32_t	file:
+amountNormalModeShortcuts	/home/david/.suckless/st/config.def.h	/^size_t const amountNormalModeShortcuts = sizeof(normalModeShortcuts) \/ sizeof(*normalModeShortc/;"	v	typeref:typename:size_t const
+amountNormalModeShortcuts	/home/david/.suckless/st/config.h	/^size_t const amountNormalModeShortcuts = sizeof(normalModeShortcuts) \/ sizeof(*normalModeShortc/;"	v	typeref:typename:size_t const
+appcursor	/home/david/.suckless/st/x.c	/^	signed char appcursor; \/* application cursor *\/$/;"	m	struct:__anone0475acc0308	typeref:typename:signed char	file:
+append	/home/david/.suckless/st/dynamicArray.h	/^#define append(/;"	d
+appendPartial	/home/david/.suckless/st/dynamicArray.h	/^#define appendPartial(/;"	d
+appkey	/home/david/.suckless/st/x.c	/^	signed char appkey;    \/* application keypad *\/$/;"	m	struct:__anone0475acc0308	typeref:typename:signed char	file:
+applyPosition	/home/david/.suckless/st/normalMode.c	/^static inline void applyPosition(Position const *pos) {$/;"	f	typeref:typename:void	file:
+arg	/home/david/.suckless/st/st.c	/^	int arg[ESC_ARG_SIZ];$/;"	m	struct:__anone93119bb0108	typeref:typename:int[]	file:
+arg	/home/david/.suckless/st/x.c	/^	const Arg arg;$/;"	m	struct:__anone0475acc0108	typeref:typename:const Arg	file:
+arg	/home/david/.suckless/st/x.c	/^	const Arg arg;$/;"	m	struct:__anone0475acc0208	typeref:typename:const Arg	file:
+args	/home/david/.suckless/st/st.c	/^	char *args[STR_ARG_SIZ];$/;"	m	struct:__anone93119bb0208	typeref:typename:char * []	file:
+argv0	/home/david/.suckless/st/x.c	/^char *argv0;$/;"	v	typeref:typename:char *
+ascent	/home/david/.suckless/st/x.c	/^	int ascent;$/;"	m	struct:__anone0475acc0908	typeref:typename:int	file:
+ascii_printable	/home/david/.suckless/st/config.def.h	/^static char ascii_printable[] =$/;"	v	typeref:typename:char[]
+ascii_printable	/home/david/.suckless/st/config.h	/^static char ascii_printable[] =$/;"	v	typeref:typename:char[]
+attr	/home/david/.suckless/st/term.h	/^	Glyph attr; \/* current char attributes *\/$/;"	m	struct:__anonfb49a8310108	typeref:typename:Glyph
+attrs	/home/david/.suckless/st/x.c	/^	XSetWindowAttributes attrs;$/;"	m	struct:__anone0475acc0608	typeref:typename:XSetWindowAttributes	file:
+b/st.desktop	/home/david/.suckless/st/st-desktopentry-0.8.2.diff	/^+++ b\/st.desktop$/;"	n
+backward	/home/david/.suckless/st/normalMode.c	/^		enum Search {none, forward, backward} search;$/;"	e	enum:__anon926ceb420208::MotionState::Search	file:
+badslant	/home/david/.suckless/st/x.c	/^	int badslant;$/;"	m	struct:__anone0475acc0908	typeref:typename:int	file:
+badweight	/home/david/.suckless/st/x.c	/^	int badweight;$/;"	m	struct:__anone0475acc0908	typeref:typename:int	file:
+base64_digits	/home/david/.suckless/st/st.c	/^static const char base64_digits[] = {$/;"	v	typeref:typename:const char[]	file:
+base64dec	/home/david/.suckless/st/st.c	/^base64dec(const char *src)$/;"	f	typeref:typename:char *
+base64dec_getc	/home/david/.suckless/st/st.c	/^base64dec_getc(const char **src)$/;"	f	typeref:typename:char
+bellvolume	/home/david/.suckless/st/config.def.h	/^static int bellvolume = 0;$/;"	v	typeref:typename:int
+bellvolume	/home/david/.suckless/st/config.h	/^static int bellvolume = 0;$/;"	v	typeref:typename:int
+bfont	/home/david/.suckless/st/x.c	/^	Font font, bfont, ifont, ibfont;$/;"	m	struct:__anone0475acc0a08	typeref:typename:Font	file:
+bg	/home/david/.suckless/st/glyph.h	/^	uint32_t bg;      \/* background  *\/$/;"	m	struct:__anon8c9ef53d0108	typeref:typename:uint32_t
+bgCommandVisual	/home/david/.suckless/st/config.def.h	/^unsigned int bgCommandVisual = 4;$/;"	v	typeref:typename:unsigned int
+bgCommandVisual	/home/david/.suckless/st/config.h	/^unsigned int bgCommandVisual = 4;$/;"	v	typeref:typename:unsigned int
+bgCommandVisualLine	/home/david/.suckless/st/config.def.h	/^unsigned int bgCommandVisualLine = 12;$/;"	v	typeref:typename:unsigned int
+bgCommandVisualLine	/home/david/.suckless/st/config.h	/^unsigned int bgCommandVisualLine = 12;$/;"	v	typeref:typename:unsigned int
+bgCommandYank	/home/david/.suckless/st/config.def.h	/^unsigned int bgCommandYank = 11;$/;"	v	typeref:typename:unsigned int
+bgCommandYank	/home/david/.suckless/st/config.h	/^unsigned int bgCommandYank = 11;$/;"	v	typeref:typename:unsigned int
+bgPos	/home/david/.suckless/st/config.def.h	/^unsigned int bgPos = 15;$/;"	v	typeref:typename:unsigned int
+bgPos	/home/david/.suckless/st/config.h	/^unsigned int bgPos = 15;$/;"	v	typeref:typename:unsigned int
+blinktimeout	/home/david/.suckless/st/config.def.h	/^static unsigned int blinktimeout = 800;$/;"	v	typeref:typename:unsigned int
+blinktimeout	/home/david/.suckless/st/config.h	/^static unsigned int blinktimeout = 800;$/;"	v	typeref:typename:unsigned int
+bmotion	/home/david/.suckless/st/x.c	/^bmotion(XEvent *e)$/;"	f	typeref:typename:void
+borderpx	/home/david/.suckless/st/config.def.h	/^static int borderpx = 2;$/;"	v	typeref:typename:int
+borderpx	/home/david/.suckless/st/config.h	/^static int borderpx = 2;$/;"	v	typeref:typename:int
+bot	/home/david/.suckless/st/term.h	/^	int bot;      \/* bottom scroll limit *\/$/;"	m	struct:__anonfb49a8310508	typeref:typename:int
+bpress	/home/david/.suckless/st/x.c	/^bpress(XEvent *e)$/;"	f	typeref:typename:void
+brelease	/home/david/.suckless/st/x.c	/^brelease(XEvent *e)$/;"	f	typeref:typename:void
+buf	/home/david/.suckless/st/st.c	/^	char *buf;             \/* allocated raw string *\/$/;"	m	struct:__anone93119bb0208	typeref:typename:char *	file:
+buf	/home/david/.suckless/st/st.c	/^	char buf[ESC_BUF_SIZ]; \/* raw string *\/$/;"	m	struct:__anone93119bb0108	typeref:typename:char[]	file:
+buf	/home/david/.suckless/st/x.c	/^	Drawable buf;$/;"	m	struct:__anone0475acc0608	typeref:typename:Drawable	file:
+button	/home/david/.suckless/st/x.c	/^	uint button;$/;"	m	struct:__anone0475acc0208	typeref:typename:uint	file:
+buttonmask	/home/david/.suckless/st/x.c	/^buttonmask(uint button)$/;"	f	typeref:typename:uint
+c	/home/david/.suckless/st/term.h	/^	TCursor c;    \/* cursor *\/$/;"	m	struct:__anonfb49a8310508	typeref:typename:TCursor
+ch	/home/david/.suckless/st/x.c	/^	int ch; \/* char height *\/$/;"	m	struct:__anone0475acc0508	typeref:typename:int	file:
+charset	/home/david/.suckless/st/st.c	/^enum charset {$/;"	g	file:
+charset	/home/david/.suckless/st/term.h	/^	int charset;  \/* current charset *\/$/;"	m	struct:__anonfb49a8310508	typeref:typename:int
+checkSetNext	/home/david/.suckless/st/dynamicArray.h	/^checkSetNext(DynamicArray *s, char const *c, uint32_t amount) {$/;"	f	typeref:typename:bool
+checkSetNextP	/home/david/.suckless/st/dynamicArray.h	/^checkSetNextP(DynamicArray *s, char const *c) {$/;"	f	typeref:typename:bool
+checkSetNextV	/home/david/.suckless/st/dynamicArray.h	/^checkSetNextV(DynamicArray *s, char const c) {$/;"	f	typeref:typename:bool
+chscale	/home/david/.suckless/st/config.def.h	/^static float chscale = 1.0;$/;"	v	typeref:typename:float
+chscale	/home/david/.suckless/st/config.h	/^static float chscale = 1.0;$/;"	v	typeref:typename:float
+clean	/home/david/.suckless/st/Makefile	/^clean:$/;"	t
+clipboard	/home/david/.suckless/st/x.c	/^	char *primary, *clipboard;$/;"	m	struct:__anone0475acc0808	typeref:typename:char **	file:
+clipcopy	/home/david/.suckless/st/x.c	/^clipcopy(const Arg *dummy)$/;"	f	typeref:typename:void
+clippaste	/home/david/.suckless/st/x.c	/^clippaste(const Arg *dummy)$/;"	f	typeref:typename:void
+cmap	/home/david/.suckless/st/x.c	/^	Colormap cmap;$/;"	m	struct:__anone0475acc0608	typeref:typename:Colormap	file:
+cmdfd	/home/david/.suckless/st/st.c	/^static int cmdfd;$/;"	v	typeref:typename:int	file:
+cmessage	/home/david/.suckless/st/x.c	/^cmessage(XEvent *e)$/;"	f	typeref:typename:void
+col	/home/david/.suckless/st/term.h	/^	int col;      \/* nb col *\/$/;"	m	struct:__anonfb49a8310508	typeref:typename:int
+col	/home/david/.suckless/st/x.c	/^	Color *col;$/;"	m	struct:__anone0475acc0a08	typeref:typename:Color *	file:
+collen	/home/david/.suckless/st/x.c	/^	size_t collen;$/;"	m	struct:__anone0475acc0a08	typeref:typename:size_t	file:
+colorname	/home/david/.suckless/st/config.def.h	/^static const char *colorname[] = {$/;"	v	typeref:typename:const char * []
+colorname	/home/david/.suckless/st/material.h	/^static const char *colorname[] = {$/;"	v	typeref:typename:const char * []
+cols	/home/david/.suckless/st/config.def.h	/^static unsigned int cols = 80;$/;"	v	typeref:typename:unsigned int
+cols	/home/david/.suckless/st/config.h	/^static unsigned int cols = 80;$/;"	v	typeref:typename:unsigned int
+command	/home/david/.suckless/st/normalMode.c	/^	} command;$/;"	m	struct:__anon926ceb420208	typeref:struct:__anon926ceb420208::OperationState	file:
+commandHist0	/home/david/.suckless/st/normalMode.c	/^DynamicArray commandHist0 =  UTF8_ARRAY;$/;"	v	typeref:typename:DynamicArray
+commandHist1	/home/david/.suckless/st/normalMode.c	/^DynamicArray commandHist1 =  UTF8_ARRAY;$/;"	v	typeref:typename:DynamicArray
+config.h	/home/david/.suckless/st/Makefile	/^config.h:$/;"	t
+config_init	/home/david/.suckless/st/x.c	/^config_init(void)$/;"	f	typeref:typename:void
+contains	/home/david/.suckless/st/normalMode.c	/^static inline bool contains (char c, char const * values, uint32_t memSize) {$/;"	f	typeref:typename:bool	file:
+content	/home/david/.suckless/st/dynamicArray.h	/^	char* content;$/;"	m	struct:DynamicArray	typeref:typename:char *
+cresize	/home/david/.suckless/st/x.c	/^cresize(int width, int height)$/;"	f	typeref:typename:void
+csidump	/home/david/.suckless/st/st.c	/^csidump(void)$/;"	f	typeref:typename:void
+csiescseq	/home/david/.suckless/st/st.c	/^static CSIEscape csiescseq;$/;"	v	typeref:typename:CSIEscape	file:
+csihandle	/home/david/.suckless/st/st.c	/^csihandle(void)$/;"	f	typeref:typename:void
+csiparse	/home/david/.suckless/st/st.c	/^csiparse(void)$/;"	f	typeref:typename:void
+csireset	/home/david/.suckless/st/st.c	/^csireset(void)$/;"	f	typeref:typename:void
+currentBg	/home/david/.suckless/st/config.def.h	/^static unsigned int currentBg = 8;$/;"	v	typeref:typename:unsigned int
+currentBg	/home/david/.suckless/st/config.h	/^static unsigned int currentBg = 8;$/;"	v	typeref:typename:unsigned int
+currentCommand	/home/david/.suckless/st/normalMode.c	/^#define currentCommand /;"	d	file:
+currentFg	/home/david/.suckless/st/config.def.h	/^static unsigned int currentFg = 15;$/;"	v	typeref:typename:unsigned int
+currentFg	/home/david/.suckless/st/config.h	/^static unsigned int currentFg = 15;$/;"	v	typeref:typename:unsigned int
+currentLine	/home/david/.suckless/st/st.c	/^currentLine(int x, int y)$/;"	f	typeref:typename:int
+cursor	/home/david/.suckless/st/x.c	/^	int cursor; \/* cursor style *\/$/;"	m	struct:__anone0475acc0508	typeref:typename:int	file:
+cursor_movement	/home/david/.suckless/st/st.c	/^enum cursor_movement {$/;"	g	file:
+cursor_state	/home/david/.suckless/st/st.c	/^enum cursor_state {$/;"	g	file:
+cursorshape	/home/david/.suckless/st/config.def.h	/^static unsigned int cursorshape = 2;$/;"	v	typeref:typename:unsigned int
+cursorshape	/home/david/.suckless/st/config.h	/^static unsigned int cursorshape = 2;$/;"	v	typeref:typename:unsigned int
+cursorthickness	/home/david/.suckless/st/config.def.h	/^static unsigned int cursorthickness = 2;$/;"	v	typeref:typename:unsigned int
+cursorthickness	/home/david/.suckless/st/config.h	/^static unsigned int cursorthickness = 2;$/;"	v	typeref:typename:unsigned int
+cw	/home/david/.suckless/st/x.c	/^	int cw; \/* char width  *\/$/;"	m	struct:__anone0475acc0508	typeref:typename:int	file:
+cwscale	/home/david/.suckless/st/config.def.h	/^static float cwscale = 1.0;$/;"	v	typeref:typename:float
+cwscale	/home/david/.suckless/st/config.h	/^static float cwscale = 1.0;$/;"	v	typeref:typename:float
+dc	/home/david/.suckless/st/x.c	/^static DC dc;$/;"	v	typeref:typename:DC	file:
+defaultNormalMode	/home/david/.suckless/st/normalMode.c	/^NormalModeState defaultNormalMode = {$/;"	v	typeref:typename:NormalModeState
+defaultattr	/home/david/.suckless/st/config.def.h	/^static unsigned int defaultattr = 11;$/;"	v	typeref:typename:unsigned int
+defaultattr	/home/david/.suckless/st/config.h	/^static unsigned int defaultattr = 11;$/;"	v	typeref:typename:unsigned int
+defaultbg	/home/david/.suckless/st/config.def.h	/^unsigned int defaultbg = 0;$/;"	v	typeref:typename:unsigned int
+defaultbg	/home/david/.suckless/st/material.h	/^unsigned int defaultbg = 0;$/;"	v	typeref:typename:unsigned int
+defaultcs	/home/david/.suckless/st/config.def.h	/^static unsigned int defaultcs = 256;$/;"	v	typeref:typename:unsigned int
+defaultcs	/home/david/.suckless/st/material.h	/^static unsigned int defaultcs = 15;$/;"	v	typeref:typename:unsigned int
+defaultfg	/home/david/.suckless/st/config.def.h	/^unsigned int defaultfg = 7;$/;"	v	typeref:typename:unsigned int
+defaultfg	/home/david/.suckless/st/material.h	/^unsigned int defaultfg = 7;$/;"	v	typeref:typename:unsigned int
+defaultfontsize	/home/david/.suckless/st/x.c	/^static double defaultfontsize = 0;$/;"	v	typeref:typename:double	file:
+defaultrcs	/home/david/.suckless/st/config.def.h	/^static unsigned int defaultrcs = 257;$/;"	v	typeref:typename:unsigned int
+defaultrcs	/home/david/.suckless/st/material.h	/^static unsigned int defaultrcs = 257;$/;"	v	typeref:typename:unsigned int
+descent	/home/david/.suckless/st/x.c	/^	int descent;$/;"	m	struct:__anone0475acc0908	typeref:typename:int	file:
+die	/home/david/.suckless/st/st.c	/^die(const char *errstr, ...)$/;"	f	typeref:typename:void
+dirty	/home/david/.suckless/st/term.h	/^	int *dirty;   \/* dirtyness of lines *\/$/;"	m	struct:__anonfb49a8310508	typeref:typename:int *
+displayString	/home/david/.suckless/st/normalMode.c	/^displayString(DynamicArray const *str, Glyph const *g, int yPos, bool prePos) {$/;"	f	typeref:typename:void	file:
+dist	/home/david/.suckless/st/Makefile	/^dist: clean$/;"	t
+doubleclicktimeout	/home/david/.suckless/st/config.def.h	/^static unsigned int doubleclicktimeout = 300;$/;"	v	typeref:typename:unsigned int
+doubleclicktimeout	/home/david/.suckless/st/config.h	/^static unsigned int doubleclicktimeout = 300;$/;"	v	typeref:typename:unsigned int
+dpy	/home/david/.suckless/st/x.c	/^	Display *dpy;$/;"	m	struct:__anone0475acc0608	typeref:typename:Display *	file:
+draw	/home/david/.suckless/st/st.c	/^draw(void)$/;"	f	typeref:typename:void
+draw	/home/david/.suckless/st/x.c	/^	Draw draw;$/;"	m	struct:__anone0475acc0608	typeref:typename:Draw	file:
+drawregion	/home/david/.suckless/st/st.c	/^drawregion(int x1, int y1, int x2, int y2)$/;"	f	typeref:typename:void
+dst	/home/david/.suckless/st/x.c	/^	void *dst;$/;"	m	struct:__anone0475acc0408	typeref:typename:void *	file:
+empty	/home/david/.suckless/st/dynamicArray.h	/^empty(DynamicArray* s) {$/;"	f	typeref:typename:void
+enableOperation	/home/david/.suckless/st/normalMode.c	/^static inline void enableOperation(enum Operation o) {$/;"	f	typeref:typename:void	file:
+esc	/home/david/.suckless/st/term.h	/^	int esc;      \/* escape state flags *\/$/;"	m	struct:__anonfb49a8310508	typeref:typename:int
+escape_state	/home/david/.suckless/st/st.c	/^enum escape_state {$/;"	g	file:
+eschandle	/home/david/.suckless/st/st.c	/^eschandle(uchar ascii)$/;"	f	typeref:typename:int
+evcol	/home/david/.suckless/st/x.c	/^evcol(XEvent *e)$/;"	f	typeref:typename:int
+evrow	/home/david/.suckless/st/x.c	/^evrow(XEvent *e)$/;"	f	typeref:typename:int
+execsh	/home/david/.suckless/st/st.c	/^execsh(char *cmd, char **args)$/;"	f	typeref:typename:void
+executeCommand	/home/david/.suckless/st/normalMode.c	/^static bool executeCommand(DynamicArray const *command) {$/;"	f	typeref:typename:bool	file:
+exitCommand	/home/david/.suckless/st/normalMode.c	/^static inline void exitCommand(void) { terminateCommand(false); }$/;"	f	typeref:typename:void	file:
+expand	/home/david/.suckless/st/dynamicArray.h	/^expand(DynamicArray *s) {$/;"	f	typeref:typename:char *
+expandExpression	/home/david/.suckless/st/normalMode.c	/^static bool expandExpression(char const c, enum Infix expandMode,$/;"	f	typeref:typename:bool	file:
+expose	/home/david/.suckless/st/x.c	/^expose(XEvent *ev)$/;"	f	typeref:typename:void
+f	/home/david/.suckless/st/st.h	/^	float f;$/;"	m	union:__anone93119c0010a	typeref:typename:float
+failed	/home/david/.suckless/st/normalMode.h	/^	failed = 0,$/;"	e	enum:ExitState
+fg	/home/david/.suckless/st/glyph.h	/^	uint32_t fg;      \/* foreground  *\/$/;"	m	struct:__anon8c9ef53d0108	typeref:typename:uint32_t
+fgCommandVisual	/home/david/.suckless/st/config.def.h	/^unsigned int fgCommandVisual = 232;$/;"	v	typeref:typename:unsigned int
+fgCommandVisual	/home/david/.suckless/st/config.h	/^unsigned int fgCommandVisual = 232;$/;"	v	typeref:typename:unsigned int
+fgCommandVisualLine	/home/david/.suckless/st/config.def.h	/^unsigned int fgCommandVisualLine = 232;$/;"	v	typeref:typename:unsigned int
+fgCommandVisualLine	/home/david/.suckless/st/config.h	/^unsigned int fgCommandVisualLine = 232;$/;"	v	typeref:typename:unsigned int
+fgCommandYank	/home/david/.suckless/st/config.def.h	/^unsigned int fgCommandYank = 232;$/;"	v	typeref:typename:unsigned int
+fgCommandYank	/home/david/.suckless/st/config.h	/^unsigned int fgCommandYank = 232;$/;"	v	typeref:typename:unsigned int
+fgPos	/home/david/.suckless/st/config.def.h	/^unsigned int fgPos = 16;$/;"	v	typeref:typename:unsigned int
+fgPos	/home/david/.suckless/st/config.h	/^unsigned int fgPos = 16;$/;"	v	typeref:typename:unsigned int
+finishMotion	/home/david/.suckless/st/normalMode.c	/^static inline void finishMotion(void) { stateVB.motion.finished = true; }$/;"	f	typeref:typename:void	file:
+finishOperation	/home/david/.suckless/st/normalMode.c	/^static inline void finishOperation(void) {$/;"	f	typeref:typename:void	file:
+finished	/home/david/.suckless/st/normalMode.c	/^		bool finished;$/;"	m	struct:__anon926ceb420208::MotionState	typeref:typename:bool	file:
+finished	/home/david/.suckless/st/normalMode.h	/^	finished = 2,$/;"	e	enum:ExitState
+first	/home/david/.suckless/st/normalMode.c	/^struct { char const first; char const second; } const Brackets [] =$/;"	m	struct:__anon926ceb420308	typeref:typename:char const	file:
+flags	/home/david/.suckless/st/x.c	/^	int flags;$/;"	m	struct:__anone0475acc0c08	typeref:typename:int	file:
+focus	/home/david/.suckless/st/x.c	/^focus(XEvent *ev)$/;"	f	typeref:typename:void
+font	/home/david/.suckless/st/config.def.h	/^static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";$/;"	v	typeref:typename:char *
+font	/home/david/.suckless/st/config.h	/^static char *font = "Ubuntu Mono Nerd Font:pixelsize=18";$/;"	v	typeref:typename:char *
+font	/home/david/.suckless/st/x.c	/^	Font font, bfont, ifont, ibfont;$/;"	m	struct:__anone0475acc0a08	typeref:typename:Font	file:
+font	/home/david/.suckless/st/x.c	/^	XftFont *font;$/;"	m	struct:__anone0475acc0c08	typeref:typename:XftFont *	file:
+font2	/home/david/.suckless/st/config.def.h	/^static char *font2[] = {$/;"	v	typeref:typename:char * []
+font2	/home/david/.suckless/st/config.h	/^static char *font2[] = {$/;"	v	typeref:typename:char * []
+forcemousemod	/home/david/.suckless/st/config.def.h	/^static uint forcemousemod = ShiftMask;$/;"	v	typeref:typename:uint
+forcemousemod	/home/david/.suckless/st/config.h	/^static uint forcemousemod = ShiftMask;$/;"	v	typeref:typename:uint
+forward	/home/david/.suckless/st/normalMode.c	/^		enum Search {none, forward, backward} search;$/;"	e	enum:__anon926ceb420208::MotionState::Search	file:
+frc	/home/david/.suckless/st/x.c	/^static Fontcache *frc = NULL;$/;"	v	typeref:typename:Fontcache *	file:
+frccap	/home/david/.suckless/st/x.c	/^static int frccap = 0;$/;"	v	typeref:typename:int	file:
+frclen	/home/david/.suckless/st/x.c	/^static int frclen = 0;$/;"	v	typeref:typename:int	file:
+func	/home/david/.suckless/st/x.c	/^	void (*func)(const Arg *);$/;"	m	struct:__anone0475acc0108	typeref:typename:void (*)(const Arg *)	file:
+func	/home/david/.suckless/st/x.c	/^	void (*func)(const Arg *);$/;"	m	struct:__anone0475acc0208	typeref:typename:void (*)(const Arg *)	file:
+gc	/home/david/.suckless/st/x.c	/^	GC gc;$/;"	m	struct:__anone0475acc0a08	typeref:typename:GC	file:
+getSearchDirection	/home/david/.suckless/st/normalMode.c	/^static inline int getSearchDirection(void) {$/;"	f	typeref:typename:int	file:
+getsel	/home/david/.suckless/st/st.c	/^getsel(void)$/;"	f	typeref:typename:char *
+glyph_attribute	/home/david/.suckless/st/st.h	/^enum glyph_attribute {$/;"	g
+gm	/home/david/.suckless/st/x.c	/^	int gm; \/* geometry mask *\/$/;"	m	struct:__anone0475acc0608	typeref:typename:int	file:
+gnext	/home/david/.suckless/st/dynamicArray.h	/^gnext(DynamicArray *s) {$/;"	f	typeref:typename:char *
+gotoString	/home/david/.suckless/st/normalMode.c	/^static bool gotoString(int8_t sign) {$/;"	f	typeref:typename:bool	file:
+gotoStringAndHighlight	/home/david/.suckless/st/normalMode.c	/^static bool gotoStringAndHighlight(int8_t sign) {$/;"	f	typeref:typename:bool	file:
+h	/home/david/.suckless/st/x.c	/^	int w, h; \/* window width and height *\/$/;"	m	struct:__anone0475acc0508	typeref:typename:int	file:
+handler	/home/david/.suckless/st/x.c	/^static void (*handler[LASTEvent])(XEvent *) = {$/;"	v	typeref:typename:void (* [LASTEvent])(XEvent *)	file:
+height	/home/david/.suckless/st/x.c	/^	int height;$/;"	m	struct:__anone0475acc0908	typeref:typename:int	file:
+highlightBg	/home/david/.suckless/st/config.def.h	/^static unsigned int highlightBg = 160;$/;"	v	typeref:typename:unsigned int
+highlightBg	/home/david/.suckless/st/config.h	/^static unsigned int highlightBg = 160;$/;"	v	typeref:typename:unsigned int
+highlightFg	/home/david/.suckless/st/config.def.h	/^static unsigned int highlightFg = 15;$/;"	v	typeref:typename:unsigned int
+highlightFg	/home/david/.suckless/st/config.h	/^static unsigned int highlightFg = 15;$/;"	v	typeref:typename:unsigned int
+highlightStringOnScreen	/home/david/.suckless/st/normalMode.c	/^static void highlightStringOnScreen(void) {$/;"	f	typeref:typename:void	file:
+highlighted	/home/david/.suckless/st/normalMode.c	/^int highlighted(int x, int y) {$/;"	f	typeref:typename:int
+highlights	/home/david/.suckless/st/normalMode.c	/^DynamicArray highlights   = DWORD_ARRAY;$/;"	v	typeref:typename:DynamicArray
+hist	/home/david/.suckless/st/term.h	/^	Line hist[HISTSIZE]; \/* history buffer *\/$/;"	m	struct:__anonfb49a8310508	typeref:typename:Line[]
+histi	/home/david/.suckless/st/term.h	/^	int histi;    \/* history index *\/$/;"	m	struct:__anonfb49a8310508	typeref:typename:int
+i	/home/david/.suckless/st/st.h	/^	int i;$/;"	m	union:__anone93119c0010a	typeref:typename:int
+ibfont	/home/david/.suckless/st/x.c	/^	Font font, bfont, ifont, ibfont;$/;"	m	struct:__anone0475acc0a08	typeref:typename:Font	file:
+icharset	/home/david/.suckless/st/term.h	/^	int icharset; \/* selected charset for sequence *\/$/;"	m	struct:__anonfb49a8310508	typeref:typename:int
+ifont	/home/david/.suckless/st/x.c	/^	Font font, bfont, ifont, ibfont;$/;"	m	struct:__anone0475acc0a08	typeref:typename:Font	file:
+ignoremod	/home/david/.suckless/st/config.def.h	/^static uint ignoremod = Mod2Mask|XK_SWITCH_MOD;$/;"	v	typeref:typename:uint
+ignoremod	/home/david/.suckless/st/config.h	/^static uint ignoremod = Mod2Mask|XK_SWITCH_MOD;$/;"	v	typeref:typename:uint
+ime	/home/david/.suckless/st/x.c	/^	} ime;$/;"	m	struct:__anone0475acc0608	typeref:struct:__anone0475acc0608::__anone0475acc0708	file:
+index	/home/david/.suckless/st/dynamicArray.h	/^	uint32_t index;$/;"	m	struct:DynamicArray	typeref:typename:uint32_t
+infix	/home/david/.suckless/st/normalMode.c	/^		enum Infix { infix_none = 0, infix_i = 1, infix_a = 2, } infix;$/;"	m	struct:__anon926ceb420208::OperationState	typeref:enum:__anon926ceb420208::OperationState::Infix	file:
+infix_a	/home/david/.suckless/st/normalMode.c	/^		enum Infix { infix_none = 0, infix_i = 1, infix_a = 2, } infix;$/;"	e	enum:__anon926ceb420208::OperationState::Infix	file:
+infix_i	/home/david/.suckless/st/normalMode.c	/^		enum Infix { infix_none = 0, infix_i = 1, infix_a = 2, } infix;$/;"	e	enum:__anon926ceb420208::OperationState::Infix	file:
+infix_none	/home/david/.suckless/st/normalMode.c	/^		enum Infix { infix_none = 0, infix_i = 1, infix_a = 2, } infix;$/;"	e	enum:__anon926ceb420208::OperationState::Infix	file:
+initialPosition	/home/david/.suckless/st/normalMode.c	/^	Position initialPosition;$/;"	m	struct:__anon926ceb420208	typeref:typename:Position	file:
+install	/home/david/.suckless/st/Makefile	/^install: st$/;"	t
+intervalDiff	/home/david/.suckless/st/normalMode.c	/^static inline int intervalDiff(int v, int a, int b) {$/;"	f	typeref:typename:int	file:
+iofd	/home/david/.suckless/st/st.c	/^static int iofd = 1;$/;"	v	typeref:typename:int	file:
+isAllocated	/home/david/.suckless/st/dynamicArray.h	/^isAllocated(DynamicArray const *s, uint32_t bytes) {$/;"	f	typeref:typename:bool
+isEmpty	/home/david/.suckless/st/dynamicArray.h	/^isEmpty(DynamicArray const * s) {$/;"	f	typeref:typename:bool
+isInitialized	/home/david/.suckless/st/dynamicArray.h	/^isInitialized(DynamicArray const *s, uint32_t bytes) {$/;"	f	typeref:typename:bool
+isMotionFinished	/home/david/.suckless/st/normalMode.c	/^static inline bool isMotionFinished(void) { return stateVB.motion.finished; }$/;"	f	typeref:typename:bool	file:
+isOperationFinished	/home/david/.suckless/st/normalMode.c	/^static inline bool isOperationFinished(void) {$/;"	f	typeref:typename:bool	file:
+isfixed	/home/david/.suckless/st/x.c	/^	int isfixed; \/* is fixed geometry? *\/$/;"	m	struct:__anone0475acc0608	typeref:typename:int	file:
+itemSize	/home/david/.suckless/st/dynamicArray.h	/^	uint8_t itemSize;$/;"	m	struct:DynamicArray	typeref:typename:uint8_t
+k	/home/david/.suckless/st/x.c	/^	KeySym k;$/;"	m	struct:__anone0475acc0308	typeref:typename:KeySym	file:
+key	/home/david/.suckless/st/config.def.h	/^static Key key[] = {$/;"	v	typeref:typename:Key[]
+key	/home/david/.suckless/st/config.h	/^static Key key[] = {$/;"	v	typeref:typename:Key[]
+key	/home/david/.suckless/st/normalMode.h	/^	char key;$/;"	m	struct:NormalModeShortcuts	typeref:typename:char
+keysym	/home/david/.suckless/st/x.c	/^	KeySym keysym;$/;"	m	struct:__anone0475acc0108	typeref:typename:KeySym	file:
+kmap	/home/david/.suckless/st/x.c	/^kmap(KeySym k, uint state)$/;"	f	typeref:typename:char *
+kpress	/home/david/.suckless/st/x.c	/^kpress(XEvent *ev)$/;"	f	typeref:typename:void
+kpressNormalMode	/home/david/.suckless/st/normalMode.c	/^ExitState kpressNormalMode(char const * cs, int len, bool ctrl, void const *v) {$/;"	f	typeref:typename:ExitState
+kscrolldown	/home/david/.suckless/st/st.c	/^kscrolldown(const Arg* a)$/;"	f	typeref:typename:void
+kscrollup	/home/david/.suckless/st/st.c	/^kscrollup(const Arg* a)$/;"	f	typeref:typename:void
+l	/home/david/.suckless/st/x.c	/^	int l, t; \/* left and top offset *\/$/;"	m	struct:__anone0475acc0608	typeref:typename:int	file:
+lastCommand	/home/david/.suckless/st/normalMode.c	/^#define lastCommand /;"	d	file:
+lastc	/home/david/.suckless/st/term.h	/^	Rune lastc;$/;"	m	struct:__anonfb49a8310508	typeref:typename:Rune
+lbearing	/home/david/.suckless/st/x.c	/^	short lbearing;$/;"	m	struct:__anone0475acc0908	typeref:typename:short	file:
+len	/home/david/.suckless/st/st.c	/^	size_t len;            \/* raw string length *\/$/;"	m	struct:__anone93119bb0108	typeref:typename:size_t	file:
+len	/home/david/.suckless/st/st.c	/^	size_t len;            \/* raw string length *\/$/;"	m	struct:__anone93119bb0208	typeref:typename:size_t	file:
+line	/home/david/.suckless/st/term.h	/^	Line *line;   \/* screen *\/$/;"	m	struct:__anonfb49a8310508	typeref:typename:Line *
+main	/home/david/.suckless/st/x.c	/^main(int argc, char *argv[])$/;"	f	typeref:typename:int
+mappedkeys	/home/david/.suckless/st/config.def.h	/^static KeySym mappedkeys[] = { -1 };$/;"	v	typeref:typename:KeySym[]
+mappedkeys	/home/david/.suckless/st/config.h	/^static KeySym mappedkeys[] = { -1 };$/;"	v	typeref:typename:KeySym[]
+mask	/home/david/.suckless/st/x.c	/^	uint mask;$/;"	m	struct:__anone0475acc0308	typeref:typename:uint	file:
+match	/home/david/.suckless/st/x.c	/^	XftFont *match;$/;"	m	struct:__anone0475acc0908	typeref:typename:XftFont *	file:
+match	/home/david/.suckless/st/x.c	/^match(uint mask, uint state)$/;"	f	typeref:typename:int
+max	/home/david/.suckless/st/normalMode.c	/^static inline int max(int a, int b) { return a > b ? a : b; }$/;"	f	typeref:typename:int	file:
+maxlatency	/home/david/.suckless/st/config.def.h	/^static double maxlatency = 33;$/;"	v	typeref:typename:double
+maxlatency	/home/david/.suckless/st/config.h	/^static double maxlatency = 33;$/;"	v	typeref:typename:double
+min	/home/david/.suckless/st/normalMode.c	/^static inline int min(int a, int b) { return a < b ? a : b; }$/;"	f	typeref:typename:int	file:
+minlatency	/home/david/.suckless/st/config.def.h	/^static double minlatency = 8;$/;"	v	typeref:typename:double
+minlatency	/home/david/.suckless/st/config.h	/^static double minlatency = 8;$/;"	v	typeref:typename:double
+mod	/home/david/.suckless/st/normalMode.c	/^static inline int mod(int a, int b) { for (; a < 0; a += b); return a % b; }$/;"	f	typeref:typename:int	file:
+mod	/home/david/.suckless/st/x.c	/^	uint mod;$/;"	m	struct:__anone0475acc0108	typeref:typename:uint	file:
+mod	/home/david/.suckless/st/x.c	/^	uint mod;$/;"	m	struct:__anone0475acc0208	typeref:typename:uint	file:
+mode	/home/david/.suckless/st/glyph.h	/^	unsigned short mode;      \/* attribute flags *\/$/;"	m	struct:__anon8c9ef53d0108	typeref:typename:unsigned short
+mode	/home/david/.suckless/st/st.c	/^	char mode[2];$/;"	m	struct:__anone93119bb0108	typeref:typename:char[2]	file:
+mode	/home/david/.suckless/st/term.h	/^	int mode;     \/* terminal mode flags *\/$/;"	m	struct:__anonfb49a8310508	typeref:typename:int
+mode	/home/david/.suckless/st/term.h	/^	int mode;$/;"	m	struct:__anonfb49a8310208	typeref:typename:int
+mode	/home/david/.suckless/st/x.c	/^	int mode; \/* window state\/mode flags *\/$/;"	m	struct:__anone0475acc0508	typeref:typename:int	file:
+motion	/home/david/.suckless/st/normalMode.c	/^	} motion;$/;"	m	struct:__anon926ceb420208	typeref:struct:__anon926ceb420208::MotionState	file:
+mouseaction	/home/david/.suckless/st/x.c	/^mouseaction(XEvent *e, uint release)$/;"	f	typeref:typename:int
+mousebg	/home/david/.suckless/st/config.def.h	/^static unsigned int mousebg = 0;$/;"	v	typeref:typename:unsigned int
+mousebg	/home/david/.suckless/st/config.h	/^static unsigned int mousebg = 0;$/;"	v	typeref:typename:unsigned int
+mousefg	/home/david/.suckless/st/config.def.h	/^static unsigned int mousefg = 7;$/;"	v	typeref:typename:unsigned int
+mousefg	/home/david/.suckless/st/config.h	/^static unsigned int mousefg = 7;$/;"	v	typeref:typename:unsigned int
+mousereport	/home/david/.suckless/st/x.c	/^mousereport(XEvent *e)$/;"	f	typeref:typename:void
+mousesel	/home/david/.suckless/st/x.c	/^mousesel(XEvent *e, int done)$/;"	f	typeref:typename:void
+mouseshape	/home/david/.suckless/st/config.def.h	/^static unsigned int mouseshape = XC_xterm;$/;"	v	typeref:typename:unsigned int
+mouseshape	/home/david/.suckless/st/config.h	/^static unsigned int mouseshape = XC_xterm;$/;"	v	typeref:typename:unsigned int
+moveLetter	/home/david/.suckless/st/normalMode.c	/^static void moveLetter(int32_t const amount) {$/;"	f	typeref:typename:void	file:
+moveLine	/home/david/.suckless/st/normalMode.c	/^static bool moveLine(int32_t const amount) {$/;"	f	typeref:typename:bool	file:
+mshortcuts	/home/david/.suckless/st/config.def.h	/^static MouseShortcut mshortcuts[] = {$/;"	v	typeref:typename:MouseShortcut[]
+mshortcuts	/home/david/.suckless/st/config.h	/^static MouseShortcut mshortcuts[] = {$/;"	v	typeref:typename:MouseShortcut[]
+name	/home/david/.suckless/st/x.c	/^	char *name;$/;"	m	struct:__anone0475acc0408	typeref:typename:char *	file:
+narg	/home/david/.suckless/st/st.c	/^	int narg;              \/* nb of args *\/$/;"	m	struct:__anone93119bb0108	typeref:typename:int	file:
+narg	/home/david/.suckless/st/st.c	/^	int narg;              \/* nb of args *\/$/;"	m	struct:__anone93119bb0208	typeref:typename:int	file:
+nb	/home/david/.suckless/st/term.h	/^	} nb, ne;$/;"	m	struct:__anonfb49a8310208	typeref:struct:__anonfb49a8310208::__anonfb49a8310408
+ne	/home/david/.suckless/st/term.h	/^	} nb, ne;$/;"	m	struct:__anonfb49a8310208	typeref:struct:__anonfb49a8310208::__anonfb49a8310408
+netwmname	/home/david/.suckless/st/x.c	/^	Atom xembed, wmdeletewin, netwmname, netwmpid;$/;"	m	struct:__anone0475acc0608	typeref:typename:Atom	file:
+netwmpid	/home/david/.suckless/st/x.c	/^	Atom xembed, wmdeletewin, netwmname, netwmpid;$/;"	m	struct:__anone0475acc0608	typeref:typename:Atom	file:
+none	/home/david/.suckless/st/normalMode.c	/^		enum Search {none, forward, backward} search;$/;"	e	enum:__anon926ceb420208::MotionState::Search	file:
+noop	/home/david/.suckless/st/normalMode.c	/^			noop = ' ', visual='v', visualLine='V', yank = 'y' } op;$/;"	e	enum:__anon926ceb420208::OperationState::Operation	file:
+normalMode	/home/david/.suckless/st/x.c	/^normalMode(Arg const *_) {$/;"	f	typeref:typename:void
+normalModeShortcuts	/home/david/.suckless/st/config.def.h	/^struct NormalModeShortcuts normalModeShortcuts [] = {$/;"	v	typeref:struct:NormalModeShortcuts[]
+normalModeShortcuts	/home/david/.suckless/st/config.h	/^struct NormalModeShortcuts normalModeShortcuts [] = {$/;"	v	typeref:struct:NormalModeShortcuts[]
+numlock	/home/david/.suckless/st/x.c	/^numlock(const Arg *dummy)$/;"	f	typeref:typename:void
+ob	/home/david/.suckless/st/term.h	/^	} ob, oe;$/;"	m	struct:__anonfb49a8310208	typeref:struct:__anonfb49a8310208::__anonfb49a8310308
+ocx	/home/david/.suckless/st/term.h	/^	int ocx;      \/* old cursor col *\/$/;"	m	struct:__anonfb49a8310508	typeref:typename:int
+ocy	/home/david/.suckless/st/term.h	/^	int ocy;      \/* old cursor row *\/$/;"	m	struct:__anonfb49a8310508	typeref:typename:int
+oe	/home/david/.suckless/st/term.h	/^	} ob, oe;$/;"	m	struct:__anonfb49a8310208	typeref:struct:__anonfb49a8310208::__anonfb49a8310308
+oldbutton	/home/david/.suckless/st/x.c	/^static int oldbutton = 3; \/* button event on startup: 3 = release *\/$/;"	v	typeref:typename:int	file:
+onMove	/home/david/.suckless/st/normalMode.c	/^void onMove(void) {$/;"	f	typeref:typename:void
+op	/home/david/.suckless/st/normalMode.c	/^			noop = ' ', visual='v', visualLine='V', yank = 'y' } op;$/;"	m	struct:__anon926ceb420208::OperationState	typeref:enum:__anon926ceb420208::OperationState::Operation	file:
+opt_class	/home/david/.suckless/st/x.c	/^static char *opt_class = NULL;$/;"	v	typeref:typename:char *	file:
+opt_cmd	/home/david/.suckless/st/x.c	/^static char **opt_cmd  = NULL;$/;"	v	typeref:typename:char **	file:
+opt_embed	/home/david/.suckless/st/x.c	/^static char *opt_embed = NULL;$/;"	v	typeref:typename:char *	file:
+opt_font	/home/david/.suckless/st/x.c	/^static char *opt_font  = NULL;$/;"	v	typeref:typename:char *	file:
+opt_io	/home/david/.suckless/st/x.c	/^static char *opt_io    = NULL;$/;"	v	typeref:typename:char *	file:
+opt_line	/home/david/.suckless/st/x.c	/^static char *opt_line  = NULL;$/;"	v	typeref:typename:char *	file:
+opt_name	/home/david/.suckless/st/x.c	/^static char *opt_name  = NULL;$/;"	v	typeref:typename:char *	file:
+opt_title	/home/david/.suckless/st/x.c	/^static char *opt_title = NULL;$/;"	v	typeref:typename:char *	file:
+options	/home/david/.suckless/st/Makefile	/^options:$/;"	t
+pattern	/home/david/.suckless/st/x.c	/^	FcPattern *pattern;$/;"	m	struct:__anone0475acc0908	typeref:typename:FcPattern *	file:
+pid	/home/david/.suckless/st/st.c	/^static pid_t pid;$/;"	v	typeref:typename:pid_t	file:
+pop	/home/david/.suckless/st/dynamicArray.h	/^pop(DynamicArray* s) {$/;"	f	typeref:typename:void
+pressKeys	/home/david/.suckless/st/normalMode.c	/^static bool pressKeys(char const* nullTerminatedString, size_t end) {$/;"	f	typeref:typename:bool	file:
+primary	/home/david/.suckless/st/x.c	/^	char *primary, *clipboard;$/;"	m	struct:__anone0475acc0808	typeref:typename:char *	file:
+printCommandString	/home/david/.suckless/st/normalMode.c	/^static inline void printCommandString(void) {$/;"	f	typeref:typename:void	file:
+printSearchString	/home/david/.suckless/st/normalMode.c	/^static inline void printSearchString(void) {$/;"	f	typeref:typename:void	file:
+printscreen	/home/david/.suckless/st/st.c	/^printscreen(const Arg *arg)$/;"	f	typeref:typename:void
+printsel	/home/david/.suckless/st/st.c	/^printsel(const Arg *arg)$/;"	f	typeref:typename:void
+priv	/home/david/.suckless/st/st.c	/^	char priv;$/;"	m	struct:__anone93119bb0108	typeref:typename:char	file:
+propnotify	/home/david/.suckless/st/x.c	/^propnotify(XEvent *e)$/;"	f	typeref:typename:void
+rbearing	/home/david/.suckless/st/x.c	/^	short rbearing;$/;"	m	struct:__anone0475acc0908	typeref:typename:short	file:
+redraw	/home/david/.suckless/st/st.c	/^redraw(void)$/;"	f	typeref:typename:void
+release	/home/david/.suckless/st/x.c	/^	uint  release;$/;"	m	struct:__anone0475acc0208	typeref:typename:uint	file:
+reportError	/home/david/.suckless/st/error.h	/^static void reportError(char const * cond, char const * stt, char const * file,$/;"	f	typeref:typename:void
+resettitle	/home/david/.suckless/st/st.c	/^resettitle(void)$/;"	f	typeref:typename:void
+resize	/home/david/.suckless/st/x.c	/^resize(XEvent *e)$/;"	f	typeref:typename:void
+resource_load	/home/david/.suckless/st/x.c	/^resource_load(XrmDatabase db, char *name, enum resource_type rtype, void *dst)$/;"	f	typeref:typename:int
+resource_type	/home/david/.suckless/st/x.c	/^enum resource_type {$/;"	g	file:
+resources	/home/david/.suckless/st/config.def.h	/^ResourcePref resources[] = {$/;"	v	typeref:typename:ResourcePref[]
+resources	/home/david/.suckless/st/config.h	/^ResourcePref resources[] = {$/;"	v	typeref:typename:ResourcePref[]
+row	/home/david/.suckless/st/term.h	/^	int row;      \/* nb row *\/$/;"	m	struct:__anonfb49a8310508	typeref:typename:int
+rows	/home/david/.suckless/st/config.def.h	/^static unsigned int rows = 24;$/;"	v	typeref:typename:unsigned int
+rows	/home/david/.suckless/st/config.h	/^static unsigned int rows = 24;$/;"	v	typeref:typename:unsigned int
+run	/home/david/.suckless/st/x.c	/^run(void)$/;"	f	typeref:typename:void
+s	/home/david/.suckless/st/st.h	/^	const char *s;$/;"	m	union:__anone93119c0010a	typeref:typename:const char *
+s	/home/david/.suckless/st/x.c	/^	char *s;$/;"	m	struct:__anone0475acc0308	typeref:typename:char *	file:
+scr	/home/david/.suckless/st/term.h	/^	int scr;      \/* scroll back *\/$/;"	m	struct:__anonfb49a8310508	typeref:typename:int
+scr	/home/david/.suckless/st/x.c	/^	int scr;$/;"	m	struct:__anone0475acc0608	typeref:typename:int	file:
+scroll	/home/david/.suckless/st/config.def.h	/^char *scroll = NULL;$/;"	v	typeref:typename:char *
+scroll	/home/david/.suckless/st/config.h	/^char *scroll = NULL;$/;"	v	typeref:typename:char *
+scroll	/home/david/.suckless/st/term.h	/^		int x, y, scroll;$/;"	m	struct:__anonfb49a8310208::__anonfb49a8310308	typeref:typename:int
+search	/home/david/.suckless/st/normalMode.c	/^		enum Search {none, forward, backward} search;$/;"	m	struct:__anon926ceb420208::MotionState	typeref:enum:__anon926ceb420208::MotionState::Search	file:
+searchPosition	/home/david/.suckless/st/normalMode.c	/^		Position searchPosition;$/;"	m	struct:__anon926ceb420208::MotionState	typeref:typename:Position	file:
+searchString	/home/david/.suckless/st/normalMode.c	/^DynamicArray searchString =  UTF8_ARRAY;$/;"	v	typeref:typename:DynamicArray
+second	/home/david/.suckless/st/normalMode.c	/^struct { char const first; char const second; } const Brackets [] =$/;"	m	struct:__anon926ceb420308	typeref:typename:char const	file:
+sel	/home/david/.suckless/st/st.c	/^Selection sel;$/;"	v	typeref:typename:Selection
+selclear	/home/david/.suckless/st/st.c	/^selclear(void)$/;"	f	typeref:typename:void
+selclear_	/home/david/.suckless/st/x.c	/^selclear_(XEvent *e)$/;"	f	typeref:typename:void
+selected	/home/david/.suckless/st/st.c	/^selected(int x, int y)$/;"	f	typeref:typename:int
+selection_mode	/home/david/.suckless/st/st.h	/^enum selection_mode {$/;"	g
+selection_snap	/home/david/.suckless/st/st.h	/^enum selection_snap {$/;"	g
+selection_type	/home/david/.suckless/st/glyph.h	/^enum selection_type {$/;"	g
+selextend	/home/david/.suckless/st/st.c	/^selextend(int col, int row, int scroll, int type, int done)$/;"	f	typeref:typename:void
+selinit	/home/david/.suckless/st/st.c	/^selinit(void)$/;"	f	typeref:typename:void
+selmasks	/home/david/.suckless/st/config.def.h	/^static uint selmasks[] = {$/;"	v	typeref:typename:uint[]
+selmasks	/home/david/.suckless/st/config.h	/^static uint selmasks[] = {$/;"	v	typeref:typename:uint[]
+selnormalize	/home/david/.suckless/st/st.c	/^selnormalize(void)$/;"	f	typeref:typename:void
+selnotify	/home/david/.suckless/st/x.c	/^selnotify(XEvent *e)$/;"	f	typeref:typename:void
+selpaste	/home/david/.suckless/st/x.c	/^selpaste(const Arg *dummy)$/;"	f	typeref:typename:void
+selrequest	/home/david/.suckless/st/x.c	/^selrequest(XEvent *e)$/;"	f	typeref:typename:void
+selscroll	/home/david/.suckless/st/st.c	/^selscroll(int orig, int n)$/;"	f	typeref:typename:void
+selsnap	/home/david/.suckless/st/st.c	/^selsnap(int *x, int *y, int direction)$/;"	f	typeref:typename:void
+selstart	/home/david/.suckless/st/st.c	/^selstart(int col, int row, int scroll, int snap)$/;"	f	typeref:typename:void
+sendbreak	/home/david/.suckless/st/st.c	/^sendbreak(const Arg *arg)$/;"	f	typeref:typename:void
+set	/home/david/.suckless/st/x.c	/^	FcFontSet *set;$/;"	m	struct:__anone0475acc0908	typeref:typename:FcFontSet *	file:
+setValues	/home/david/.suckless/st/dynamicArray.h	/^setValues(DynamicArray* s, char const *vals, uint32_t amount) {$/;"	f	typeref:typename:bool
+setsel	/home/david/.suckless/st/x.c	/^setsel(char *str, Time t)$/;"	f	typeref:typename:void
+shell	/home/david/.suckless/st/config.def.h	/^static char *shell = "\/bin\/sh";$/;"	v	typeref:typename:char *
+shell	/home/david/.suckless/st/config.h	/^static char *shell = "\/bin\/sh";$/;"	v	typeref:typename:char *
+shortcuts	/home/david/.suckless/st/config.def.h	/^static Shortcut shortcuts[] = {$/;"	v	typeref:typename:Shortcut[]
+shortcuts	/home/david/.suckless/st/config.h	/^static Shortcut shortcuts[] = {$/;"	v	typeref:typename:Shortcut[]
+sigchld	/home/david/.suckless/st/st.c	/^sigchld(int a)$/;"	f	typeref:typename:void
+sixd_to_16bit	/home/david/.suckless/st/x.c	/^sixd_to_16bit(int x)$/;"	f	typeref:typename:ushort
+siz	/home/david/.suckless/st/st.c	/^	size_t siz;            \/* allocation size *\/$/;"	m	struct:__anone93119bb0208	typeref:typename:size_t	file:
+size	/home/david/.suckless/st/dynamicArray.h	/^size(DynamicArray const * s) {$/;"	f	typeref:typename:int
+snap	/home/david/.suckless/st/term.h	/^	int snap;$/;"	m	struct:__anonfb49a8310208	typeref:typename:int
+snext	/home/david/.suckless/st/dynamicArray.h	/^snext(DynamicArray* s, char const *vals, uint32_t amount) {$/;"	f	typeref:typename:bool
+specbuf	/home/david/.suckless/st/x.c	/^	GlyphFontSpec *specbuf; \/* font spec buffer used for rendering *\/$/;"	m	struct:__anone0475acc0608	typeref:typename:GlyphFontSpec *	file:
+spot	/home/david/.suckless/st/x.c	/^		XPoint spot;$/;"	m	struct:__anone0475acc0608::__anone0475acc0708	typeref:typename:XPoint	file:
+spotlist	/home/david/.suckless/st/x.c	/^		XVaNestedList spotlist;$/;"	m	struct:__anone0475acc0608::__anone0475acc0708	typeref:typename:XVaNestedList	file:
+st	/home/david/.suckless/st/Makefile	/^st: $(OBJ)$/;"	t
+st-default/Makefile	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^--- st-default\/Makefile	2020-06-04 11:15:55.164135902 +0200$/;"	m
+st-default/config.def.h	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^--- st-default\/config.def.h	2020-06-04 11:15:55.164135902 +0200$/;"	m
+st-default/dynamicArray.h	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^--- st-default\/dynamicArray.h	1970-01-01 01:00:00.000000000 +0100$/;"	m
+st-default/error.h	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^--- st-default\/error.h	1970-01-01 01:00:00.000000000 +0100$/;"	m
+st-default/glyph.h	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^--- st-default\/glyph.h	1970-01-01 01:00:00.000000000 +0100$/;"	m
+st-default/normalMode.c	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^--- st-default\/normalMode.c	1970-01-01 01:00:00.000000000 +0100$/;"	m
+st-default/normalMode.h	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^--- st-default\/normalMode.h	1970-01-01 01:00:00.000000000 +0100$/;"	m
+st-default/st.c	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^--- st-default\/st.c	2020-06-04 11:15:55.165135902 +0200$/;"	m
+st-default/st.c.rej	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^--- st-default\/st.c.rej	1970-01-01 01:00:00.000000000 +0100$/;"	m
+st-default/st.h	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^--- st-default\/st.h	2020-06-04 11:15:55.165135902 +0200$/;"	m
+st-default/term.h	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^--- st-default\/term.h	1970-01-01 01:00:00.000000000 +0100$/;"	m
+st-default/win.h	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^--- st-default\/win.h	2020-06-04 11:15:55.166135902 +0200$/;"	m
+st-default/x.c	/home/david/.suckless/st/st-vimBrowse-20200604-295a43f.diff	/^--- st-default\/x.c	2020-06-04 11:15:55.166135902 +0200$/;"	m
+st.o	/home/david/.suckless/st/Makefile	/^st.o: config.h st.h win.h dynamicArray.h normalMode.h term.h glyph.h error.h$/;"	t
+startNewCommand	/home/david/.suckless/st/normalMode.c	/^static inline  void startNewCommand(bool abort) {$/;"	f	typeref:typename:void	file:
+startPosition	/home/david/.suckless/st/normalMode.c	/^		Position startPosition;$/;"	m	struct:__anon926ceb420208::OperationState	typeref:typename:Position	file:
+state	/home/david/.suckless/st/term.h	/^	char state;$/;"	m	struct:__anonfb49a8310108	typeref:typename:char
+stateVB	/home/david/.suckless/st/normalMode.c	/^NormalModeState stateVB = {$/;"	v	typeref:typename:NormalModeState
+strdump	/home/david/.suckless/st/st.c	/^strdump(void)$/;"	f	typeref:typename:void
+strescseq	/home/david/.suckless/st/st.c	/^static STREscape strescseq;$/;"	v	typeref:typename:STREscape	file:
+strhandle	/home/david/.suckless/st/st.c	/^strhandle(void)$/;"	f	typeref:typename:void
+strparse	/home/david/.suckless/st/st.c	/^strparse(void)$/;"	f	typeref:typename:void
+strreset	/home/david/.suckless/st/st.c	/^strreset(void)$/;"	f	typeref:typename:void
+stty	/home/david/.suckless/st/st.c	/^stty(char **args)$/;"	f	typeref:typename:void
+stty_args	/home/david/.suckless/st/config.def.h	/^char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";$/;"	v	typeref:typename:char *
+stty_args	/home/david/.suckless/st/config.h	/^char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";$/;"	v	typeref:typename:char *
+styleCommand	/home/david/.suckless/st/config.def.h	/^Glyph const styleCommand = {' ', ATTR_ITALIC | ATTR_FAINT, 7, 16};$/;"	v	typeref:typename:Glyph const
+styleCommand	/home/david/.suckless/st/config.h	/^Glyph const styleCommand = {' ', ATTR_ITALIC | ATTR_FAINT, 7, 16};$/;"	v	typeref:typename:Glyph const
+styleSearch	/home/david/.suckless/st/config.def.h	/^Glyph const styleSearch = {' ', ATTR_ITALIC | ATTR_BOLD_FAINT, 7, 16};$/;"	v	typeref:typename:Glyph const
+styleSearch	/home/david/.suckless/st/config.h	/^Glyph const styleSearch = {' ', ATTR_ITALIC | ATTR_BOLD_FAINT, 7, 16};$/;"	v	typeref:typename:Glyph const
+success	/home/david/.suckless/st/normalMode.h	/^	success = 1,$/;"	e	enum:ExitState
+swap	/home/david/.suckless/st/normalMode.c	/^static inline void swap(DynamicArray *const a, DynamicArray *const b) {$/;"	f	typeref:typename:void	file:
+t	/home/david/.suckless/st/x.c	/^	int l, t; \/* left and top offset *\/$/;"	m	struct:__anone0475acc0608	typeref:typename:int	file:
+tabs	/home/david/.suckless/st/term.h	/^	int *tabs;$/;"	m	struct:__anonfb49a8310508	typeref:typename:int *
+tabspaces	/home/david/.suckless/st/config.def.h	/^unsigned int tabspaces = 8;$/;"	v	typeref:typename:unsigned int
+tabspaces	/home/david/.suckless/st/config.h	/^unsigned int tabspaces = 8;$/;"	v	typeref:typename:unsigned int
+tattrset	/home/david/.suckless/st/st.c	/^tattrset(int attr)$/;"	f	typeref:typename:int
+tclearregion	/home/david/.suckless/st/st.c	/^tclearregion(int x1, int y1, int x2, int y2)$/;"	f	typeref:typename:void
+tclick1	/home/david/.suckless/st/x.c	/^	struct timespec tclick1;$/;"	m	struct:__anone0475acc0808	typeref:struct:timespec	file:
+tclick2	/home/david/.suckless/st/x.c	/^	struct timespec tclick2;$/;"	m	struct:__anone0475acc0808	typeref:struct:timespec	file:
+tcontrolcode	/home/david/.suckless/st/st.c	/^tcontrolcode(uchar ascii)$/;"	f	typeref:typename:void
+tcursor	/home/david/.suckless/st/st.c	/^tcursor(int mode)$/;"	f	typeref:typename:void
+tdectest	/home/david/.suckless/st/st.c	/^tdectest(char c)$/;"	f	typeref:typename:void
+tdefcolor	/home/david/.suckless/st/st.c	/^tdefcolor(int *attr, int *npar, int l)$/;"	f	typeref:typename:int32_t
+tdeftran	/home/david/.suckless/st/st.c	/^tdeftran(char ascii)$/;"	f	typeref:typename:void
+tdefutf8	/home/david/.suckless/st/st.c	/^tdefutf8(char ascii)$/;"	f	typeref:typename:void
+tdeletechar	/home/david/.suckless/st/st.c	/^tdeletechar(int n)$/;"	f	typeref:typename:void
+tdeleteline	/home/david/.suckless/st/st.c	/^tdeleteline(int n)$/;"	f	typeref:typename:void
+tdump	/home/david/.suckless/st/st.c	/^tdump(void)$/;"	f	typeref:typename:void
+tdumpline	/home/david/.suckless/st/st.c	/^tdumpline(int n)$/;"	f	typeref:typename:void
+tdumpsel	/home/david/.suckless/st/st.c	/^tdumpsel(void)$/;"	f	typeref:typename:void
+term	/home/david/.suckless/st/st.c	/^Term term;$/;"	v	typeref:typename:Term
+term_mode	/home/david/.suckless/st/st.c	/^enum term_mode {$/;"	g	file:
+terminateCommand	/home/david/.suckless/st/normalMode.c	/^static bool terminateCommand(bool abort) {$/;"	f	typeref:typename:bool	file:
+termname	/home/david/.suckless/st/config.def.h	/^char *termname = "st-256color";$/;"	v	typeref:typename:char *
+termname	/home/david/.suckless/st/config.h	/^char *termname = "st-256color";$/;"	v	typeref:typename:char *
+tfulldirt	/home/david/.suckless/st/st.c	/^tfulldirt(void)$/;"	f	typeref:typename:void
+th	/home/david/.suckless/st/x.c	/^	int tw, th; \/* tty width and height *\/$/;"	m	struct:__anone0475acc0508	typeref:typename:int	file:
+tinsertblank	/home/david/.suckless/st/st.c	/^tinsertblank(int n)$/;"	f	typeref:typename:void
+tinsertblankline	/home/david/.suckless/st/st.c	/^tinsertblankline(int n)$/;"	f	typeref:typename:void
+tlinelen	/home/david/.suckless/st/st.c	/^tlinelen(int y)$/;"	f	typeref:typename:int
+tmoveato	/home/david/.suckless/st/st.c	/^tmoveato(int x, int y)$/;"	f	typeref:typename:void
+tmoveto	/home/david/.suckless/st/st.c	/^tmoveto(int x, int y)$/;"	f	typeref:typename:void
+tnew	/home/david/.suckless/st/st.c	/^tnew(int col, int row)$/;"	f	typeref:typename:void
+tnewline	/home/david/.suckless/st/st.c	/^tnewline(int first_col)$/;"	f	typeref:typename:void
+toggle	/home/david/.suckless/st/normalMode.c	/^static bool toggle = false;$/;"	v	typeref:typename:bool	file:
+toggleprinter	/home/david/.suckless/st/st.c	/^toggleprinter(const Arg *arg)$/;"	f	typeref:typename:void
+top	/home/david/.suckless/st/term.h	/^	int top;      \/* top    scroll limit *\/$/;"	m	struct:__anonfb49a8310508	typeref:typename:int
+tprinter	/home/david/.suckless/st/st.c	/^tprinter(char *s, size_t len)$/;"	f	typeref:typename:void
+tputc	/home/david/.suckless/st/st.c	/^tputc(Rune u)$/;"	f	typeref:typename:void
+tputtab	/home/david/.suckless/st/st.c	/^tputtab(int n)$/;"	f	typeref:typename:void
+trantbl	/home/david/.suckless/st/term.h	/^	char trantbl[4]; \/* charset table translation *\/$/;"	m	struct:__anonfb49a8310508	typeref:typename:char[4]
+treset	/home/david/.suckless/st/st.c	/^treset(void)$/;"	f	typeref:typename:void
+tresize	/home/david/.suckless/st/st.c	/^tresize(int col, int row)$/;"	f	typeref:typename:void
+tripleclicktimeout	/home/david/.suckless/st/config.def.h	/^static unsigned int tripleclicktimeout = 600;$/;"	v	typeref:typename:unsigned int
+tripleclicktimeout	/home/david/.suckless/st/config.h	/^static unsigned int tripleclicktimeout = 600;$/;"	v	typeref:typename:unsigned int
+tscrolldown	/home/david/.suckless/st/st.c	/^tscrolldown(int orig, int n, int copyhist)$/;"	f	typeref:typename:void
+tscrollup	/home/david/.suckless/st/st.c	/^tscrollup(int orig, int n, int copyhist)$/;"	f	typeref:typename:void
+tsetattr	/home/david/.suckless/st/st.c	/^tsetattr(int *attr, int l)$/;"	f	typeref:typename:void
+tsetchar	/home/david/.suckless/st/st.c	/^tsetchar(Rune u, Glyph *attr, int x, int y)$/;"	f	typeref:typename:void
+tsetdirt	/home/david/.suckless/st/st.c	/^tsetdirt(int top, int bot)$/;"	f	typeref:typename:void
+tsetdirtattr	/home/david/.suckless/st/st.c	/^tsetdirtattr(int attr)$/;"	f	typeref:typename:void
+tsetmode	/home/david/.suckless/st/st.c	/^tsetmode(int priv, int set, int *args, int narg)$/;"	f	typeref:typename:void
+tsetscroll	/home/david/.suckless/st/st.c	/^tsetscroll(int t, int b)$/;"	f	typeref:typename:void
+tstrsequence	/home/david/.suckless/st/st.c	/^tstrsequence(uchar c)$/;"	f	typeref:typename:void
+tswapscreen	/home/david/.suckless/st/st.c	/^tswapscreen(void)$/;"	f	typeref:typename:void
+ttyhangup	/home/david/.suckless/st/st.c	/^ttyhangup()$/;"	f	typeref:typename:void
+ttynew	/home/david/.suckless/st/st.c	/^ttynew(char *line, char *cmd, char *out, char **args)$/;"	f	typeref:typename:int
+ttyread	/home/david/.suckless/st/st.c	/^ttyread(void)$/;"	f	typeref:typename:size_t
+ttyresize	/home/david/.suckless/st/st.c	/^ttyresize(int tw, int th)$/;"	f	typeref:typename:void
+ttysend	/home/david/.suckless/st/x.c	/^ttysend(const Arg *arg)$/;"	f	typeref:typename:void
+ttywrite	/home/david/.suckless/st/st.c	/^ttywrite(const char *s, size_t n, int may_echo)$/;"	f	typeref:typename:void
+ttywriteraw	/home/david/.suckless/st/st.c	/^ttywriteraw(const char *s, size_t n)$/;"	f	typeref:typename:void
+tw	/home/david/.suckless/st/x.c	/^	int tw, th; \/* tty width and height *\/$/;"	m	struct:__anone0475acc0508	typeref:typename:int	file:
+twrite	/home/david/.suckless/st/st.c	/^twrite(const char *buf, int buflen, int show_ctrl)$/;"	f	typeref:typename:int
+type	/home/david/.suckless/st/st.c	/^	char type;             \/* ESC type ... *\/$/;"	m	struct:__anone93119bb0208	typeref:typename:char	file:
+type	/home/david/.suckless/st/term.h	/^	int type;$/;"	m	struct:__anonfb49a8310208	typeref:typename:int
+type	/home/david/.suckless/st/x.c	/^	enum resource_type type;$/;"	m	struct:__anone0475acc0408	typeref:enum:resource_type	file:
+u	/home/david/.suckless/st/glyph.h	/^	Rune u;           \/* character code *\/$/;"	m	struct:__anon8c9ef53d0108	typeref:typename:Rune
+uchar	/home/david/.suckless/st/st.h	/^typedef unsigned char uchar;$/;"	t	typeref:typename:unsigned char
+ui	/home/david/.suckless/st/st.h	/^	uint ui;$/;"	m	union:__anone93119c0010a	typeref:typename:uint
+uint	/home/david/.suckless/st/st.h	/^typedef unsigned int uint;$/;"	t	typeref:typename:unsigned int
+ulong	/home/david/.suckless/st/st.h	/^typedef unsigned long ulong;$/;"	t	typeref:typename:unsigned long
+unicodep	/home/david/.suckless/st/x.c	/^	Rune unicodep;$/;"	m	struct:__anone0475acc0c08	typeref:typename:Rune	file:
+uninstall	/home/david/.suckless/st/Makefile	/^uninstall:$/;"	t
+unmap	/home/david/.suckless/st/x.c	/^unmap(XEvent *ev)$/;"	f	typeref:typename:void
+usage	/home/david/.suckless/st/x.c	/^usage(void)$/;"	f	typeref:typename:void
+usedfont	/home/david/.suckless/st/x.c	/^static char *usedfont = NULL;$/;"	v	typeref:typename:char *	file:
+usedfontsize	/home/david/.suckless/st/x.c	/^static double usedfontsize = 0;$/;"	v	typeref:typename:double	file:
+ushort	/home/david/.suckless/st/st.h	/^typedef unsigned short ushort;$/;"	t	typeref:typename:unsigned short
+utf8decode	/home/david/.suckless/st/st.c	/^utf8decode(const char *c, Rune *u, size_t clen)$/;"	f	typeref:typename:size_t
+utf8decodebyte	/home/david/.suckless/st/st.c	/^utf8decodebyte(char c, size_t *i)$/;"	f	typeref:typename:Rune
+utf8encode	/home/david/.suckless/st/st.c	/^utf8encode(Rune u, char *c)$/;"	f	typeref:typename:size_t
+utf8encodebyte	/home/david/.suckless/st/st.c	/^utf8encodebyte(Rune u, size_t i)$/;"	f	typeref:typename:char
+utf8validate	/home/david/.suckless/st/st.c	/^utf8validate(Rune *u, size_t i)$/;"	f	typeref:typename:size_t
+utfbyte	/home/david/.suckless/st/st.c	/^static uchar utfbyte[UTF_SIZ + 1] = {0x80,    0, 0xC0, 0xE0, 0xF0};$/;"	v	typeref:typename:uchar[]	file:
+utfmask	/home/david/.suckless/st/st.c	/^static uchar utfmask[UTF_SIZ + 1] = {0xC0, 0x80, 0xE0, 0xF0, 0xF8};$/;"	v	typeref:typename:uchar[]	file:
+utfmax	/home/david/.suckless/st/st.c	/^static Rune utfmax[UTF_SIZ + 1] = {0x10FFFF, 0x7F, 0x7FF, 0xFFFF, 0x10FFFF};$/;"	v	typeref:typename:Rune[]	file:
+utfmin	/home/david/.suckless/st/st.c	/^static Rune utfmin[UTF_SIZ + 1] = {       0,    0,  0x80,  0x800,  0x10000};$/;"	v	typeref:typename:Rune[]	file:
+utmp	/home/david/.suckless/st/config.def.h	/^char *utmp = NULL;$/;"	v	typeref:typename:char *
+utmp	/home/david/.suckless/st/config.h	/^char *utmp = NULL;$/;"	v	typeref:typename:char *
+v	/home/david/.suckless/st/st.h	/^	const void *v;$/;"	m	union:__anone93119c0010a	typeref:typename:const void *
+value	/home/david/.suckless/st/normalMode.h	/^	char *value;$/;"	m	struct:NormalModeShortcuts	typeref:typename:char *
+view	/home/david/.suckless/st/dynamicArray.h	/^view(DynamicArray const * s, uint32_t i) {$/;"	f	typeref:typename:char *
+viewEnd	/home/david/.suckless/st/dynamicArray.h	/^viewEnd(DynamicArray const *s, uint32_t i) {$/;"	f	typeref:typename:char *
+vis	/home/david/.suckless/st/x.c	/^	Visual *vis;$/;"	m	struct:__anone0475acc0608	typeref:typename:Visual *	file:
+visibility	/home/david/.suckless/st/x.c	/^visibility(XEvent *ev)$/;"	f	typeref:typename:void
+visual	/home/david/.suckless/st/normalMode.c	/^			noop = ' ', visual='v', visualLine='V', yank = 'y' } op;$/;"	e	enum:__anon926ceb420208::OperationState::Operation	file:
+visualLine	/home/david/.suckless/st/normalMode.c	/^			noop = ' ', visual='v', visualLine='V', yank = 'y' } op;$/;"	e	enum:__anon926ceb420208::OperationState::Operation	file:
+vtiden	/home/david/.suckless/st/config.def.h	/^char *vtiden = "\\033[?6c";$/;"	v	typeref:typename:char *
+vtiden	/home/david/.suckless/st/config.h	/^char *vtiden = "\\033[?6c";$/;"	v	typeref:typename:char *
+w	/home/david/.suckless/st/x.c	/^	int w, h; \/* window width and height *\/$/;"	m	struct:__anone0475acc0508	typeref:typename:int	file:
+width	/home/david/.suckless/st/x.c	/^	int width;$/;"	m	struct:__anone0475acc0908	typeref:typename:int	file:
+win	/home/david/.suckless/st/x.c	/^	Window win;$/;"	m	struct:__anone0475acc0608	typeref:typename:Window	file:
+win	/home/david/.suckless/st/x.c	/^static TermWindow win;$/;"	v	typeref:typename:TermWindow	file:
+win_mode	/home/david/.suckless/st/win.h	/^enum win_mode {$/;"	g
+wmdeletewin	/home/david/.suckless/st/x.c	/^	Atom xembed, wmdeletewin, netwmname, netwmpid;$/;"	m	struct:__anone0475acc0608	typeref:typename:Atom	file:
+wordDelimLarge	/home/david/.suckless/st/config.def.h	/^char wordDelimLarge[] = " \\t"; \/\/\/ <Word sepearors normal mode (capital W)$/;"	v	typeref:typename:char[]
+wordDelimLarge	/home/david/.suckless/st/config.h	/^char wordDelimLarge[] = " \\t"; \/\/\/ <Word sepearors normal mode (capital W)$/;"	v	typeref:typename:char[]
+wordDelimSmall	/home/david/.suckless/st/config.def.h	/^char wordDelimSmall[] = " \\t!\\"#$%&'()*+,-.\/:;<=>?@[\\\\]^_`{|}~";$/;"	v	typeref:typename:char[]
+wordDelimSmall	/home/david/.suckless/st/config.h	/^char wordDelimSmall[] = " \\t!\\"#$%&'()*+,-.\/:;<=>?@[\\\\]^_`{|}~";$/;"	v	typeref:typename:char[]
+worddelimiters	/home/david/.suckless/st/config.def.h	/^wchar_t *worddelimiters = L" ";$/;"	v	typeref:typename:wchar_t *
+worddelimiters	/home/david/.suckless/st/config.h	/^wchar_t *worddelimiters = L" ";$/;"	v	typeref:typename:wchar_t *
+x	/home/david/.suckless/st/normalMode.c	/^typedef struct { uint32_t x; uint32_t y; uint32_t yScr; } Position;$/;"	m	struct:__anon926ceb420108	typeref:typename:uint32_t	file:
+x	/home/david/.suckless/st/term.h	/^		int x, y, scroll;$/;"	m	struct:__anonfb49a8310208::__anonfb49a8310308	typeref:typename:int
+x	/home/david/.suckless/st/term.h	/^		int x, y;$/;"	m	struct:__anonfb49a8310208::__anonfb49a8310408	typeref:typename:int
+x	/home/david/.suckless/st/term.h	/^	int x;$/;"	m	struct:__anonfb49a8310108	typeref:typename:int
+x.o	/home/david/.suckless/st/Makefile	/^x.o: arg.h config.h st.h win.h dynamicArray.h normalMode.h term.h glyph.h error.h$/;"	t
+xbell	/home/david/.suckless/st/x.c	/^xbell(void)$/;"	f	typeref:typename:void
+xclear	/home/david/.suckless/st/x.c	/^xclear(int x1, int y1, int x2, int y2)$/;"	f	typeref:typename:void
+xclipcopy	/home/david/.suckless/st/x.c	/^xclipcopy(void)$/;"	f	typeref:typename:void
+xdrawcursor	/home/david/.suckless/st/x.c	/^xdrawcursor(int cx, int cy, Glyph g, int ox, int oy, Glyph og)$/;"	f	typeref:typename:void
+xdrawglyph	/home/david/.suckless/st/x.c	/^xdrawglyph(Glyph g, int x, int y)$/;"	f	typeref:typename:void
+xdrawglyphfontspecs	/home/david/.suckless/st/x.c	/^xdrawglyphfontspecs(const XftGlyphFontSpec *specs, Glyph base, int len, int x, int y)$/;"	f	typeref:typename:void
+xdrawline	/home/david/.suckless/st/x.c	/^xdrawline(Line line, int x1, int y1, int x2)$/;"	f	typeref:typename:void
+xembed	/home/david/.suckless/st/x.c	/^	Atom xembed, wmdeletewin, netwmname, netwmpid;$/;"	m	struct:__anone0475acc0608	typeref:typename:Atom	file:
+xfinishdraw	/home/david/.suckless/st/x.c	/^xfinishdraw(void)$/;"	f	typeref:typename:void
+xfps	/home/david/.suckless/st/config.def.h	/^static unsigned int xfps = 120;$/;"	v	typeref:typename:unsigned int
+xfps	/home/david/.suckless/st/config.h	/^static unsigned int xfps = 120;$/;"	v	typeref:typename:unsigned int
+xgeommasktogravity	/home/david/.suckless/st/x.c	/^xgeommasktogravity(int mask)$/;"	f	typeref:typename:int
+xhints	/home/david/.suckless/st/x.c	/^xhints(void)$/;"	f	typeref:typename:void
+xic	/home/david/.suckless/st/x.c	/^		XIC xic;$/;"	m	struct:__anone0475acc0608::__anone0475acc0708	typeref:typename:XIC	file:
+xicdestroy	/home/david/.suckless/st/x.c	/^xicdestroy(XIC xim, XPointer client, XPointer call)$/;"	f	typeref:typename:int
+xim	/home/david/.suckless/st/x.c	/^		XIM xim;$/;"	m	struct:__anone0475acc0608::__anone0475acc0708	typeref:typename:XIM	file:
+ximdestroy	/home/david/.suckless/st/x.c	/^ximdestroy(XIM xim, XPointer client, XPointer call)$/;"	f	typeref:typename:void
+ximinstantiate	/home/david/.suckless/st/x.c	/^ximinstantiate(Display *dpy, XPointer client, XPointer call)$/;"	f	typeref:typename:void
+ximopen	/home/david/.suckless/st/x.c	/^ximopen(Display *dpy)$/;"	f	typeref:typename:int
+xinit	/home/david/.suckless/st/x.c	/^xinit(int cols, int rows)$/;"	f	typeref:typename:void
+xloadcolor	/home/david/.suckless/st/x.c	/^xloadcolor(int i, const char *name, Color *ncolor)$/;"	f	typeref:typename:int
+xloadcols	/home/david/.suckless/st/x.c	/^xloadcols(void)$/;"	f	typeref:typename:void
+xloadfont	/home/david/.suckless/st/x.c	/^xloadfont(Font *f, FcPattern *pattern)$/;"	f	typeref:typename:int
+xloadfonts	/home/david/.suckless/st/x.c	/^xloadfonts(char *fontstr, double fontsize)$/;"	f	typeref:typename:void
+xloadsparefont	/home/david/.suckless/st/x.c	/^xloadsparefont(FcPattern *pattern, int flags)$/;"	f	typeref:typename:int
+xloadsparefonts	/home/david/.suckless/st/x.c	/^xloadsparefonts(void)$/;"	f	typeref:typename:void
+xmakeglyphfontspecs	/home/david/.suckless/st/x.c	/^xmakeglyphfontspecs(XftGlyphFontSpec *specs, const Glyph *glyphs, int len, int x, int y)$/;"	f	typeref:typename:int
+xmalloc	/home/david/.suckless/st/st.c	/^xmalloc(size_t len)$/;"	f	typeref:typename:void *
+xrealloc	/home/david/.suckless/st/st.c	/^xrealloc(void *p, size_t len)$/;"	f	typeref:typename:void *
+xresize	/home/david/.suckless/st/x.c	/^xresize(int col, int row)$/;"	f	typeref:typename:void
+xsel	/home/david/.suckless/st/x.c	/^static XSelection xsel;$/;"	v	typeref:typename:XSelection	file:
+xselextend	/home/david/.suckless/st/st.c	/^xselextend(int col, int row, int type, int done) {$/;"	f	typeref:typename:void
+xselstart	/home/david/.suckless/st/st.c	/^xselstart(int col, int row, int snap) {$/;"	f	typeref:typename:void
+xsetcolorname	/home/david/.suckless/st/x.c	/^xsetcolorname(int x, const char *name)$/;"	f	typeref:typename:int
+xsetcursor	/home/david/.suckless/st/x.c	/^xsetcursor(int cursor)$/;"	f	typeref:typename:int
+xsetenv	/home/david/.suckless/st/x.c	/^xsetenv(void)$/;"	f	typeref:typename:void
+xsetmode	/home/david/.suckless/st/x.c	/^xsetmode(int set, unsigned int flags)$/;"	f	typeref:typename:void
+xsetpointermotion	/home/david/.suckless/st/x.c	/^xsetpointermotion(int set)$/;"	f	typeref:typename:void
+xsetsel	/home/david/.suckless/st/x.c	/^xsetsel(char *str)$/;"	f	typeref:typename:void
+xsettitle	/home/david/.suckless/st/x.c	/^xsettitle(char *p)$/;"	f	typeref:typename:void
+xseturgency	/home/david/.suckless/st/x.c	/^xseturgency(int add)$/;"	f	typeref:typename:void
+xstartdraw	/home/david/.suckless/st/x.c	/^xstartdraw(void)$/;"	f	typeref:typename:int
+xstrdup	/home/david/.suckless/st/st.c	/^xstrdup(char *s)$/;"	f	typeref:typename:char *
+xtarget	/home/david/.suckless/st/x.c	/^	Atom xtarget;$/;"	m	struct:__anone0475acc0808	typeref:typename:Atom	file:
+xunloadfont	/home/david/.suckless/st/x.c	/^xunloadfont(Font *f)$/;"	f	typeref:typename:void
+xunloadfonts	/home/david/.suckless/st/x.c	/^xunloadfonts(void)$/;"	f	typeref:typename:void
+xw	/home/david/.suckless/st/x.c	/^static XWindow xw;$/;"	v	typeref:typename:XWindow	file:
+xwrite	/home/david/.suckless/st/st.c	/^xwrite(int fd, const char *s, size_t len)$/;"	f	typeref:typename:ssize_t
+xximspot	/home/david/.suckless/st/x.c	/^xximspot(int x, int y)$/;"	f	typeref:typename:void
+y	/home/david/.suckless/st/normalMode.c	/^typedef struct { uint32_t x; uint32_t y; uint32_t yScr; } Position;$/;"	m	struct:__anon926ceb420108	typeref:typename:uint32_t	file:
+y	/home/david/.suckless/st/term.h	/^		int x, y, scroll;$/;"	m	struct:__anonfb49a8310208::__anonfb49a8310308	typeref:typename:int
+y	/home/david/.suckless/st/term.h	/^		int x, y;$/;"	m	struct:__anonfb49a8310208::__anonfb49a8310408	typeref:typename:int
+y	/home/david/.suckless/st/term.h	/^	int y;$/;"	m	struct:__anonfb49a8310108	typeref:typename:int
+yScr	/home/david/.suckless/st/normalMode.c	/^typedef struct { uint32_t x; uint32_t y; uint32_t yScr; } Position;$/;"	m	struct:__anon926ceb420108	typeref:typename:uint32_t	file:
+yank	/home/david/.suckless/st/normalMode.c	/^			noop = ' ', visual='v', visualLine='V', yank = 'y' } op;$/;"	e	enum:__anon926ceb420208::OperationState::Operation	file:
+zoom	/home/david/.suckless/st/x.c	/^zoom(const Arg *arg)$/;"	f	typeref:typename:void
+zoomabs	/home/david/.suckless/st/x.c	/^zoomabs(const Arg *arg)$/;"	f	typeref:typename:void
+zoomreset	/home/david/.suckless/st/x.c	/^zoomreset(const Arg *arg)$/;"	f	typeref:typename:void

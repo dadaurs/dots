@@ -14,6 +14,9 @@
 
 # config.source('colors.py')
 c.tabs.favicons.scale = 1
+c.content.blocking.method = 'adblock'
+config.set('content.headers.user_agent', 'Mozilla/5.0 (X11; Linux x86_64; rv:57.0) Gecko/20100101 Firefox/77.0', 'https://accounts.google.com/*')
+config.load_autoconfig(False)
 # c.tabs.indicator.padding = {"top": 0, "right": 0, "bottom": 0, "left": 0}
 # c.tabs.position = "left"
 # c.tabs.show = "switching"
@@ -21,6 +24,8 @@ c.tabs.favicons.scale = 1
 c.content.cookies.accept = 'all'
 c.content.geolocation = 'ask'
 c.content.webgl = True
+# config.set("colors.webpage.darkmode.enabled",True)
+
 # c.downloads.remove_finished = 800
 c.auto_save.session = True
 c.editor.command = ["st", "-e", "nvim", "{}"]
