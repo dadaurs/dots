@@ -86,8 +86,47 @@ alt + {o,i}
 	bspc wm -h on
 
 # focus or send to the given desktop
-alt + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+alt + 1
+	bspc desktop -f 1
+alt + 2
+	bspc desktop -f 2
+alt + 3
+	bspc desktop -f 3
+alt + 4
+	bspc desktop -f 4
+alt + 5
+	bspc desktop -f 5
+alt + 6
+	bspc desktop -f 6
+alt + 7
+	bspc desktop -f 7
+alt + 8
+	bspc desktop -f 8
+alt + 9
+	bspc desktop -f 9
+alt + 0
+	bspc desktop -f 0
+
+alt + shift + 1
+	bspc node -d 1
+alt + shift + 2
+	bspc node -d 2
+alt + shift + 3
+	bspc node -d 3
+alt + shift + 4
+	bspc node -d 4
+alt + shift + 5
+	bspc node -d 5
+alt + shift + 6
+	bspc node -d 6
+alt + shift + 7
+	bspc node -d 7
+alt + shift + 8
+	bspc node -d 8
+alt + shift + 9
+	bspc node -d 9
+alt + shift + 0
+	bspc node -d 0
 
 alt + shift + {d,a}
     bspc node @/ -C {forward,backward}

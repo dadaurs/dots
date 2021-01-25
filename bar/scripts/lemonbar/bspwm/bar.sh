@@ -70,6 +70,7 @@ bspc subscribe | while IFS= read -r line; do
 	-e 's/[wW][mM]eDP-[0-9]//g'\
 	-e 's/[wW][mM]DP-[0-9]//g'\
 	-e 's/meDP-[0-9]//g'\
+	-e 's/FDesktop//g'\
 	-e 's/\ meDP-[0-9]\ //g'\
 	-e 's/MeDP-[0-9]//g'\
 	-e 's/WMHDMI-[0-9]//g'\

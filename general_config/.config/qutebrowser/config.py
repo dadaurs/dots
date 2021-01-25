@@ -38,6 +38,7 @@ config.bind('<Ctrl-m>', 'spawn --detach mpv --force-window yes {url}')
 config.bind('X', 'hint links spawn mpv {hint-url} & disown')
 config.bind('yf', 'hint links yank')
 config.bind(';',':') 
+config.bind('<z><l>', 'spawn --userscript qute-pass')
 c.url.start_pages = ["/home/dada/.config/qutebrowser/min-startpage/min.html"]
 c.url.searchengines = {"DEFAULT":"https://duckduckgo.com/?q={}",
         "y":"https://www.youtube.com/results?search_query={}",
@@ -49,6 +50,7 @@ c.url.searchengines = {"DEFAULT":"https://duckduckgo.com/?q={}",
         "z":"http://gpo.zugaina.org/Search?search={}",
         "u":"https://unicode-table.com/en/search/?q={}",
         "tpb":"https://pirate-bay.net/search?q={}",
+        "sc":"https://soundcloud.com/search?q={}",
         "git":"https://github.com/search?q={}"}
 
 # c.fonts.completion.category = "bold 10pt CozetteVector" 
