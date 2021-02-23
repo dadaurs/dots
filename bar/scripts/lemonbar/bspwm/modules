@@ -114,8 +114,8 @@ updatebat(){
 	main
 }
 getBattery() {
-	STATE=$( acpi | awk '{print $4}' | sed -e 's/,//' -e 's/%//')
-	battery_status="$(acpi -b | awk -F '[[:space:]]+|,' '{ print $3 }')"
+	STATE=$( acpi | grep -v "Battery 0" | awk '{print $4}' | sed -e 's/,//' -e 's/%//')
+	battery_status="$(acpi -b | grep -v "Battery 0" | awk -F '[[:space:]]+|,' '{ print $3 }')"
 	colorstatus="$foreground"
 	case "$battery_status" in
 		'Charging')
@@ -196,7 +196,7 @@ setmail(){
 #}
 main(){
 	#echo "%{B}%{r}%{B}$sepchartwo $(setmail) $sepcharone$(setsong) $sepchartwo $(Battery) $sepcharone $(Date) $sepchartwo$(Time) " 
-	echo "%{S0}%{r}$sepchartwo $(getVol) $sepcharone $(setmail) $sepchartwo$(setsong) $sepcharone $(Battery) $sepchartwo $(Date) $sepcharone$(Time) " 
+	echo "%{r}$sepchartwo $(getVol) $sepcharone $(setmail) $sepchartwo$(setsong) $sepcharone $(Battery) $sepchartwo $(Date) $sepcharone$(Time) " 
 
 }
 

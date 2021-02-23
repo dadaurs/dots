@@ -181,7 +181,7 @@ snippet "tr(\d+)" "latex table row variable" br
 `!p snip.rv = match.group(1)`
 endsnippet
 post_jump "create_matrix_placeholders(snip)"
-snippet 'mat(\d+),(\d+)' "LaTeX array" br
+snippet 'mat(\d+),(\d+)' "LaTeX array" r
 \begin{pmatrix}{`!p
 orient = ""
 for _ in range(0, int(match.group(1))): orient += "l"
@@ -313,6 +313,12 @@ endsnippet
 snippet rra "arrow" A
 \Rightarrow $0
 endsnippet
+snippet 'del([a-zA-Z])' "del" wrA
+\del_`!p snip.rv = match.group(1)`$0
+endsnippet
+snippet 'e([a-z])' "basis vectors" wr
+\vec{e}_`!p snip.rv = match.group(1)`$0
+endsnippet
 #}}}
 # Regex
 #{{{
@@ -339,13 +345,13 @@ endsnippet
 snippet '(bb|cal|scr|frak)([a-zA-Z])' "mathfont" wr
 \math`!p snip.rv = match.group(1)`{`!p snip.rv = match.group(2).upper()`}$0
 endsnippet
-#context "math()"
-#snippet '([A-Za-z])(\d)' "auto subscript" wrA
-#`!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
-#endsnippet
+context "math()"
+snippet '([[A-SU-Za-su-z]])(\d)' "auto subscript" wrA
+`!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
+endsnippet
 
 context "math()"
-snippet '([A-Za-z])_(\d\d)' "auto subscript2" wrA
+snippet '([A-SU-Za-su-z])_(\d\d)' "auto subscript2" wrA
 `!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
 endsnippet
 priority 10000

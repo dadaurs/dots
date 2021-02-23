@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =9
+let g:netrw_dirhistcnt =0
+let g:netrw_dirhist_0='/home/david/dots/bar/scripts/lemonbar/xmonad'
 let g:netrw_dirhist_9='/home/david/.gnupg'
 let g:netrw_dirhist_8='/home/david/.cache/yay/mutt-wizard-git/mutt-wizard'
 let g:netrw_dirhist_7='/home/david/.cache/yay/mutt-wizard-git'
@@ -9,4 +10,3 @@ let g:netrw_dirhist_4='/home/david/.cache/yay/mutt-wizard-git/mutt-wizard'
 let g:netrw_dirhist_3='/home/david/Cours/.git'
 let g:netrw_dirhist_2='/home/david/Cours/Introduction a la programmation/Exos/MOOC/S9/Ex3'
 let g:netrw_dirhist_1='/home/david/.xmonad'
-let g:netrw_dirhist_0='/home/david/.suckless/st'

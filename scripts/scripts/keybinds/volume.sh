@@ -12,7 +12,7 @@ VOLPERC=$( pactl list sinks | grep '^[[:space:]]Volume' | awk '{print $5}')
 	sink=$( pamixer --list-sinks | grep AirPods | awk '{print $1}' ) ||\
 	sink=$( pamixer --list-sinks | grep "WH-1000XM4" | awk '{print $1}' ) ||\
 	sink=$( pamixer --list-sinks | sed -n 2p | awk '{print $1}' )
-STEP=5
+STEP=2
 
 updatebars(){
 	echo vol > /tmp/xmonad/cmd_xmonad &

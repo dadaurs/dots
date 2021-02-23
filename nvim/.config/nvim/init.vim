@@ -356,7 +356,7 @@ else
     "colorscheme base16-eighties
     "colorscheme oceanic_material
    "let g:solarized_termcolors=256
-    colorscheme nord
+    colorscheme wal
 endif
 "let g:quantum_italics=1
 hi! Normal guibg=NONE ctermbg=NONE
