@@ -1,0 +1,18 @@
+#!/bin/sh
+#vim:filetype=sh
+spare1="Hyper_L"
+xmodmap -e "keycode 23 = $spare1"
+xmodmap -e "remove mod4  = $spare1"
+xmodmap -e "add mod4 = $spare1"
+
+xmodmap -e "keycode 255 = Tab"
+
+spare2="Hyper_R"
+xmodmap -e "keycode 51 = $spare2"
+xmodmap -e "remove mod4  = $spare2"
+xmodmap -e "add mod4 = $spare2"
+
+xmodmap -e "keycode 254 = backslash"
+
+xcape -e "$spare1=Tab;$spare2=backslash"
+xmodmap -e "keysym  backslash = backslash bar"

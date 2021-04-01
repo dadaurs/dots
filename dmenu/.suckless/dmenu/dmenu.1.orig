@@ -4,6 +4,8 @@ dmenu \- dynamic menu
 .SH SYNOPSIS
 .B dmenu
 .RB [ \-bfiv ]
+.RB [ \-g
+.IR columns ]
 .RB [ \-l
 .IR lines ]
 .RB [ \-m
@@ -47,26 +49,14 @@ is faster, but will lock up X until stdin reaches end\-of\-file.
 .B \-i
 dmenu matches menu items case insensitively.
 .TP
+.BI \-g " columns"
+dmenu lists items in a grid with the given number of columns.
+.TP
 .BI \-l " lines"
-dmenu lists items vertically, with the given number of lines.
+dmenu lists items in a grid with the given number of lines.
 .TP
-.BI \-x " xoffset"
-dmenu is placed at this offset measured from the left side of the monitor.
-Can be negative.
-If option
-.B \-m
-is present, the measurement will use the given monitor.
-.TP
-.BI \-y " yoffset"
-dmenu is placed at this offset measured from the top of the monitor.  If the
-.B \-b
-option is used, the offset is measured from the bottom.  Can be negative.
-If option
-.B \-m
-is present, the measurement will use the given monitor.
-.TP
-.BI \-w " width"
-sets the width of the dmenu window.
+.BI \-h " height"
+dmenu uses a menu line of at least 'height' pixels tall, but no less than 8.
 .TP
 .BI \-m " monitor"
 dmenu is displayed on the monitor number supplied. Monitor numbers are starting
@@ -77,6 +67,9 @@ defines the prompt to be displayed to the left of the input field.
 .TP
 .BI \-fn " font"
 defines the font or font set used.
+.TP
+.BI \-h " height"
+dmenu uses a menu line of at least 'height' pixels tall, but no less than 8.
 .TP
 .BI \-nb " color"
 defines the normal background color.

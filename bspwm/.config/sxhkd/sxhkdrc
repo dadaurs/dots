@@ -5,6 +5,8 @@
 # terminal emulator
 alt + Return
 	st
+super + Return
+	st
 
 # program launcher
 alt + space
@@ -190,12 +192,8 @@ alt + shift + Delete
 alt+shift+n
 	st -e ncmpcpp
 alt+shift+s
-	xst -e pulsemixer
+	st -e pulsemixer
 
-alt+shift+t
-	xst -e htop
-alt+shift+f
-	urxvt -e ranger
 # super+F2
 XF86AudioRaiseVolume
 	$HOME/scripts/keybinds/volume.sh up
@@ -227,17 +225,8 @@ alt + grave
     bspwm-toggle-visibility ST st
 alt+b
 	$HOME/scripts/lemonbar/bspwm/bar_click.sh toggle
-alt+shift+grave
-	$HOME/scripts/keybinds/dloffice.sh
 alt+n
 	$HOME/scripts/mpd/mpdmenu
-super + n
-	$HOME/scripts/rofi-mpc
-super + ctrl + space
-	{pkill compton ,\
-	compton -b }
-alt +shift +n
-    tdrop -ma -x 190 -w 80% -y 30  st
 
 alt + d
 	clipmenu
@@ -298,5 +287,16 @@ alt + e ; e
 	$HOME/scripts/lectures/edit-lecture
 	
 
+
+#---}}}1
+
+#
+#bindings for hybrid mods tab and \
+#
+#---{{{
+super + {h,j,k,l}
+	bspres { west,south ,north,east}
+super + space
+	bspc node -p cancel
 
 #---}}}1

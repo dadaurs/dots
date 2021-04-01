@@ -1,0 +1,10 @@
+#!/bin/sh
+#vim:filetype=sh
+spare="Hyper_L"
+xmodmap -e "keycode 23 = $spare"
+xmodmap -e "remove mod4  = $spare"
+xmodmap -e "add mod4 = $spare"
+
+xmodmap -e "keycode any = Tab"
+
+xcape -e "$spare=Tab"

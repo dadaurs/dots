@@ -103,7 +103,7 @@ bspc subscribe | while IFS= read -r line; do
 	-e "s/ssss/-f/g"<<< $line
 
 #done 
-done | lemonbar  -B $background -g x$HEIGHT -f "$FONT" | sh &
+done | lemonbar  -B $background -g $BarPosX\x$HEIGHT -f "$FONT" | sh &
 #sleep 0.001
 
 /home/david/scripts/lemonbar/bspwm/modules |  lemonbar -p -g $BarWidth\x$HEIGHT+$BarPosX+0  -f "Font Awesome" -f "$FONT"  -B $BG  -F $FG | sh

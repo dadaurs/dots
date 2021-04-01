@@ -4,13 +4,12 @@ kill -9  $HOME/.config/bspwm/bspwmrc
 pkill -9 -f $HOME/.config/bspwm/bar_click.sh
 killall sxhkd 
 #killall compton
-killall xcape 
 killall xtitle
 sxhkd &
 #if test -f /tmp/bspwm_gapsize; then
 	#bspc config window_gap $(cat /tmp/bspwm_gapsize)
 #fi
-bspc config window_gap 0
+#bspc config window_gap 0
 
 
 #if [ $( bspc query -M --names | wc -l ) -eq 1 ];then
@@ -32,7 +31,10 @@ pkill lemonbar
 pkill dzen
 exec xset r rate 300 100 &
 exec xmodmap $HOME/.config/xmodmap/capstoctrl &
-exec xcape &
+if [pgrep -x xcape]; then
+	xcape &
+	~/scripts/keybinds/hypers
+fi
 exec wal -R &
 exec dunst &
 bspc config normal_border_color "#000000"
@@ -56,3 +58,5 @@ bspc rule -a Bar layer=below
 $HOME/.config/bspwm/applets &
 pkill -f $HOME/scripts/lemonbar/bspwm/bar_click.sh
 $HOME/scripts/lemonbar/bspwm/bar_click.sh &
+picom &
+#~/scripts/keybinds/hypers

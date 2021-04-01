@@ -1,0 +1,11 @@
+#!/bin/sh
+#vim:filetype=sh
+spare="Hyper_L"
+xmodmap -e "keycode 51 = $spare"
+xmodmap -e "remove mod4  = $spare"
+xmodmap -e "add mod4 = $spare"
+
+xmodmap -e "keycode any = backslash"
+
+xcape -e "$spare=backslash"
+xmodmap -e "keysym  backslash = backslash bar"

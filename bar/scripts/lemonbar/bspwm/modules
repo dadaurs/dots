@@ -114,8 +114,8 @@ updatebat(){
 	main
 }
 getBattery() {
-	STATE=$( acpi | grep -v "Battery 0" | awk '{print $4}' | sed -e 's/,//' -e 's/%//')
-	battery_status="$(acpi -b | grep -v "Battery 0" | awk -F '[[:space:]]+|,' '{ print $3 }')"
+	STATE=$( acpi | grep -v "rate" | awk '{print $4}' | sed -e 's/,//' -e 's/%//')
+	battery_status="$(acpi -b | grep -v "rate" | awk -F '[[:space:]]+|,' '{ print $3 }')"
 	colorstatus="$foreground"
 	case "$battery_status" in
 		'Charging')

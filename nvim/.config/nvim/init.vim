@@ -129,12 +129,12 @@ endfunction
 "---{{{2
 autocmd Filetype python nnoremap <buffer> <C-c> :!python %<cr>
 autocmd Filetype urls nnoremap  yr :r!python /home/david/any/src/newsboat-url-generator/newsboat-urls-generator.py -u $(xsel --clipboard --output)
-augroup remember_folds
-  autocmd!
-  autocmd BufWinLeave * mkview
-  autocmd BufWinEnter * silent! loadview
-augroup END
-autocmd Filetype * set fdm=marker
+"augroup remember_folds
+  "autocmd!
+  "autocmd BufWinLeave * mkview
+  "autocmd BufWinEnter * silent! loadview
+"augroup END
+"autocmd Filetype * set fdm=marker
 "---}}}
 "---}}}
 "===========================================================================================================
@@ -161,70 +161,32 @@ nmap <silent> <C-t> :VimtexTocToggle<CR>
 "---}}}
 "Utilities:
 "---{{{2
-
-"Plug 'nvim-treesitter/nvim-treesitter'
-
 Plug 'scrooloose/nerdcommenter' 
 Plug 'ludovicchabant/vim-gutentags'
-"Plug 'vim-scripts/utl.vim'
-"Plug 'scrooloose/nerdtree'
-	"nnoremap <silent> <leader>n :NERDTreeToggle<cr>
-	"let NERDTreeQuitOnOpen=1
 Plug 'tpope/vim-surround'
 Plug 'terryma/vim-multiple-cursors'
-"Plug 'MarcWeber/vim-addon-mw-utils'
-"Plug 'tomtom/tlib_vim'
-"Plug 'mattn/calendar-vim'
-"Plug 'vim-scripts/SearchComplete'
-"Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+"Plug 'liuchengxu/vista.vim', { 'for': ['tex', 'latex', 'c', 'cpp'] }
+"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
+" Plug 'ryanoasis/vim-devicons' Icons without colours
+Plug 'akinsho/nvim-bufferline.lua'
+nnoremap <Tab>n :BufferLineCycleNext<cr>
+nnoremap <Tab>p :BufferLineCyclePrev<cr>
 
-"Plug 'chrisbra/unicode.vim'
-Plug 'liuchengxu/vista.vim', { 'for': ['tex', 'latex', 'c', 'cpp'] }
-"nnoremap <silent> <leader>G :Goyo<cr>
-"Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
-"nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
-"let g:which_key_use_floating_win = 0
-"Vimwiki calendar
-"{{{ ---
-function! ToggleCalendar()
-  execute ":Calendar"
-  if exists("g:calendar_open")
-    if g:calendar_open == 1
-      execute "q"
-      unlet g:calendar_open
-    else
-      g:calendar_open = 1
-    end
-  else
-    let g:calendar_open = 1
-  end
-endfunction
-autocmd FileType vimwiki map <silent> c :call ToggleCalendar()
-"---}}}
+
 "---}}}
 "FZF:
 "---{{{2
-source $HOME/.config/nvim/confzf.vim
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-    let g:fzf_layout = { 'down': '~40%' }
-nnoremap <leader>H :History ~<CR>
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column  --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
-nnoremap <silent> <leader>F :FZF ~<CR>
-nnoremap <silent> <leader>R :Find<CR>
-nnoremap <silent> <leader>f :Clap files<CR>
-nnoremap <silent> <C-s> :Lines<CR>
-nnoremap <silent> <leader>; :History:<CR>
-nnoremap <silent> <leader>b :Clap buffers<CR>
-nnoremap <silent> <leader>r :Rg<CR>
-Plug 'liuchengxu/vim-clap'
-let g:clap_theme = 'material_design_dark'
+
+
 
 "---}}}
 "
 "Lightline:
 "---{{{2
-Plug 'itchyny/lightline.vim'
+"Plug 'itchyny/lightline.vim'
 "Plug 'sainnhe/lightline_foobar.vim'
 ""Plug 'vim-airline/vim-airline'
 ""Plug 'vim-airline/vim-airline-themes'
@@ -281,25 +243,19 @@ Plug 'tpope/vim-fugitive'
 "---}}}
 "Other:
 "---{{{2
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'codota/tabnine-vim'
 
 nnoremap <c-x><c-f> <plug>(fzf-complete-path)
 
 "Plug 'christoomey/vim-tmux-navigator'
 Plug 'dylanaraps/wal.vim'
-"Plug 'dense-analysis/ale'
+Plug 'nekonako/xresources-nvim'
+"Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
+
 Plug 'lilydjwg/colorizer'
-Plug 'metakirby5/codi.vim'
-  "let g:codi#interpreters = {
-                   "\ 'python': {
-                       "\ 'bin': 'python',
-                       "\ 'prompt': '^\(>>>\|\.\.\.\) ',
-                       "\ },
-                   "\ }
-"nnoremap <leader>L :ALEToggle<CR>
-"Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-Plug 'mhinz/vim-startify'
+"Plug 'metakirby5/codi.vim'
+"Plug 'mhinz/vim-startify'
 "---}}}
 "===========================================================================================================
 "Colors:
@@ -324,10 +280,11 @@ call plug#end()
 "===========================================================================================================
 
 
-"set laststatus=0
+set laststatus=0
+set termguicolors
+set number relativenumber
 
 "set statusline=
-set statusline+=%#CocListBgMagenta#
 "set statusline+=\ \ 
 "set statusline+=\ %#PmenuSel#
 "set statusline+=\ %F
@@ -344,27 +301,29 @@ set statusline+=%#CocListBgMagenta#
 "===========================================================================================================
 "---{{{1
 "set t_Co=25
-let g:quantum_black=1
-if  $COLOR_SCHEME == "light"
-    set background=light
-    colorscheme gruvbox
-else
-    set background=dark
-    "colorscheme OceanicNext
-    "colorscheme horizon
-    "colorscheme equinusocio_material
-    "colorscheme base16-eighties
-    "colorscheme oceanic_material
-   "let g:solarized_termcolors=256
-    colorscheme wal
-endif
+"let g:quantum_black=1
+    "set background=dark
+Plug 'hzchirs/vim-material'
+
+"" Dark
+"set background=dark
+"colorscheme vim-material
+
+" Palenight
+"let g:material_style='palenight'
+set background=light
+colorscheme vim-material
+
+
+    "colorscheme xresources
 "let g:quantum_italics=1
-hi! Normal guibg=NONE ctermbg=NONE
-hi! EndOfBuffer cterm=NONE gui=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=#2e303e
-hi! clear Conceal
-hi CursorLine   cterm=NONE ctermbg=0  ctermfg=NONE guibg=#DDDDDD guifg=NONE gui=NONE
-hi MatchParen   cterm=NONE ctermbg=12 ctermfg=NONE guibg=#DDDDDD guifg=NONE gui=NONE
-hi CursorLine   cterm=NONE ctermbg=0 ctermfg=NONE guibg=#2E333F guifg=NONE gui=NONE
+"hi! Normal guibg=NONE ctermbg=NONE
+"hi! EndOfBuffer cterm=NONE gui=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=#2e303e
+"hi! clear Conceal
+"hi CursorLine   cterm=NONE ctermbg=0  ctermfg=NONE guibg=#DDDDDD guifg=NONE gui=NONE
+"hi MatchParen   cterm=NONE ctermbg=12 ctermfg=NONE guibg=#DDDDDD guifg=NONE gui=NONE
+"hi CursorLine   cterm=NONE ctermbg=0 ctermfg=NONE guibg=#2E333F guifg=NONE gui=NONE
 "set laststatus=0
 "---}}}
 
+lua require'bufferline'.setup{}

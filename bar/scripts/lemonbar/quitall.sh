@@ -8,5 +8,6 @@ killall sleep
 pkill -9 -f $HOME/scripts/lemonbar/bar.sh
 pkill -9 -f $HOME/scripts/lemonbar/bar_hybrid.sh
 killall clipmenud
+killall xcape
 bspc quit
 
