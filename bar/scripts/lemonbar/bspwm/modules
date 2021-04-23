@@ -219,6 +219,7 @@ getsetmail | tr -d '\n' > $mailfile
 sleep 10m
 #echo "" > $mailfile
 mailsync outlook-david >/dev/null 2>&1 
+mailsync epfl >/dev/null 2>&1 
 getsetmail | tr -d '\n' > $mailfile
 main
 done &

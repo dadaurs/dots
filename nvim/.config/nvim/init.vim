@@ -2,6 +2,13 @@
 "Defaults:
 "===========================================================================================================
 "---{{{
+set guioptions-=m
+set guioptions-=T
+set guioptions-=r
+set guioptions-=L
+set guifont=Iosevka\ Nerd\ Font:h18
+"dont litter ~
+if !has('nvim') | set viminfofile=$XDG_CACHE_HOME/vim/viminfo | endif
 set wildmenu
 set noswapfile 
 filetype plugin indent on
@@ -169,9 +176,9 @@ Plug 'terryma/vim-multiple-cursors'
 "Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
 " Plug 'ryanoasis/vim-devicons' Icons without colours
-Plug 'akinsho/nvim-bufferline.lua'
-nnoremap <Tab>n :BufferLineCycleNext<cr>
-nnoremap <Tab>p :BufferLineCyclePrev<cr>
+"Plug 'akinsho/nvim-bufferline.lua'
+"nnoremap <Tab>n :BufferLineCycleNext<cr>
+"nnoremap <Tab>p :BufferLineCyclePrev<cr>
 
 
 "---}}}
@@ -281,7 +288,7 @@ call plug#end()
 
 
 set laststatus=0
-set termguicolors
+"set termguicolors
 set number relativenumber
 
 "set statusline=
@@ -300,30 +307,18 @@ set number relativenumber
 "Colorscheme:
 "===========================================================================================================
 "---{{{1
-"set t_Co=25
-"let g:quantum_black=1
-    "set background=dark
 Plug 'hzchirs/vim-material'
 
-"" Dark
-"set background=dark
-"colorscheme vim-material
-
-" Palenight
-"let g:material_style='palenight'
-set background=light
-colorscheme vim-material
+source ~/.cache/dark_or_lightscheme
+colorscheme wal
 
 
-    "colorscheme xresources
-"let g:quantum_italics=1
-"hi! Normal guibg=NONE ctermbg=NONE
-"hi! EndOfBuffer cterm=NONE gui=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=#2e303e
-"hi! clear Conceal
-"hi CursorLine   cterm=NONE ctermbg=0  ctermfg=NONE guibg=#DDDDDD guifg=NONE gui=NONE
-"hi MatchParen   cterm=NONE ctermbg=12 ctermfg=NONE guibg=#DDDDDD guifg=NONE gui=NONE
-"hi CursorLine   cterm=NONE ctermbg=0 ctermfg=NONE guibg=#2E333F guifg=NONE gui=NONE
-"set laststatus=0
+hi! Normal guibg=NONE ctermbg=NONE
+hi! EndOfBuffer cterm=NONE gui=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=#2e303e
+hi! clear Conceal
+hi CursorLine   cterm=NONE ctermbg=0  ctermfg=NONE guibg=#DDDDDD guifg=NONE gui=NONE
+hi MatchParen   cterm=NONE ctermbg=12 ctermfg=NONE guibg=#DDDDDD guifg=NONE gui=NONE
+hi CursorLine   cterm=NONE ctermbg=0 ctermfg=NONE guibg=#2E333F guifg=NONE gui=NONE
+set laststatus=0
 "---}}}
 
-lua require'bufferline'.setup{}

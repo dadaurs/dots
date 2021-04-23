@@ -1,82 +1,73 @@
 --- st.c
 +++ st.c
-@@ -42,9 +41,6 @@
- #define ISCONTROLC1(c)		(BETWEEN(c, 0x80, 0x9f))
- #define ISCONTROL(c)		(ISCONTROLC0(c) || ISCONTROLC1(c))
- #define ISDELIM(u)		(u && wcschr(worddelimiters, u))
--#define TLINE(y)		((y) < term.scr ? term.hist[((y) + term.histi - \
--				term.scr + HISTSIZE + 1) % HISTSIZE] : \
--				term.line[(y) - term.scr])
+@@ -91,51 +96,6 @@ enum escape_state {
+ 	ESC_DCS        =128,
+ };
  
- enum term_mode {
- 	MODE_WRAP        = 1 << 0,
-@@ -118,9 +114,6 @@ typedef struct {
- 	int col;      /* nb col */
- 	Line *line;   /* screen */
- 	Line *alt;    /* alternate screen */
--	Line hist[HISTSIZE]; /* history buffer */
--	int histi;    /* history index */
--	int scr;      /* scroll back */
- 	int *dirty;   /* dirtyness of lines */
- 	TCursor c;    /* cursor */
- 	int ocx;      /* old cursor col */
-@@ -613,13 +606,13 @@ getsel(void)
- 		}
- 
- 		if (sel.type == SEL_RECTANGULAR) {
--			gp = &TLINE(y)[sel.nb.x];
-+			gp = &term.line[y][sel.nb.x];
- 			lastx = sel.ne.x;
- 		} else {
--			gp = &TLINE(y)[sel.nb.y == y ? sel.nb.x : 0];
-+			gp = &term.line[y][sel.nb.y == y ? sel.nb.x : 0];
- 			lastx = (sel.ne.y == y) ? sel.ne.x : term.col-1;
- 		}
--		last = &TLINE(y)[MIN(lastx, linelen-1)];
-+		last = &term.line[y][MIN(lastx, linelen-1)];
- 		while (last >= gp && last->u == ' ')
- 			--last;
- 
-@@ -1081,28 +1031,17 @@ tscrolldown(int orig, int n)
- 		term.line[i-n] = temp;
- 	}
- 
--	if (term.scr == 0)
--		selscroll(orig, n);
-+	selscroll(orig, n);
- }
- 
- void
--tscrollup(int orig, int n, int copyhist)
-+tscrollup(int orig, int n)
- {
- 	int i;
- 	Line temp;
- 
- 	LIMIT(n, 0, term.bot-orig+1);
- 
--	if (copyhist) {
--		term.histi = (term.histi + 1) % HISTSIZE;
--		temp = term.hist[term.histi];
--		term.hist[term.histi] = term.line[orig];
--		term.line[orig] = temp;
--	}
+-typedef struct {
+-	Glyph attr; /* current char attributes */
+-	int x;
+-	int y;
+-	char state;
+-} TCursor;
 -
--	if (term.scr > 0 && term.scr < HISTSIZE)
--		term.scr = MIN(term.scr + n, HISTSIZE-1);
+-typedef struct {
+-	int mode;
+-	int type;
+-	int snap;
+-	/*
+-	 * Selection variables:
+-	 * nb – normalized coordinates of the beginning of the selection
+-	 * ne – normalized coordinates of the end of the selection
+-	 * ob – original coordinates of the beginning of the selection
+-	 * oe – original coordinates of the end of the selection
+-	 */
+-	struct {
+-		int x, y;
+-	} nb, ne, ob, oe;
 -
- 	tclearregion(0, orig, term.col-1, orig+n-1);
- 	tsetdirt(orig+n, term.bot);
+-	int alt;
+-} Selection;
+-
+-/* Internal representation of the screen */
+-typedef struct {
+-	int row;      /* nb row */
+-	int col;      /* nb col */
+-	Line *line;   /* screen */
+-	Line *alt;    /* alternate screen */
+-	int *dirty;   /* dirtyness of lines */
+-	TCursor c;    /* cursor */
+-	int ocx;      /* old cursor col */
+-	int ocy;      /* old cursor row */
+-	int top;      /* top    scroll limit */
+-	int bot;      /* bottom scroll limit */
+-	int mode;     /* terminal mode flags */
+-	int esc;      /* escape state flags */
+-	char trantbl[4]; /* charset table translation */
+-	int charset;  /* current charset */
+-	int icharset; /* selected charset for sequence */
+-	int *tabs;
+-} Term;
+-
+ /* CSI Escape sequence structs */
+ /* ESC '[' [[ [<priv>] <arg> [;]] <mode> [<mode>]] */
+ typedef struct {
+@@ -1174,6 +1210,7 @@ selscroll(int orig, int n)
+ 		return;
  
-@@ -2597,9 +2527,8 @@ draw(void)
+ 	if (BETWEEN(sel.ob.y, orig, term.bot) || BETWEEN(sel.oe.y, orig, term.bot)) {
++		sel.oe.scroll = sel.ob.scroll = term.scr;
+ 		if ((sel.ob.y += n) > term.bot || (sel.oe.y += n) < term.top) {
+ 			selclear();
+ 			return;
+@@ -2681,8 +2734,8 @@ draw(void)
  		cx--;
  
  	drawregion(0, 0, term.col, term.row);
--	if (term.scr == 0)
--		xdrawcursor(cx, term.c.y, term.line[term.c.y][cx],
--				term.ocx, term.ocy, term.line[term.ocy][term.ocx]);
-+	xdrawcursor(cx, term.c.y, term.line[term.c.y][cx],
-+			term.ocx, term.ocy, term.line[term.ocy][term.ocx]);
- 	term.ocx = cx;
- 	term.ocy = term.c.y;
+-	xdrawcursor(cx, term.c.y, term.line[term.c.y][cx],
+-			term.ocx, term.ocy, term.line[term.ocy][term.ocx]);
++	xdrawcursor(cx, term.c.y, TLINE(term.c.y)[cx],
++			term.ocx, term.ocy, TLINE(term.ocy)[term.ocx]);
+ 	term.ocx = cx, term.ocy = term.c.y;
  	xfinishdraw();
+ 	xximspot(term.ocx, term.ocy);

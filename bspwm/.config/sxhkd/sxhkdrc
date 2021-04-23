@@ -285,6 +285,12 @@ alt + e ; shift+n
 	$HOME/scripts/lectures/new-course
 alt + e ; e
 	$HOME/scripts/lectures/edit-lecture
+alt + e ; z
+	$HOME/scripts/lectures/open-zoom
+alt + e ; a
+	$HOME/scripts/lectures/new-assignment
+alt + e ; w
+	$HOME/scripts/lectures/edit-assignment
 	
 
 

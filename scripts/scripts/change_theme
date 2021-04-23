@@ -9,8 +9,11 @@ dark_light=$(echo -e "Dark\nLight" | dmenu -i -p "Theme?")
                 'Dark')theme=$( ls /lib/python3.8/site-packages/pywal/colorschemes/dark/ | sed 's/\.json//' | dmenu -i
 ) && wal --theme $theme  &&  feh --bg-scale $(find $HOME/wallpapers/dark/* |
 sxiv -tio &)
+				echo "set background=dark" > $HOME/.cache/dark_or_lightscheme
+
  ;;
                 'Light')theme=$( ls /lib/python3.8/site-packages/pywal/colorschemes/light/ | sed 's/\.json//' | dmenu -i ) && wal -l --theme $theme  && feh --bg-scale   $(find $HOME/wallpapers/light/* | sxiv -tio &)
+				echo "set background=light" > $HOME/.cache/dark_or_lightscheme
 ;;
         esac
 }
@@ -18,9 +21,13 @@ wallpapset(){
         dark_light=$(echo -e "Dark\nLight" | dmenu -i -p "Theme?")
                 case $dark_light in
                         'Light')wallp=$(find $HOME/wallpapers/*/* | sxiv -tio &) &&\
-                                wal -l -i $wallp ;;
+				echo "set background=light" > $HOME/.cache/dark_or_lightscheme
+                                wal -l -i $wallp 
+				;;
                         'Dark')wallp=$(find $HOME/wallpapers/*/* | sxiv -tio &) &&\
-                                wal  -i $wallp ;;
+				echo "set background=dark" > $HOME/.cache/dark_or_lightscheme
+                                wal  -i $wallp
+				;;
                 esac
 }
 theme_wallpaper=$(echo -e "Premade Theme\nWallpaper" | dmenu -i)
@@ -51,3 +58,4 @@ if pgrep -x qutebrowser; then
 fi
 pywalfox update
 spicetify update
+nvim-ctrl ":source ~/.config/nvim/init.vim"
