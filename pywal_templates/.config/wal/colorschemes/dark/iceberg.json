@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/daniil/.config/wpg/wallpapers/AmqDCxX.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#161820",
+        "foreground": "#e6e6e6",
+        "cursor": "#e6e6e6"
+    },
+    "colors": {
+        "color0": "#161820",
+        "color1": "#d47d7b",
+        "color2": "#b6bd89",
+        "color3": "#d9a67f",
+        "color4": "#89a0c3",
+        "color5": "#9d94c3",
+        "color6": "#92b7c0",
+        "color7": "#c6c8d0",
+        "color8": "#323841",
+        "color9": "#d47d7b",
+        "color10": "#b6bd89",
+        "color11": "#d9a67f",
+        "color12": "#89a0c3",
+        "color13": "#9d94c3",
+        "color14": "#92b7c0",
+        "color15": "#e6e6e6"
+    }
+}
