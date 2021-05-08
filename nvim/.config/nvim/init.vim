@@ -18,7 +18,7 @@ set nonumber
 set nocompatible
 set mouse=a
 set splitbelow
-"set termguicolors
+set termguicolors
 set autoindent
 "let $NVIM_ENABLE_TRUE_COLOR=1
 "let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
@@ -84,6 +84,7 @@ nnoremap <silent><expr> <c-space> coc#refresh()
 nnoremap <leader>e :call CallTerm()<cr>
 nnoremap <c-x>k :q<cr>
 nnoremap <leader>e :vs<cr>:term<cr>a
+nnoremap <leader>r :Ranger<cr>
 "---}}}
 "Tnoremaps:
 "---{{{2
@@ -173,12 +174,29 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'tpope/vim-surround'
 Plug 'terryma/vim-multiple-cursors'
 "Plug 'liuchengxu/vista.vim', { 'for': ['tex', 'latex', 'c', 'cpp'] }
-"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
-" Plug 'ryanoasis/vim-devicons' Icons without colours
-"Plug 'akinsho/nvim-bufferline.lua'
-"nnoremap <Tab>n :BufferLineCycleNext<cr>
-"nnoremap <Tab>p :BufferLineCyclePrev<cr>
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+"Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
+"" Plug 'ryanoasis/vim-devicons' Icons without colours
+Plug 'akinsho/nvim-bufferline.lua'
+nnoremap <Tab>n :BufferLineCycleNext<cr>
+nnoremap <Tab>p :BufferLineCyclePrev<cr>
+Plug 'francoiscabrol/ranger.vim'
+Plug 'rbgrouleff/bclose.vim'
+Plug 'marcushwz/nvim-workbench'
+nmap <leader>b <Plug>ToggleWorkbench
+
+" <Plug>WorkbenchAddCheckbox allows you to easily turned a list in markdown to a checkbox
+" - testing -> - [ ] testing
+" * testing -> * [ ] testing
+" testing -> [ ] testing
+nmap ,a <Plug>WorkbenchAddCheckbox
+
+" <Plug>WorkbenchToggleCheckbox allows you to toggle the checkbox
+" - [ ] testing -> - [x] testing
+" - [x] testing -> - [ ] testing
+nmap <leader><CR> <Plug>WorkbenchToggleCheckbox
+
+Plug 'kevinhwang91/nvim-bqf'
 
 
 "---}}}
@@ -261,7 +279,7 @@ Plug 'nekonako/xresources-nvim'
 "Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
 
 Plug 'lilydjwg/colorizer'
-"Plug 'metakirby5/codi.vim'
+Plug 'metakirby5/codi.vim'
 "Plug 'mhinz/vim-startify'
 "---}}}
 "===========================================================================================================
@@ -278,6 +296,10 @@ Plug 'franbach/miramare'
 Plug 'sainnhe/edge'
 Plug 'morhetz/gruvbox'
 "Plug 'romgrk/doom-one.vim'
+Plug 'hzchirs/vim-material'
+Plug 'olivertaylor/vacme' 
+Plug 'robertmeta/nofrils'
+
 "---}}}
 "---
 call plug#end()
@@ -307,18 +329,21 @@ set number relativenumber
 "Colorscheme:
 "===========================================================================================================
 "---{{{1
-Plug 'hzchirs/vim-material'
 
 source ~/.cache/dark_or_lightscheme
-colorscheme wal
-
+"set background=dark
+colorscheme hybrid_material
 
 hi! Normal guibg=NONE ctermbg=NONE
-hi! EndOfBuffer cterm=NONE gui=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=#2e303e
+"hi! EndOfBuffer cterm=NONE gui=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
+
+"hi! Normal guibg=NONE ctermbg=NONE
+"hi! EndOfBuffer cterm=NONE gui=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=#2e303e
 hi! clear Conceal
-hi CursorLine   cterm=NONE ctermbg=0  ctermfg=NONE guibg=#DDDDDD guifg=NONE gui=NONE
-hi MatchParen   cterm=NONE ctermbg=12 ctermfg=NONE guibg=#DDDDDD guifg=NONE gui=NONE
-hi CursorLine   cterm=NONE ctermbg=0 ctermfg=NONE guibg=#2E333F guifg=NONE gui=NONE
+"hi CursorLine   cterm=NONE ctermbg=NONE  ctermfg=NONE guibg=NONE guifg=NONE gui=NONE
+"hi MatchParen   cterm=NONE ctermbg=12 ctermfg=NONE guibg=#DDDDDD guifg=NONE gui=NONE
+"hi CursorLine   cterm=NONE ctermbg=0 ctermfg=NONE guibg=#2E333F guifg=NONE gui=NONE
 set laststatus=0
+lua require'bufferline'.setup{}
 "---}}}
 

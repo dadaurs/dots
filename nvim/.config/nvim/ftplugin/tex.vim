@@ -31,3 +31,16 @@ nnoremap <silent> <leader>to :VimtexTocToggle<CR>
 hi! Normal guibg=NONE ctermbg=NONE
 hi! EndOfBuffer cterm=NONE gui=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=#2e303e
 inoremap <C-b> <CR><BS>\item 
+
+"source ~/.cache/dark_or_lightscheme
+"colorscheme wal
+
+
+"hi! Normal guibg=NONE ctermbg=NONE
+"hi! EndOfBuffer cterm=NONE gui=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=#2e303e
+"hi! clear Conceal
+"hi CursorLine   cterm=NONE ctermbg=0  ctermfg=NONE guibg=#DDDDDD guifg=NONE gui=NONE
+"hi MatchParen   cterm=NONE ctermbg=12 ctermfg=NONE guibg=#DDDDDD guifg=NONE gui=NONE
+"hi CursorLine   cterm=NONE ctermbg=0 ctermfg=NONE guibg=#2E333F guifg=NONE gui=NONE
+"set laststatus=0
+"uns

@@ -6,6 +6,7 @@ bar/scripts/lemonbar/xmonad/dzen-cal
 *.hi
 *.1
 emacs/.emacs.d/auto-save-list
+emacs/.emacs.d/latex-math-preview
 emacs/.emacs.d/config.el
 emacs/.emacs.d/elpa
 emacs/.emacs.d/elpy

@@ -32,6 +32,15 @@ static Bool npisrelative  = False;
                 p, winid, NULL \
         } \
 }
+ResourcePref resources[] = {
+		{ "font",         STRING,  &font },
+		{ "color0",       STRING,  &normbgcolor },
+		{ "color4",       STRING,  &normfgcolor },
+		{ "color4",       STRING,  &selbgcolor },
+		{ "color7",       STRING,  &selfgcolor },
+		{ "color2",       STRING,  &urgbgcolor },
+		{ "color3",       STRING,  &urgfgcolor },
+};
 
 #define MODKEY ControlMask
 static Key keys[] = {

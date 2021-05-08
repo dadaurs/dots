@@ -13,6 +13,7 @@
 #include <X11/Xatom.h>
 #include <X11/Xlib.h>
 #include <X11/Xproto.h>
+#include <X11/Xresource.h>
 #include <X11/Xutil.h>
 #include <X11/XKBlib.h>
 #include <X11/Xft/Xft.h>
@@ -85,11 +86,26 @@ typedef struct {
 	Bool urgent;
 	Bool closed;
 } Client;
+ 
+/* Xresources preferences */
+enum resource_type {
+	STRING = 0,
+	INTEGER = 1,
+	FLOAT = 2
+};
+
+typedef struct {
+	char *name;
+	enum resource_type type;
+	void *dst;
+} ResourcePref;
+ 
 
 /* function declarations */
 static void buttonpress(const XEvent *e);
 static void cleanup(void);
 static void clientmessage(const XEvent *e);
+static void config_init(void);
 static void configurenotify(const XEvent *e);
 static void configurerequest(const XEvent *e);
 static void createnotify(const XEvent *e);
@@ -120,6 +136,7 @@ static void move(const Arg *arg);
 static void movetab(const Arg *arg);
 static void propertynotify(const XEvent *e);
 static void resize(int c, int w, int h);
+static int resource_load(XrmDatabase db, char *name, enum resource_type rtype, void *dst);
 static void rotate(const Arg *arg);
 static void run(void);
 static void sendxembed(int c, long msg, long detail, long d1, long d2);
@@ -243,6 +260,23 @@ clientmessage(const XEvent *e)
 		}
 		running = False;
 	}
+}
+
+void
+config_init(void)
+{
+	char *resm;
+	XrmDatabase db;
+	ResourcePref *p;
+
+	XrmInitialize();
+	resm = XResourceManagerString(dpy);
+	if (!resm)
+		return;
+
+	db = XrmGetStringDatabase(resm);
+	for (p = resources; p < resources + LENGTH(resources); p++)
+		resource_load(db, p->name, p->type, p->dst);
 }
 
 void
@@ -888,6 +922,40 @@ resize(int c, int w, int h)
 	           (XEvent *)&ce);
 }
 
+int
+resource_load(XrmDatabase db, char *name, enum resource_type rtype, void *dst)
+{
+	char **sdst = dst;
+	int *idst = dst;
+	float *fdst = dst;
+
+	char fullname[256];
+	char fullclass[256];
+	char *type;
+	XrmValue ret;
+
+	snprintf(fullname, sizeof(fullname), "%s.%s", "tabbed", name);
+	snprintf(fullclass, sizeof(fullclass), "%s.%s", "tabbed", name);
+	fullname[sizeof(fullname) - 1] = fullclass[sizeof(fullclass) - 1] = '\0';
+
+	XrmGetResource(db, fullname, fullclass, &type, &ret);
+	if (ret.addr == NULL || strncmp("String", type, 64))
+		return 1;
+
+	switch (rtype) {
+	case STRING:
+		*sdst = ret.addr;
+		break;
+	case INTEGER:
+		*idst = strtoul(ret.addr, NULL, 10);
+		break;
+	case FLOAT:
+		*fdst = strtof(ret.addr, NULL);
+		break;
+	}
+	return 0;
+}
+
 void
 rotate(const Arg *arg)
 {
@@ -1344,6 +1412,7 @@ main(int argc, char *argv[])
 	if (!(dpy = XOpenDisplay(NULL)))
 		die("%s: cannot open display\n", argv0);
 
+	config_init();
 	setup();
 	printf("0x%lx\n", win);
 	fflush(NULL);

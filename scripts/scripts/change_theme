@@ -56,6 +56,7 @@ fi
 if pgrep -x qutebrowser; then
 	qutebrowser :config-source
 fi
-pywalfox update
-spicetify update
-nvim-ctrl ":source ~/.config/nvim/init.vim"
+pywalfox update &
+spicetify update &
+nvim-ctrl ":source ~/.config/nvim/init.vim" &
+/home/david/.telegram-palette-gen/telegram-palette-gen --wal

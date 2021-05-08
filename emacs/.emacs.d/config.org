@@ -7,7 +7,7 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
-(package-initialize)
+;(package-initialize)
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
@@ -66,6 +66,13 @@
      (setq evil-normal-state-cursor 'box)  ; █
      (setq evil-insert-state-cursor 'bar)  ; ⎸
      (setq evil-emacs-state-cursor  'hbar) ; _
+     
+
+
+(use-package general
+:config
+(general-evil-setup t))
+
 #+END_SRC
 
 * Use packages
@@ -75,7 +82,8 @@
       (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
       (add-to-list 'load-path "~/.emacs.d/evil")
 #+END_SRC
-** All the *require* packages.
+** All the *use-package* packages.
+
 #+BEGIN_SRC emacs-lisp
       (use-package bind-key)
       (use-package ido
@@ -84,67 +92,87 @@
       )
       (use-package doom-themes)
       (use-package company)
-#+END_SRC
-      
-#+BEGIN_SRC emacs-lisp
       (use-package key-chord)
       (use-package evil-nerd-commenter)
       (use-package treemacs)
-      (use-package org
-      :config
-  (evil-set-initial-state 'org-agenda-mode 'normal)
-  (defvar org-agenda-mode-map)
-  (evil-define-key 'normal org-agenda-mode-map
-    "j" 'org-agenda-next-line
-    "k" 'org-agenda-previous-line
-    "o" 'org-agenda-open-link
-    "f" 'org-agenda-later
-    "b" 'org-agenda-earlier
-    (kbd "RET") 'org-agenda-switch-to
-    [escape] 'org-agenda-quit
-    "q" 'org-agenda-quit
-    "s" 'org-agenda-save-all-org-buffers
-    "t" 'org-agenda-todo
-    (kbd "SPC") 'org-agenda-show-and-scroll-up
-    )
-  (evil-leader/set-key-for-mode 'org-agenda-mode
-    "i" 'org-agenda-clock-in
-    "k" 'org-agenda-kill
-    "/" 'org-agenda-filter-by-tag
-    )
+      (use-package pdf-tools)
+      ;(use-package tex-site)
+      (use-package magit)
+      (use-package evil-magit)
+#+END_SRC
+
+** Org mode config
+#+BEGIN_SRC emacs-lisp
+(add-hook 'org-mode-hook 'org-indent-mode)
+(setq org-directory "~/Org/"
+      org-agenda-files '("~/Org/todo.org")
+      org-default-notes-file (expand-file-name "notes.org" org-directory)
+      org-ellipsis " ... "
+      org-log-done 'time
+      org-journal-dir "~/Org/journal/"
+      org-journal-date-format "%B %d, %Y (%A) "
+      org-journal-file-format "%Y-%m-%d.org"
+      org-hide-emphasis-markers t)
+(setq org-src-preserve-indentation nil
+      org-src-tab-acts-natively t
+      org-edit-src-content-indentation 0)
+#+END_SRC
+Org bullets
+#+BEGIN_SRC emacs-lisp
+(use-package org-bullets)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+#+END_SRC
+** dashboard setup 
+#+BEGIN_SRC emacs-lisp
+(require 'dashboard)
+(dashboard-setup-startup-hook)
+(use-package dashboard
+  :init      ;; tweak dashboard config before loading it
+  (setq dashboard-set-heading-icons t)
+  (setq dashboard-set-file-icons t)
+  (setq dashboard-banner-logo-title "Emacs Is More Than A Text Editor!")
+  ;;(setq dashboard-startup-banner 'logo) ;; use standard emacs logo as banner
+  (setq dashboard-startup-banner "~/.emacs.d/emacs-dash.png")  ;; use custom image as banner
+  (setq dashboard-center-content nil) ;; set to 't' for centered content
+  (setq dashboard-items '((recents . 5)
+                          (agenda . 5 )
+                          (bookmarks . 3)
+                          (projects . 3)
+                          (registers . 3)))
+  :config
+  (dashboard-setup-startup-hook)
+  (dashboard-modify-heading-icons '((recents . "file-text")
+			      (bookmarks . "book"))))
+
+      
+#+END_SRC
+This is to make dashboard start even when opening emacs client
+#+BEGIN_SRC emacs-lisp
+(setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+#+END_SRC
+
+*** Keys config for evil in org
+#+BEGIN_SRC emacs-lisp
 
   ;; Evil key configuration (org)
   (evil-leader/set-key-for-mode 'org-mode
     "i" 'org-clock-in
     "o" 'org-clock-out
     )
-    )
       (use-package org-evil)
       (use-package evil-org)
       (use-package lsp-java :ensure t :after lsp
       :config (add-hook 'java-mode-hook 'lsp)
       (add-hook 'java-mode-hook #'lsp-java-boot-lens-mode)
-)
+      )
       (add-to-list 'load-path "/home/dada/source/emacs-libvterm")
-      (use-package pdf-tools)
-      (use-package org-bullets)
-      (use-package tex-site)
-      (use-package evil-magit)
       (use-package vterm
       :ensure t
       )
-      (use-package eclim
-      :config
-(setq eclimd-autostart t)
-(defun my-java-mode-hook ()
-    (eclim-mode t))
-
-(add-hook 'java-mode-hook 'my-java-mode-hook)
-)
       (use-package elpy
       :config
       (elpy-enable)
-)
+      )
       (set-frame-font "Ubuntu Mono Nerd Font:pixelsize=15" t)
       ;;(dashboard-setup-startup-hook)
       (menu-bar-mode -1)
@@ -152,46 +180,46 @@
       (tool-bar-mode -1)
       (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
       (setq evil-want-keybinding nil)
-      ;; (when (require 'evil-collection nil t))
-	;; (evil-collection-init)
-;; Or if you use use-package
-    (use-package rg
-:config )
-
-    (use-package ivy
-:config
-  (ivy-mode)
-)
-(use-package ivy
-  :diminish
-  :hook (after-init . ivy-mode)
-  :config
-  (setq ivy-display-style nil)
-  (define-key ivy-minibuffer-map (kbd "RET") #'ivy-alt-done)
-  (define-key ivy-minibuffer-map (kbd "<escape>") #'minibuffer-keyboard-quit)
-  ;;(setq ivy-re-builders-alist
-        ;;'((counsel-rg . ivy--regex-plus)
-          ;;(counsel-projectile-rg . ivy--regex-plus)
-          ;;(counsel-ag . ivy--regex-plus)
-          ;;(counsel-projectile-ag . ivy--regex-plus)
-          ;;(swiper . ivy--regex-plus)
-          ;;(t . ivy--regex-fuzzy)))
-(global-set-key "\C-s" 'swiper)
-  (setq ivy-use-virtual-buffers t
-        ivy-count-format "(%d/%d) "
-        ivy-initial-inputs-alist nil))
-(use-package all-the-icons)
-(use-package evil-nerd-commenter)
-(use-package wich-key
-:config
-(which-key-mode)
-)
-
+      #+END_SRC
+** Ivy and counsel setup
+      #+BEGIN_SRC emacs-lisp
+      (use-package counsel
+        :after ivy
+        :config (counsel-mode))
+            (use-package ivy
+              :defer 0.1
+              :diminish
+              :bind
+              (("C-c C-r" . ivy-resume)
+               ("C-x B" . ivy-switch-buffer-other-window))
+              :custom
+              (setq ivy-use-virtual-buffers t)
+              (setq enable-recursive-minibuffers t)
+              :config
+              (ivy-mode))
+                  (use-package all-the-icons)
+                  (use-package evil-nerd-commenter)
+#+END_SRC
+No '^' at begin of prompts
+#+BEGIN_SRC emacs-lisp
+(setq ivy-initial-inputs-alist nil)
+#+END_SRC
+M-x now remembers history
+#+BEGIN_SRC emacs-lisp
+(use-package smex)
+(smex-initialize)
 #+END_SRC
 
+** Modeline
+#+BEGIN_SRC emacs-lisp
+(use-package doom-modeline)
+(doom-modeline-mode 1)
+(setq doom-modeline-unicode-fallback nil)
+#+END_SRC
 * Defaults
 Easily open file manager
 #+BEGIN_SRC emacs-lisp
+(ivy-mode)
 (bind-key* "C-c d" 'dired)
 #+END_SRC
 ** Stuff I dont understand
@@ -223,11 +251,6 @@ Easily open file manager
       (setq scroll-step 1)
 (setq scroll-margin 1) 
 (setq scroll-conservatively 9999)
-#+END_SRC
-** Got honestly no clue
-#+BEGIN_SRC emacs-lisp
-   ;; (setq geiser-repl-history-filename (expand-file-name "geiser_history" user-emacs-directory))
-   ;; (setq elfeed-db-directory (expand-file-name "elfeed" user-emacs-directory))
 #+END_SRC
 ** Backup directories
 #+BEGIN_SRC emacs-lisp
@@ -272,6 +295,15 @@ Easily open file manager
 
   ;; (define-key c-mode-map (kbd "C-c c") 'execute-c-program)
 #+END_SRC
+** Zooming in and out
+#+BEGIN_SRC emacs-lisp
+;; zoom in/out like we do everywhere else.
+(global-set-key (kbd "C-=") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+(global-set-key (kbd "<C-wheel-up>") 'text-scale-increase)
+(global-set-key (kbd "<C-wheel-down>") 'text-scale-decrease)
+
+#+END_SRC
 * Dired
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-x i") 'peep-dired)
@@ -280,6 +312,10 @@ Easily open file manager
 (add-hook 'peep-dired-hook 'evil-normalize-keymaps)
 (setq ranger-preview-file t)
 (setq ranger-show-literal t)
+(nvmap :states '(normal visual) :keymaps 'override :prefix "SPC"
+               "d d" '(dired :which-key "Open dired")
+               "d j" '(dired-jump :which-key "Dired jump to current")
+               "d p" '(peep-dired :which-key "Peep-dired"))
 #+END_SRC
 
 * Per Package configs
@@ -314,6 +350,12 @@ Easily open file manager
   (directory . emacs)))
 #+END_SRC
 
+** Projectile settings 
+#+BEGIN_SRC emacs-lisp
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+#+END_SRC
 * Shortcuts & aliases
 #+BEGIN_SRC emacs-lisp
 (defun cx ()
@@ -333,6 +375,17 @@ Easily open file manager
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 #+END_SRC
+#+BEGIN_SRC emacs-lisp
+(nvmap :prefix "SPC"
+       "b b"   '(ibuffer :which-key "Ibuffer")
+       "b c"   '(clone-indirect-buffer-other-window :which-key "Clone indirect buffer other window")
+       "b k"   '(kill-current-buffer :which-key "Kill current buffer")
+       "b n"   '(next-buffer :which-key "Next buffer")
+       "b p"   '(previous-buffer :which-key "Previous buffer")
+       "b B"   '(ibuffer-list-buffers :which-key "Ibuffer list buffers")
+       "b K"   '(kill-buffer :which-key "Kill buffer"))
+#+END_SRC
+      
 * Latex configurations
 ** French specific
 #+BEGIN_SRC emacs-lisp
@@ -373,11 +426,7 @@ Easily open file manager
  (defun insert-lt ()
     (interactive)
     (insert "<"))
-;;(define-key Latex-mode-map (kbd ";") 'insert-e-acc))
-;;(add-hook 'latex-mode-hook
-	;;;  (lambda ()
 (add-hook 'LaTeX-mode-hook
-;;(add-hook 'latex-mode-hook
 	  (lambda ()
 	   (local-set-key (kbd ";") #'insert-e-acc)
 	   (local-set-key (kbd ":") #'insert-e-back)
@@ -397,6 +446,12 @@ Easily open file manager
 #+END_SRC
 ** Settings
 #+BEGIN_SRC emacs-lisp
+  ;;(load "auctex.el" nil t t)
+    ;;(require 'tex-mik)
+	
+;;(load "preview-latex.el" nil t t)
+
+;;(use-package auctex)
 (defun flymake-get-tex-args (file-name)
 (list "pdflatex"
 (list "-file-line-error" "-draftmode" "-interaction=nonstopmode" file-name)))
@@ -456,44 +511,17 @@ LaTeX-section-label))
 * Mail
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu/mu4e.el")
-;;(require 'mu4e)
-;;(set-email-account! "dada"
- ;; '((mu4e-sent-folder       . "/dada/Sent Mail")
-  ;;  (mu4e-drafts-folder     . "/dada/Drafts")
-  ;;  (mu4e-trash-folder      . "/dada/Trash")
-  ;;  (mu4e-refile-folder     . "/dada/All Mail")
-  ;;  (smtpmail-smtp-user     . "david.wiedemann@outlook.com")
-  ;; (user-mail-address      . "david.wiedemann@outlook.com")    ;; only needed for mu < 1.4
-   ;; (mu4e-compose-signature . "---\nDavid Wiedemann"))
-  ;;t)
-  
-;; tell message-mode how to send mail
 (setq message-send-mail-function 'smtpmail-send-it)
-;; (user-mail-address . "david.wiedemann@outlook.com")
-;; if our mail server lives at smtp.example.org; if you have a local
-;; mail-server, simply use 'localhost' here.
 (require 'smtpmail)
 (setq smtpmail-smtp-server "SMTP.office365.com")
-;; (smtpmail-default-smtp-server . "SMTP.office365.com")
-;; (smtpmail-smtp-user . "david.wiedemann@outlook.com")
-;; (smtpmail-starttls-credentials . (("SMTP.office365.com" 587 nil nil)))
 (setq mu4e-change-filenames-when-moving t)
 (setq mu4e-attachment-dir  "~/Downloads")
-;; (require 'org-mu4e)
-
-;; convert org mode to HTML automatically
 (setq org-mu4e-convert-to-html t)
 (global-set-key (kbd "C-x m") 'mu4e)
 #+END_SRC
 * Org mode configurations
 ** External packages
 #+BEGIN_SRC emacs-lisp
-;; (add-hook 'org-mode-hook
-;;    (lambda ()
-;;     (org-bullets-mode t)))
-;; (setq org-hide-leading-starts t)
-;; (setq org-ellipsis "↴")
-;; (setq org-src-fontify-natively t)
 (defun frenchmode ()
     (interactive)
 	   (local-set-key (kbd ";") #'insert-e-acc)
@@ -527,9 +555,7 @@ Set keybinding to open org-agenda
 #+END_SRC
 #+BEGIN_SRC emacs-lisp
 
-(add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 (setq org-startup-indented t
-      org-bullets-bullet-list '(" ") ;; no bullets, needs org-bullets package
      ; org-ellipsis "  " ;; folding symbol
       org-pretty-entities t
       org-hide-emphasis-markers t
@@ -542,9 +568,9 @@ Set keybinding to open org-agenda
   (setq left-margin-width 2)
   (setq right-margin-width 2)
   (set-window-buffer nil (current-buffer))))
-  (setq org-agenda-files (quote  ("~/Cours/agenda.org")))
+  (setq org-agenda-files (quote  ("~/Cours/todo.org")))
   (setq inhibit-splash-screen t)
-(org-agenda-list)
+;(org-agenda-list)
 (delete-other-windows)
 (add-hook 'org-mode-hook 'evil-org-mode)
 #+END_SRC
@@ -568,34 +594,35 @@ Set keybinding to open org-agenda
 ;;(load-theme 'xresources t)
 (bind-key* "C-x C-r" 'reload-dotemacs-file)
 (setq ewal-json-file "~/.cache/wal/colors.json")
-;; (use-package ewal
-;;   :init (setq ewal-use-built-in-always-p nil
-;;               ewal-use-built-in-on-failure-p t
-;;               ewal-built-in-palette "sexy-material"))
+ (load-theme 'base16-nord t)
 
-;; (use-package ewal-evil-cursors
-;;   :after (ewal-spacemacs-themes)
-;;   :config (ewal-evil-cursors-get-colors
-;;            :apply t :spaceline t))
-           
-;;  (use-package ewal-spacemacs-themes
-;;   :init (progn
-;;           (setq spacemacs-theme-underline-parens t)
-;;    ;;             my:rice:font (font-spec
-;;  ;;                             :family "Iosevka Nerd Font"
-;; ;;                              :weight 'semi-bold
-;;  ;;                             :size 11.0))
-;;           (show-paren-mode +1)
-;;           (global-hl-line-mode)
-;; ;;          (set-frame-font my:rice:font nil t)
-;;           (add-to-list  'default-frame-alist
-;;                         `(font . "Ubuntu Mono Nerd Font-12" ))
-;;   :config (progn
-;;             (load-theme 'ewal-spacemacs-modern t)
-;;             (enable-theme 'ewal-spacemacs-modern))))
-;;(use-package spaceline
- ;; :after (ewal-evil-cursors winum)
-  ;;:init (setq powerline-default-separator nil)
-  ;;:config (spaceline-spacemacs-theme))
- (load-theme 'base16-default-dark t)
+(set-face-attribute 'default nil
+  :font "Iosevka Nerd Font"
+  :height 110
+  :weight 'medium)
+(set-face-attribute 'variable-pitch nil
+  :font "Iosevka Nerd Font"
+  :height 120
+  :weight 'medium)
+(set-face-attribute 'fixed-pitch nil
+  :font "Iosevka Nerd Font"
+  :height 110
+  :weight 'medium)
+;; Makes commented text and keywords italics.
+;; This is working in emacsclient but not emacs.
+;; Your font must have an italic face available.
+(set-face-attribute 'font-lock-comment-face nil
+  :slant 'italic)
+(set-face-attribute 'font-lock-keyword-face nil
+  :slant 'italic)
+
+;; Uncomment the following line if line spacing needs adjusting.
+(setq-default line-spacing 0.20)
+
+;; Needed if using emacsclient. Otherwise, your fonts will be smaller than expected.
+(add-to-list 'default-frame-alist '(font . "Source Code Pro-11"))
+;; changes certain keywords to symbols, such as lamda!
+(setq global-prettify-symbols-mode t)
+
+ 
 #+END_SRC

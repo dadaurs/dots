@@ -1,0 +1,28 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/home/david/" . ".emacs.d/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/home/david/.emacs.d/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "config.org"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/home/david/dots/emacs/.emacs.d/" (24718 52054 70264 857000) "smex-items" "init.el" "config.el" "ido.last" "recentf" "recentf~" "eshell/" "elpy/" "games/" "snippets/" "transient/" "auto-save-list/" "network-security.data" "elpa/" "config.org" "../" "./")
+
+ ("/home/david/.emacs.d/" (24718 51148 40260 218000) "config.el" "init.el" "recentf" "recentf~" "eshell/" "elpy/" "games/" "snippets/" "transient/" "auto-save-list/" "network-security.data" "elpa/" "config.org" "../" "./")
+
+ ("/home/david/" (24718 15359 306745 84000) ".xsession-errors" ".xsession-errors.old" "wlan" ".viminfo" ".xprofile" ".icons/" ".themes/" "log" "Desktop/" ".xinitrc" ".dmrc" ".xsession" ".Xauthority" ".telegram-palette-gen/" ".telegram-cli/" ".git-credentials" ".xournal/" ".gtkrc-2.0" "Documents/" ".yarnrc" ".yarn/" ".nvm/" ".atom/" ".vscode-oss/" "ProjetProg/" ".steampid" ".steampath" ".scid4.7/" ".rustup/" ".minecraft/" ".fzf.zsh" ".fzf.bash" ".steam/" ".fehbg" ".mbsyncrc" ".inputrc" "pdf/" ".zoom/" "Cours/" ".zshenv" ".texlive/" "VirtualBox VMs/" ".gitconfig" ".pam-gnupg" "Downloads/" ".emacs.d/" ".gnupg/" ".mozilla/" "scripts/" "wallpapers/" ".vim/" ".fzf/" ".ssh/" ".pki/" ".xmonad/" ".suckless/" "dots/" ".config/" ".cache/" ".local/" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

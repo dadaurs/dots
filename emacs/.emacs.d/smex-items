@@ -1,0 +1,16 @@
+
+;; ----- smex-history -----
+(
+ eval-region
+ cd
+ rg
+ 5x5
+ arp
+ dbx
+ dig
+)
+
+;; ----- smex-data -----
+(
+ (eval-region . 4)
+)
