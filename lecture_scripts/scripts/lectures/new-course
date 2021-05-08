@@ -1,0 +1,34 @@
+#!/bin/sh
+#vim:filetype=sh
+. "$HOME/scripts/lectures/config"
+
+name=$(echo -n "" | $dmenu_cmd -p "Name Of Course: " -l 0 )
+[ "$name" = "" ] && exit 0
+course_pdf=$(cd "$HOME/Cours/pdf" && (find . | sed 's:\./::' | grep -ve "\.$" | $dmenu_cmd -p "Name of course pdf:"))
+[ "$course_pdf" = "" ] && exit 0
+
+mkdir "$basedir/$name" || (notify-send "Course Already exists" && return)
+mkdir -p "$basedir/$name/notes"
+#cp $basedir/.preamble $basedir/$name/notes/preamble.tex || return
+
+cat > "$basedir/$name/notes/main.tex" << EOF
+\input{../../preamble.tex}
+\title{$name}
+\author{$author}
+\date{}
+\begin{document}
+\maketitle
+\input{../../header.tex}
+
+%EOL
+\end{document}
+EOF
+
+cat > "$basedir/$name/notes/latexmkrc" << EOF
+\$bibtex_use = 0;
+EOF
+find "$HOME/Cours/pdf" -type f -name "$course_pdf"  && ln -s "$HOME/Maths/pdf/$course_pdf" "$basedir/$name/course.pdf" 
+$scriptdir/chcourse "$name"
+
+
+

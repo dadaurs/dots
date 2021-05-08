@@ -1,0 +1,33 @@
+#!/bin/sh
+#vim:filetype=sh
+. $HOME/Cours/current-course/INFO
+. $HOME/scripts/lectures/config
+get_max(){
+	all_nums=$(find . -type d -name "S[0-9]*" | sed -e 's/S//g' -e 's:^\./::' )
+	last_lec=$( sort -n <<< "$all_nums" | tail -n1  )
+	expr $last_lec + 1
+}
+
+[[ "$LANG" = FRENCH ]] && ex_name="Série" || ex_name="Exercise"
+echo 1
+
+if [[ "$ASS" != true ]]; then
+	notify-send "This course does not have assignments"
+	exit 0
+fi
+echo 2
+cd $currentcoursedir/Assignments
+echo 3
+
+newnum=$(get_max)
+echo 4
+mkdir S$newnum
+echo 5
+cd S$newnum
+echo 6
+sed --posix -e "s/&&title&&/$ex_name\ $newnum/" $HOME/Cours/assignment.tex >> Ex.tex
+st -e tmux new-session -s "Tex Notes of assignment for $current_course" "nvim Ex.tex; $SHELL" || st -e tmux attach-session -t "Tex Notes of assignment for $current_course"  &
+
+
+
+

@@ -1,0 +1,48 @@
+#!/bin/sh
+#vim:filetype=sh
+#dmenu_cmd="rofi -dmenu"
+#coursedir="$HOME/Maths/Cours/current-course/notes"
+#lecturedir="$coursedir/lectures"
+#current_course=$(readlink  $HOME/Maths/Cours/current-course)
+. "$HOME/scripts/lectures/config"
+test -d "$coursedir/lectures" || mkdir -p "$coursedir/lectures"
+get_num(){
+	cd "$lecturedir" || return
+	all_nums=$(find . -type f -name "lec[0-9]*\.tex" | sed -e 's/lec//g' -e 's/\.tex//g' -e 's:^\./::')
+	#all_nums=$( ls  | grep -e "lec[0-9]*\.tex" | sed -e 's/lec//g' -e 's/\.tex//g')
+	last_lec=$( sort -n <<< "$all_nums" | tail -n1  )
+	expr $last_lec + 1
+}
+new_lec=$(get_num)
+
+
+insert_to_main(){
+	new_string="\\\subfile{lectures/lec$new_lec.tex}\n%EOL"
+	sed -i   "s:^%EOL:$new_string:" "$coursedir/main.tex"
+}
+date=$(date "+%a %d %b")
+title=$(echo -n "" | $dmenu_cmd -l 0 -p "Lecture n.$new_lec; what title?")
+
+[ "$title" = "" ] && exit 1
+
+#Test if lecture already exists, if yes, attach 
+test -f $coursedir/lectures/lec$new_lec.tex && (st -e tmux attach-session -s "Tex Notes of course $current_course" "nvim lec$new_lec.tex;$SHELL" || st -e tmux attach-session -t "Tex Notes of course $current_course")
+
+pgrep -x inkscape-figure >/dev/null 2>&1 || (cd "$coursedir" && inkscape-figures watch)
+
+cat > "$coursedir/lectures/lec$new_lec.tex" << EOF
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\lecture{$new_lec}{$date}{$title}
+
+\end{document}	
+EOF
+insert_to_main
+
+cd "$lecturedir" || exit 1
+tmuxtitle="Tex Notes of course $current_course | lecture $new_lec"
+st -e tmux new-session -s "$tmuxtitle"  "nvim -c 'normal jjj' lec$new_lec.tex;$SHELL"  & disown
+cd $coursedir || exit 1
+sleep 0.5
+tmux  new-window -t "$tmuxtitle" "nvim main.tex;$SHELL"
+tmux select-window -t 1 

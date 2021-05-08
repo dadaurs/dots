@@ -1,0 +1,37 @@
+#!/bin/sh
+#!vim:filetype=sh
+. $HOME/scripts/lectures/config
+#cd $coursedir
+choosecourse(){
+cd $basedir
+current_course=$(readlink current-course)
+numcourses=$(ls -d */ | grep -v current-course | grep -v "BA[0-9]" | grep -v pdf | wc -l)
+#test -d current-course && unlink current-course
+new_course=$(ls -d */ | grep -v current-course | grep -v pdf | grep -v "BA[0-9]" | $dmenu_cmd -l "$numcourses" -p "What Course?")
+if [ "$new_course" = "" ]; then
+	exit 1
+fi
+{
+	unlink "$basedir/current-course" 2>/dev/null 1>&2
+}||{
+	printf ""
+}
+ln -sf "$basedir/$new_course" "$basedir/current-course"
+}
+setcourse(){
+cd $basedir
+current_course=$(readlink current-course)
+numcourses=$(ls -d */ | grep -v current-course | grep -v pdf  | wc -l)
+{
+	unlink "$basedir/current-course"
+}||{
+	printf ""
+}
+ln -sf "$basedir/$1" "$basedir/current-course"
+}
+
+if [ $# -eq 0 ];then
+    choosecourse
+else
+	setcourse "$1"
+fi

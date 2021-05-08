@@ -1,0 +1,14 @@
+#!/bin/sh
+#vim:filetype=sh
+basedir="$HOME/Cours"
+scriptdir="$HOME/scripts/lectures"
+dmenu_cmd="rofi -dmenu -i"
+author="David Wiedemann"
+date=$(date "+%a %d %b")
+
+currentcoursedir="$basedir/current-course"
+coursedir="$basedir/current-course/notes"
+lecturedir="$coursedir/lectures"
+WIDTH=$( xdpyinfo  | grep -i 'dimensions:' | sed 's:x:\ :' | awk '{print $2}' ) 
+HEIGHT=$( xdpyinfo  | grep -i 'dimensions:' | awk '{print $2}' | cut -d"x" -f 2)
+current_course=$(readlink  $basedir/current-course)

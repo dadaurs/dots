@@ -1,0 +1,22 @@
+#!/bin/sh
+#vim:filetype=sh
+. "$HOME/scripts/lectures/config"
+#dmenu_options="-w $(expr $WIDTH - $MARGIN -  $MARGIN -  $MARGIN - $MARGIN ) -x $MARGIN -y 25 -bw $MARGIN   -i"
+options=$'Edit Main File\nEdit Lectures\nLook at Notes\nOpen File Manager\nOpen tmux\nLook at course PDF'
+choice=$( $dmenu_cmd -p "Quoi?" -l 5  <<< $options )
+current_course=$(readlink  "$HOME/Maths/Cours/current-course")
+watchfigures(){
+pgrep -x inkscape-figure >/dev/null 2>&1 || (cd "$coursedir" && inkscape-figures watch)
+}
+
+case $choice in
+	'Edit Main File') cd "$coursedir" && (st -e tmux new-session -s "Tex Notes of course $current_course" "nvim main.tex; $SHELL" || st -e tmux attach-session -t "Tex Notes of course $current_course" & ) 
+		watchfigures;;
+	'Edit Lectures') "$scriptdir/edit-lecture";;
+	'Look at Notes') cd "$coursedir" && tabbed -c zathura main.pdf -e;;
+	'Open File Manager') cd "$coursedir" && st -e ranger;;
+	'Open tmux') cd "$coursedir" && st -e tmux new-session -s "Shell in Cours dir";;
+	'Look at course PDF') cd "$currentcoursedir" && tabbed -c zathura course.pdf -e;;
+	
+	*)exit 1;;
+esac

@@ -1,0 +1,6 @@
+#!/bin/sh
+#vim:filetype=sh
+. $HOME/scripts/lectures/config
+
+cd $basedir 
+readlink current-course | sed -e "s:/home/david/Cours/::g" -e "s:/::g"

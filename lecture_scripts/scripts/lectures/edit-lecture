@@ -1,0 +1,30 @@
+#!/bin/sh
+#vim:filetype=sh
+. $HOME/scripts/lectures/config
+get_title(){
+	cd $lecturedir || return
+	grep -e "\\lecture{$1}" "lec$1.tex" |\
+	sed -e "s/\\lecture{$1}{[a-zA-Z0-9 ]*}//" |\
+	cut -d "{" -f2 |\
+	cut -d "}" -f1
+}
+test -d $coursedir/lectures || mkdir $coursedir/lectures
+num_lec=$(ls $lecturedir | grep lec | wc -l)
+[ "$num_lec" -eq 0 ] && notify-send "No lectures in current course."
+all_lectures=$(ls $lecturedir | grep lec | tac | sed -e 's/lec//g' -e 's/\.tex//g')
+lectures_with_title=$''
+for i in $(seq 1 $num_lec);do
+	tmptitle=`get_title $i`
+	lectures_with_title="$lectures_with_title$i <b>$tmptitle</b> \n"
+done
+pgrep -x inkscape-figure >/dev/null 2>&1 || (cd "$coursedir" && inkscape-figures watch)
+
+
+cd "$lecturedir" || exit 1
+choice=$(echo -ne  $lectures_with_title | tac | $dmenu_cmd -markup-rows -p "Which lecture?" -l $num_lec | awk '{print $1}'  )
+[ "$choice" = "" ] && exit 0
+cd "$lecturedir" && (st -e tmux new-session -s "Tex Notes of course $current_course | lecture $choice" "nvim lec$choice.tex; $SHELL" || st -e tmux attach-session -t "Tex Notes of course $current_course | lecture $choice" ) &
+cd $coursedir || exit 1
+sleep 0.5
+tmux  new-window -t "$tmuxtitle" "nvim main.tex;$SHELL"
+tmux select-window -t 1 

@@ -1,0 +1,24 @@
+#!/bin/sh
+#vim:filetype=sh
+. $HOME/scripts/lectures/config
+. $HOME/Cours/current-course/INFO
+
+if [[ "$EX_ZOOM" = "true" ]]; then
+	type=$(echo -e "Course\nExercises" | $dmenu_cmd -p "" -l 2 )
+else
+	type="Course"
+fi
+
+
+case $type in
+	"Course")
+		if [ "$COURS_ZOOM" = true ]; then
+			zoom --url="$COURS" & disown
+		else
+			chromium "$COURS" & disown
+		fi
+		;;
+
+	"Exercises") zoom --url="$EX" & disown;;
+esac
+

@@ -1,0 +1,16 @@
+#!/bin/sh
+#vim:filetype=sh
+. "$HOME/scripts/lectures/config"
+. "$HOME/Cours/current-course/INFO"
+cd $currentcoursedir/Assignments
+
+if [[ "$ASS" != true ]]; then
+	 notify-send "This course does not contain assignments" 
+	 exit
+fi
+length=$(ls | wc -l)
+choice=$( ls | tac | $dmenu_cmd -l $length -p "Which One?" -i )
+
+[ "$choice" = "" ] && exit 1
+cd $choice
+st -e tmux new-session -s "Assignment for $current_course" "nvim Ex.tex; $SHELL" || st -e tmux attach-session -t "Assignment for $current_course" & 
