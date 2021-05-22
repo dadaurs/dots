@@ -332,7 +332,10 @@ set number relativenumber
 
 source ~/.cache/dark_or_lightscheme
 "set background=dark
-colorscheme hybrid_material
+let g:enable_bold_font = 1  
+let g:enable_italic_font = 1
+let g:hybrid_transparent_background = 1
+colorscheme xresources
 
 hi! Normal guibg=NONE ctermbg=NONE
 "hi! EndOfBuffer cterm=NONE gui=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
@@ -346,4 +349,3 @@ hi! clear Conceal
 set laststatus=0
 lua require'bufferline'.setup{}
 "---}}}
-

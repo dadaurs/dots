@@ -177,6 +177,15 @@ endsnippet
 snippet \- "setminus" i
 \setminus
 endsnippet
+context "math()"
+snippet cdd "cdot" iA
+\cdot
+endsnippet
+
+context "math()"
+snippet subs "subset" iA
+\subset $0
+endsnippet
 
 priority 10
 context "math()"
@@ -291,8 +300,13 @@ context "math()"
 snippet td "powers" iA
 ^{$1}$0
 endsnippet
+priority 100
+context "math()"
 snippet rra "arrow" A
 \Rightarrow $0
+endsnippet
+snippet rra "arrow" A
+$\Rightarrow$ $0
 endsnippet
 snippet 'del([a-zA-Z])' "del" wr
 \frac{d $1}{\del `!p snip.rv = match.group(1)`}$0

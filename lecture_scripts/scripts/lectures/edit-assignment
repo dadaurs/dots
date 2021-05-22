@@ -9,8 +9,8 @@ if [[ "$ASS" != true ]]; then
 	 exit
 fi
 length=$(ls | wc -l)
-choice=$( ls | tac | $dmenu_cmd -l $length -p "Which One?" -i )
+choice=$( ls | sed -s 's/S//g' | sort -n | tac | $dmenu_cmd -l $length -p "Which One?" -i )
 
 [ "$choice" = "" ] && exit 1
-cd $choice
+cd S$choice
 st -e tmux new-session -s "Assignment for $current_course" "nvim Ex.tex; $SHELL" || st -e tmux attach-session -t "Assignment for $current_course" & 

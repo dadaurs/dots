@@ -1,16 +1,17 @@
 
 ;; ----- smex-history -----
 (
+ electric-indent-mode
  eval-region
  cd
  rg
  5x5
  arp
  dbx
- dig
 )
 
 ;; ----- smex-data -----
 (
  (eval-region . 4)
+ (electric-indent-mode . 1)
 )

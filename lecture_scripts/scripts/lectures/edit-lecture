@@ -10,6 +10,9 @@ get_title(){
 }
 test -d $coursedir/lectures || mkdir $coursedir/lectures
 num_lec=$(ls $lecturedir | grep lec | wc -l)
+if [ $num_lec -gt 15 ]; then
+num_lines=15
+fi
 [ "$num_lec" -eq 0 ] && notify-send "No lectures in current course."
 all_lectures=$(ls $lecturedir | grep lec | tac | sed -e 's/lec//g' -e 's/\.tex//g')
 lectures_with_title=$''
@@ -21,7 +24,7 @@ pgrep -x inkscape-figure >/dev/null 2>&1 || (cd "$coursedir" && inkscape-figures
 
 
 cd "$lecturedir" || exit 1
-choice=$(echo -ne  $lectures_with_title | tac | $dmenu_cmd -markup-rows -p "Which lecture?" -l $num_lec | awk '{print $1}'  )
+choice=$(echo -ne  $lectures_with_title | tac | $dmenu_cmd -markup-rows -p "Which lecture?" -l $num_lines | awk '{print $1}'  )
 [ "$choice" = "" ] && exit 0
 cd "$lecturedir" && (st -e tmux new-session -s "Tex Notes of course $current_course | lecture $choice" "nvim lec$choice.tex; $SHELL" || st -e tmux attach-session -t "Tex Notes of course $current_course | lecture $choice" ) &
 cd $coursedir || exit 1
