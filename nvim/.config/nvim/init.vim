@@ -169,21 +169,20 @@ nmap <silent> <C-t> :VimtexTocToggle<CR>
 "---}}}
 "Utilities:
 "---{{{2
+
+
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'scrooloose/nerdcommenter' 
-Plug 'ludovicchabant/vim-gutentags'
 Plug 'tpope/vim-surround'
 Plug 'terryma/vim-multiple-cursors'
 "Plug 'liuchengxu/vista.vim', { 'for': ['tex', 'latex', 'c', 'cpp'] }
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 "Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
 "" Plug 'ryanoasis/vim-devicons' Icons without colours
 Plug 'akinsho/nvim-bufferline.lua'
 nnoremap <Tab>n :BufferLineCycleNext<cr>
 nnoremap <Tab>p :BufferLineCyclePrev<cr>
-Plug 'francoiscabrol/ranger.vim'
+Plug 'francoiscabrol/ranger.vim' , {'on': 'Ranger'}
 Plug 'rbgrouleff/bclose.vim'
-Plug 'marcushwz/nvim-workbench'
-nmap <leader>b <Plug>ToggleWorkbench
 
 " <Plug>WorkbenchAddCheckbox allows you to easily turned a list in markdown to a checkbox
 " - testing -> - [ ] testing
@@ -239,7 +238,7 @@ let g:lightline.subseparator = {
 	\   'left': '', 'right': '' 
   \}
 " nvim v0.4.3
-Plug 'kdheepak/lazygit.nvim', { 'branch': 'nvim-v0.4.3' }
+Plug 'kdheepak/lazygit.nvim', { 'branch': 'nvim-v0.4.3', 'on': 'LazyGit' }
 nnoremap <silent> <leader>lg :LazyGit<CR>
 "---}}}
 "Snippets:
@@ -259,12 +258,11 @@ let g:UltiSnipsEditSplit="vertical"
 "Plug 'plasticboy/vim-markdown'
 let g:vim_markdown_math = 1
 set conceallevel=2
-Plug 'baskerville/vim-sxhkdrc', { 'for': ['sxhkdrc']}
+Plug 'baskerville/vim-sxhkdrc', { 'for': 'sxhkdrc'}
 "---}}}
 "Git:
 "---{{{2
-Plug 'jreybert/vimagit'
-Plug 'tpope/vim-fugitive'
+"Plug 'jreybert/vimagit'
 "---}}}
 "Other:
 "---{{{2
@@ -335,7 +333,7 @@ source ~/.cache/dark_or_lightscheme
 let g:enable_bold_font = 1  
 let g:enable_italic_font = 1
 let g:hybrid_transparent_background = 1
-colorscheme xresources
+colorscheme nord
 
 hi! Normal guibg=NONE ctermbg=NONE
 "hi! EndOfBuffer cterm=NONE gui=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE

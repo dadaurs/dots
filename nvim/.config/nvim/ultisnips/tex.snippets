@@ -84,14 +84,17 @@ $2
 \end{$1}
 $0
 endsnippet
-snippet km "Math" wA
-$${1}$`!p
-if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
-    snip.rv = ' '
-else:
-    snip.rv = ''
-`$2
+snippet km "math" wA
+$${1}$ $0
 endsnippet
+#snippet km "Math" wA
+#$${1}$`!p
+#if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+#snip.rv = ' '
+#else:
+#snip.rv = ''
+#`$2
+#endsnippet
 snippet thm "Theorem" b
 \begin{thm}[${2:Theorem name}]
 	$0
@@ -240,9 +243,13 @@ context	"math()"
 snippet tt "text"
 \text{ $1 } $0
 endsnippet
+context	"math()"
+snippet dd "text" i
+\ldots
+endsnippet
 
 context "math()"
-snippet crbr "curly braces" 
+snippet crbr "curly braces" i
 \left\\{ $1 \right\\} $0
 endsnippet
 context "math()"

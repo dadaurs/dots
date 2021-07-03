@@ -1,1 +1,1 @@
-("~/Cours/" "~/ProjetProg/" "~/dots/")
+("~/dots/" "~/ProjetProg/" "~/Cours/")

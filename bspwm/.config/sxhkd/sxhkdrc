@@ -182,6 +182,7 @@ alt + a ; p
 # keybinds
 #
 #---{{{1
+
 alt + shift + m
 	st -e neomutt
 alt + ctrl + s
@@ -197,6 +198,8 @@ alt+shift+s
 # super+F2
 XF86AudioRaiseVolume
 	$HOME/scripts/keybinds/volume.sh up
+F12
+	scrot -s
 F6
 	$HOME/scripts/keybinds/volume.sh up
 # super+F1

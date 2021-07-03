@@ -1,0 +1,444 @@
+
+#============================================================================
+# Functions
+#============================================================================
+#{{{
+#}}}
+
+#============================================================================
+# Parentheses
+#============================================================================
+#{{{
+snippet "" "Guillemets" 
+\`\`$1'' $0
+endsnippet
+snippet (  "Braces" iA
+( $1) $0
+endsnippet
+snippet [  "Square Braces" A
+[ $1] $0
+endsnippet
+snippet { "Curly brace" A
+{ $1} $0
+endsnippet
+#}}}
+
+#============================================================================
+#Environments
+#============================================================================
+#{{{
+snippet dm "display math" bA
+\[ 
+$1
+\]
+$0
+endsnippet
+snippet al "align" bA
+\begin{align*}
+$1
+\end{align*}
+$0
+endsnippet
+snippet "([A-Za-z]+)@(\w)" "Autoformatting common functions" rA
+\\`!p snip.rv = match.group(1)`{`!p snip.rv = match.group(2)`}
+endsnippet
+snippet "b(egin)?" "begin{} / end{}" br
+\begin{${1:something}}
+	${0:${VISUAL}}
+\end{$1}
+endsnippet
+
+snippet env "enviromnent" bA
+\begin{$1}
+$2
+\end{$1}
+$0
+endsnippet
+snippet km "math" wA
+$${1}$ $0
+endsnippet
+#snippet km "Math" wA
+#$${1}$`!p
+#if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+#snip.rv = ' '
+#else:
+#snip.rv = ''
+#`$2
+#endsnippet
+snippet thm "Theorem" b
+\begin{thm}[${2:Theorem name}]
+	$0
+\end{thm}
+endsnippet
+snippet defn "Definition" b
+\begin{defn}[${1:Definition}]
+	$0
+\end{defn}
+endsnippet
+priority 1000
+
+snippet pmm "vector" iA
+\begin{pmatrix}
+$1
+\end{pmatrix} $0
+endsnippet
+snippet beg "Surround in environment" i
+\begin{$1}
+${VISUAL}
+\end{$1}
+endsnippet
+snippet lal "\begin{align*} / \end{align*}" A
+\begin{align*}
+${VISUAL}
+\end{align*}
+endsnippet
+snippet eni "itemize environment"
+\begin{itemize}
+\item $1
+\end{itemize}
+$0
+endsnippet
+snippet enu "Enumerate environment"
+\begin{enumerate}
+\item $1
+\end{enumerate}
+$0
+endsnippet
+#}}}
+#============================================================================
+#Sections
+#============================================================================
+#{{{
+snippet sc "section" b
+\section{$1}
+$0
+endsnippet
+snippet ssc "subsection" b
+\subsection{$1}
+$0
+endsnippet
+snippet sssc "subsubsection" b
+\subsubsection{$1}
+$0
+endsnippet
+
+#}}}
+
+#============================================================================
+# Creation
+#============================================================================
+#{{{
+
+#}}}
+
+
+#============================================================================
+# Math symbols
+#============================================================================
+#{{{
+# Simple
+#{{{
+
+snippet \- "setminus" i
+\setminus
+endsnippet
+
+snippet cdd "cdot" iA
+\cdot
+endsnippet
+
+
+snippet subs "subset" iA
+\subset $0
+endsnippet
+
+priority 10
+
+snippet "hat" "hat" riA
+\hat{$1}$0
+endsnippet
+
+snippet sympy "sympy block " w
+sympy $1 sympy$0
+endsnippet
+
+snippet __ "subscript with letters" iA
+_{$1} $0
+endsnippet
+
+snippet itt "intertext" bA
+\intertext{$1}
+endsnippet
+
+snippet sr "square" iA
+^{2}
+endsnippet
+
+snippet invs "square" iA
+^{-1}
+endsnippet
+
+
+
+
+snippet lim "limit" w
+\lim_{${1:x} \to ${2: + \infty}} $0
+endsnippet
+
+priority 100
+
+snippet sqq "squareroot" wA
+\sqrt{$1} $0
+endsnippet
+
+priority 10
+snippet sqq "squareroot" wA
+\sqrt{${VISUAL}} $0
+endsnippet
+
+
+snippet uub "underbrace" 
+\underbrace{${VISUAL}}_{$0}
+endsnippet
+
+snippet tt "text"
+\text{ $1 } $0
+endsnippet
+snippet dd "text" i
+\ldots
+endsnippet
+
+
+snippet crbr "curly braces" i
+\left\\{ $1 \right\\} $0
+endsnippet
+
+snippet lrp "braces"
+\left( $1 \right) $0
+endsnippet
+
+snippet tt "texttt"
+\texttt{$1} $0
+endsnippet
+
+priority 10
+snippet "bbb" "bar" riA
+\overline{$1}$0
+endsnippet
+
+
+snippet inti "inti" iA
+\int_{-\infty}^{+\infty}$0
+endsnippet
+
+
+snippet int "int" i
+\int_{ $1 }^{ $2 }$0
+endsnippet
+
+snippet Rn "R^n"
+\mathbb{R}^n
+endsnippet
+
+snippet Rm "R^m"
+\mathbb{R}^m
+endsnippet
+
+
+snippet sum "sum" 
+\sum_{$1}^{ $2}$0
+endsnippet
+
+
+snippet ify "infty" A
+\infty $0
+endsnippet
+
+
+snippet e "exp" 
+e^{$1} $0
+endsnippet
+
+
+snippet pn "puissance" iA
+^{ $1 } $0
+endsnippet
+
+snippet td "powers" iA
+^{$1}$0
+endsnippet
+priority 100
+
+snippet rra "arrow" A
+\Rightarrow $0
+endsnippet
+snippet rra "arrow" A
+$\Rightarrow$ $0
+endsnippet
+snippet 'del([a-zA-Z])' "del" wr
+\frac{d $1}{\del `!p snip.rv = match.group(1)`}$0
+endsnippet
+
+snippet gg "geq" A
+\geq $0
+endsnippet
+
+snippet ll "leq" A
+\leq $0
+endsnippet
+
+snippet ceq ":=" A
+\coloneqq $0
+endsnippet
+
+snippet := ":=" A
+\coloneqq $0
+endsnippet
+
+
+snippet aneq "aligned =" A
+&=
+endsnippet
+
+snippet seq "aligned =" i
+\subseteq $0
+endsnippet
+
+snippet sepq "aligned =" i
+\supseteq $0
+endsnippet
+#}}}
+# Regex
+#{{{
+priority 100
+snippet "([a-zA-Z])bbb" "bar" riA
+\overline{`!p snip.rv=match.group(1)`}
+endsnippet
+priority 100
+
+snippet "([a-zA-Z])hat" "hat" riA
+\hat{`!p snip.rv=match.group(1)`}
+endsnippet
+
+snippet "([a-zA-Z])ddt" "ddots" riA
+\ddot{`!p snip.rv=match.group(1)`}
+endsnippet
+
+snippet "([a-zA-Z])dtt" "dots" riA
+\dot{`!p snip.rv=match.group(1)`}
+endsnippet
+
+snippet "(\\?\w+)(,\.|\.,)" "Vector postfix" riA
+\vec{`!p snip.rv=match.group(1)`}
+endsnippet
+snippet '(bb|cal|scr|frak)([a-zA-Z])' "mathfont" wr
+\math`!p snip.rv = match.group(1)`{`!p snip.rv = match.group(2).upper()`}$0
+endsnippet
+
+
+snippet '([A-Za-z])(\d)' "auto subscript" wrA
+`!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
+endsnippet
+
+
+
+snippet '([A-Za-z])_(\d\d)' "auto subscript2" wrA
+`!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
+endsnippet
+priority 10000
+snippet 'sympy(.*)sympy' "evaluate sympy" wr
+`!p
+from sympy import *
+x, y, z, t = symbols('x y z t')
+k, m, n = symbols('k m n', integer=True)
+f, g, h = symbols('f g h', cls=Function)
+init_printing()
+snip.rv = eval('latex(' + match.group(1).replace('\\', '') \
+    .replace('^', '**') \
+    .replace('{', '(') \
+    .replace('}', ')') + ')')
+`\\\
+endsnippet
+#}}}
+
+# Fractions
+#{{{
+priority 1000
+snippet // "Fraction" iA
+\\frac{$1}{$2}$0
+endsnippet
+snippet / "Fraction" i
+\\frac{${VISUAL}}{$1}$0
+endsnippet
+
+snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "Fraction" wrA
+\\frac{`!p snip.rv = match.group(1)`}{$1}$0
+endsnippet
+priority 1000
+snippet '^.*\)/' "() Fraction" wrA
+`!p
+stripped = match.string[:-1]
+depth = 0
+i = len(stripped) - 1
+while True:
+	if stripped[i] == ')': depth += 1
+	if stripped[i] == '(': depth -= 1
+	if depth == 0: break;
+	i -= 1
+snip.rv = stripped[0:i] + "\\frac{" + stripped[i+1:-1] + "}"
+`{$1}$0
+endsnippet
+#}}}
+
+# Logic
+
+#{{{
+snippet => "implies" Ai
+\implies
+endsnippet
+
+snippet =< "implied by" Ai
+\impliedby
+endsnippet
+priority 1000
+snippet o\o "emptyset"
+\emptyset
+endsnippet
+#}}}
+#}}}
+#============================================================================
+# Text
+#============================================================================
+#{{{
+snippet Tq "tel que"
+Tel que
+endsnippet
+snippet tq "tel que"
+tel que
+endsnippet
+
+snippet mq "montrer que"
+montrer que
+endsnippet
+snippet Mq "montrer que"
+Montrer que
+endsnippet
+snippet Spg "sans perte de generalite"
+Sans perte de géneralité
+endsnippet
+snippet spg "sans perte de generalite"
+sans perte de géneralité
+endsnippet
+snippet supp "supposons"
+supposons
+endsnippet
+snippet Supp "supposons"
+Supposons
+endsnippet
+snippet ssi "si et seulement si"
+si et seulement si
+endsnippet
+snippet Ssi "si et seulement si"
+Si et seulement si
+endsnippet
+#}}}
