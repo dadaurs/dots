@@ -5,9 +5,9 @@
 dark_or_light(){
 dark_light=$(echo -e "Dark\nLight" | dmenu -i -p "Theme?")
 	case $dark_light in
-		'Dark')theme=$( ls $HOME/.local/lib/python3.7/site-packages/pywal/colorschemes/dark/ | sed 's/\.json//' | dmenu -i ) && wal --theme $theme && $HOME/scripts/reload_theme  &&  feh --bg-scale $(find $HOME/wallpapers/dark/* | sxiv -tio)
+		'Dark')theme=$( ls $HOME/.local/lib/python3.10/site-packages/pywal/colorschemes/dark/ | sed 's/\.json//' | dmenu -i ) && wal --theme $theme && $HOME/scripts/reload_theme  &&  feh --bg-scale $(find $HOME/wallpapers/dark/* | sxiv -tio)
  ;;
-		'Light')theme=$( ls $HOME/.local/lib/python3.7/site-packages/pywal/colorschemes/light/ | sed 's/\.json//' | dmenu -i ) && wal -l --theme $theme && $HOME/scripts/reload_theme && feh --bg-scale   $(find $HOME/wallpapers/light/* | sxiv -tio)
+		'Light')theme=$( ls $HOME/.local/lib/python3.10/site-packages/pywal/colorschemes/light/ | sed 's/\.json//' | dmenu -i ) && wal -l --theme $theme && $HOME/scripts/reload_theme && feh --bg-scale   $(find $HOME/wallpapers/light/* | sxiv -tio)
 ;;
 	esac
 }

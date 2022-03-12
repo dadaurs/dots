@@ -14,6 +14,7 @@ import XMonad.Layout.Gaps
 import XMonad.Layout.Decoration
 import XMonad.Layout.Simplest
 import XMonad.Util.NamedActions
+import XMonad.Util.SpawnOnce
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
@@ -97,7 +98,7 @@ myNormalBorderColor :: String
 myNormalBorderColor   = "#282c34" 
 
 myFocusedBorderColor :: String
-myFocusedBorderColor  = "#46d9ff"  
+myFocusedBorderColor  = "#82AAFF"  
 
 myWorkspaces    = [" 1 "," 2 "," 3 "," 4 "," 5 "," 6 "," 7 "," 8 "," 9 "]
 
@@ -202,9 +203,9 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- {{{
 myTabTheme = def {
 	fontName = myFont
-	 , activeColor         = "#46d9ff"
+	 , activeColor         = "#82AAFF"
 	 , inactiveColor       = "#313846"
-	 , activeBorderColor   = "#46d9ff"
+	 , activeBorderColor   = "#82AAFF"
 	 , inactiveBorderColor = "#282c34"
 	 , activeTextColor     = "#282c34"
 	 , inactiveTextColor   = "#d0d0d0"
@@ -296,6 +297,8 @@ myManageHook = composeAll
     , className =? "Gimp"           --> doFloat
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore
+ , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat  -- Float Firefox Dialog
+     , isFullscreen -->  doFullFloat
     ]<+> namedScratchpadManageHook myScratchPads
 
 myEventHook = mempty
@@ -307,7 +310,17 @@ myLogHook = fadeInactiveLogHook fadeAmount
     where fadeAmount = 1.0
 
 
-myStartupHook = return ()
+-- myStartupHook :: X ()
+myStartupHook = do
+    spawnOnce "xset r rate 300 100 &"
+    spawnOnce "xrdb -merge ~/.config/X11/Xresources &"
+    spawnOnce "emacs --daemon &"
+    spawnOnce "clipmenud &"
+    spawnOnce "blueman-applet &"
+    spawnOnce "nm-applet &"
+    spawnOnce "xmodmap ~/.config/xmodmap/capstoctrl  2>&1"
+    spawnOnce "xcape &"
+    spawnOnce "~/.fehbg &"
 
 -- }}}
 -- =================================================
@@ -346,7 +359,7 @@ main = do
                         , ppHiddenNoWindows = xmobarColor "#c792ea" ""        -- Hidden workspaces (no windows)
                         , ppTitle = xmobarColor "#b3afc2" "" . shorten 60     -- Title of active window in xmobar
                         , ppSep =  "<fc=#666666> <fn=2>|</fn> </fc>"          -- Separators in xmobar
-                        , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"  -- Urgent workspace
+                       , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"  -- Urgent workspace
                         , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
                         },
         startupHook        = myStartupHook

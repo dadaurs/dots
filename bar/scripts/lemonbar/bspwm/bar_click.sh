@@ -24,7 +24,7 @@ fi
 
 
 WIDTH=$( xdpyinfo  | grep -i 'dimensions:' | sed 's:x:\ :' | awk '{print $2}' ) 
-FONT="Iosevka Nerd Font:size=10"
+FONT="Iosevka Nerd Font:size=11"
 HEIGHT=18
 BarWidth=650
 BarPosX=$( expr "$WIDTH" - $BarWidth )
@@ -72,7 +72,10 @@ bspc subscribe | while IFS= read -r line; do
 	-e 's/meDP-[0-9]//g'\
 	-e 's/FDesktop//g'\
 	-e 's/\ meDP-[0-9]\ //g'\
+	-e 's/WMeDP[0-9]//g'\
 	-e 's/MeDP-[0-9]//g'\
+	-e 's/MeDP[0-9]//g'\
+	-e 's/WmDP[0-9]//g'\
 	-e 's/WMHDMI-[0-9]//g'\
 	-e 's/WmHDMI-[0-9]//g'\
 	-e 's/[mM]DP-[0-9]//g'\
@@ -106,7 +109,7 @@ bspc subscribe | while IFS= read -r line; do
 done | lemonbar  -B $background -g $BarPosX\x$HEIGHT -f "$FONT" | sh &
 #sleep 0.001
 
-/home/david/scripts/lemonbar/bspwm/modules |  lemonbar -p -g $BarWidth\x$HEIGHT+$BarPosX+0  -f "Font Awesome" -f "$FONT"  -B $BG  -F $FG | sh
+/home/dada/scripts/lemonbar/bspwm/modules |  lemonbar -p -g $BarWidth\x$HEIGHT+$BarPosX+0  -f "Font Awesome" -f "$FONT"  -B $BG  -F $FG | sh
 
 }
 

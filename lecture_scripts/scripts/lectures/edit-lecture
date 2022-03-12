@@ -18,13 +18,13 @@ all_lectures=$(ls $lecturedir | grep lec | tac | sed -e 's/lec//g' -e 's/\.tex//
 lectures_with_title=$''
 for i in $(seq 1 $num_lec);do
 	tmptitle=`get_title $i`
-	lectures_with_title="$lectures_with_title$i <b>$tmptitle</b> \n"
+	lectures_with_title="$lectures_with_title$i $tmptitle \n"
 done
 pgrep -x inkscape-figure >/dev/null 2>&1 || (cd "$coursedir" && inkscape-figures watch)
 
 
 cd "$lecturedir" || exit 1
-choice=$(echo -ne  $lectures_with_title | tac | $dmenu_cmd -markup-rows -p "Which lecture?" -l $num_lines | awk '{print $1}'  )
+choice=$(echo -ne  $lectures_with_title | tac | $dmenu_cmd  -p "Which lecture?"  | awk '{print $1}'  )
 [ "$choice" = "" ] && exit 0
 cd "$lecturedir" && (st -e tmux new-session -s "Tex Notes of course $current_course | lecture $choice" "nvim lec$choice.tex; $SHELL" || st -e tmux attach-session -t "Tex Notes of course $current_course | lecture $choice" ) &
 cd $coursedir || exit 1

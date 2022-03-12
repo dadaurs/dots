@@ -193,7 +193,6 @@ This is to make dashboard start even when opening emacs client
               (("C-c C-r" . ivy-resume)
                ("C-x B" . ivy-switch-buffer-other-window))
               :custom
-              (setq ivy-use-virtual-buffers t)
               (setq enable-recursive-minibuffers t)
               :config
               (ivy-mode))

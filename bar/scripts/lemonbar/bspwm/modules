@@ -44,7 +44,7 @@ trap _term SIGTERM EXIT
 
 trap 'getVol > $volfile && main' USR1
 
-killtail
+#killtail
 update(){
 	case $1 in
 		'bat')getBattery > $batfile && main ;;

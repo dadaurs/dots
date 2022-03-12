@@ -5,9 +5,9 @@
 choosecourse(){
 cd $basedir
 current_course=$(readlink current-course)
-numcourses=$(ls -d */ | grep -v current-course | grep -v "BA[0-9]" | grep -v pdf | wc -l)
+numcourses=$(ls -d */ | grep -v current-course | grep -v "BA[0-9]" | grep -v pdf | grep -v "SERIES" | wc -l)
 #test -d current-course && unlink current-course
-new_course=$(ls -d */ | grep -v current-course | grep -v pdf | grep -v "BA[0-9]" | $dmenu_cmd -l "$numcourses" -p "What Course?")
+new_course=$(ls -d */ | grep -v current-course | grep -v pdf | grep -v "BA[0-9]"| grep -v "SERIES" | $dmenu_cmd -l "$numcourses" -p "What Course?")
 if [ "$new_course" = "" ]; then
 	exit 1
 fi

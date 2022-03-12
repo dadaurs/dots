@@ -3,6 +3,7 @@
 #============================================================================
 #{{{
 global !p
+import vim
 texMathZones = ['texMathRegion' + x for x in ['', 'X', 'XX', 'Env', 'EnvStarred', 'Ensured']]
 texIgnoreMathZones = ['texMathTextArg']
 texMathZoneIds = vim.eval('map('+str(texMathZones)+", 'hlID(v:val)')")
@@ -28,6 +29,9 @@ def create_matrix_n(snip):
 		final_str += " \\\\\\\n"
 	final_str += old_spacing + "\\end{" + mc + "matrix}$0"
 	snip.expand_anon(final_str)
+def env(name):
+	[x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
+	return x != '0' and y != '0'
 
 
 
@@ -347,6 +351,10 @@ context "math()"
 snippet sepq "aligned =" i
 \supseteq $0
 endsnippet
+context "math()"
+snippet fak "gr quotient"
+\faktor{$1}{$2}$0
+endsnippet
 #}}}
 # Regex
 #{{{
@@ -480,5 +488,8 @@ si et seulement si
 endsnippet
 snippet Ssi "si et seulement si"
 Si et seulement si
+endsnippet
+snippet salg "sigma-algebra"
+$\sigma$-algebra
 endsnippet
 #}}}

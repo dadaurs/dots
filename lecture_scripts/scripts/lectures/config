@@ -2,7 +2,7 @@
 #vim:filetype=sh
 basedir="$HOME/Cours"
 scriptdir="$HOME/scripts/lectures"
-dmenu_cmd="rofi -dmenu -i"
+dmenu_cmd="dmenu -i"
 author="David Wiedemann"
 date=$(date "+%a %d %b")
 

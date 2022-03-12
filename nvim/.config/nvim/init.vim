@@ -8,17 +8,18 @@ set guioptions-=r
 set guioptions-=L
 set guifont=Iosevka\ Nerd\ Font:h18
 "dont litter ~
-if !has('nvim') | set viminfofile=$XDG_CACHE_HOME/vim/viminfo | endif
 set wildmenu
 set noswapfile 
 filetype plugin indent on
-syntax on
-syntax enable
+"adding syntax on breaks math environment recognition for some environments,
+"so dont
+"syntax on 
+"syntax enable
 set nonumber
 set nocompatible
 set mouse=a
 set splitbelow
-set termguicolors
+"set termguicolors
 set autoindent
 "let $NVIM_ENABLE_TRUE_COLOR=1
 "let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
@@ -154,7 +155,7 @@ call plug#begin('~/.vim/plugged')
 "---{{{2
 Plug 'PietroPate/vim-tex-conceal', { 'for': ['latex', 'tex'] }
 Plug 'lervag/vimtex', { 'for': ['latex', 'tex'] }
-let g:vimtex_syntax_autoload_packages = ['amsmath', 'tikz']
+"let g:vimtex_syntax_autoload_packages = ['amsmath', 'tikz']
 Plug 'KeitaNakamura/tex-conceal.vim', { 'for': ['latex', 'tex'] }
 let g:vimtex_quickfix_mode=0
 let g:tex_flavor='latex'
@@ -171,7 +172,6 @@ nmap <silent> <C-t> :VimtexTocToggle<CR>
 "---{{{2
 
 
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'scrooloose/nerdcommenter' 
 Plug 'tpope/vim-surround'
 Plug 'terryma/vim-multiple-cursors'
@@ -267,6 +267,7 @@ Plug 'baskerville/vim-sxhkdrc', { 'for': 'sxhkdrc'}
 "Other:
 "---{{{2
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'codota/tabnine-vim'
 
 nnoremap <c-x><c-f> <plug>(fzf-complete-path)
@@ -280,6 +281,13 @@ Plug 'lilydjwg/colorizer'
 Plug 'metakirby5/codi.vim'
 "Plug 'mhinz/vim-startify'
 "---}}}
+"Octave:
+"---{{{2
+Plug 'tranvansang/octave.vim'
+"---}}}
+"
+"
+"
 "===========================================================================================================
 "Colors:
 "===========================================================================================================
@@ -328,12 +336,12 @@ set number relativenumber
 "===========================================================================================================
 "---{{{1
 
-source ~/.cache/dark_or_lightscheme
+"source ~/.cache/dark_or_lightscheme
 "set background=dark
 let g:enable_bold_font = 1  
 let g:enable_italic_font = 1
 let g:hybrid_transparent_background = 1
-colorscheme nord
+colorscheme hybrid_material
 
 hi! Normal guibg=NONE ctermbg=NONE
 "hi! EndOfBuffer cterm=NONE gui=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
@@ -341,9 +349,9 @@ hi! Normal guibg=NONE ctermbg=NONE
 "hi! Normal guibg=NONE ctermbg=NONE
 "hi! EndOfBuffer cterm=NONE gui=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=#2e303e
 hi! clear Conceal
-"hi CursorLine   cterm=NONE ctermbg=NONE  ctermfg=NONE guibg=NONE guifg=NONE gui=NONE
-"hi MatchParen   cterm=NONE ctermbg=12 ctermfg=NONE guibg=#DDDDDD guifg=NONE gui=NONE
-"hi CursorLine   cterm=NONE ctermbg=0 ctermfg=NONE guibg=#2E333F guifg=NONE gui=NONE
+hi CursorLine   cterm=NONE ctermbg=NONE  ctermfg=NONE guibg=NONE guifg=NONE gui=NONE
+hi MatchParen   cterm=NONE ctermbg=12 ctermfg=NONE guibg=#DDDDDD guifg=NONE gui=NONE
+hi CursorLine   cterm=NONE ctermbg=0 ctermfg=NONE guibg=#2E333F guifg=NONE gui=NONE
 set laststatus=0
 lua require'bufferline'.setup{}
 "---}}}

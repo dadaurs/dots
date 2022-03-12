@@ -18,7 +18,7 @@
    '("d1af5ef9b24d25f50f00d455bd51c1d586ede1949c5d2863bef763c60ddf703a" "527df6ab42b54d2e5f4eec8b091bd79b2fa9a1da38f5addd297d1c91aa19b616" default))
  '(org-agenda-files nil)
  '(package-selected-packages
-   '(latex-math-preview projectile org-superstar org-bullets ivy-posframe smex ivy-rich doom-modeline page-break-lines org-dashboard dashboard general ibuffer-git which-key wallpaper vterm use-package unicode-emoticons treemacs-evil rg ranger pkg-info peep-dired pdf-tools org-magit org-evil openwith oceanic-theme lsp-java latex-preview-pane key-chord jupyter helm-core haskell-mode haskell-emacs eyebrowse ewal-spacemacs-themes ewal-doom-themes evil-terminal-cursor-changer evil-org evil-nerd-commenter evil-mu4e evil-magit evil-leader elpy ein eclim dired-ranger counsel base16-theme atom-one-dark-theme all-the-icons))
+   '(flycheck lean-mode latex-math-preview projectile org-superstar org-bullets ivy-posframe smex ivy-rich doom-modeline page-break-lines org-dashboard dashboard general ibuffer-git which-key wallpaper vterm use-package unicode-emoticons treemacs-evil rg ranger pkg-info peep-dired pdf-tools org-magit org-evil openwith oceanic-theme lsp-java latex-preview-pane key-chord jupyter helm-core haskell-mode haskell-emacs eyebrowse ewal-spacemacs-themes ewal-doom-themes evil-terminal-cursor-changer evil-org evil-nerd-commenter evil-mu4e evil-magit evil-leader elpy ein eclim dired-ranger counsel base16-theme atom-one-dark-theme all-the-icons))
  '(tetris-x-colors
    [[229 192 123]
     [97 175 239]

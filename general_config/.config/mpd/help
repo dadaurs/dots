@@ -1,7 +1,0 @@
-audio_output {
-    type "alsa"
-    name "My ALSA output"
-    device "iec958:CARD=Intel,DEV=0"
-    mixer_control "PCM"
-}
-

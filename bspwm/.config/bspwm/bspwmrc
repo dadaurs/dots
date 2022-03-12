@@ -4,7 +4,6 @@ xrdb -merge ~/.config/X11/Xresources &
 emacs --daemon >/dev/null 2>&1 &
 wal -R & 
 dunst &
-exec clipmenud &
 exec xmodmap ~/.config/xmodmap/capstoctrl >log 2>&1 & 
 xrandr -q | grep HDMI && ~/.screenlayout/bigscreen.sh
 xrandr --size 720x525 &
