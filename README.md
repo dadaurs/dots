@@ -23,26 +23,14 @@
 <!---dwm_tab: Working on it...-->
 
 <!---lemonbar/bar.sh: Sometimes I use bspwm, then I use this bar.-->
-## Patches for dwm
-### My patch
-[This](.suckless/dwm/dwm-script_tags-6.2.diff) patch removes the standard dwm bar and instead writes current tag information to a file.
-
-###Others
-[Pertag without the bar](./.suckless/dwm/dwm-6.1-pertag_without_bar.diff)
-
-[Attachabove](./.suckless/dwm/dwm-attachabove-6.2-20200421.diff)
-
-[Ewmhtags](./.suckless/dwm/dwm-ewmhtags-6.2.diff)
-
-[Named Scratchpads](./.suckless/dwm/dwm-namedscratchpads-6.2.diff) with [Floatrules](./.suckless/dwm/dwm-floatrules-6.2.diff)
-
-[Movestack](./.suckless/dwm/dwm-movestack-6.1.diff)
-
-[Vanity Gaps](./.suckless/dwm/dwm-vanitygaps-20190508-6.2.diff)
-
-## Screenshot for dwm
-![](./dwm_screenshot.png)
+# Setup
+I mostly just use bspwm with lemonbar and a few scripts you can find in the scripts/ folder
 ## Screenshot for bspwm
 ![](./bspwm-screenshot.png)
-Scripts for bspwm (especially bar script) are under scripts/lemonbar/bspwm and scripts/bspwm
+
+Scripts for bspwm (especially bar script) are under scripts/lemonbar/bspwm and scripts/bspwm.
+
+Scripts I use for lectures/note taking are in scripts/lectures
+
+All other script names should be somewhat self explanatory.
 
